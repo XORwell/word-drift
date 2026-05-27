@@ -1,0 +1,31 @@
+# Publish the static WORD-DRIFT explorer (site/) to GitHub Pages.
+# The site is fully static: it loads graph-core.json / graph-detail.json /
+# trigger-coords.json by relative path, so it works under the project subpath
+# (xorwell.github.io/word-drift/) with no backend.
+name: Pages
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
