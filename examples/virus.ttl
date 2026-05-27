@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "virus" (en) -- cross-lingual pair with "Virus" (virus-de)
+# Metaphorization:
+#   "an infectious biological agent" ->
+#   "a self-replicating malicious computer program". Cohen named
+#   the "computer virus" in 1983-1984 research; the Brain virus
+#   (1986) and PC era spread the sense to the mainstream.
+# =============================================================
+
+wdr:word-virus a drift:Word ;
+    drift:writtenForm "virus"@en ;
+    drift:language "en" ;
+    rdfs:label "virus"@en ;
+    ontolex:sense wdr:sense-virus-bio , wdr:sense-virus-computer ;
+    drift:crossLingualOf wdr:word-virus-de .
+
+wdr:sense-virus-bio a drift:Sense ;
+    drift:gloss "an infectious agent that replicates inside living cells; figuratively, a harmful influence"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1392"^^xsd:gYear .
+
+wdr:sense-virus-computer a drift:Sense ;
+    drift:gloss "computer virus: a self-replicating malicious program that attaches itself to files or programs and spreads between computers"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1984"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1984"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-computer-virus a drift:TriggerEvent ;
+    rdfs:label "naming of the computer virus and early PC infections"@en ;
+    dct:description "Fred Cohen defined and named the 'computer virus' in 1983-1984 academic work; the Brain boot-sector virus (1986) and the spread of personal computers carried the term into mainstream English."@en ;
+    drift:eventDate "1984"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q14001 .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-virus-computer a drift:DriftEvent ;
+    drift:affectsWord wdr:word-virus ;
+    drift:senseFrom wdr:sense-virus-bio ;
+    drift:senseTo wdr:sense-virus-computer ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1984"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1995"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-virus-etymonline , wdr:src-virus-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-virus-computer a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-virus-computer ;
+    drift:proposedTrigger wdr:trigger-computer-virus ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.88 ;
+    drift:hasSource wdr:src-virus-etymonline , wdr:src-virus-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-virus-etymonline a drift:Source ;
+    dct:title "Etymonline - virus (n.) (computer sense attested by 1972; mainstreamed via Cohen 1983-84 and the Brain virus 1986)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/virus"^^xsd:anyURI .
+
+wdr:src-virus-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - virus, n."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/virus_n"^^xsd:anyURI .

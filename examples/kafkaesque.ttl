@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Kafkaesque" (en)
+# Metaphorization: Franz Kafka, whose novels ("Der Prozess", pub.
+# 1925) depicted nightmarish, opaque bureaucracy -> oppressively
+# absurd and bureaucratic. Kafka's fiction is the trigger.
+# =============================================================
+
+wdr:word-kafkaesque a drift:Word ;
+    drift:writtenForm "Kafkaesque"@en ;
+    drift:language "en" ;
+    rdfs:label "Kafkaesque"@en ;
+    ontolex:sense wdr:sense-kafkaesque-author , wdr:sense-kafkaesque-absurd .
+
+wdr:sense-kafkaesque-author a drift:Sense ;
+    drift:gloss "of or pertaining to the writer Franz Kafka or to his literary style"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1936"^^xsd:gYear .
+
+wdr:sense-kafkaesque-absurd a drift:Sense ;
+    drift:gloss "marked by a nightmarish, oppressive, and senseless complexity, especially of impenetrable bureaucracy or illogical official process; absurd in a menacing, disorienting way"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1947"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1947"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-kafkaesque-prozess a drift:TriggerEvent ;
+    rdfs:label "Posthumous publication of Kafka's novels ('Der Prozess', 1925)"@en ;
+    dct:description "Franz Kafka's novels, including 'Der Prozess' (The Trial), published posthumously from 1925, depicted individuals trapped in opaque, irrational bureaucratic systems. As their reputation spread in the 1930s and 1940s, 'Kafkaesque' came to mean oppressively absurd, bureaucratic, and disorienting, beyond mere reference to the author."@en ;
+    drift:eventDate "1925"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-kafkaesque-prozess a drift:DriftEvent ;
+    drift:affectsWord wdr:word-kafkaesque ;
+    drift:senseFrom wdr:sense-kafkaesque-author ;
+    drift:senseTo wdr:sense-kafkaesque-absurd ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1936"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-kafkaesque-etym , wdr:src-kafkaesque-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-kafkaesque-prozess a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-kafkaesque-prozess ;
+    drift:proposedTrigger wdr:trigger-kafkaesque-prozess ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-kafkaesque-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-kafkaesque-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Kafkaesque"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/Kafkaesque"^^xsd:anyURI .
+
+wdr:src-kafkaesque-wiki a drift:Source ;
+    dct:title "Franz Kafka -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Franz_Kafka"^^xsd:anyURI .

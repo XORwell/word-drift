@@ -1,0 +1,51 @@
+# Federated enrichment: for each drift:TriggerEvent linked to Wikidata via
+# owl:sameAs, retrieve the Wikidata English label, the inception/point-in-time
+# date (P571 or P585), and the country (P17) from the live Wikidata SPARQL
+# endpoint. The local eventDate is included so callers can cross-check.
+#
+# REQUIRES a federation-capable endpoint (QLever or any SPARQL 1.1 engine
+# with SERVICE support). This query CANNOT run in rdflib / validate.py offline;
+# it lives in queries/federated/ deliberately so the test suite ignores it.
+#
+# Run against a QLever instance that has the word-drift graph loaded:
+#   POST http://localhost:7019
+#   Content-Type: application/sparql-query
+#
+# Note: Wikidata SERVICE may time-out on large result sets. The VALUES clause
+# below scopes the federated sub-query to the trigger IRIs present in the local
+# graph, avoiding an unconstrained cross-product.
+
+PREFIX drift:  <https://w3id.org/word-drift/ontology#>
+PREFIX wd:     <http://www.wikidata.org/entity/>
+PREFIX wdt:    <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+PREFIX xsd:    <http://www.w3.org/2001/XMLSchema#>
+PREFIX schema: <http://schema.org/>
+
+SELECT ?trigger ?triggerLabel ?wdItem ?wdLabel ?wdInception ?wdCountry ?localYear
+WHERE {
+  # -- Local graph: collect trigger events that carry an owl:sameAs to Wikidata --
+  ?trigger a drift:TriggerEvent ;
+           owl:sameAs ?wdItem ;
+           drift:eventDate ?localYear .
+  FILTER(STRSTARTS(STR(?wdItem), STR(wd:)))
+
+  OPTIONAL { ?trigger rdfs:label ?triggerLabel . FILTER(lang(?triggerLabel) = "en") }
+
+  # -- Federated sub-query to Wikidata --
+  SERVICE <https://query.wikidata.org/sparql> {
+    OPTIONAL { ?wdItem rdfs:label ?wdLabel . FILTER(lang(?wdLabel) = "en") }
+    # P571 = inception; P585 = point in time (for events without a clear start)
+    OPTIONAL { ?wdItem wdt:P571 ?inception . }
+    OPTIONAL { ?wdItem wdt:P585 ?pointInTime . }
+    BIND(COALESCE(?inception, ?pointInTime) AS ?wdInception)
+    # P17 = country; P131 = located in administrative territorial entity (fallback)
+    OPTIONAL {
+      ?wdItem wdt:P17 ?countryItem .
+      ?countryItem rdfs:label ?wdCountry .
+      FILTER(lang(?wdCountry) = "en")
+    }
+  }
+}
+ORDER BY ?trigger

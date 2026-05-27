@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "robot" (en)
+# Broadening of a neologism: coined for Karel Capek's 1920 play
+# R.U.R. (from Czech "robota", forced labour) to mean an
+# artificial humanoid worker; broadened to any automated machine
+# or autonomous agent. The play's 1920 publication is the trigger.
+# =============================================================
+
+wdr:word-robot a drift:Word ;
+    drift:writtenForm "robot"@en ;
+    drift:language "en" ;
+    rdfs:label "robot"@en ;
+    ontolex:sense wdr:sense-robot-android , wdr:sense-robot-machine .
+
+wdr:sense-robot-android a drift:Sense ;
+    drift:gloss "an artificial manufactured person or humanoid worker, as in Capek's play R.U.R."@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1920"^^xsd:gYear .
+
+wdr:sense-robot-machine a drift:Sense ;
+    drift:gloss "any automated machine or autonomous device that performs tasks, often programmable"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1938"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1938"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-robot-rur a drift:TriggerEvent ;
+    rdfs:label "Coining of 'robot' in Karel Capek's play R.U.R."@en ;
+    dct:description "Karel Capek's 1920 play R.U.R. (Rossum's Universal Robots) introduced 'robot', from Czech 'robota' (forced labour). The neologism rapidly spread and broadened to mechanical and automated devices."@en ;
+    drift:eventDate "1920"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-robot-rur a drift:DriftEvent ;
+    drift:affectsWord wdr:word-robot ;
+    drift:senseFrom wdr:sense-robot-android ;
+    drift:senseTo wdr:sense-robot-machine ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1920"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1940"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-robot-etym , wdr:src-robot-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-robot-rur a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-robot-rur ;
+    drift:proposedTrigger wdr:trigger-robot-rur ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-robot-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-robot-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- robot"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/robot"^^xsd:anyURI .
+
+wdr:src-robot-wiki a drift:Source ;
+    dct:title "Robot -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Robot"^^xsd:anyURI .

@@ -1,0 +1,77 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORKED EXAMPLE - "silly" (en)
+# Pejoration (one of the canonical examples in historical linguistics):
+#   Old English "saelig" / Middle English "sely": "blessed, happy,
+#   fortunate" (positive) -> "innocent, helpless" -> "feeble" ->
+#   "foolish, absurd" (negative). The word's journey from divine
+#   blessing to buffoonery over 600 years.
+# =============================================================
+
+wdr:word-silly a drift:Word ;
+    drift:writtenForm "silly"@en ;
+    drift:language "en" ;
+    rdfs:label "silly"@en ;
+    ontolex:sense wdr:sense-silly-blessed , wdr:sense-silly-innocent , wdr:sense-silly-foolish .
+
+wdr:sense-silly-blessed a drift:Sense ;
+    drift:gloss "blessed, happy, fortunate; spiritually favoured (Old English 'saelig', cognate with German 'selig')"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "0900"^^xsd:gYear .
+
+wdr:sense-silly-innocent a drift:Sense ;
+    drift:gloss "innocent, helpless, pitiable; deserving of compassion"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1200"^^xsd:gYear .
+
+wdr:sense-silly-foolish a drift:Sense ;
+    drift:gloss "foolish, absurd, showing a lack of common sense or judgement"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1570"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1570"^^xsd:gYear ]
+    ] .
+
+# --- drift event 1: pejoration (blessed -> innocent/helpless; no external trigger) ---
+wdr:drift-silly-1200 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-silly ;
+    drift:senseFrom wdr:sense-silly-blessed ;
+    drift:senseTo wdr:sense-silly-innocent ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1150"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1300"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-silly-etymonline .
+
+# --- drift event 2: pejoration (innocent -> foolish; no external trigger) ---
+wdr:drift-silly-1570 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-silly ;
+    drift:senseFrom wdr:sense-silly-innocent ;
+    drift:senseTo wdr:sense-silly-foolish ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1450"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-silly-etymonline , wdr:src-silly-oed .
+
+# --- sources ---
+wdr:src-silly-etymonline a drift:Source ;
+    dct:title "Etymonline - silly (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/silly"^^xsd:anyURI .
+
+wdr:src-silly-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - silly, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/silly_adj"^^xsd:anyURI .

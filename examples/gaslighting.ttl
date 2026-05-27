@@ -1,0 +1,90 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "gaslighting" (en)
+# Broadening: a clinical/psychological term for manipulating
+# someone into doubting their own perception (from the 1944 film
+# "Gaslight") -> broad popular usage for any misleading or
+# manipulative deception, including in politics and media, with
+# a major frequency surge around 2016-2018.
+# =============================================================
+
+wdr:word-gaslighting a drift:Word ;
+    drift:writtenForm "gaslighting"@en ;
+    drift:language "en" ;
+    rdfs:label "gaslighting"@en ;
+    ontolex:sense wdr:sense-gaslighting-clinical , wdr:sense-gaslighting-broad .
+
+wdr:sense-gaslighting-clinical a drift:Sense ;
+    drift:gloss "psychological manipulation that makes a victim doubt their own memory, perception, or sanity"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1961"^^xsd:gYear .
+
+wdr:sense-gaslighting-broad a drift:Sense ;
+    drift:gloss "(broadened popular use) any grossly misleading, deceptive, or manipulative claim, especially in politics and public discourse"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2016"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2016"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-gaslighting-politics a drift:TriggerEvent ;
+    rdfs:label "Political and media discourse surge (2016-2018)"@en ;
+    dct:description "From the 2016 US election onward, commentators applied 'gaslighting' to political messaging and misinformation, broadening it from a clinical term to a general label for deceptive manipulation; Merriam-Webster reported a steep lookup and usage rise."@en ;
+    drift:eventDate "2016"^^xsd:gYear ;
+    drift:triggerCategory drift:Media .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-gaslighting-2016 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gaslighting ;
+    drift:senseFrom wdr:sense-gaslighting-clinical ;
+    drift:senseTo wdr:sense-gaslighting-broad ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2016"^^xsd:gYear ;
+    drift:hasSource wdr:src-gaslighting-mw , wdr:corpus-gaslighting-ngram .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster (which named gaslighting its 2022 Word of the Year over a
+# 1740% lookup rise) attests the broadening; the Ngram curve corroborates.
+wdr:hyp-gaslighting-politics a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-gaslighting-2016 ;
+    drift:proposedTrigger wdr:trigger-gaslighting-politics ;
+    drift:evidenceType drift:FrequencyCorrelation , drift:LexicographicNote ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-gaslighting-mw , wdr:corpus-gaslighting-ngram ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations (timeline curve) ---
+wdr:freq-gaslighting-2014 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-gaslighting ; drift:observedYear "2014"^^xsd:gYear ;
+    drift:relativeFrequency 0.6 ; drift:fromCorpus wdr:corpus-gaslighting-ngram .
+wdr:freq-gaslighting-2016 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-gaslighting ; drift:observedYear "2016"^^xsd:gYear ;
+    drift:relativeFrequency 1.9 ; drift:fromCorpus wdr:corpus-gaslighting-ngram .
+wdr:freq-gaslighting-2019 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-gaslighting ; drift:observedYear "2019"^^xsd:gYear ;
+    drift:relativeFrequency 4.2 ; drift:fromCorpus wdr:corpus-gaslighting-ngram .
+
+# --- sources ---
+wdr:corpus-gaslighting-ngram a drift:Corpus ;
+    dct:title "Google Books Ngram Viewer (gaslighting)"@en ;
+    drift:sourceURL "https://books.google.com/ngrams/graph?content=gaslighting"^^xsd:anyURI .
+
+wdr:src-gaslighting-mw a drift:Source ;
+    dct:title "Merriam-Webster - Word of the Year 2022: gaslighting"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/wordplay/word-of-the-year-2022"^^xsd:anyURI .

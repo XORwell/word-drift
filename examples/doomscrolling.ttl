@@ -1,0 +1,87 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "doomscrolling" (en)
+# Lexical coinage that broke into general use during the
+# COVID-19 pandemic (2020): compulsively scrolling through a
+# stream of bad news. Modelled as a Broadening from a niche
+# coinage to mainstream vocabulary, fixed by the pandemic.
+# =============================================================
+
+wdr:word-doomscrolling a drift:Word ;
+    drift:writtenForm "doomscrolling"@en ;
+    drift:language "en" ;
+    rdfs:label "doomscrolling"@en ;
+    ontolex:sense wdr:sense-doomscrolling-niche , wdr:sense-doomscrolling-mainstream .
+
+wdr:sense-doomscrolling-niche a drift:Sense ;
+    drift:gloss "online-slang coinage (c. 2018) for endlessly scrolling through negative news on social media"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2018"^^xsd:gYear .
+
+wdr:sense-doomscrolling-mainstream a drift:Sense ;
+    drift:gloss "the compulsive consumption of large quantities of negative online news, widely recognised general vocabulary"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2020"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-doomscrolling-covid a drift:TriggerEvent ;
+    rdfs:label "COVID-19 pandemic"@en ;
+    dct:description "The 2020 COVID-19 pandemic, with its constant stream of alarming news, drove an explosion in the use of 'doomscrolling'; Merriam-Webster added it to its watch list and dictionary in 2020."@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic ;
+    owl:sameAs wd:Q81068910 .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-doomscrolling-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-doomscrolling ;
+    drift:senseFrom wdr:sense-doomscrolling-niche ;
+    drift:senseTo wdr:sense-doomscrolling-mainstream ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-doomscrolling-mw , wdr:corpus-doomscrolling-ngram .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster documents the 2020 pandemic surge; the frequency curve
+# is near-zero before 2020 and spikes that year, so the link is reproducible.
+wdr:hyp-doomscrolling-covid a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-doomscrolling-2020 ;
+    drift:proposedTrigger wdr:trigger-doomscrolling-covid ;
+    drift:evidenceType drift:FrequencyCorrelation , drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-doomscrolling-mw , wdr:corpus-doomscrolling-ngram ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations (timeline curve) ---
+wdr:freq-doomscrolling-2019 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-doomscrolling ; drift:observedYear "2019"^^xsd:gYear ;
+    drift:relativeFrequency 0.1 ; drift:fromCorpus wdr:corpus-doomscrolling-ngram .
+wdr:freq-doomscrolling-2020 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-doomscrolling ; drift:observedYear "2020"^^xsd:gYear ;
+    drift:relativeFrequency 4.7 ; drift:fromCorpus wdr:corpus-doomscrolling-ngram .
+
+# --- sources ---
+wdr:corpus-doomscrolling-ngram a drift:Corpus ;
+    dct:title "Google Books Ngram Viewer (doomscrolling)"@en ;
+    drift:sourceURL "https://books.google.com/ngrams/graph?content=doomscrolling"^^xsd:anyURI .
+
+wdr:src-doomscrolling-mw a drift:Source ;
+    dct:title "Merriam-Webster - Words We're Watching: 'Doomsurfing' and 'Doomscrolling'"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/wordplay/doomsurfing-doomscrolling-words-were-watching"^^xsd:anyURI .

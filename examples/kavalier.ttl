@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Kavalier" (de)
+# Broadening: borrowed via French/Italian, originally a mounted
+# noble or knight, the word shifts through baroque court culture
+# toward a man of polished, courteous manners ("ein Kavalier").
+# The 17th c. courtly ideal is the identifiable trigger.
+# =============================================================
+
+wdr:word-kavalier a drift:Word ;
+    drift:writtenForm "Kavalier"@de ;
+    drift:language "de" ;
+    rdfs:label "Kavalier"@de ;
+    ontolex:sense wdr:sense-kavalier-noble , wdr:sense-kavalier-gentleman .
+
+wdr:sense-kavalier-noble a drift:Sense ;
+    drift:gloss "a mounted nobleman or knight; a horseman of rank"@en ;
+    drift:gloss "berittener Edelmann oder Ritter; Reiter von Stand"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-kavalier-gentleman a drift:Sense ;
+    drift:gloss "a man of polished, courteous, chivalrous manners, especially toward women; a gentleman"@en ;
+    drift:gloss "Mann von feinem, hoeflichem, ritterlichem Benehmen, besonders gegenueber Frauen; Gentleman"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1700"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-kavalier-hofkultur a drift:TriggerEvent ;
+    rdfs:label "Baroque court culture and the Kavalierstour, 17th century"@en ;
+    dct:description "Baroque court society and the educational grand tour of young nobles (the Kavalierstour) made the 'Kavalier' the model of polished courtly manners. The word broadened from a mounted noble to any man of courteous, chivalrous bearing."@en ;
+    drift:eventDate "1650"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-kavalier-hofkultur a drift:DriftEvent ;
+    drift:affectsWord wdr:word-kavalier ;
+    drift:senseFrom wdr:sense-kavalier-noble ;
+    drift:senseTo wdr:sense-kavalier-gentleman ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1750"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-kavalier-dwds , wdr:src-kavalier-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-kavalier-hofkultur a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-kavalier-hofkultur ;
+    drift:proposedTrigger wdr:trigger-kavalier-hofkultur ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.65 ;
+    drift:hasSource wdr:src-kavalier-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-kavalier-dwds a drift:Source ;
+    dct:title "DWDS -- Kavalier"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Kavalier"^^xsd:anyURI .
+
+wdr:src-kavalier-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Kavalier"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Kavalier"^^xsd:anyURI .

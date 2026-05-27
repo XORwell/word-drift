@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Streik" (de)
+# Borrowing + Narrowing: adopted from English "strike" in the
+# mid-19th c., the word fixes in German as the organised
+# collective stoppage of work as a tool of the labour movement.
+# The 19th c. labour movement and the founding of trade unions
+# are the identifiable trigger.
+# =============================================================
+
+wdr:word-streik a drift:Word ;
+    drift:writtenForm "Streik"@de ;
+    drift:language "de" ;
+    rdfs:label "Streik"@de ;
+    ontolex:sense wdr:sense-streik-loanword , wdr:sense-streik-labour .
+
+wdr:sense-streik-loanword a drift:Sense ;
+    drift:gloss "an early loan from English 'strike', a stoppage or refusal of work, not yet a fixed German technical term"@en ;
+    drift:gloss "fruehe Entlehnung aus englisch strike, eine Arbeitsniederlegung, noch kein fester deutscher Fachbegriff"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1844"^^xsd:gYear .
+
+wdr:sense-streik-labour a drift:Sense ;
+    drift:gloss "an organised collective stoppage of work by employees to enforce demands; the central instrument of the labour movement"@en ;
+    drift:gloss "organisierte kollektive Arbeitsniederlegung der Beschaeftigten zur Durchsetzung von Forderungen; zentrales Mittel der Arbeiterbewegung"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1865"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1865"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-streik-arbeiterbewegung a drift:TriggerEvent ;
+    rdfs:label "German labour movement and trade unions, 1860s-1870s"@en ;
+    dct:description "From the 1860s the rising German labour movement and the founding of trade unions fixed the English loan 'Streik' as the technical term for an organised collective stoppage of work to enforce demands."@en ;
+    drift:eventDate "1865"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-streik-arbeiterbewegung a drift:DriftEvent ;
+    drift:affectsWord wdr:word-streik ;
+    drift:senseFrom wdr:sense-streik-loanword ;
+    drift:senseTo wdr:sense-streik-labour ;
+    drift:driftType drift:Narrowing ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1844"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1880"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-streik-dwds , wdr:src-streik-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-streik-arbeiterbewegung a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-streik-arbeiterbewegung ;
+    drift:proposedTrigger wdr:trigger-streik-arbeiterbewegung ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-streik-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-streik-dwds a drift:Source ;
+    dct:title "DWDS -- Streik"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Streik"^^xsd:anyURI .
+
+wdr:src-streik-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Streik"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Streik"^^xsd:anyURI .

@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "turkey" (en)
+# Metonymization: the bird was confused with the guinea fowl
+# imported via Turkish (Ottoman) merchants, so it took the name
+# "turkey" and the country name attached to the New World fowl.
+# =============================================================
+
+wdr:word-turkey a drift:Word ;
+    drift:writtenForm "turkey"@en ;
+    drift:language "en" ;
+    rdfs:label "turkey"@en ;
+    ontolex:sense wdr:sense-turkey-fowl-old , wdr:sense-turkey-bird .
+
+wdr:sense-turkey-fowl-old a drift:Sense ;
+    drift:gloss "guinea fowl imported into Europe through Turkish (Ottoman) territory, originally called turkey-cock or turkey-hen"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1541"^^xsd:gYear .
+
+wdr:sense-turkey-bird a drift:Sense ;
+    drift:gloss "the large North American gallinaceous bird, Meleagris gallopavo, raised for food"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1555"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1555"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-turkey-trade a drift:TriggerEvent ;
+    rdfs:label "Confusion of guinea fowl with the American bird"@en ;
+    dct:description "Guinea fowl reached England through Turkish merchants and were called 'turkey'. When the larger New World bird arrived in the 16th century it was conflated with that fowl and inherited the country name."@en ;
+    drift:eventDate "1555"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-turkey-trade a drift:DriftEvent ;
+    drift:affectsWord wdr:word-turkey ;
+    drift:senseFrom wdr:sense-turkey-fowl-old ;
+    drift:senseTo wdr:sense-turkey-bird ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1541"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-turkey-etym , wdr:src-turkey-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-turkey-trade a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-turkey-trade ;
+    drift:proposedTrigger wdr:trigger-turkey-trade ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-turkey-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-turkey-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- turkey"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/turkey"^^xsd:anyURI .
+
+wdr:src-turkey-wikt a drift:Source ;
+    dct:title "Wiktionary -- turkey"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/turkey"^^xsd:anyURI .

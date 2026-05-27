@@ -1,0 +1,1520 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:hyp-gfds-hyp-alternative-fakten-2017 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-alternative-fakten-2017 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-alternative-fakten-2017 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-alternative-fakten-2017 .
+
+wdr:hyp-gfds-hyp-alternativlos-2010 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-alternativlos-2010 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-alternativlos-2010 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-alternativlos-2010 .
+
+wdr:hyp-gfds-hyp-anti-abschiebe-industrie-2018 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-anti-abschiebe-industrie-2018 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-anti-abschiebe-industrie-2018 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-anti-abschiebe-industrie-2018 .
+
+wdr:hyp-gfds-hyp-auslanderfrei-1991 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-auslanderfrei-1991 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-auslanderfrei-1991 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-auslanderfrei-1991 .
+
+wdr:hyp-gfds-hyp-betriebsratsverseucht-2009 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-betriebsratsverseucht-2009 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-betriebsratsverseucht-2009 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-betriebsratsverseucht-2009 .
+
+wdr:hyp-gfds-hyp-biodeutsch-2024 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-biodeutsch-2024 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-biodeutsch-2024 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-biodeutsch-2024 .
+
+wdr:hyp-gfds-hyp-corona-diktatur-2020 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-corona-diktatur-2020 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-corona-diktatur-2020 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-corona-diktatur-2020 .
+
+wdr:hyp-gfds-hyp-diatenanpassung-1995 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-diatenanpassung-1995 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-diatenanpassung-1995 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-diatenanpassung-1995 .
+
+wdr:hyp-gfds-hyp-doner-morde-2011 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-doner-morde-2011 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-doner-morde-2011 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-doner-morde-2011 .
+
+wdr:hyp-gfds-hyp-entlassungsproduktivitat-2005 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-entlassungsproduktivitat-2005 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-entlassungsproduktivitat-2005 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-entlassungsproduktivitat-2005 .
+
+wdr:hyp-gfds-hyp-ethnische-sauberung-1992 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-ethnische-sauberung-1992 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-ethnische-sauberung-1992 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-ethnische-sauberung-1992 .
+
+wdr:hyp-gfds-hyp-freiwillige-ausreise-2006 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-freiwillige-ausreise-2006 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-freiwillige-ausreise-2006 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-freiwillige-ausreise-2006 .
+
+wdr:hyp-gfds-hyp-gotteskrieger-2001 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-gotteskrieger-2001 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-gotteskrieger-2001 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-gotteskrieger-2001 .
+
+wdr:hyp-gfds-hyp-gutmensch-2015 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-gutmensch-2015 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-gutmensch-2015 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-gutmensch-2015 .
+
+wdr:hyp-gfds-hyp-herdpramie-2007 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-herdpramie-2007 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-herdpramie-2007 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-herdpramie-2007 .
+
+wdr:hyp-gfds-hyp-humankapital-2004 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-humankapital-2004 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-humankapital-2004 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-humankapital-2004 .
+
+wdr:hyp-gfds-hyp-ich-ag-2002 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-ich-ag-2002 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-ich-ag-2002 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-ich-ag-2002 .
+
+wdr:hyp-gfds-hyp-klimahysterie-2019 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-klimahysterie-2019 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-klimahysterie-2019 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-klimahysterie-2019 .
+
+wdr:hyp-gfds-hyp-klimaterroristen-2022 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-klimaterroristen-2022 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-klimaterroristen-2022 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-klimaterroristen-2022 .
+
+wdr:hyp-gfds-hyp-kollateralschaden-1999 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-kollateralschaden-1999 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-kollateralschaden-1999 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-kollateralschaden-1999 .
+
+wdr:hyp-gfds-hyp-lugenpresse-2014 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-lugenpresse-2014 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-lugenpresse-2014 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-lugenpresse-2014 .
+
+wdr:hyp-gfds-hyp-national-befreite-zone-2000 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-national-befreite-zone-2000 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-national-befreite-zone-2000 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-national-befreite-zone-2000 .
+
+wdr:hyp-gfds-hyp-notleidende-banken-2008 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-notleidende-banken-2008 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-notleidende-banken-2008 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-notleidende-banken-2008 .
+
+wdr:hyp-gfds-hyp-opfer-abo-2012 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-opfer-abo-2012 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-opfer-abo-2012 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-opfer-abo-2012 .
+
+wdr:hyp-gfds-hyp-peanuts-1994 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-peanuts-1994 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-peanuts-1994 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-peanuts-1994 .
+
+wdr:hyp-gfds-hyp-pushback-2021 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-pushback-2021 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-pushback-2021 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-pushback-2021 .
+
+wdr:hyp-gfds-hyp-remigration-2023 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-remigration-2023 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-remigration-2023 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-remigration-2023 .
+
+wdr:hyp-gfds-hyp-rentnerschwemme-1996 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-rentnerschwemme-1996 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-rentnerschwemme-1996 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-rentnerschwemme-1996 .
+
+wdr:hyp-gfds-hyp-ruckfuhrungspatenschaften-2020 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-ruckfuhrungspatenschaften-2020 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-ruckfuhrungspatenschaften-2020 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-ruckfuhrungspatenschaften-2020 .
+
+wdr:hyp-gfds-hyp-sozialtourismus-2013 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-sozialtourismus-2013 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-sozialtourismus-2013 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-sozialtourismus-2013 .
+
+wdr:hyp-gfds-hyp-sozialvertragliches-fruhableben-1998 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-sozialvertragliches-fruhableben-1998 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-sozialvertragliches-fruhableben-1998 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-sozialvertragliches-fruhableben-1998 .
+
+wdr:hyp-gfds-hyp-tatervolk-2003 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-tatervolk-2003 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-tatervolk-2003 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-tatervolk-2003 .
+
+wdr:hyp-gfds-hyp-uberfremdung-1993 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-uberfremdung-1993 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-uberfremdung-1993 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-uberfremdung-1993 .
+
+wdr:hyp-gfds-hyp-volksverrater-2016 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-volksverrater-2016 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-volksverrater-2016 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-volksverrater-2016 .
+
+wdr:hyp-gfds-hyp-wohlstandsmull-1997 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-wohlstandsmull-1997 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-unwort-wohlstandsmull-1997 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-wohlstandsmull-1997 .
+
+wdr:drift-gfds-drift-alternative-fakten-2017 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-alternative-fakten ;
+    drift:driftType drift:Reversal ;
+    drift:driftYear "2017"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-alternative-fakten-2017 ;
+    drift:senseFrom wdr:sense-gfds-alternative-fakten-prior ;
+    drift:senseTo wdr:sense-gfds-alternative-fakten-2017 .
+
+wdr:drift-gfds-drift-alternativlos-2010 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-alternativlos ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2010"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-alternativlos-2010 ;
+    drift:senseFrom wdr:sense-gfds-alternativlos-prior ;
+    drift:senseTo wdr:sense-gfds-alternativlos-2010 .
+
+wdr:drift-gfds-drift-anti-abschiebe-industrie-2018 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-anti-abschiebe-industrie ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2018"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-anti-abschiebe-industrie-2018 ;
+    drift:senseFrom wdr:sense-gfds-anti-abschiebe-industrie-prior ;
+    drift:senseTo wdr:sense-gfds-anti-abschiebe-industrie-2018 .
+
+wdr:drift-gfds-drift-auslanderfrei-1991 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-auslanderfrei ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "1991"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-auslanderfrei-1991 ;
+    drift:senseFrom wdr:sense-gfds-auslanderfrei-prior ;
+    drift:senseTo wdr:sense-gfds-auslanderfrei-1991 .
+
+wdr:drift-gfds-drift-betriebsratsverseucht-2009 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-betriebsratsverseucht ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2009"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-betriebsratsverseucht-2009 ;
+    drift:senseFrom wdr:sense-gfds-betriebsratsverseucht-prior ;
+    drift:senseTo wdr:sense-gfds-betriebsratsverseucht-2009 .
+
+wdr:drift-gfds-drift-biodeutsch-2024 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-biodeutsch ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2024"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-biodeutsch-2024 ;
+    drift:senseFrom wdr:sense-gfds-biodeutsch-prior ;
+    drift:senseTo wdr:sense-gfds-biodeutsch-2024 .
+
+wdr:drift-gfds-drift-corona-diktatur-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-corona-diktatur ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-corona-diktatur-2020 ;
+    drift:senseFrom wdr:sense-gfds-corona-diktatur-prior ;
+    drift:senseTo wdr:sense-gfds-corona-diktatur-2020 .
+
+wdr:drift-gfds-drift-diatenanpassung-1995 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-diatenanpassung ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftYear "1995"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-diatenanpassung-1995 ;
+    drift:senseFrom wdr:sense-gfds-diatenanpassung-prior ;
+    drift:senseTo wdr:sense-gfds-diatenanpassung-1995 .
+
+wdr:drift-gfds-drift-doner-morde-2011 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-doner-morde ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2011"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-doner-morde-2011 ;
+    drift:senseFrom wdr:sense-gfds-doner-morde-prior ;
+    drift:senseTo wdr:sense-gfds-doner-morde-2011 .
+
+wdr:drift-gfds-drift-entlassungsproduktivitat-2005 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-entlassungsproduktivitat ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2005"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-entlassungsproduktivitat-2005 ;
+    drift:senseFrom wdr:sense-gfds-entlassungsproduktivitat-prior ;
+    drift:senseTo wdr:sense-gfds-entlassungsproduktivitat-2005 .
+
+wdr:drift-gfds-drift-ethnische-sauberung-1992 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-ethnische-sauberung ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftYear "1992"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-ethnische-sauberung-1992 ;
+    drift:senseFrom wdr:sense-gfds-ethnische-sauberung-prior ;
+    drift:senseTo wdr:sense-gfds-ethnische-sauberung-1992 .
+
+wdr:drift-gfds-drift-freiwillige-ausreise-2006 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-freiwillige-ausreise ;
+    drift:driftType drift:Reversal ;
+    drift:driftYear "2006"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-freiwillige-ausreise-2006 ;
+    drift:senseFrom wdr:sense-gfds-freiwillige-ausreise-prior ;
+    drift:senseTo wdr:sense-gfds-freiwillige-ausreise-2006 .
+
+wdr:drift-gfds-drift-gotteskrieger-2001 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-gotteskrieger ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2001"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-gotteskrieger-2001 ;
+    drift:senseFrom wdr:sense-gfds-gotteskrieger-prior ;
+    drift:senseTo wdr:sense-gfds-gotteskrieger-2001 .
+
+wdr:drift-gfds-drift-gutmensch-2015 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-gutmensch ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2015"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-gutmensch-2015 ;
+    drift:senseFrom wdr:sense-gfds-gutmensch-prior ;
+    drift:senseTo wdr:sense-gfds-gutmensch-2015 .
+
+wdr:drift-gfds-drift-herdpramie-2007 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-herdpramie ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2007"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-herdpramie-2007 ;
+    drift:senseFrom wdr:sense-gfds-herdpramie-prior ;
+    drift:senseTo wdr:sense-gfds-herdpramie-2007 .
+
+wdr:drift-gfds-drift-humankapital-2004 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-humankapital ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2004"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-humankapital-2004 ;
+    drift:senseFrom wdr:sense-gfds-humankapital-prior ;
+    drift:senseTo wdr:sense-gfds-humankapital-2004 .
+
+wdr:drift-gfds-drift-ich-ag-2002 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-ich-ag ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2002"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-ich-ag-2002 ;
+    drift:senseFrom wdr:sense-gfds-ich-ag-prior ;
+    drift:senseTo wdr:sense-gfds-ich-ag-2002 .
+
+wdr:drift-gfds-drift-klimahysterie-2019 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-klimahysterie ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2019"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-klimahysterie-2019 ;
+    drift:senseFrom wdr:sense-gfds-klimahysterie-prior ;
+    drift:senseTo wdr:sense-gfds-klimahysterie-2019 .
+
+wdr:drift-gfds-drift-klimaterroristen-2022 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-klimaterroristen ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2022"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-klimaterroristen-2022 ;
+    drift:senseFrom wdr:sense-gfds-klimaterroristen-prior ;
+    drift:senseTo wdr:sense-gfds-klimaterroristen-2022 .
+
+wdr:drift-gfds-drift-kollateralschaden-1999 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-kollateralschaden ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "1999"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-kollateralschaden-1999 ;
+    drift:senseFrom wdr:sense-gfds-kollateralschaden-prior ;
+    drift:senseTo wdr:sense-gfds-kollateralschaden-1999 .
+
+wdr:drift-gfds-drift-lugenpresse-2014 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-lugenpresse ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2014"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-lugenpresse-2014 ;
+    drift:senseFrom wdr:sense-gfds-lugenpresse-prior ;
+    drift:senseTo wdr:sense-gfds-lugenpresse-2014 .
+
+wdr:drift-gfds-drift-national-befreite-zone-2000 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-national-befreite-zone ;
+    drift:driftType drift:Reversal ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-national-befreite-zone-2000 ;
+    drift:senseFrom wdr:sense-gfds-national-befreite-zone-prior ;
+    drift:senseTo wdr:sense-gfds-national-befreite-zone-2000 .
+
+wdr:drift-gfds-drift-notleidende-banken-2008 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-notleidende-banken ;
+    drift:driftType drift:Reversal ;
+    drift:driftYear "2008"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-notleidende-banken-2008 ;
+    drift:senseFrom wdr:sense-gfds-notleidende-banken-prior ;
+    drift:senseTo wdr:sense-gfds-notleidende-banken-2008 .
+
+wdr:drift-gfds-drift-opfer-abo-2012 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-opfer-abo ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2012"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-opfer-abo-2012 ;
+    drift:senseFrom wdr:sense-gfds-opfer-abo-prior ;
+    drift:senseTo wdr:sense-gfds-opfer-abo-2012 .
+
+wdr:drift-gfds-drift-peanuts-1994 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-peanuts ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "1994"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-peanuts-1994 ;
+    drift:senseFrom wdr:sense-gfds-peanuts-prior ;
+    drift:senseTo wdr:sense-gfds-peanuts-1994 .
+
+wdr:drift-gfds-drift-pushback-2021 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-pushback ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2021"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-pushback-2021 ;
+    drift:senseFrom wdr:sense-gfds-pushback-prior ;
+    drift:senseTo wdr:sense-gfds-pushback-2021 .
+
+wdr:drift-gfds-drift-remigration-2023 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-remigration ;
+    drift:driftType drift:Reappropriation ;
+    drift:driftYear "2023"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-remigration-2023 ;
+    drift:senseFrom wdr:sense-gfds-remigration-prior ;
+    drift:senseTo wdr:sense-gfds-remigration-2023 .
+
+wdr:drift-gfds-drift-rentnerschwemme-1996 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-rentnerschwemme ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftYear "1996"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-rentnerschwemme-1996 ;
+    drift:senseFrom wdr:sense-gfds-rentnerschwemme-prior ;
+    drift:senseTo wdr:sense-gfds-rentnerschwemme-1996 .
+
+wdr:drift-gfds-drift-ruckfuhrungspatenschaften-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-ruckfuhrungspatenschaften ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-ruckfuhrungspatenschaften-2020 ;
+    drift:senseFrom wdr:sense-gfds-ruckfuhrungspatenschaften-prior ;
+    drift:senseTo wdr:sense-gfds-ruckfuhrungspatenschaften-2020 .
+
+wdr:drift-gfds-drift-sozialtourismus-2013 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-sozialtourismus ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2013"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-sozialtourismus-2013 ;
+    drift:senseFrom wdr:sense-gfds-sozialtourismus-prior ;
+    drift:senseTo wdr:sense-gfds-sozialtourismus-2013 .
+
+wdr:drift-gfds-drift-sozialvertragliches-fruhableben-1998 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-sozialvertragliches-fruhableben ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1998"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-sozialvertragliches-fruhableben-1998 ;
+    drift:senseFrom wdr:sense-gfds-sozialvertragliches-fruhableben-prior ;
+    drift:senseTo wdr:sense-gfds-sozialvertragliches-fruhableben-1998 .
+
+wdr:drift-gfds-drift-tatervolk-2003 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-tatervolk ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2003"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-tatervolk-2003 ;
+    drift:senseFrom wdr:sense-gfds-tatervolk-prior ;
+    drift:senseTo wdr:sense-gfds-tatervolk-2003 .
+
+wdr:drift-gfds-drift-uberfremdung-1993 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-uberfremdung ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1993"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-uberfremdung-1993 ;
+    drift:senseFrom wdr:sense-gfds-uberfremdung-prior ;
+    drift:senseTo wdr:sense-gfds-uberfremdung-1993 .
+
+wdr:drift-gfds-drift-volksverrater-2016 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-volksverrater ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2016"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-volksverrater-2016 ;
+    drift:senseFrom wdr:sense-gfds-volksverrater-prior ;
+    drift:senseTo wdr:sense-gfds-volksverrater-2016 .
+
+wdr:drift-gfds-drift-wohlstandsmull-1997 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-wohlstandsmull ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1997"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-unwort-wohlstandsmull-1997 ;
+    drift:senseFrom wdr:sense-gfds-wohlstandsmull-prior ;
+    drift:senseTo wdr:sense-gfds-wohlstandsmull-1997 .
+
+wdr:trigger-gfds-trigger-alternative-fakten-2017 a drift:TriggerEvent ;
+    rdfs:label "Kellyanne Conway alternative facts Trump inauguration 2017"@en ;
+    dct:description "Kellyanne Conway phrase legitimizing deliberate falsehoods in public discourse; post-truth politics"@en ;
+    drift:eventDate "2017"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-alternativlos-2010 a drift:TriggerEvent ;
+    rdfs:label "Merkel austerity policy alternativlos rhetoric 2010"@en ;
+    dct:description "Merkel's claim that austerity policy decisions had no alternatives; falsely forecloses political debate"@en ;
+    drift:eventDate "2010"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-anti-abschiebe-industrie-2018 a drift:TriggerEvent ;
+    rdfs:label "German asylum legal aid NGO vilification 2018"@en ;
+    dct:description "Mischaracterizes asylum legal support and NGOs as profit-driven deportation-prevention industry"@en ;
+    drift:eventDate "2018"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-auslanderfrei-1991 a drift:TriggerEvent ;
+    rdfs:label "Hoyerswerda anti-foreigner riots East Germany 1991"@en ;
+    dct:description "Xenophobic slogan used during Hoyerswerda riots; dehumanizing demand for ethnic cleansing of neighborhoods"@en ;
+    drift:eventDate "1991"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-betriebsratsverseucht-2009 a drift:TriggerEvent ;
+    rdfs:label "German employer anti-union works council rhetoric 2009"@en ;
+    dct:description "Trade union representative described workers' councils as 'contaminated with works council disease'"@en ;
+    drift:eventDate "2009"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-biodeutsch-2024 a drift:TriggerEvent ;
+    rdfs:label "German identity politics ethnic nationality debate 2024"@en ;
+    dct:description "Categorizes people by purported biological ancestry to distinguish 'real' Germans from naturalized citizens"@en ;
+    drift:eventDate "2024"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-corona-diktatur-2020 a drift:TriggerEvent ;
+    rdfs:label "COVID-19 pandemic measures Querdenken conspiracy movement 2020"@en ;
+    dct:description "Used by extremists to delegitimize democratic pandemic health measures as dictatorship"@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic .
+
+wdr:trigger-gfds-trigger-diatenanpassung-1995 a drift:TriggerEvent ;
+    rdfs:label "German parliamentary salary increase euphemism 1995"@en ;
+    dct:description "Euphemism masking parliamentary salary increases; politicians raising own salaries while cutting social benefits"@en ;
+    drift:eventDate "1995"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-doner-morde-2011 a drift:TriggerEvent ;
+    rdfs:label "NSU neo-Nazi murder series Turkish German victims"@en ;
+    dct:description "Reduces NSU neo-Nazi hate crimes murdering Turkish-German business owners to food metaphor"@en ;
+    drift:eventDate "2011"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-entlassungsproduktivitat-2005 a drift:TriggerEvent ;
+    rdfs:label "German corporate restructuring mass layoff profits 2005"@en ;
+    dct:description "Profits from mass layoffs disguised as efficiency gains; cynical labor market terminology"@en ;
+    drift:eventDate "2005"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-ethnische-sauberung-1992 a drift:TriggerEvent ;
+    rdfs:label "Yugoslav Wars ethnic cleansing 1992"@en ;
+    dct:description "Propaganda formula used to euphemize genocide in the Yugoslav Wars"@en ;
+    drift:eventDate "1992"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-freiwillige-ausreise-2006 a drift:TriggerEvent ;
+    rdfs:label "German asylum deportation policy coerced departure euphemism"@en ;
+    dct:description "Asylum seekers under deportation threat have no genuine choice; cynical official bureaucratic language"@en ;
+    drift:eventDate "2006"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-gotteskrieger-2001 a drift:TriggerEvent ;
+    rdfs:label "September 11 attacks Taliban al-Qaeda terrorism"@en ;
+    dct:description "Self-designation by Taliban and al-Qaeda terrorists glorifying religious violence after 9/11"@en ;
+    drift:eventDate "2001"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-gutmensch-2015 a drift:TriggerEvent ;
+    rdfs:label "refugee crisis Germany right-wing backlash humanitarian critics 2015"@en ;
+    dct:description "Ridicules refugee advocates as naive do-gooders; used to undermine compassion during refugee crisis"@en ;
+    drift:eventDate "2015"^^xsd:gYear ;
+    drift:triggerCategory drift:Economic .
+
+wdr:trigger-gfds-trigger-herdpramie-2007 a drift:TriggerEvent ;
+    rdfs:label "German childcare home care benefit political debate 2007"@en ;
+    dct:description "Pejorative term disparaging childcare benefit for stay-at-home parents as 'stove bonus'"@en ;
+    drift:eventDate "2007"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-humankapital-2004 a drift:TriggerEvent ;
+    rdfs:label "OECD education policy human capital discourse Germany"@en ;
+    dct:description "Economic term degrading human beings to mere capital assets; spread into education policy discourse"@en ;
+    drift:eventDate "2004"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-ich-ag-2002 a drift:TriggerEvent ;
+    rdfs:label "Hartz labor reform individual self-employment model Germany"@en ;
+    dct:description "Hartz Commission term reducing individuals to economic market value; self-employment startup subsidy"@en ;
+    drift:eventDate "2002"^^xsd:gYear ;
+    drift:triggerCategory drift:Economic .
+
+wdr:trigger-gfds-trigger-klimahysterie-2019 a drift:TriggerEvent ;
+    rdfs:label "Fridays for Future climate movement delegitimization 2019"@en ;
+    dct:description "Delegitimizes climate protection efforts and Fridays for Future activists as hysterical"@en ;
+    drift:eventDate "2019"^^xsd:gYear ;
+    drift:triggerCategory drift:Ecological .
+
+wdr:trigger-gfds-trigger-klimaterroristen-2022 a drift:TriggerEvent ;
+    rdfs:label "Letzte Generation climate activists criminalization Germany 2022"@en ;
+    dct:description "Criminalizes nonviolent climate activist groups such as Letzte Generation as terrorists"@en ;
+    drift:eventDate "2022"^^xsd:gYear ;
+    drift:triggerCategory drift:Ecological .
+
+wdr:trigger-gfds-trigger-kollateralschaden-1999 a drift:TriggerEvent ;
+    rdfs:label "NATO Kosovo bombing civilian casualties 1999"@en ;
+    dct:description "Military jargon minimizing killing of innocent civilians in NATO Kosovo bombing as incidental"@en ;
+    owl:sameAs wd:Q46083 ;
+    drift:eventDate "1999"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-lugenpresse-2014 a drift:TriggerEvent ;
+    rdfs:label "Pegida movement right-wing press delegitimization 2014"@en ;
+    dct:description "Nazi-era attack on press freedom revived by Pegida and right-wing movements; echoes Goebbels propaganda"@en ;
+    drift:eventDate "2014"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-national-befreite-zone-2000 a drift:TriggerEvent ;
+    rdfs:label "German neo-Nazi far-right territorial extremism"@en ;
+    dct:description "Neo-Nazi euphemism describing areas terrorized by far-right extremists as 'nationally liberated zones'"@en ;
+    drift:eventDate "2000"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-notleidende-banken-2008 a drift:TriggerEvent ;
+    rdfs:label "2008 global financial crisis bank bailout rhetoric"@en ;
+    dct:description "Reverses causality in financial crisis: banks described as 'suffering' despite causing the crisis"@en ;
+    drift:eventDate "2008"^^xsd:gYear ;
+    drift:triggerCategory drift:Economic .
+
+wdr:trigger-gfds-trigger-opfer-abo-2012 a drift:TriggerEvent ;
+    rdfs:label "German misogynist victim-blaming discourse sexual violence"@en ;
+    dct:description "Accuses women of holding a subscription to victimhood; trivializes sexual violence claims"@en ;
+    drift:eventDate "2012"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-peanuts-1994 a drift:TriggerEvent ;
+    rdfs:label "Hilmar Kopper Deutsche Bank peanuts statement 1994"@en ;
+    dct:description "Derogatory banking jargon; Deutsche Bank CEO Hilmar Kopper called 50 million DM debt of small creditors 'peanuts'"@en ;
+    drift:eventDate "1994"^^xsd:gYear ;
+    drift:triggerCategory drift:Economic .
+
+wdr:trigger-gfds-trigger-pushback-2021 a drift:TriggerEvent ;
+    rdfs:label "EU border pushback illegal migration human rights violations 2021"@en ;
+    dct:description "Military-bureaucratic term obscuring human rights violations: illegal pushbacks of migrants at EU borders"@en ;
+    drift:eventDate "2021"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-remigration-2023 a drift:TriggerEvent ;
+    rdfs:label "AfD Potsdam meeting Correctiv remigration leak 2023"@en ;
+    dct:description "Far-right coded language for forced mass deportation of immigrants; spread via AfD and Correctiv leak"@en ;
+    drift:eventDate "2023"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-rentnerschwemme-1996 a drift:TriggerEvent ;
+    rdfs:label "German pension system demographic ageing debate"@en ;
+    dct:description "Fear-inducing nature metaphor treating elderly population as a flood threatening the pension system"@en ;
+    drift:eventDate "1996"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-ruckfuhrungspatenschaften-2020 a drift:TriggerEvent ;
+    rdfs:label "EU migrant deportation policy euphemism 2020"@en ;
+    dct:description "Cynically euphemizes EU migration deportation policy as voluntary sponsorship"@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-sozialtourismus-2013 a drift:TriggerEvent ;
+    rdfs:label "EU free movement benefit tourism debate Germany 2013"@en ;
+    dct:description "Stigmatizes Eastern European EU migrants as benefit tourists; contested by research showing opposite"@en ;
+    drift:eventDate "2013"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-sozialvertragliches-fruhableben-1998 a drift:TriggerEvent ;
+    rdfs:label "German pension costs elderly demographic cynicism 1998"@en ;
+    dct:description "Cynical bureaucratic euphemism suggesting elderly should die early for social compatibility"@en ;
+    drift:eventDate "1998"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-tatervolk-2003 a drift:TriggerEvent ;
+    rdfs:label "Hohmann antisemitic Tätervolk speech Bundestag 2003"@en ;
+    dct:description "Unacceptable collective guilt accusation against Jewish people; used by German politician Martin Hohmann"@en ;
+    drift:eventDate "2003"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-uberfremdung-1993 a drift:TriggerEvent ;
+    rdfs:label "German far-right anti-immigration rhetoric 1993"@en ;
+    dct:description "Spurious nativist argument against immigration; coded xenophobic language"@en ;
+    drift:eventDate "1993"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-volksverrater-2016 a drift:TriggerEvent ;
+    rdfs:label "German far-right populist anti-politician rhetoric 2016"@en ;
+    dct:description "Nazi-era term meaning 'traitor of the people' revived to attack democratically elected politicians"@en ;
+    drift:eventDate "2016"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-wohlstandsmull-1997 a drift:TriggerEvent ;
+    rdfs:label "German long-term unemployment stigma debate 1997"@en ;
+    dct:description "Dehumanizing description of long-term unemployed persons as 'prosperity trash'"@en ;
+    drift:eventDate "1997"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:word-gfds-alternative-fakten a drift:Word ;
+    rdfs:label "alternative Fakten"@de ;
+    ontolex:sense wdr:sense-gfds-alternative-fakten-2017,
+        wdr:sense-gfds-alternative-fakten-prior ;
+    drift:language "de" ;
+    drift:writtenForm "alternative Fakten"@de .
+
+wdr:word-gfds-alternativlos a drift:Word ;
+    rdfs:label "alternativlos"@de ;
+    ontolex:sense wdr:sense-gfds-alternativlos-2010,
+        wdr:sense-gfds-alternativlos-prior ;
+    drift:language "de" ;
+    drift:writtenForm "alternativlos"@de .
+
+wdr:word-gfds-anti-abschiebe-industrie a drift:Word ;
+    rdfs:label "Anti-Abschiebe-Industrie"@de ;
+    ontolex:sense wdr:sense-gfds-anti-abschiebe-industrie-2018,
+        wdr:sense-gfds-anti-abschiebe-industrie-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Anti-Abschiebe-Industrie"@de .
+
+wdr:word-gfds-auslanderfrei a drift:Word ;
+    rdfs:label "ausländerfrei"@de ;
+    ontolex:sense wdr:sense-gfds-auslanderfrei-1991,
+        wdr:sense-gfds-auslanderfrei-prior ;
+    drift:language "de" ;
+    drift:writtenForm "ausländerfrei"@de .
+
+wdr:word-gfds-betriebsratsverseucht a drift:Word ;
+    rdfs:label "betriebsratsverseucht"@de ;
+    ontolex:sense wdr:sense-gfds-betriebsratsverseucht-2009,
+        wdr:sense-gfds-betriebsratsverseucht-prior ;
+    drift:language "de" ;
+    drift:writtenForm "betriebsratsverseucht"@de .
+
+wdr:word-gfds-biodeutsch a drift:Word ;
+    rdfs:label "biodeutsch"@de ;
+    ontolex:sense wdr:sense-gfds-biodeutsch-2024,
+        wdr:sense-gfds-biodeutsch-prior ;
+    drift:language "de" ;
+    drift:writtenForm "biodeutsch"@de .
+
+wdr:word-gfds-corona-diktatur a drift:Word ;
+    rdfs:label "Corona-Diktatur"@de ;
+    ontolex:sense wdr:sense-gfds-corona-diktatur-2020,
+        wdr:sense-gfds-corona-diktatur-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Corona-Diktatur"@de .
+
+wdr:word-gfds-diatenanpassung a drift:Word ;
+    rdfs:label "Diätenanpassung"@de ;
+    ontolex:sense wdr:sense-gfds-diatenanpassung-1995,
+        wdr:sense-gfds-diatenanpassung-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Diätenanpassung"@de .
+
+wdr:word-gfds-doner-morde a drift:Word ;
+    rdfs:label "Döner-Morde"@de ;
+    ontolex:sense wdr:sense-gfds-doner-morde-2011,
+        wdr:sense-gfds-doner-morde-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Döner-Morde"@de .
+
+wdr:word-gfds-entlassungsproduktivitat a drift:Word ;
+    rdfs:label "Entlassungsproduktivität"@de ;
+    ontolex:sense wdr:sense-gfds-entlassungsproduktivitat-2005,
+        wdr:sense-gfds-entlassungsproduktivitat-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Entlassungsproduktivität"@de .
+
+wdr:word-gfds-ethnische-sauberung a drift:Word ;
+    rdfs:label "ethnische Säuberung"@de ;
+    ontolex:sense wdr:sense-gfds-ethnische-sauberung-1992,
+        wdr:sense-gfds-ethnische-sauberung-prior ;
+    drift:language "de" ;
+    drift:writtenForm "ethnische Säuberung"@de .
+
+wdr:word-gfds-freiwillige-ausreise a drift:Word ;
+    rdfs:label "freiwillige Ausreise"@de ;
+    ontolex:sense wdr:sense-gfds-freiwillige-ausreise-2006,
+        wdr:sense-gfds-freiwillige-ausreise-prior ;
+    drift:language "de" ;
+    drift:writtenForm "freiwillige Ausreise"@de .
+
+wdr:word-gfds-gotteskrieger a drift:Word ;
+    rdfs:label "Gotteskrieger"@de ;
+    ontolex:sense wdr:sense-gfds-gotteskrieger-2001,
+        wdr:sense-gfds-gotteskrieger-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Gotteskrieger"@de .
+
+wdr:word-gfds-gutmensch a drift:Word ;
+    rdfs:label "Gutmensch"@de ;
+    ontolex:sense wdr:sense-gfds-gutmensch-2015,
+        wdr:sense-gfds-gutmensch-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Gutmensch"@de .
+
+wdr:word-gfds-herdpramie a drift:Word ;
+    rdfs:label "Herdprämie"@de ;
+    ontolex:sense wdr:sense-gfds-herdpramie-2007,
+        wdr:sense-gfds-herdpramie-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Herdprämie"@de .
+
+wdr:word-gfds-humankapital a drift:Word ;
+    rdfs:label "Humankapital"@de ;
+    ontolex:sense wdr:sense-gfds-humankapital-2004,
+        wdr:sense-gfds-humankapital-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Humankapital"@de .
+
+wdr:word-gfds-ich-ag a drift:Word ;
+    rdfs:label "Ich-AG"@de ;
+    ontolex:sense wdr:sense-gfds-ich-ag-2002,
+        wdr:sense-gfds-ich-ag-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Ich-AG"@de .
+
+wdr:word-gfds-klimahysterie a drift:Word ;
+    rdfs:label "Klimahysterie"@de ;
+    ontolex:sense wdr:sense-gfds-klimahysterie-2019,
+        wdr:sense-gfds-klimahysterie-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Klimahysterie"@de .
+
+wdr:word-gfds-klimaterroristen a drift:Word ;
+    rdfs:label "Klimaterroristen"@de ;
+    ontolex:sense wdr:sense-gfds-klimaterroristen-2022,
+        wdr:sense-gfds-klimaterroristen-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Klimaterroristen"@de .
+
+wdr:word-gfds-kollateralschaden a drift:Word ;
+    rdfs:label "Kollateralschaden"@de ;
+    ontolex:sense wdr:sense-gfds-kollateralschaden-1999,
+        wdr:sense-gfds-kollateralschaden-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Kollateralschaden"@de .
+
+wdr:word-gfds-lugenpresse a drift:Word ;
+    rdfs:label "Lügenpresse"@de ;
+    ontolex:sense wdr:sense-gfds-lugenpresse-2014,
+        wdr:sense-gfds-lugenpresse-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Lügenpresse"@de .
+
+wdr:word-gfds-national-befreite-zone a drift:Word ;
+    rdfs:label "national befreite Zone"@de ;
+    ontolex:sense wdr:sense-gfds-national-befreite-zone-2000,
+        wdr:sense-gfds-national-befreite-zone-prior ;
+    drift:language "de" ;
+    drift:writtenForm "national befreite Zone"@de .
+
+wdr:word-gfds-notleidende-banken a drift:Word ;
+    rdfs:label "notleidende Banken"@de ;
+    ontolex:sense wdr:sense-gfds-notleidende-banken-2008,
+        wdr:sense-gfds-notleidende-banken-prior ;
+    drift:language "de" ;
+    drift:writtenForm "notleidende Banken"@de .
+
+wdr:word-gfds-opfer-abo a drift:Word ;
+    rdfs:label "Opfer-Abo"@de ;
+    ontolex:sense wdr:sense-gfds-opfer-abo-2012,
+        wdr:sense-gfds-opfer-abo-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Opfer-Abo"@de .
+
+wdr:word-gfds-peanuts a drift:Word ;
+    rdfs:label "Peanuts"@de ;
+    ontolex:sense wdr:sense-gfds-peanuts-1994,
+        wdr:sense-gfds-peanuts-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Peanuts"@de .
+
+wdr:word-gfds-pushback a drift:Word ;
+    rdfs:label "Pushback"@de ;
+    ontolex:sense wdr:sense-gfds-pushback-2021,
+        wdr:sense-gfds-pushback-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Pushback"@de .
+
+wdr:word-gfds-remigration a drift:Word ;
+    rdfs:label "Remigration"@de ;
+    ontolex:sense wdr:sense-gfds-remigration-2023,
+        wdr:sense-gfds-remigration-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Remigration"@de .
+
+wdr:word-gfds-rentnerschwemme a drift:Word ;
+    rdfs:label "Rentnerschwemme"@de ;
+    ontolex:sense wdr:sense-gfds-rentnerschwemme-1996,
+        wdr:sense-gfds-rentnerschwemme-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Rentnerschwemme"@de .
+
+wdr:word-gfds-ruckfuhrungspatenschaften a drift:Word ;
+    rdfs:label "Rückführungspatenschaften"@de ;
+    ontolex:sense wdr:sense-gfds-ruckfuhrungspatenschaften-2020,
+        wdr:sense-gfds-ruckfuhrungspatenschaften-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Rückführungspatenschaften"@de .
+
+wdr:word-gfds-sozialtourismus a drift:Word ;
+    rdfs:label "Sozialtourismus"@de ;
+    ontolex:sense wdr:sense-gfds-sozialtourismus-2013,
+        wdr:sense-gfds-sozialtourismus-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Sozialtourismus"@de .
+
+wdr:word-gfds-sozialvertragliches-fruhableben a drift:Word ;
+    rdfs:label "sozialverträgliches Frühableben"@de ;
+    ontolex:sense wdr:sense-gfds-sozialvertragliches-fruhableben-1998,
+        wdr:sense-gfds-sozialvertragliches-fruhableben-prior ;
+    drift:language "de" ;
+    drift:writtenForm "sozialverträgliches Frühableben"@de .
+
+wdr:word-gfds-tatervolk a drift:Word ;
+    rdfs:label "Tätervolk"@de ;
+    ontolex:sense wdr:sense-gfds-tatervolk-2003,
+        wdr:sense-gfds-tatervolk-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Tätervolk"@de .
+
+wdr:word-gfds-uberfremdung a drift:Word ;
+    rdfs:label "Überfremdung"@de ;
+    ontolex:sense wdr:sense-gfds-uberfremdung-1993,
+        wdr:sense-gfds-uberfremdung-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Überfremdung"@de .
+
+wdr:word-gfds-volksverrater a drift:Word ;
+    rdfs:label "Volksverräter"@de ;
+    ontolex:sense wdr:sense-gfds-volksverrater-2016,
+        wdr:sense-gfds-volksverrater-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Volksverräter"@de .
+
+wdr:word-gfds-wohlstandsmull a drift:Word ;
+    rdfs:label "Wohlstandsmüll"@de ;
+    ontolex:sense wdr:sense-gfds-wohlstandsmull-1997,
+        wdr:sense-gfds-wohlstandsmull-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Wohlstandsmüll"@de .
+
+wdr:sense-gfds-alternative-fakten-2017 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2017"^^xsd:gYear ;
+    drift:gloss "Kellyanne Conway's phrase legitimizing deliberate lies as 'alternative facts'; post-truth political weapon"@en .
+
+wdr:sense-gfds-alternative-fakten-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "alternative facts; in philosophy, a competing factual claim"@en .
+
+wdr:sense-gfds-alternativlos-2010 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Merkel's rhetorical claim that austerity decisions have no alternatives, used to foreclose democratic debate"@en .
+
+wdr:sense-gfds-alternativlos-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "without alternative; descriptive adjective"@en .
+
+wdr:sense-gfds-anti-abschiebe-industrie-2018 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2018"^^xsd:gYear ;
+    drift:gloss "anti-deportation industry; framing legal aid for asylum seekers as a profit-driven industry opposing deportations"@en .
+
+wdr:sense-gfds-anti-abschiebe-industrie-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-auslanderfrei-1991 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1991"^^xsd:gYear ;
+    drift:gloss "xenophobic slogan demanding ethnic cleansing of neighborhoods; used during Hoyerswerda riots"@en .
+
+wdr:sense-gfds-auslanderfrei-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "free of foreigners; descriptive compound"@en .
+
+wdr:sense-gfds-betriebsratsverseucht-2009 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2009"^^xsd:gYear ;
+    drift:gloss "contaminated with works council; comparing employee representation to a disease to be eliminated"@en .
+
+wdr:sense-gfds-betriebsratsverseucht-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-biodeutsch-2024 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2024"^^xsd:gYear ;
+    drift:gloss "categorizing people by alleged biological ancestry to distinguish 'real' from naturalized Germans; exclusionary identity politics"@en .
+
+wdr:sense-gfds-biodeutsch-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "bio-German; originally ironic slang describing ethnic Germans without migration background"@en .
+
+wdr:sense-gfds-corona-diktatur-2020 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:gloss "corona dictatorship; extremist framing of democratic pandemic health measures as authoritarian rule"@en .
+
+wdr:sense-gfds-corona-diktatur-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-diatenanpassung-1995 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1995"^^xsd:gYear ;
+    drift:gloss "parliamentary pay adjustment; euphemism used by politicians to disguise their own salary increases"@en .
+
+wdr:sense-gfds-diatenanpassung-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "adjustment; a technical administrative term"@en .
+
+wdr:sense-gfds-doner-morde-2011 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2011"^^xsd:gYear ;
+    drift:gloss "doner murders; racist media term reducing NSU neo-Nazi murders of Turkish-German business owners to a food metaphor"@en .
+
+wdr:sense-gfds-doner-morde-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-entlassungsproduktivitat-2005 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2005"^^xsd:gYear ;
+    drift:gloss "dismissal productivity; profits from mass layoffs euphemistically framed as productivity gains"@en .
+
+wdr:sense-gfds-entlassungsproduktivitat-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-ethnische-sauberung-1992 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1992"^^xsd:gYear ;
+    drift:gloss "term used in Yugoslav Wars to euphemize forced expulsion and murder of ethnic groups"@en .
+
+wdr:sense-gfds-ethnische-sauberung-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "ethnic cleansing; propaganda euphemism for genocide"@en .
+
+wdr:sense-gfds-freiwillige-ausreise-2006 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2006"^^xsd:gYear ;
+    drift:gloss "official euphemism for coerced departure of asylum seekers facing deportation; opposite of voluntary"@en .
+
+wdr:sense-gfds-freiwillige-ausreise-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "voluntary departure; leaving a country by free choice"@en .
+
+wdr:sense-gfds-gotteskrieger-2001 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2001"^^xsd:gYear ;
+    drift:gloss "self-designation by Taliban and al-Qaeda terrorists glorifying Islamist violence after 9/11"@en .
+
+wdr:sense-gfds-gotteskrieger-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "warrior of God; a religious fighter in traditional sense"@en .
+
+wdr:sense-gfds-gutmensch-2015 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2015"^^xsd:gYear ;
+    drift:gloss "naive do-gooder; derogatory term for people advocating for refugees and humanitarian causes"@en .
+
+wdr:sense-gfds-gutmensch-prior a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:gloss "a good person; someone with good intentions"@en .
+
+wdr:sense-gfds-herdpramie-2007 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2007"^^xsd:gYear ;
+    drift:gloss "stove premium; pejorative term for childcare benefit paid to parents who keep children at home"@en .
+
+wdr:sense-gfds-herdpramie-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-humankapital-2004 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2004"^^xsd:gYear ;
+    drift:gloss "dehumanizing term spreading from economics into education policy, treating people as assets"@en .
+
+wdr:sense-gfds-humankapital-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "human capital; economic concept for the value of human skills"@en .
+
+wdr:sense-gfds-ich-ag-2002 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2002"^^xsd:gYear ;
+    drift:gloss "me Inc.; Hartz Commission term reducing persons to self-employed economic units; subsidy program name"@en .
+
+wdr:sense-gfds-ich-ag-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-klimahysterie-2019 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2019"^^xsd:gYear ;
+    drift:gloss "climate hysteria; delegitimizes Fridays for Future activists and climate policy demands as irrational panic"@en .
+
+wdr:sense-gfds-klimahysterie-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously dominant"@en .
+
+wdr:sense-gfds-klimaterroristen-2022 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2022"^^xsd:gYear ;
+    drift:gloss "term criminalizing nonviolent climate activists (Letzte Generation) as terrorists for traffic blockades"@en .
+
+wdr:sense-gfds-klimaterroristen-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "climate terrorists; an extreme framing"@en .
+
+wdr:sense-gfds-kollateralschaden-1999 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1999"^^xsd:gYear ;
+    drift:gloss "cynical minimization of civilian deaths in NATO Kosovo bombing campaign as incidental side effects"@en .
+
+wdr:sense-gfds-kollateralschaden-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "collateral damage; military term for unintended harm"@en .
+
+wdr:sense-gfds-lugenpresse-2014 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2014"^^xsd:gYear ;
+    drift:gloss "revived by Pegida and right-wing populist movements to delegitimize all mainstream media"@en .
+
+wdr:sense-gfds-lugenpresse-prior a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:gloss "lying press; Nazi-era propaganda term attacking independent journalism"@en .
+
+wdr:sense-gfds-national-befreite-zone-2000 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2000"^^xsd:gYear ;
+    drift:gloss "neo-Nazi euphemism for neighborhoods terrorized by far-right extremists, inverting liberation language"@en .
+
+wdr:sense-gfds-national-befreite-zone-prior a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:gloss "nationally liberated zone; echoes anti-colonial liberation rhetoric"@en .
+
+wdr:sense-gfds-notleidende-banken-2008 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2008"^^xsd:gYear ;
+    drift:gloss "framing of banks that caused the financial crisis as victims in need of bailout, reversing responsibility"@en .
+
+wdr:sense-gfds-notleidende-banken-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "banks in financial distress; used for genuine economic victims"@en .
+
+wdr:sense-gfds-opfer-abo-2012 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2012"^^xsd:gYear ;
+    drift:gloss "victim subscription; accuses women of repeatedly fabricating or exploiting victim status in sexual violence cases"@en .
+
+wdr:sense-gfds-opfer-abo-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-peanuts-1994 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1994"^^xsd:gYear ;
+    drift:gloss "callous dismissal by Deutsche Bank CEO Hilmar Kopper of 50 million DM debt owed to small creditors as insignificant"@en .
+
+wdr:sense-gfds-peanuts-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "peanuts; a trivially small amount of money (English slang)"@en .
+
+wdr:sense-gfds-pushback-2021 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2021"^^xsd:gYear ;
+    drift:gloss "illegal forced return of migrants at EU borders without processing their asylum claims; human rights violation"@en .
+
+wdr:sense-gfds-pushback-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "resistance or opposition to a proposal; a general English term"@en .
+
+wdr:sense-gfds-remigration-2023 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2023"^^xsd:gYear ;
+    drift:gloss "far-right coded term for forced mass deportation of immigrants and naturalized citizens, exposed via Correctiv leak"@en .
+
+wdr:sense-gfds-remigration-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "remigration; academic term for return migration of emigrants to their home country"@en .
+
+wdr:sense-gfds-rentnerschwemme-1996 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1996"^^xsd:gYear ;
+    drift:gloss "dehumanizing depiction of the elderly population as a threatening flood overwhelming the pension system"@en .
+
+wdr:sense-gfds-rentnerschwemme-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "a flood or excess of retirees; uses a nature metaphor"@en .
+
+wdr:sense-gfds-ruckfuhrungspatenschaften-2020 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:gloss "return sponsorships; cynical EU deportation policy framing forced returns as voluntary sponsorship arrangements"@en .
+
+wdr:sense-gfds-ruckfuhrungspatenschaften-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-sozialtourismus-2013 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2013"^^xsd:gYear ;
+    drift:gloss "welfare tourism; stigmatizing Eastern European EU migrants as traveling to Germany only to claim benefits"@en .
+
+wdr:sense-gfds-sozialtourismus-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "social tourism; affordable tourism for lower-income groups"@en .
+
+wdr:sense-gfds-sozialvertragliches-fruhableben-1998 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1998"^^xsd:gYear ;
+    drift:gloss "socially compatible early death; cynical bureaucratic phrase suggesting elderly should die early for fiscal reasons"@en .
+
+wdr:sense-gfds-sozialvertragliches-fruhableben-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-tatervolk-2003 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2003"^^xsd:gYear ;
+    drift:gloss "antisemitic accusation of collective Jewish guilt; used by German MP Martin Hohmann in a parliamentary speech"@en .
+
+wdr:sense-gfds-tatervolk-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "a people of perpetrators; used historically"@en .
+
+wdr:sense-gfds-uberfremdung-1993 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1993"^^xsd:gYear ;
+    drift:gloss "revived xenophobic argument against immigration in the early 1990s racist discourse"@en .
+
+wdr:sense-gfds-uberfremdung-prior a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:gloss "historical nationalist term for alleged excessive foreign cultural influence"@en .
+
+wdr:sense-gfds-volksverrater-2016 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2016"^^xsd:gYear ;
+    drift:gloss "revived Nazi vocabulary used by AfD and Pegida to attack democratically elected politicians"@en .
+
+wdr:sense-gfds-volksverrater-prior a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:gloss "traitor of the people; Nazi-era political accusation"@en .
+
+wdr:sense-gfds-wohlstandsmull-1997 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1997"^^xsd:gYear ;
+    drift:gloss "prosperity trash; dehumanizing label for long-term unemployed persons as waste products of affluence"@en .
+
+wdr:sense-gfds-wohlstandsmull-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:src-gfds-unwort-alternative-fakten-2017 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2017: alternative Fakten"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Unwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-alternativlos-2010 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2010: alternativlos"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/alternativlos"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-anti-abschiebe-industrie-2018 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2018: Anti-Abschiebe-Industrie"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Unwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-auslanderfrei-1991 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1991: ausländerfrei"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/ausl%C3%A4nderfrei"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-betriebsratsverseucht-2009 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2009: betriebsratsverseucht"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/betriebsratsverseucht"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-biodeutsch-2024 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2024: biodeutsch"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/biodeutsch"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-corona-diktatur-2020 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2020: Corona-Diktatur"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Corona-Diktatur"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-diatenanpassung-1995 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1995: Diätenanpassung"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Di%C3%A4tenanpassung"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-doner-morde-2011 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2011: Döner-Morde"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/D%C3%B6ner-Morde"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-entlassungsproduktivitat-2005 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2005: Entlassungsproduktivität"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Entlassungsproduktivit%C3%A4t"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-ethnische-sauberung-1992 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1992: ethnische Säuberung"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Unwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-freiwillige-ausreise-2006 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2006: freiwillige Ausreise"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Unwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-gotteskrieger-2001 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2001: Gotteskrieger"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Gotteskrieger"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-gutmensch-2015 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2015: Gutmensch"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Gutmensch"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-herdpramie-2007 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2007: Herdprämie"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Herdpr%C3%A4mie"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-humankapital-2004 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2004: Humankapital"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Humankapital"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-ich-ag-2002 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2002: Ich-AG"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Ich-AG"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-klimahysterie-2019 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2019: Klimahysterie"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Klimahysterie"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-klimaterroristen-2022 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2022: Klimaterroristen"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Klimaterroristen"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-kollateralschaden-1999 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1999: Kollateralschaden"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Kollateralschaden"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-lugenpresse-2014 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2014: Lügenpresse"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/L%C3%BCgenpresse"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-national-befreite-zone-2000 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2000: national befreite Zone"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Unwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-notleidende-banken-2008 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2008: notleidende Banken"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Unwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-opfer-abo-2012 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2012: Opfer-Abo"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Opfer-Abo"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-peanuts-1994 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1994: Peanuts"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Peanuts"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-pushback-2021 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2021: Pushback"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Pushback"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-remigration-2023 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2023: Remigration"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Remigration"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-rentnerschwemme-1996 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1996: Rentnerschwemme"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Rentnerschwemme"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-ruckfuhrungspatenschaften-2020 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2020: Rückführungspatenschaften"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/R%C3%BCckf%C3%BChrungspatenschaften"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-sozialtourismus-2013 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2013: Sozialtourismus"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Sozialtourismus"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-sozialvertragliches-fruhableben-1998 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1998: sozialverträgliches Frühableben"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Unwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-tatervolk-2003 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2003: Tätervolk"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/T%C3%A4tervolk"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-uberfremdung-1993 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1993: Überfremdung"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/%C3%9Cberfremdung"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-volksverrater-2016 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 2016: Volksverräter"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Volksverr%C3%A4ter"^^xsd:anyURI .
+
+wdr:src-gfds-unwort-wohlstandsmull-1997 a drift:Source ;
+    dct:title "GfdS / Wikipedia - unwort des Jahres 1997: Wohlstandsmüll"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Wohlstandsm%C3%BCll"^^xsd:anyURI .
+
+wdr:curator-gfds a prov:Agent ;
+    rdfs:label "WORD-DRIFT GfdS curator"@en ;
+    dct:description "Automated GfdS ingest pipeline (gfds_import.py)"@en .
+

@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Banause" (de)
+# Pejoration: borrowed from Greek "banausos" (artisan, manual
+# worker), the word enters German educated usage in the 18th-19th
+# c. and narrows to a person without taste or appreciation for art
+# and intellect. The neo-humanist cult of Bildung is the trigger.
+# =============================================================
+
+wdr:word-banause a drift:Word ;
+    drift:writtenForm "Banause"@de ;
+    drift:language "de" ;
+    rdfs:label "Banause"@de ;
+    ontolex:sense wdr:sense-banause-artisan , wdr:sense-banause-philistine .
+
+wdr:sense-banause-artisan a drift:Sense ;
+    drift:gloss "from Greek banausos, a manual worker or artisan; one who works with the hands rather than the mind"@en ;
+    drift:gloss "aus griechisch banausos, ein Handwerker; jemand, der mit den Haenden statt mit dem Geist arbeitet"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear .
+
+wdr:sense-banause-philistine a drift:Sense ;
+    drift:gloss "a person without taste, sensibility, or appreciation for art and intellectual things; a cultural philistine"@en ;
+    drift:gloss "Mensch ohne Geschmack, Feingefuehl oder Sinn fuer Kunst und Geistiges; kultureller Banause"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-banause-bildung a drift:TriggerEvent ;
+    rdfs:label "Neo-humanist cult of Bildung, late 18th to 19th century"@en ;
+    dct:description "The neo-humanist revival of Greek learning and the 19th c. ideal of Bildung made the Greek 'banausos' a learned term of contempt. In German educated usage 'Banause' narrowed to a person without taste or appreciation for art and the intellect."@en ;
+    drift:eventDate "1800"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-banause-bildung a drift:DriftEvent ;
+    drift:affectsWord wdr:word-banause ;
+    drift:senseFrom wdr:sense-banause-artisan ;
+    drift:senseTo wdr:sense-banause-philistine ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1750"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-banause-dwds , wdr:src-banause-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-banause-bildung a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-banause-bildung ;
+    drift:proposedTrigger wdr:trigger-banause-bildung ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.65 ;
+    drift:hasSource wdr:src-banause-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-banause-dwds a drift:Source ;
+    dct:title "DWDS -- Banause"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Banause"^^xsd:anyURI .
+
+wdr:src-banause-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Banause"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Banause"^^xsd:anyURI .

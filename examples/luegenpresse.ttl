@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "Luegenpresse" (de)
+# Reappropriation / Reversal: originally a polemical charge
+# used across the political spectrum (1848+); weaponized by the
+# Nazis in WWII; dormant in the post-war period; reactivated at
+# PEGIDA demonstrations 2014 by the far right.
+# The 2014 reactivation is the documented drift event.
+# Unwort des Jahres 2014.
+# =============================================================
+
+wdr:word-luegenpresse a drift:Word ;
+    drift:writtenForm "Luegenpresse"@de ;
+    drift:language "de" ;
+    rdfs:label "Luegenpresse"@de ;
+    ontolex:sense wdr:sense-luegenpresse-polemic , wdr:sense-luegenpresse-farright .
+
+wdr:sense-luegenpresse-polemic a drift:Sense ;
+    drift:gloss "lying press; a polemical accusation against media outlets accused of deliberate deception, used across the political spectrum"@en ;
+    drift:gloss "Schlagwort fuer als luegend empfundene Presse, parteiuebergreifend polemisch"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1848"^^xsd:gYear .
+
+wdr:sense-luegenpresse-farright a drift:Sense ;
+    drift:gloss "blanket far-right slogan against mainstream media, associated with anti-democratic and violent opposition to journalism"@en ;
+    drift:gloss "pauschales rechtsextremes Kampfwort gegen den Journalismus; seit 2014 an Gewalt gegen Journalisten gekoppelt"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2014"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2014"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-luegenpresse-pegida a drift:TriggerEvent ;
+    rdfs:label "PEGIDA movement demonstrations, Dresden 2014"@en ;
+    dct:description "From October 2014, PEGIDA demonstrators chanted 'Luegenpresse' at journalists, reactivating a Nazi-era slur and cementing its association with the far-right. Unwort des Jahres 2014."@en ;
+    drift:eventDate "2014"^^xsd:gYear ;
+    drift:triggerCategory drift:Political ;
+    owl:sameAs wd:Q18762431 .
+
+# --- drift event ---
+wdr:drift-luegenpresse-2014 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-luegenpresse ;
+    drift:senseFrom wdr:sense-luegenpresse-polemic ;
+    drift:senseTo wdr:sense-luegenpresse-farright ;
+    drift:driftType drift:Reappropriation ;
+    drift:driftYear "2014"^^xsd:gYear ;
+    drift:hasSource wdr:src-luegenpresse-wiki , wdr:src-luegenpresse-gfds .
+
+# --- causal hypothesis ---
+wdr:hyp-luegenpresse-pegida a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-luegenpresse-2014 ;
+    drift:proposedTrigger wdr:trigger-luegenpresse-pegida ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-luegenpresse-wiki , wdr:src-luegenpresse-gfds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-luegenpresse-wiki a drift:Source ;
+    dct:title "Luegenpresse -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/L%C3%BCgenpresse"^^xsd:anyURI .
+
+wdr:src-luegenpresse-gfds a drift:Source ;
+    dct:title "GfdS -- Volksverraeter und Luegenpresse: Die Pegida und ihre Woerter"@de ;
+    drift:sourceURL "https://gfds.de/volksverraeter-und-luegenpresse-die-pegida-und-ihre-woerter/"^^xsd:anyURI .

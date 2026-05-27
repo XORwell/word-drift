@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "galvanize" (en)
+# Metonymization plus Broadening: the surname Galvani (Luigi
+# Galvani, whose frog-leg experiments ~1791 showed muscle reacts
+# to electricity) becomes a verb meaning to stimulate by electric
+# current, then figuratively to spur into sudden action. His
+# bioelectricity experiments are the identifiable trigger.
+# =============================================================
+
+wdr:word-galvanize a drift:Word ;
+    drift:writtenForm "galvanize"@en ;
+    drift:language "en" ;
+    rdfs:label "galvanize"@en ;
+    ontolex:sense wdr:sense-galvanize-name , wdr:sense-galvanize-fig .
+
+wdr:sense-galvanize-name a drift:Sense ;
+    drift:gloss "derived from the surname of the Italian physician Luigi Galvani; literally to stimulate muscle by an electric current"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1802"^^xsd:gYear .
+
+wdr:sense-galvanize-fig a drift:Sense ;
+    drift:gloss "to shock or rouse a person or group into sudden, energetic action; also to coat iron or steel with zinc"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1853"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1853"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-galvanize-frogleg a drift:TriggerEvent ;
+    rdfs:label "Galvani's bioelectricity experiments"@en ;
+    dct:description "Around 1791 Luigi Galvani published experiments showing that frog-leg muscles twitch when touched by metal, which he attributed to 'animal electricity'. The verb derived from his name first meant to stimulate by current, then broadened to mean rousing into action."@en ;
+    drift:eventDate "1791"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-galvanize-frogleg a drift:DriftEvent ;
+    drift:affectsWord wdr:word-galvanize ;
+    drift:senseFrom wdr:sense-galvanize-name ;
+    drift:senseTo wdr:sense-galvanize-fig ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1791"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1853"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-galvanize-etym , wdr:src-galvanize-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-galvanize-frogleg a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-galvanize-frogleg ;
+    drift:proposedTrigger wdr:trigger-galvanize-frogleg ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-galvanize-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-galvanize-etym a drift:Source ;
+    dct:title "galvanize -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/galvanize"^^xsd:anyURI .
+
+wdr:src-galvanize-wiki a drift:Source ;
+    dct:title "Luigi Galvani -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Luigi_Galvani"^^xsd:anyURI .

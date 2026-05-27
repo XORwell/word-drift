@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Trommelfeuer" (de)
+# Metaphorization: a WWI artillery term for continuous, drumming
+# barrage fire becomes, through the great material battles of
+# 1916, a vivid figure for a relentless, overwhelming barrage of
+# words, questions, or criticism. WWI artillery is the trigger.
+# =============================================================
+
+wdr:word-trommelfeuer a drift:Word ;
+    drift:writtenForm "Trommelfeuer"@de ;
+    drift:language "de" ;
+    rdfs:label "Trommelfeuer"@de ;
+    ontolex:sense wdr:sense-trommelfeuer-artillery , wdr:sense-trommelfeuer-figurative .
+
+wdr:sense-trommelfeuer-artillery a drift:Sense ;
+    drift:gloss "sustained, very rapid artillery fire so dense the impacts merge into a drumming roar"@en ;
+    drift:gloss "anhaltendes, sehr schnelles Artilleriefeuer, dessen Einschlaege zu einem trommelnden Dauerlaerm verschmelzen"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1914"^^xsd:gYear .
+
+wdr:sense-trommelfeuer-figurative a drift:Sense ;
+    drift:gloss "a relentless, overwhelming barrage of words, questions, accusations, or criticism"@en ;
+    drift:gloss "unaufhoerlicher, ueberwaeltigender Schwall von Worten, Fragen, Vorwuerfen oder Kritik"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1916"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1916"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-trommelfeuer-wwi a drift:TriggerEvent ;
+    rdfs:label "First World War material battles, Verdun and the Somme 1916"@en ;
+    dct:description "The great material battles of 1916 (Verdun, the Somme) made sustained barrage fire a defining experience of the First World War. The artillery term 'Trommelfeuer' passed into figurative use for any relentless verbal barrage."@en ;
+    drift:eventDate "1916"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-trommelfeuer-wwi a drift:DriftEvent ;
+    drift:affectsWord wdr:word-trommelfeuer ;
+    drift:senseFrom wdr:sense-trommelfeuer-artillery ;
+    drift:senseTo wdr:sense-trommelfeuer-figurative ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1916"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1930"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-trommelfeuer-dwds , wdr:src-trommelfeuer-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-trommelfeuer-wwi a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-trommelfeuer-wwi ;
+    drift:proposedTrigger wdr:trigger-trommelfeuer-wwi ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-trommelfeuer-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-trommelfeuer-dwds a drift:Source ;
+    dct:title "DWDS -- Trommelfeuer"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Trommelfeuer"^^xsd:anyURI .
+
+wdr:src-trommelfeuer-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Trommelfeuer"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Trommelfeuer"^^xsd:anyURI .

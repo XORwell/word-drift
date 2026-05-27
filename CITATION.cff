@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+title: "WORD-DRIFT -- An Open Knowledge Graph for Lexical Semantic Change"
+message: >-
+  If you use this ontology, schema, or curated data in research,
+  please cite it using the metadata below.
+type: dataset
+authors:
+  - given-names: Christian
+    family-names: Nennemann
+    email: research@nennemann.de
+    affiliation: nennemann.de
+    # TODO: add ORCID when registered -- https://orcid.org/register
+identifiers:
+  - type: url
+    value: "https://github.com/XORwell/word-drift"
+    description: Source repository (Gitea)
+keywords:
+  - lexical semantic change
+  - Bedeutungswandel
+  - knowledge graph
+  - OntoLex
+  - semantic shift
+  - diachronic
+  - RDF
+  - SHACL
+  - SPARQL
+  - causation
+  - word sense
+license: CC-BY-4.0
+license-url: "https://creativecommons.org/licenses/by/4.0/"
+repository-code: "git@github.com:XORwell/word-drift.git"
+url: "https://github.com/XORwell/word-drift"
+version: "0.4.0"
+date-released: "2026-05-24"
+abstract: >-
+  WORD-DRIFT is an open RDF/SHACL knowledge graph for lexical semantic change
+  (Bedeutungswandel) in German and English. It models individual word senses
+  with diachronic attestation intervals and connotation values, typed drift
+  events (pejoration, amelioration, broadening, narrowing, metaphorization,
+  reversal, reappropriation), and -- as its novel contribution -- a causal
+  trigger layer: real-world events linked to the drift they caused, each claim
+  carrying a source citation and a confidence score. v0.2 ships 19 curated
+  example words spanning every drift type, four ETL adapters (DWUG, SemEval,
+  DWDS, Wikidata), a 38-test pytest suite with Gitea CI, a static D3
+  visualization, and federated SPARQL queries against Wikidata.

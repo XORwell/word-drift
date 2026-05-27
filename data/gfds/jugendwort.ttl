@@ -1,0 +1,702 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:hyp-gfds-hyp-aura-2024 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-aura-2024 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-aura-2024 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-aura-2024 .
+
+wdr:hyp-gfds-hyp-babo-2013 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-babo-2013 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-babo-2013 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-babo-2013 .
+
+wdr:hyp-gfds-hyp-cringe-2021 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-cringe-2021 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-cringe-2021 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-cringe-2021 .
+
+wdr:hyp-gfds-hyp-ehrenmann-ehrenfrau-2018 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-ehrenmann-ehrenfrau-2018 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-ehrenmann-ehrenfrau-2018 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-ehrenmann-ehrenfrau-2018 .
+
+wdr:hyp-gfds-hyp-fly-sein-2016 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-fly-sein-2016 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-fly-sein-2016 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-fly-sein-2016 .
+
+wdr:hyp-gfds-hyp-gammelfleischparty-2008 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-gammelfleischparty-2008 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-gammelfleischparty-2008 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-gammelfleischparty-2008 .
+
+wdr:hyp-gfds-hyp-goofy-2023 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-goofy-2023 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-goofy-2023 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-goofy-2023 .
+
+wdr:hyp-gfds-hyp-hartzen-2009 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-hartzen-2009 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-hartzen-2009 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-hartzen-2009 .
+
+wdr:hyp-gfds-hyp-i-bims-2017 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-i-bims-2017 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-i-bims-2017 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-i-bims-2017 .
+
+wdr:hyp-gfds-hyp-lauft-bei-dir-2014 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-lauft-bei-dir-2014 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-lauft-bei-dir-2014 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-lauft-bei-dir-2014 .
+
+wdr:hyp-gfds-hyp-lost-2020 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-lost-2020 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-lost-2020 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-lost-2020 .
+
+wdr:hyp-gfds-hyp-niveaulimbo-2010 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-niveaulimbo-2010 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-niveaulimbo-2010 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-niveaulimbo-2010 .
+
+wdr:hyp-gfds-hyp-smash-2022 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-smash-2022 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-smash-2022 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-smash-2022 .
+
+wdr:hyp-gfds-hyp-smombie-2015 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-smombie-2015 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-smombie-2015 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-smombie-2015 .
+
+wdr:hyp-gfds-hyp-swag-2011 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-swag-2011 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-swag-2011 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-swag-2011 .
+
+wdr:hyp-gfds-hyp-yolo-2012 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-yolo-2012 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-jugendwort-yolo-2012 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-yolo-2012 .
+
+wdr:drift-gfds-drift-aura-2024 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-aura ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2024"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-aura-2024 ;
+    drift:senseFrom wdr:sense-gfds-aura-prior ;
+    drift:senseTo wdr:sense-gfds-aura-2024 .
+
+wdr:drift-gfds-drift-babo-2013 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-babo ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2013"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-babo-2013 ;
+    drift:senseFrom wdr:sense-gfds-babo-prior ;
+    drift:senseTo wdr:sense-gfds-babo-2013 .
+
+wdr:drift-gfds-drift-cringe-2021 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-cringe ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2021"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-cringe-2021 ;
+    drift:senseFrom wdr:sense-gfds-cringe-prior ;
+    drift:senseTo wdr:sense-gfds-cringe-2021 .
+
+wdr:drift-gfds-drift-ehrenmann-ehrenfrau-2018 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-ehrenmann-ehrenfrau ;
+    drift:driftType drift:Amelioration ;
+    drift:driftYear "2018"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-ehrenmann-ehrenfrau-2018 ;
+    drift:senseFrom wdr:sense-gfds-ehrenmann-ehrenfrau-prior ;
+    drift:senseTo wdr:sense-gfds-ehrenmann-ehrenfrau-2018 .
+
+wdr:drift-gfds-drift-fly-sein-2016 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-fly-sein ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2016"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-fly-sein-2016 ;
+    drift:senseFrom wdr:sense-gfds-fly-sein-prior ;
+    drift:senseTo wdr:sense-gfds-fly-sein-2016 .
+
+wdr:drift-gfds-drift-gammelfleischparty-2008 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-gammelfleischparty ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2008"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-gammelfleischparty-2008 ;
+    drift:senseFrom wdr:sense-gfds-gammelfleischparty-prior ;
+    drift:senseTo wdr:sense-gfds-gammelfleischparty-2008 .
+
+wdr:drift-gfds-drift-goofy-2023 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-goofy ;
+    drift:driftType drift:Amelioration ;
+    drift:driftYear "2023"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-goofy-2023 ;
+    drift:senseFrom wdr:sense-gfds-goofy-prior ;
+    drift:senseTo wdr:sense-gfds-goofy-2023 .
+
+wdr:drift-gfds-drift-hartzen-2009 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-hartzen ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2009"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-hartzen-2009 ;
+    drift:senseFrom wdr:sense-gfds-hartzen-prior ;
+    drift:senseTo wdr:sense-gfds-hartzen-2009 .
+
+wdr:drift-gfds-drift-i-bims-2017 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-i-bims ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2017"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-i-bims-2017 ;
+    drift:senseFrom wdr:sense-gfds-i-bims-prior ;
+    drift:senseTo wdr:sense-gfds-i-bims-2017 .
+
+wdr:drift-gfds-drift-lauft-bei-dir-2014 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-lauft-bei-dir ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2014"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-lauft-bei-dir-2014 ;
+    drift:senseFrom wdr:sense-gfds-lauft-bei-dir-prior ;
+    drift:senseTo wdr:sense-gfds-lauft-bei-dir-2014 .
+
+wdr:drift-gfds-drift-lost-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-lost ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-lost-2020 ;
+    drift:senseFrom wdr:sense-gfds-lost-prior ;
+    drift:senseTo wdr:sense-gfds-lost-2020 .
+
+wdr:drift-gfds-drift-niveaulimbo-2010 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-niveaulimbo ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2010"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-niveaulimbo-2010 ;
+    drift:senseFrom wdr:sense-gfds-niveaulimbo-prior ;
+    drift:senseTo wdr:sense-gfds-niveaulimbo-2010 .
+
+wdr:drift-gfds-drift-smash-2022 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-smash ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2022"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-smash-2022 ;
+    drift:senseFrom wdr:sense-gfds-smash-prior ;
+    drift:senseTo wdr:sense-gfds-smash-2022 .
+
+wdr:drift-gfds-drift-smombie-2015 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-smombie ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2015"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-smombie-2015 ;
+    drift:senseFrom wdr:sense-gfds-smombie-prior ;
+    drift:senseTo wdr:sense-gfds-smombie-2015 .
+
+wdr:drift-gfds-drift-swag-2011 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-swag ;
+    drift:driftType drift:Amelioration ;
+    drift:driftYear "2011"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-swag-2011 ;
+    drift:senseFrom wdr:sense-gfds-swag-prior ;
+    drift:senseTo wdr:sense-gfds-swag-2011 .
+
+wdr:drift-gfds-drift-yolo-2012 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-yolo ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2012"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-jugendwort-yolo-2012 ;
+    drift:senseFrom wdr:sense-gfds-yolo-prior ;
+    drift:senseTo wdr:sense-gfds-yolo-2012 .
+
+wdr:trigger-gfds-trigger-aura-2024 a drift:TriggerEvent ;
+    rdfs:label "TikTok gaming aura points social status youth slang 2024"@en ;
+    dct:description "Refers to charisma, status, and presence of a person; from gaming/TikTok 'aura points' trend"@en ;
+    drift:eventDate "2024"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-babo-2013 a drift:TriggerEvent ;
+    rdfs:label "Haftbefehl Babo rap song German youth slang spread 2013"@en ;
+    dct:description "Turkish/Kurdish origin word for boss, leader; spread through German hip-hop especially Haftbefehl song"@en ;
+    drift:eventDate "2013"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-cringe-2021 a drift:TriggerEvent ;
+    rdfs:label "YouTube streaming culture youth embarrassment slang"@en ;
+    dct:description "Anglicism describing embarrassing or second-hand shame situations; spread through YouTube and streaming"@en ;
+    drift:eventDate "2021"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-ehrenmann-ehrenfrau-2018 a drift:TriggerEvent ;
+    rdfs:label "hip-hop honor culture German youth praise slang"@en ;
+    dct:description "Person of honor who does something particularly good or kind; spreading from hip-hop culture"@en ;
+    drift:eventDate "2018"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-fly-sein-2016 a drift:TriggerEvent ;
+    rdfs:label "hip-hop fly aesthetic German youth language adoption"@en ;
+    dct:description "From hip-hop culture meaning to be attractive, stylish, great; someone who stands out positively"@en ;
+    drift:eventDate "2016"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-gammelfleischparty-2008 a drift:TriggerEvent ;
+    rdfs:label "youth party culture over-30 parties generational slang"@en ;
+    dct:description "Youth slang for Ü30 parties (over-30 parties); portmanteau treating older party-goers as spoiled meat"@en ;
+    drift:eventDate "2008"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-goofy-2023 a drift:TriggerEvent ;
+    rdfs:label "TikTok goofy trend German youth positive silliness"@en ;
+    dct:description "From English via Disney character; clumsy, silly person or behavior that amuses others; TikTok spread"@en ;
+    drift:eventDate "2023"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-hartzen-2009 a drift:TriggerEvent ;
+    rdfs:label "Hartz IV unemployment welfare stigma youth slang"@en ;
+    dct:description "Derived from Hartz IV welfare reform; means to be unemployed, hang around; Hartz IV as cultural stigma"@en ;
+    drift:eventDate "2009"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-i-bims-2017 a drift:TriggerEvent ;
+    rdfs:label "Vong-Sprache German internet meme absurdist language 2017"@en ;
+    dct:description "Internet meme dialect phrase meaning 'I am' in Vong-Sprache; viral absurdist internet language"@en ;
+    drift:eventDate "2017"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-lauft-bei-dir-2014 a drift:TriggerEvent ;
+    rdfs:label "German internet meme ironic praise social media spread"@en ;
+    dct:description "Ironic internet meme phrase meaning 'things are going well for you'; spread through social media"@en ;
+    drift:eventDate "2014"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-lost-2020 a drift:TriggerEvent ;
+    rdfs:label "gaming social media youth slang digital communication"@en ;
+    dct:description "Anglicism meaning clueless, lost, confused; spread through social media and gaming culture"@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-niveaulimbo-2010 a drift:TriggerEvent ;
+    rdfs:label "youth party culture declining standards social commentary"@en ;
+    dct:description "Portmanteau of Niveau (level) and limbo dance; steady decline of standards, especially at parties"@en ;
+    drift:eventDate "2010"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-smash-2022 a drift:TriggerEvent ;
+    rdfs:label "Smash or Pass internet game TikTok youth meme"@en ;
+    dct:description "Gaming/internet term meaning to have sex with someone or find them attractive; from Smash or Pass meme"@en ;
+    drift:eventDate "2022"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-smombie-2015 a drift:TriggerEvent ;
+    rdfs:label "smartphone addiction distracted pedestrian culture youth"@en ;
+    dct:description "Portmanteau of smartphone and zombie; people distracted by devices; spread through mobile phone culture"@en ;
+    drift:eventDate "2015"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-swag-2011 a drift:TriggerEvent ;
+    rdfs:label "hip-hop culture swag concept German youth language adoption"@en ;
+    dct:description "Borrowed from hip-hop culture; enviously admired cool, stylish charisma and attitude"@en ;
+    drift:eventDate "2011"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-yolo-2012 a drift:TriggerEvent ;
+    rdfs:label "Drake YOLO hip-hop internet meme spread 2012"@en ;
+    dct:description "Acronym 'you only live once'; internet/Drake hip-hop phrase urging to seize opportunities"@en ;
+    drift:eventDate "2012"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:word-gfds-aura a drift:Word ;
+    rdfs:label "Aura"@de ;
+    ontolex:sense wdr:sense-gfds-aura-2024,
+        wdr:sense-gfds-aura-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Aura"@de .
+
+wdr:word-gfds-babo a drift:Word ;
+    rdfs:label "Babo"@de ;
+    ontolex:sense wdr:sense-gfds-babo-2013,
+        wdr:sense-gfds-babo-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Babo"@de .
+
+wdr:word-gfds-cringe a drift:Word ;
+    rdfs:label "cringe"@de ;
+    ontolex:sense wdr:sense-gfds-cringe-2021,
+        wdr:sense-gfds-cringe-prior ;
+    drift:language "de" ;
+    drift:writtenForm "cringe"@de .
+
+wdr:word-gfds-ehrenmann-ehrenfrau a drift:Word ;
+    rdfs:label "Ehrenmann/Ehrenfrau"@de ;
+    ontolex:sense wdr:sense-gfds-ehrenmann-ehrenfrau-2018,
+        wdr:sense-gfds-ehrenmann-ehrenfrau-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Ehrenmann/Ehrenfrau"@de .
+
+wdr:word-gfds-fly-sein a drift:Word ;
+    rdfs:label "fly sein"@de ;
+    ontolex:sense wdr:sense-gfds-fly-sein-2016,
+        wdr:sense-gfds-fly-sein-prior ;
+    drift:language "de" ;
+    drift:writtenForm "fly sein"@de .
+
+wdr:word-gfds-gammelfleischparty a drift:Word ;
+    rdfs:label "Gammelfleischparty"@de ;
+    ontolex:sense wdr:sense-gfds-gammelfleischparty-2008,
+        wdr:sense-gfds-gammelfleischparty-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Gammelfleischparty"@de .
+
+wdr:word-gfds-goofy a drift:Word ;
+    rdfs:label "goofy"@de ;
+    ontolex:sense wdr:sense-gfds-goofy-2023,
+        wdr:sense-gfds-goofy-prior ;
+    drift:language "de" ;
+    drift:writtenForm "goofy"@de .
+
+wdr:word-gfds-hartzen a drift:Word ;
+    rdfs:label "hartzen"@de ;
+    ontolex:sense wdr:sense-gfds-hartzen-2009,
+        wdr:sense-gfds-hartzen-prior ;
+    drift:language "de" ;
+    drift:writtenForm "hartzen"@de .
+
+wdr:word-gfds-i-bims a drift:Word ;
+    rdfs:label "I bims"@de ;
+    ontolex:sense wdr:sense-gfds-i-bims-2017,
+        wdr:sense-gfds-i-bims-prior ;
+    drift:language "de" ;
+    drift:writtenForm "I bims"@de .
+
+wdr:word-gfds-lauft-bei-dir a drift:Word ;
+    rdfs:label "Läuft bei dir"@de ;
+    ontolex:sense wdr:sense-gfds-lauft-bei-dir-2014,
+        wdr:sense-gfds-lauft-bei-dir-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Läuft bei dir"@de .
+
+wdr:word-gfds-lost a drift:Word ;
+    rdfs:label "lost"@de ;
+    ontolex:sense wdr:sense-gfds-lost-2020,
+        wdr:sense-gfds-lost-prior ;
+    drift:language "de" ;
+    drift:writtenForm "lost"@de .
+
+wdr:word-gfds-niveaulimbo a drift:Word ;
+    rdfs:label "Niveaulimbo"@de ;
+    ontolex:sense wdr:sense-gfds-niveaulimbo-2010,
+        wdr:sense-gfds-niveaulimbo-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Niveaulimbo"@de .
+
+wdr:word-gfds-smash a drift:Word ;
+    rdfs:label "smash"@de ;
+    ontolex:sense wdr:sense-gfds-smash-2022,
+        wdr:sense-gfds-smash-prior ;
+    drift:language "de" ;
+    drift:writtenForm "smash"@de .
+
+wdr:word-gfds-smombie a drift:Word ;
+    rdfs:label "Smombie"@de ;
+    ontolex:sense wdr:sense-gfds-smombie-2015,
+        wdr:sense-gfds-smombie-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Smombie"@de .
+
+wdr:word-gfds-swag a drift:Word ;
+    rdfs:label "Swag"@de ;
+    ontolex:sense wdr:sense-gfds-swag-2011,
+        wdr:sense-gfds-swag-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Swag"@de .
+
+wdr:word-gfds-yolo a drift:Word ;
+    rdfs:label "YOLO"@de ;
+    ontolex:sense wdr:sense-gfds-yolo-2012,
+        wdr:sense-gfds-yolo-prior ;
+    drift:language "de" ;
+    drift:writtenForm "YOLO"@de .
+
+wdr:sense-gfds-aura-2024 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2024"^^xsd:gYear ;
+    drift:gloss "gaming/TikTok concept of charisma, status, and coolness points; aura farming as gaining social status"@en .
+
+wdr:sense-gfds-aura-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "an aura; mystical or atmospheric emanation surrounding a person"@en .
+
+wdr:sense-gfds-babo-2013 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2013"^^xsd:gYear ;
+    drift:gloss "boss, leader, head; Turkish/Kurdish loanword spread into German youth slang via Haftbefehl rap music"@en .
+
+wdr:sense-gfds-babo-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established in German"@en .
+
+wdr:sense-gfds-cringe-2021 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2021"^^xsd:gYear ;
+    drift:gloss "embarrassing, second-hand shame-inducing; youth slang adjective spread via YouTube and streaming culture"@en .
+
+wdr:sense-gfds-cringe-prior a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:gloss "to cringe; to recoil in disgust or embarrassment"@en .
+
+wdr:sense-gfds-ehrenmann-ehrenfrau-2018 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2018"^^xsd:gYear ;
+    drift:gloss "slang term of high praise for someone doing something especially kind or cool; spread from hip-hop culture"@en .
+
+wdr:sense-gfds-ehrenmann-ehrenfrau-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "an honorable man/woman; a person of formal honor"@en .
+
+wdr:sense-gfds-fly-sein-2016 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2016"^^xsd:gYear ;
+    drift:gloss "to be fly; to be attractive, stylish, impressive; borrowed from hip-hop into German youth slang"@en .
+
+wdr:sense-gfds-fly-sein-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established as German phrase"@en .
+
+wdr:sense-gfds-gammelfleischparty-2008 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2008"^^xsd:gYear ;
+    drift:gloss "rotten meat party; youth slang portmanteau for over-30 (Ü30) parties, treating older party-goers as past their prime"@en .
+
+wdr:sense-gfds-gammelfleischparty-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-goofy-2023 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2023"^^xsd:gYear ;
+    drift:gloss "affectionately clumsy and silly person or behavior that entertains others; spread via TikTok"@en .
+
+wdr:sense-gfds-goofy-prior a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:gloss "goofy; silly, stupid, foolish (from Disney character)"@en .
+
+wdr:sense-gfds-hartzen-2009 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2009"^^xsd:gYear ;
+    drift:gloss "to be on Hartz IV welfare; hang around unemployed; verb derived from Hartz IV welfare reform with stigmatizing connotation"@en .
+
+wdr:sense-gfds-hartzen-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-i-bims-2017 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2017"^^xsd:gYear ;
+    drift:gloss "I am; viral Vong-Sprache internet dialect phrase from absurdist German meme culture"@en .
+
+wdr:sense-gfds-i-bims-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-lauft-bei-dir-2014 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2014"^^xsd:gYear ;
+    drift:gloss "things are running for you; ironic internet meme phrase meaning someone is doing well or is lucky"@en .
+
+wdr:sense-gfds-lauft-bei-dir-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously dominant as a phrase"@en .
+
+wdr:sense-gfds-lost-2020 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:gloss "clueless, completely lost, oblivious; intensified slang use spread from gaming and social media"@en .
+
+wdr:sense-gfds-lost-prior a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:gloss "lost; unable to find one's way"@en .
+
+wdr:sense-gfds-niveaulimbo-2010 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "level limbo; portmanteau of Niveau (level/standard) and limbo dance, describing steadily declining standards"@en .
+
+wdr:sense-gfds-niveaulimbo-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-smash-2022 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2022"^^xsd:gYear ;
+    drift:gloss "to find someone sexually attractive or want to sleep with them; from the Smash or Pass internet game"@en .
+
+wdr:sense-gfds-smash-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "to smash; to break or destroy forcefully"@en .
+
+wdr:sense-gfds-smombie-2015 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2015"^^xsd:gYear ;
+    drift:gloss "smartphone zombie; portmanteau for people distracted by their phones, walking like zombies"@en .
+
+wdr:sense-gfds-smombie-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-swag-2011 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2011"^^xsd:gYear ;
+    drift:gloss "enviable cool charisma and stylish self-presentation; borrowed from hip-hop culture into German youth language"@en .
+
+wdr:sense-gfds-swag-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "swag: stolen goods; plunder; loot (English origin)"@en .
+
+wdr:sense-gfds-yolo-2012 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2012"^^xsd:gYear ;
+    drift:gloss "you only live once; internet acronym spread via Drake hip-hop encouraging seizing the day"@en .
+
+wdr:sense-gfds-yolo-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:src-gfds-jugendwort-aura-2024 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2024: Aura"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Aura"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-babo-2013 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2013: Babo"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Babo"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-cringe-2021 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2021: cringe"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/cringe"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-ehrenmann-ehrenfrau-2018 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2018: Ehrenmann/Ehrenfrau"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Ehrenmann/Ehrenfrau"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-fly-sein-2016 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2016: fly sein"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Jugendwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-gammelfleischparty-2008 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2008: Gammelfleischparty"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Gammelfleischparty"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-goofy-2023 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2023: goofy"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Jugendwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-hartzen-2009 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2009: hartzen"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/hartzen"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-i-bims-2017 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2017: I bims"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Jugendwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-lauft-bei-dir-2014 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2014: Läuft bei dir"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Jugendwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-lost-2020 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2020: lost"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/lost"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-niveaulimbo-2010 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2010: Niveaulimbo"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Niveaulimbo"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-smash-2022 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2022: smash"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/smash"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-smombie-2015 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2015: Smombie"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Jugendwort_des_Jahres_(Deutschland)#2015"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-swag-2011 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2011: Swag"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Jugendwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:src-gfds-jugendwort-yolo-2012 a drift:Source ;
+    dct:title "GfdS / Wikipedia - jugendwort des Jahres 2012: YOLO"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Jugendwort_des_Jahres_(Deutschland)"^^xsd:anyURI .
+
+wdr:curator-gfds a prov:Agent ;
+    rdfs:label "WORD-DRIFT GfdS curator"@en ;
+    dct:description "Automated GfdS ingest pipeline (gfds_import.py)"@en .
+

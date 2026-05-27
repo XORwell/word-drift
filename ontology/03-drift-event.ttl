@@ -1,0 +1,139 @@
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix time:  <http://www.w3.org/2006/time#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 03: Drift event (the typed change)
+# A reified semantic-change event: a word moves from one sense
+# (or connotation) to another, classified by a typed taxonomy.
+# This reification is what lets us hang dates, evidence, and a
+# triggering historical event off a single change.
+# =============================================================
+
+drift:DriftEvent a owl:Class ;
+    rdfs:label "drift event"@en , "Bedeutungswandel-Ereignis"@de ;
+    rdfs:comment "A documented semantic shift affecting one word: a change of sense, scope, or connotation, classified by drift:driftType and optionally tied to a triggering event."@en .
+
+drift:affectsWord a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "affects word"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range drift:Word ;
+    owl:inverseOf drift:hasDriftEvent ;
+    rdfs:comment "Links a drift event to the single word whose meaning shifted. Functional: one reified drift event is about exactly one word (cross-word patterns are captured by sharing a trigger, not by one event affecting many words)."@en .
+
+drift:hasDriftEvent a owl:ObjectProperty ;
+    rdfs:label "has drift event"@en ;
+    rdfs:domain drift:Word ;
+    rdfs:range drift:DriftEvent ;
+    owl:inverseOf drift:affectsWord ;
+    rdfs:comment "Convenience inverse of drift:affectsWord: the drift events recorded for a word. Not asserted in data; available to reasoners and queries that traverse from a word to its changes."@en .
+
+drift:senseFrom a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "sense from"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range drift:Sense ;
+    rdfs:comment "The prior sense/connotation. May be absent when a wholly new sense emerges. Functional: a single drift event has at most one prior sense."@en .
+
+drift:senseTo a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "sense to"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range drift:Sense ;
+    rdfs:comment "The resulting sense/connotation after the shift. Functional: a single drift event resolves to one resulting sense."@en .
+
+drift:driftType a owl:ObjectProperty ;
+    rdfs:label "drift type"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Classification of the change, drawn from drift:DriftTypeScheme."@en .
+
+drift:driftYear a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "drift year"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range xsd:gYear ;
+    rdfs:comment "Approximate year the shift became salient. Coarse anchor for the timeline. Functional: one drift event has a single year anchor (use drift:driftInterval for spans)."@en .
+
+drift:driftInterval a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "drift interval"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range time:Interval ;
+    rdfs:comment "Period over which the shift unfolded, when a single year is too sharp. Functional: one drift event has at most one interval."@en .
+
+drift:gradedChange a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "graded change"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "SemEval-style graded-change magnitude (0.0 to 1.0) measuring HOW MUCH a word changed between periods. A detection signal from the source data, NOT a causal confidence (which lives on drift:CausalHypothesis, ADR 0004)."@en .
+
+# =============================================================
+# Drift-type taxonomy (SKOS), organised on three axes:
+#   valence  — does the sense get better or worse?
+#   scope    — does it cover more or fewer things?
+#   mechanism — by what figurative process?
+# Plus standalone social patterns (reversal, reappropriation).
+# =============================================================
+
+drift:DriftTypeScheme a skos:ConceptScheme ;
+    skos:prefLabel "Drift type taxonomy"@en ;
+    rdfs:comment "Typology of lexical semantic change used to classify drift events."@en .
+
+# -- axis collectors (broader concepts) --
+drift:ValenceShift a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:prefLabel "valence shift"@en ; skos:topConceptOf drift:DriftTypeScheme .
+drift:ScopeShift a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:prefLabel "scope shift"@en ; skos:topConceptOf drift:DriftTypeScheme .
+drift:Mechanism a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:prefLabel "figurative mechanism"@en ; skos:topConceptOf drift:DriftTypeScheme .
+drift:SocialPattern a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:prefLabel "social pattern"@en ; skos:topConceptOf drift:DriftTypeScheme .
+
+# -- valence --
+drift:Pejoration a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:ValenceShift ;
+    skos:prefLabel "pejoration"@en , "Bedeutungsverschlechterung"@de ;
+    skos:definition "The sense acquires a more negative connotation over time."@en .
+drift:Amelioration a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:ValenceShift ;
+    skos:prefLabel "amelioration"@en , "Bedeutungsverbesserung"@de ;
+    skos:definition "The sense acquires a more positive connotation over time."@en .
+
+# -- scope --
+drift:Broadening a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:ScopeShift ;
+    skos:prefLabel "broadening"@en , "Bedeutungserweiterung"@de ;
+    skos:definition "The sense generalises to cover a wider range of referents."@en .
+drift:Narrowing a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:ScopeShift ;
+    skos:prefLabel "narrowing"@en , "Bedeutungsverengung"@de ;
+    skos:definition "The sense specialises to cover a narrower range of referents."@en .
+
+# -- mechanism --
+drift:Metaphorization a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:Mechanism ;
+    skos:prefLabel "metaphorization"@en ;
+    skos:definition "A new sense arises by metaphorical transfer (similarity)."@en .
+drift:Metonymization a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:Mechanism ;
+    skos:prefLabel "metonymization"@en ;
+    skos:definition "A new sense arises by metonymic transfer (contiguity)."@en .
+
+# -- social patterns --
+drift:Reversal a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:SocialPattern ;
+    skos:prefLabel "reversal"@en , "Bedeutungsumkehr"@de ;
+    skos:definition "The sense shifts toward (near-)opposite meaning; auto-antonymy."@en .
+drift:Reappropriation a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:broader drift:SocialPattern ;
+    skos:prefLabel "reappropriation"@en ;
+    skos:definition "A formerly derogatory term is reclaimed as neutral or positive by the in-group."@en .
+
+# Neutral catch-all for detection-grade benchmark words: a change is empirically
+# attested (graded score) but its direction/type is unspecified by the source.
+# Used by the DWUG/SemEval/DURel/SURel backbone so a benchmark word is not falsely
+# labelled with a specific direction it does not carry (see data/wugs/, ADR 0004).
+drift:UnspecifiedShift a skos:Concept ; skos:inScheme drift:DriftTypeScheme ;
+    skos:topConceptOf drift:DriftTypeScheme ;
+    skos:prefLabel "unspecified shift"@en , "unspezifizierter Wandel"@de ;
+    skos:definition "A semantic change attested by a detection benchmark (graded change score) whose direction and type are not specified by the source."@en .

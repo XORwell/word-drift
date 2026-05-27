@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "billig" (de)
+# Pejoration: "angemessen, gerecht, recht und billig" (fair,
+# equitable, proper) -> "preiswert, wohlfeil" (low-priced) ->
+# "minderwertig, von geringer Qualitaet" (cheap, shoddy,
+# negative). A gradual pejoration via the price sense, no crisp
+# datable event. The fair sense survives only in fixed phrases.
+# =============================================================
+
+wdr:word-billig a drift:Word ;
+    drift:writtenForm "billig"@de ;
+    drift:language "de" ;
+    rdfs:label "billig"@de ;
+    ontolex:sense wdr:sense-billig-gerecht , wdr:sense-billig-minderwertig .
+
+wdr:sense-billig-gerecht a drift:Sense ;
+    drift:gloss "fair, equitable, just, proper; reasonable and appropriate (as in 'recht und billig')"@en ;
+    drift:gloss "angemessen, gerecht, recht; gebuehrend (vgl. 'recht und billig')"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1500"^^xsd:gYear .
+
+wdr:sense-billig-minderwertig a drift:Sense ;
+    drift:gloss "cheap, of low quality, shoddy; low-priced and therefore presumed inferior"@en ;
+    drift:gloss "minderwertig, von geringer Qualitaet; preiswert und dadurch als minderwertig geltend"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-billig-price a drift:TriggerEvent ;
+    rdfs:label "Pejoration ueber die Preisbedeutung"@en ;
+    dct:description "Kein einzelnes datierbares Ereignis. Ueber die Zwischenbedeutung 'preiswert' kippte 'billig' zur negativen Wertung 'minderwertig', als niedriger Preis mit geringer Qualitaet gleichgesetzt wurde. Das Ankerjahr ist eine repraesentative Belegstelle, keine Ursache."@de ;
+    drift:eventDate "1850"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-billig-pejoration a drift:DriftEvent ;
+    drift:affectsWord wdr:word-billig ;
+    drift:senseFrom wdr:sense-billig-gerecht ;
+    drift:senseTo wdr:sense-billig-minderwertig ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-billig-dwds , wdr:src-billig-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-billig-price a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-billig-pejoration ;
+    drift:proposedTrigger wdr:trigger-billig-price ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-billig-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-billig-dwds a drift:Source ;
+    dct:title "DWDS -- billig"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/billig"^^xsd:anyURI .
+
+wdr:src-billig-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- billig"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/billig"^^xsd:anyURI .

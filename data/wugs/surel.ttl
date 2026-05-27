@@ -1,0 +1,652 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:drift-surel-abschrecken a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-abschrecken ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.6833 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-abschrecken-t1 ;
+    drift:senseTo wdr:sense-surel-abschrecken-t2 .
+
+wdr:drift-surel-blech a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-blech ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.1042 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-blech-t1 ;
+    drift:senseTo wdr:sense-surel-blech-t2 .
+
+wdr:drift-surel-eiwei a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-eiwei ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-eiwei-t1 ;
+    drift:senseTo wdr:sense-surel-eiwei-t2 .
+
+wdr:drift-surel-form a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-form ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.2208 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-form-t1 ;
+    drift:senseTo wdr:sense-surel-form-t2 .
+
+wdr:drift-surel-gemuse a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-gemuse ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-gemuse-t1 ;
+    drift:senseTo wdr:sense-surel-gemuse-t2 .
+
+wdr:drift-surel-gericht a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-gericht ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.875 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-gericht-t1 ;
+    drift:senseTo wdr:sense-surel-gericht-t2 .
+
+wdr:drift-surel-glas a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-glas ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.125 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-glas-t1 ;
+    drift:senseTo wdr:sense-surel-glas-t2 .
+
+wdr:drift-surel-hamburger a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-hamburger ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.6676 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-hamburger-t1 ;
+    drift:senseTo wdr:sense-surel-hamburger-t2 .
+
+wdr:drift-surel-mandel a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-mandel ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-mandel-t1 ;
+    drift:senseTo wdr:sense-surel-mandel-t2 .
+
+wdr:drift-surel-messer a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-messer ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.1121 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-messer-t1 ;
+    drift:senseTo wdr:sense-surel-messer-t2 .
+
+wdr:drift-surel-messerspitze a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-messerspitze ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0292 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-messerspitze-t1 ;
+    drift:senseTo wdr:sense-surel-messerspitze-t2 .
+
+wdr:drift-surel-paprika a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-paprika ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.081 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-paprika-t1 ;
+    drift:senseTo wdr:sense-surel-paprika-t2 .
+
+wdr:drift-surel-prise a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-prise ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.2398 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-prise-t1 ;
+    drift:senseTo wdr:sense-surel-prise-t2 .
+
+wdr:drift-surel-rum a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-rum ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0458 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-rum-t1 ;
+    drift:senseTo wdr:sense-surel-rum-t2 .
+
+wdr:drift-surel-salz a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-salz ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-salz-t1 ;
+    drift:senseTo wdr:sense-surel-salz-t2 .
+
+wdr:drift-surel-schlagen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-schlagen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.3458 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-schlagen-t1 ;
+    drift:senseTo wdr:sense-surel-schlagen-t2 .
+
+wdr:drift-surel-schnee a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-schnee ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.9375 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-schnee-t1 ;
+    drift:senseTo wdr:sense-surel-schnee-t2 .
+
+wdr:drift-surel-schnittlauch a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-schnittlauch ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-schnittlauch-t1 ;
+    drift:senseTo wdr:sense-surel-schnittlauch-t2 .
+
+wdr:drift-surel-schokolade a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-schokolade ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-schokolade-t1 ;
+    drift:senseTo wdr:sense-surel-schokolade-t2 .
+
+wdr:drift-surel-schu a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-schu ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.5993 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-schu-t1 ;
+    drift:senseTo wdr:sense-surel-schu-t2 .
+
+wdr:drift-surel-strudel a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-strudel ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.8167 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-strudel-t1 ;
+    drift:senseTo wdr:sense-surel-strudel-t2 .
+
+wdr:drift-surel-trennen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surel-trennen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "2000"^^xsd:gYear ;
+    drift:gradedChange 0.1667 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:senseFrom wdr:sense-surel-trennen-t1 ;
+    drift:senseTo wdr:sense-surel-trennen-t2 .
+
+wdr:word-surel-abschrecken a drift:Word ;
+    rdfs:label "abschrecken"@de ;
+    ontolex:sense wdr:sense-surel-abschrecken-t1,
+        wdr:sense-surel-abschrecken-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "abschrecken"@de .
+
+wdr:word-surel-blech a drift:Word ;
+    rdfs:label "Blech"@de ;
+    ontolex:sense wdr:sense-surel-blech-t1,
+        wdr:sense-surel-blech-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Blech"@de .
+
+wdr:word-surel-eiwei a drift:Word ;
+    rdfs:label "Eiweiß"@de ;
+    ontolex:sense wdr:sense-surel-eiwei-t1,
+        wdr:sense-surel-eiwei-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Eiweiß"@de .
+
+wdr:word-surel-form a drift:Word ;
+    rdfs:label "Form"@de ;
+    ontolex:sense wdr:sense-surel-form-t1,
+        wdr:sense-surel-form-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Form"@de .
+
+wdr:word-surel-gemuse a drift:Word ;
+    rdfs:label "Gemüse"@de ;
+    ontolex:sense wdr:sense-surel-gemuse-t1,
+        wdr:sense-surel-gemuse-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Gemüse"@de .
+
+wdr:word-surel-gericht a drift:Word ;
+    rdfs:label "Gericht"@de ;
+    ontolex:sense wdr:sense-surel-gericht-t1,
+        wdr:sense-surel-gericht-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Gericht"@de .
+
+wdr:word-surel-glas a drift:Word ;
+    rdfs:label "Glas"@de ;
+    ontolex:sense wdr:sense-surel-glas-t1,
+        wdr:sense-surel-glas-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Glas"@de .
+
+wdr:word-surel-hamburger a drift:Word ;
+    rdfs:label "Hamburger"@de ;
+    ontolex:sense wdr:sense-surel-hamburger-t1,
+        wdr:sense-surel-hamburger-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Hamburger"@de .
+
+wdr:word-surel-mandel a drift:Word ;
+    rdfs:label "Mandel"@de ;
+    ontolex:sense wdr:sense-surel-mandel-t1,
+        wdr:sense-surel-mandel-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Mandel"@de .
+
+wdr:word-surel-messer a drift:Word ;
+    rdfs:label "Messer"@de ;
+    ontolex:sense wdr:sense-surel-messer-t1,
+        wdr:sense-surel-messer-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Messer"@de .
+
+wdr:word-surel-messerspitze a drift:Word ;
+    rdfs:label "Messerspitze"@de ;
+    ontolex:sense wdr:sense-surel-messerspitze-t1,
+        wdr:sense-surel-messerspitze-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Messerspitze"@de .
+
+wdr:word-surel-paprika a drift:Word ;
+    rdfs:label "Paprika"@de ;
+    ontolex:sense wdr:sense-surel-paprika-t1,
+        wdr:sense-surel-paprika-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Paprika"@de .
+
+wdr:word-surel-prise a drift:Word ;
+    rdfs:label "Prise"@de ;
+    ontolex:sense wdr:sense-surel-prise-t1,
+        wdr:sense-surel-prise-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Prise"@de .
+
+wdr:word-surel-rum a drift:Word ;
+    rdfs:label "Rum"@de ;
+    ontolex:sense wdr:sense-surel-rum-t1,
+        wdr:sense-surel-rum-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Rum"@de .
+
+wdr:word-surel-salz a drift:Word ;
+    rdfs:label "Salz"@de ;
+    ontolex:sense wdr:sense-surel-salz-t1,
+        wdr:sense-surel-salz-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Salz"@de .
+
+wdr:word-surel-schlagen a drift:Word ;
+    rdfs:label "schlagen"@de ;
+    ontolex:sense wdr:sense-surel-schlagen-t1,
+        wdr:sense-surel-schlagen-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "schlagen"@de .
+
+wdr:word-surel-schnee a drift:Word ;
+    rdfs:label "Schnee"@de ;
+    ontolex:sense wdr:sense-surel-schnee-t1,
+        wdr:sense-surel-schnee-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Schnee"@de .
+
+wdr:word-surel-schnittlauch a drift:Word ;
+    rdfs:label "Schnittlauch"@de ;
+    ontolex:sense wdr:sense-surel-schnittlauch-t1,
+        wdr:sense-surel-schnittlauch-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Schnittlauch"@de .
+
+wdr:word-surel-schokolade a drift:Word ;
+    rdfs:label "Schokolade"@de ;
+    ontolex:sense wdr:sense-surel-schokolade-t1,
+        wdr:sense-surel-schokolade-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Schokolade"@de .
+
+wdr:word-surel-schu a drift:Word ;
+    rdfs:label "Schuß"@de ;
+    ontolex:sense wdr:sense-surel-schu-t1,
+        wdr:sense-surel-schu-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Schuß"@de .
+
+wdr:word-surel-strudel a drift:Word ;
+    rdfs:label "Strudel"@de ;
+    ontolex:sense wdr:sense-surel-strudel-t1,
+        wdr:sense-surel-strudel-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Strudel"@de .
+
+wdr:word-surel-trennen a drift:Word ;
+    rdfs:label "trennen"@de ;
+    ontolex:sense wdr:sense-surel-trennen-t1,
+        wdr:sense-surel-trennen-t2 ;
+    drift:hasSource wdr:src-wugs-surel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "trennen"@de .
+
+wdr:sense-surel-abschrecken-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abschrecken' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-abschrecken-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abschrecken' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-blech-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Blech' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-blech-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Blech' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-eiwei-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Eiweiß' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-eiwei-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Eiweiß' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-form-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Form' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-form-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Form' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-gemuse-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Gemüse' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-gemuse-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Gemüse' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-gericht-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Gericht' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-gericht-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Gericht' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-glas-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Glas' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-glas-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Glas' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-hamburger-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Hamburger' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-hamburger-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Hamburger' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-mandel-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mandel' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-mandel-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mandel' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-messer-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Messer' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-messer-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Messer' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-messerspitze-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Messerspitze' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-messerspitze-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Messerspitze' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-paprika-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Paprika' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-paprika-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Paprika' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-prise-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Prise' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-prise-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Prise' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-rum-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Rum' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-rum-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Rum' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-salz-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Salz' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-salz-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Salz' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schlagen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'schlagen' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schlagen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'schlagen' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schnee-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schnee' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schnee-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schnee' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schnittlauch-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schnittlauch' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schnittlauch-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schnittlauch' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schokolade-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schokolade' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schokolade-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schokolade' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schu-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schuß' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-schu-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schuß' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-strudel-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Strudel' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-strudel-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Strudel' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-trennen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'trennen' in the earlier period (~1990) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:sense-surel-trennen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'trennen' in the later period (~2010) of SURel"@en ;
+    drift:hasSource wdr:src-wugs-surel .
+
+wdr:src-wugs-surel a drift:Corpus ;
+    rdfs:label "SURel"@en ;
+    dct:identifier "doi:10.5281/zenodo.5543306" ;
+    dct:title "SURel German (Synchronic Usage Relatedness, Schlechtweg et al.)"@en ;
+    rdfs:comment "Benchmark (gold human-annotated lexical semantic change). Ingested as detection-grade backbone: derived target-word + gold graded-change only, no raw usage graphs, no causal claim (ADR 0004)."@en ;
+    drift:sourceURL "https://zenodo.org/records/5784569"^^xsd:anyURI .
+

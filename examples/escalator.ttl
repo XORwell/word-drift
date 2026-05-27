@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "escalator" (en)
+# Broadening: Otis Elevator Company's trademark for a moving
+# stairway (1900) -> generic word for any moving staircase.
+# The 1900 Otis brand launch is the commercial trigger; a 1950
+# ruling confirmed the term had become generic.
+# =============================================================
+
+wdr:word-escalator a drift:Word ;
+    drift:writtenForm "escalator"@en ;
+    drift:language "en" ;
+    rdfs:label "escalator"@en ;
+    ontolex:sense wdr:sense-escalator-brand , wdr:sense-escalator-generic .
+
+wdr:sense-escalator-brand a drift:Sense ;
+    drift:gloss "Otis Elevator Company's trademark for its powered moving stairway"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear .
+
+wdr:sense-escalator-generic a drift:Sense ;
+    drift:gloss "any moving staircase; a powered set of stairs that carries people between floors"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1950"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1950"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-escalator-otis a drift:TriggerEvent ;
+    rdfs:label "Otis markets the Escalator brand"@en ;
+    dct:description "The Otis Elevator Company introduced and trademarked the moving stairway under the brand Escalator around 1900. Widespread use of the brand as the ordinary name for moving stairways led a 1950 trademark ruling to find the word generic."@en ;
+    drift:eventDate "1900"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-escalator-otis a drift:DriftEvent ;
+    drift:affectsWord wdr:word-escalator ;
+    drift:senseFrom wdr:sense-escalator-brand ;
+    drift:senseTo wdr:sense-escalator-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1950"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-escalator-wikt , wdr:src-escalator-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-escalator-otis a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-escalator-otis ;
+    drift:proposedTrigger wdr:trigger-escalator-otis ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-escalator-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-escalator-wikt a drift:Source ;
+    dct:title "escalator -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/escalator"^^xsd:anyURI .
+
+wdr:src-escalator-wiki a drift:Source ;
+    dct:title "Escalator -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Escalator"^^xsd:anyURI .

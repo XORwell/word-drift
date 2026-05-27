@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "sardonic" (en)
+# Metonymization: Greek 'sardonios' was altered (under influence
+# of 'Sardonios', Sardinian) from a belief that a Sardinian plant
+# caused a fatal grimacing "laughter". The island name is the
+# proposed trigger; the ancient etymology is disputed, so
+# confidence is moderate.
+# =============================================================
+
+wdr:word-sardonic a drift:Word ;
+    drift:writtenForm "sardonic"@en ;
+    drift:language "en" ;
+    rdfs:label "sardonic"@en ;
+    ontolex:sense wdr:sense-sardonic-laughter , wdr:sense-sardonic-ironic .
+
+wdr:sense-sardonic-laughter a drift:Sense ;
+    drift:gloss "of forced or bitter laughter not proceeding from real gaiety; a grim, scornful grin"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1630"^^xsd:gYear .
+
+wdr:sense-sardonic-ironic a drift:Sense ;
+    drift:gloss "of a person or manner: bitterly ironical, sarcastic, mocking"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1833"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1833"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-sardonic-sardinia a drift:TriggerEvent ;
+    rdfs:label "Belief in a Sardinian plant causing a fatal grin"@en ;
+    dct:description "Greek 'sardonios' (scornful laughter) was reshaped under the influence of 'Sardonios', Sardinian, from a belief that eating a plant called 'sardonion' (plant from Sardinia) produced facial convulsions resembling laughter, usually followed by death. The ancient etymology is disputed."@en ;
+    drift:eventDate "1630"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q1462 .
+
+# --- drift event ---
+wdr:drift-sardonic-sardinia a drift:DriftEvent ;
+    drift:affectsWord wdr:word-sardonic ;
+    drift:senseFrom wdr:sense-sardonic-laughter ;
+    drift:senseTo wdr:sense-sardonic-ironic ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1630"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1833"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-sardonic-etym , wdr:src-sardonic-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-sardonic-sardinia a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-sardonic-sardinia ;
+    drift:proposedTrigger wdr:trigger-sardonic-sardinia ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.65 ;
+    drift:hasSource wdr:src-sardonic-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-sardonic-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- sardonic"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/sardonic"^^xsd:anyURI .
+
+wdr:src-sardonic-wikt a drift:Source ;
+    dct:title "Wiktionary -- sardonic"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/sardonic"^^xsd:anyURI .

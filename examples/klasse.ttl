@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Klasse" (de)
+# Narrowing/Metaphorization: a general term for a category or
+# division (also a school class) acquires a specific socio-
+# economic sense ("Klasse" as a social class defined by relation
+# to the means of production). The 1848 socialist movement and
+# Marx's "Das Kapital" (1867) are the identifiable trigger.
+# =============================================================
+
+wdr:word-klasse a drift:Word ;
+    drift:writtenForm "Klasse"@de ;
+    drift:language "de" ;
+    rdfs:label "Klasse"@de ;
+    ontolex:sense wdr:sense-klasse-category , wdr:sense-klasse-social .
+
+wdr:sense-klasse-category a drift:Sense ;
+    drift:gloss "a category, division, or rank into which things or persons are grouped; also a school class"@en ;
+    drift:gloss "Kategorie, Abteilung oder Rang, in die Dinge oder Personen eingeteilt werden; auch Schulklasse"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1700"^^xsd:gYear .
+
+wdr:sense-klasse-social a drift:Sense ;
+    drift:gloss "a social class defined by its relation to the means of production; a key category of socialist and Marxist social analysis"@en ;
+    drift:gloss "soziale Klasse, bestimmt durch ihr Verhaeltnis zu den Produktionsmitteln; Grundbegriff der sozialistischen und marxistischen Gesellschaftsanalyse"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1848"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1848"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-klasse-marx a drift:TriggerEvent ;
+    rdfs:label "1848 socialist movement and Marx's Das Kapital (1867)"@en ;
+    dct:description "The Communist Manifesto of 1848 and Marx's Das Kapital (1867) gave 'Klasse' a precise socio-economic meaning, the social class defined by its relation to the means of production. The socialist labour movement spread this technical sense in German."@en ;
+    drift:eventDate "1848"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-klasse-marx a drift:DriftEvent ;
+    drift:affectsWord wdr:word-klasse ;
+    drift:senseFrom wdr:sense-klasse-category ;
+    drift:senseTo wdr:sense-klasse-social ;
+    drift:driftType drift:Narrowing ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1848"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-klasse-dwds , wdr:src-klasse-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-klasse-marx a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-klasse-marx ;
+    drift:proposedTrigger wdr:trigger-klasse-marx ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-klasse-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-klasse-dwds a drift:Source ;
+    dct:title "DWDS -- Klasse"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Klasse"^^xsd:anyURI .
+
+wdr:src-klasse-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Klasse"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Klasse"^^xsd:anyURI .

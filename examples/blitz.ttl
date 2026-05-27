@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "blitz" (en)
+# Borrowing and broadening: clipped from German "Blitzkrieg"
+# (lightning war) into English; "the Blitz" named the 1940-1941
+# German bombing of Britain, then broadened to any sudden
+# intensive effort. The London bombing of 1940 is the trigger.
+# =============================================================
+
+wdr:word-blitz a drift:Word ;
+    drift:writtenForm "blitz"@en ;
+    drift:language "en" ;
+    rdfs:label "blitz"@en ;
+    ontolex:sense wdr:sense-blitz-bombing , wdr:sense-blitz-onslaught .
+
+wdr:sense-blitz-bombing a drift:Sense ;
+    drift:gloss "an intensive aerial bombardment, especially the German bombing of Britain in 1940-1941 ('the Blitz')"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1940"^^xsd:gYear .
+
+wdr:sense-blitz-onslaught a drift:Sense ;
+    drift:gloss "any sudden, concentrated, intensive effort or campaign (a media blitz, an advertising blitz)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1945"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1945"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-blitz-london a drift:TriggerEvent ;
+    rdfs:label "The Blitz: German bombing campaign against Britain"@en ;
+    dct:description "From September 1940 the German aerial bombing of Britain was named 'the Blitz' in English, clipped from 'Blitzkrieg'. The term then broadened to any sudden, intensive concentrated effort."@en ;
+    drift:eventDate "1940"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-blitz-london a drift:DriftEvent ;
+    drift:affectsWord wdr:word-blitz ;
+    drift:senseFrom wdr:sense-blitz-bombing ;
+    drift:senseTo wdr:sense-blitz-onslaught ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1940"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1950"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-blitz-etym , wdr:src-blitz-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-blitz-london a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-blitz-london ;
+    drift:proposedTrigger wdr:trigger-blitz-london ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-blitz-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-blitz-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- blitz"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/blitz"^^xsd:anyURI .
+
+wdr:src-blitz-wikt a drift:Source ;
+    dct:title "blitz -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/blitz"^^xsd:anyURI .

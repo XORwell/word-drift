@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "based" (en)
+# Reappropriation: from a drug-related slur (rooted in
+# "basehead", a crack-cocaine user) reclaimed by rapper Lil B
+# around 2010 to mean "being yourself, unbothered by others'
+# opinions" -> internet slang of approval for admirably
+# independent or unapologetic stances.
+# =============================================================
+
+wdr:word-based a drift:Word ;
+    drift:writtenForm "based"@en ;
+    drift:language "en" ;
+    rdfs:label "based"@en ;
+    ontolex:sense wdr:sense-based-slur , wdr:sense-based-approval .
+
+# Dictionary.com dates the parent slang "basehead" (freebasing-cocaine user)
+# to the 1980s; "based" is derived from it. 1980 marks that decade origin,
+# not a precise standalone attestation of the "based" slur.
+wdr:sense-based-slur a drift:Sense ;
+    drift:gloss "(older slang, derogatory) behaving like a 'basehead', i.e. a crack-cocaine user (from 1980s slang 'basehead')"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1980"^^xsd:gYear .
+
+wdr:sense-based-approval a drift:Sense ;
+    drift:gloss "(internet slang, approving) admirably true to oneself and unconcerned with others' approval; agreeably bold or unapologetic"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2010"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-based-lilb a drift:TriggerEvent ;
+    rdfs:label "Lil B's reappropriation of 'based' (c. 2010)"@en ;
+    dct:description "Around 2010 the rapper Lil B redefined 'based', previously a drug-related slur, to mean being positive and true to oneself; internet communities then spread it as a term of approval."@en ;
+    drift:eventDate "2010"^^xsd:gYear ;
+    drift:triggerCategory drift:Media .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-based-2010 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-based ;
+    drift:senseFrom wdr:sense-based-slur ;
+    drift:senseTo wdr:sense-based-approval ;
+    drift:driftType drift:Reappropriation , drift:Amelioration ;
+    drift:driftYear "2010"^^xsd:gYear ;
+    drift:hasSource wdr:src-based-dictionarycom , wdr:src-based-wiktionary .
+
+# --- causal hypothesis (ADR 0004) ---
+# Dictionary.com's slang account attributes the reclamation to Lil B;
+# attributed lexicographic evidence, though the later semantic widening
+# is debated, so confidence is moderate.
+wdr:hyp-based-lilb a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-based-2010 ;
+    drift:proposedTrigger wdr:trigger-based-lilb ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-based-dictionarycom ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-based-dictionarycom a drift:Source ;
+    dct:title "Dictionary.com slang dictionary - based"@en ;
+    drift:sourceURL "https://www.dictionary.com/e/slang/based/"^^xsd:anyURI .
+
+wdr:src-based-wiktionary a drift:Source ;
+    dct:title "Wiktionary - based"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/based"^^xsd:anyURI .

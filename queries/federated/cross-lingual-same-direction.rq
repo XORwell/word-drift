@@ -1,0 +1,43 @@
+# Cross-lingual drift alignment: words in different languages that underwent
+# the same drift type (e.g. both underwent pejoration, or both amelioration).
+# Pairs DE and EN words (or any two distinct languages) that drifted in the
+# same direction, useful for typological comparison and cross-lingual paper claims.
+#
+# LOCAL query — no SERVICE block; runs against the loaded word-drift graph only.
+# The FILTER ensures we only report genuine cross-language pairs (lang1 != lang2)
+# and avoid duplicate reverse pairs by lexicographic ordering.
+
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?driftType ?driftTypeLabel
+       ?word1 ?lang1 ?year1
+       ?word2 ?lang2 ?year2
+WHERE {
+  # First word/drift event
+  ?e1 a drift:DriftEvent ;
+      drift:affectsWord ?w1 ;
+      drift:driftType ?t .
+  ?w1 drift:writtenForm ?word1 ;
+      drift:language ?lang1 .
+  OPTIONAL { ?e1 drift:driftYear ?year1 . }
+
+  # Second word/drift event — same drift type, different language
+  ?e2 a drift:DriftEvent ;
+      drift:affectsWord ?w2 ;
+      drift:driftType ?t .
+  ?w2 drift:writtenForm ?word2 ;
+      drift:language ?lang2 .
+  OPTIONAL { ?e2 drift:driftYear ?year2 . }
+
+  # Different languages; lexicographic guard to avoid (A,B) and (B,A) duplicates
+  FILTER(?lang1 != ?lang2)
+  FILTER(STR(?w1) < STR(?w2))
+
+  BIND(?t AS ?driftType)
+  OPTIONAL {
+    ?t skos:prefLabel ?driftTypeLabel .
+    FILTER(lang(?driftTypeLabel) = "en")
+  }
+}
+ORDER BY ?driftTypeLabel ?lang1 ?word1

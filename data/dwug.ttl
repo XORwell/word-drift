@@ -1,0 +1,72 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:word-dwug-geil a drift:Word ;
+    rdfs:label "geil"@de ;
+    ontolex:sense wdr:sense-dwug-geil-c1,
+        wdr:sense-dwug-geil-c2 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "geil"@de .
+
+wdr:word-dwug-wende a drift:Word ;
+    rdfs:label "Wende"@de ;
+    ontolex:sense wdr:sense-dwug-wende-c1,
+        wdr:sense-dwug-wende-c2 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Wende"@de .
+
+wdr:sense-dwug-geil-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1980"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1980"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'geil' (from DWUG)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-geil-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1850"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1900"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'geil' (from DWUG)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-wende-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1991"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1989"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Wende' (from DWUG)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-wende-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1850"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1960"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Wende' (from DWUG)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:corpus-dwug-de a drift:Corpus ;
+    dct:title "DWUG German"@en ;
+    drift:sourceURL "https://zenodo.org/records/14028509"^^xsd:anyURI .
+

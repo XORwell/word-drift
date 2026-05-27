@@ -1,0 +1,88 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "edge" (en) -- SemEval-2020 Task 1 English target word.
+# Broadening: the physical-boundary / cutting-edge-of-a-blade
+# sense broadens as figurative senses (a competitive advantage,
+# to be on edge / edgy, the cutting edge of a field) gain
+# relative weight across the 20th century.
+# DETECTION-BENCHMARK WORD (ADR 0004): SemEval attests the change
+# empirically (graded change 0.59, binary-changed gold label), but
+# the CAUSE is gradual polysemy with no single datable trigger.
+# ChangeSignalAlignment + honest Speculative cause at modest
+# confidence: detection strength is NOT causal confidence.
+# =============================================================
+
+wdr:word-edge a drift:Word ;
+    drift:writtenForm "edge"@en ;
+    drift:language "en" ;
+    rdfs:label "edge"@en ;
+    ontolex:sense wdr:sense-edge-boundary , wdr:sense-edge-figurative .
+
+wdr:sense-edge-boundary a drift:Sense ;
+    drift:gloss "the sharp cutting side of a blade; the outer limit or boundary of an object or area"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-edge-figurative a drift:Sense ;
+    drift:gloss "figurative uses: a competitive advantage (to have the edge); tense irritability (on edge, edgy); the leading front of innovation (the cutting edge)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (honest: gradual, undetermined) ---
+wdr:trigger-edge-polysemy a drift:TriggerEvent ;
+    rdfs:label "gradual polysemous extension of 'edge' across the 20th century"@en ;
+    dct:description "No single datable event. The figurative senses of 'edge' (advantage, tension, frontier of innovation) gained relative weight gradually; the cause is undetermined polysemy. Recorded as a diffuse trigger so the change can be aligned with the SemEval signal without asserting a specific cause."@en ;
+    drift:eventDate "1950"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-edge-broadening a drift:DriftEvent ;
+    drift:affectsWord wdr:word-edge ;
+    drift:senseFrom wdr:sense-edge-boundary ;
+    drift:senseTo wdr:sense-edge-figurative ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1860"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-edge-etymonline .
+
+# --- causal hypothesis ---
+# ChangeSignalAlignment from SemEval graded change 0.59 (changed
+# gold label); Speculative cause -> confidence held modest (0.55).
+wdr:hyp-edge-polysemy a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-edge-broadening ;
+    drift:proposedTrigger wdr:trigger-edge-polysemy ;
+    drift:evidenceType drift:ChangeSignalAlignment , drift:Speculative ;
+    drift:confidence 0.55 ;
+    drift:hasSource wdr:src-edge-semeval , wdr:src-edge-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-edge-semeval a drift:Source ;
+    dct:title "SemEval-2020 Task 1 (English) -- graded change 0.59 for 'edge'"@en ;
+    drift:sourceURL "https://zenodo.org/records/3931969"^^xsd:anyURI ;
+    rdfs:comment "Graded-change gold score 0.59 (binary label: changed) for 'edge'. In-repo as wdr:drift-semeval-edge (data/semeval.ttl). Used as ChangeSignalAlignment evidence; the score attests the change, not its cause."@en .
+
+wdr:src-edge-etymonline a drift:Source ;
+    dct:title "edge (n.) -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/edge"^^xsd:anyURI .

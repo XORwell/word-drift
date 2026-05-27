@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "jingoism" (en)
+# Pejoration: from "by jingo" in a 1878 British music-hall song
+# backing war with Russia -> term of contempt for belligerent
+# patriotism. The 1878 song and Russo-Turkish crisis are the
+# identifiable trigger.
+# =============================================================
+
+wdr:word-jingoism a drift:Word ;
+    drift:writtenForm "jingoism"@en ;
+    drift:language "en" ;
+    rdfs:label "jingoism"@en ;
+    ontolex:sense wdr:sense-jingoism-song , wdr:sense-jingoism-pejorative .
+
+wdr:sense-jingoism-song a drift:Sense ;
+    drift:gloss "the bellicose pro-war sentiment of the 'jingoes', from the refrain 'by jingo' in G. W. Hunt's 1878 music-hall song"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1878"^^xsd:gYear .
+
+wdr:sense-jingoism-pejorative a drift:Sense ;
+    drift:gloss "aggressive, boastful patriotism, especially favouring a belligerent foreign policy"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1878"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1878"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-jingoism-song a drift:TriggerEvent ;
+    rdfs:label "G. W. Hunt's 1878 music-hall song during the Russo-Turkish crisis"@en ;
+    dct:description "During the 1877-1878 crisis over British intervention against Russia, G. W. Hunt's music-hall song popularized by G. H. MacDermott carried the refrain 'we don't want to fight but by jingo if we do'. Supporters were dubbed 'jingoes' and 'jingoism' became a contemptuous label for belligerent patriotism."@en ;
+    drift:eventDate "1878"^^xsd:gYear ;
+    drift:triggerCategory drift:Media .
+
+# --- drift event ---
+wdr:drift-jingoism-song a drift:DriftEvent ;
+    drift:affectsWord wdr:word-jingoism ;
+    drift:senseFrom wdr:sense-jingoism-song ;
+    drift:senseTo wdr:sense-jingoism-pejorative ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1878"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1890"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-jingoism-etym , wdr:src-jingoism-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-jingoism-song a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-jingoism-song ;
+    drift:proposedTrigger wdr:trigger-jingoism-song ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-jingoism-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-jingoism-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- jingoism"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/jingoism"^^xsd:anyURI .
+
+wdr:src-jingoism-wiki a drift:Source ;
+    dct:title "Jingoism -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Jingoism"^^xsd:anyURI .

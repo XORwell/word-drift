@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "web" (en) -- cross-lingual pair with "Netz" (netz-de)
+# Metaphorization:
+#   "a structure spun by a spider; an interwoven network" ->
+#   "the World Wide Web, the interlinked hypertext system on the
+#    internet". Tim Berners-Lee named the WWW in 1989-1991; the
+#    short form "the web" became mainstream with the browser boom.
+# =============================================================
+
+wdr:word-web a drift:Word ;
+    drift:writtenForm "web"@en ;
+    drift:language "en" ;
+    rdfs:label "web"@en ;
+    ontolex:sense wdr:sense-web-spider , wdr:sense-web-www ;
+    drift:crossLingualOf wdr:word-netz .
+
+wdr:sense-web-spider a drift:Sense ;
+    drift:gloss "a network of fine threads spun by a spider; any interwoven or interconnected structure"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-web-www a drift:Sense ;
+    drift:gloss "the World Wide Web: the interlinked system of hypertext documents accessed over the internet"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1991"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1991"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-www-mosaic a drift:TriggerEvent ;
+    rdfs:label "World Wide Web and Mosaic browser launch"@en ;
+    dct:description "Tim Berners-Lee proposed the World Wide Web in 1989 and named it, drawing on the spider-web metaphor of interlinked documents; graphical browsers (Mosaic 1993, Netscape 1994) made 'the web' a household word."@en ;
+    drift:eventDate "1993"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-web-www a drift:DriftEvent ;
+    drift:affectsWord wdr:word-web ;
+    drift:senseFrom wdr:sense-web-spider ;
+    drift:senseTo wdr:sense-web-www ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1991"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1998"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-web-etymonline , wdr:src-web-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-web-www a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-web-www ;
+    drift:proposedTrigger wdr:trigger-www-mosaic ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.88 ;
+    drift:hasSource wdr:src-web-etymonline , wdr:src-web-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-web-etymonline a drift:Source ;
+    dct:title "Etymonline - web (n.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/web"^^xsd:anyURI .
+
+wdr:src-web-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - web, n."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/web_n"^^xsd:anyURI .

@@ -1,0 +1,65 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Weib" (de)
+# Pejoration: OHG wib "adult woman" (neutral) -> NHG
+# derogatory/contemptuous term for a woman. The standard word
+# was displaced by "Frau" from the 17th century onward.
+# Canonical example of misogynistic pejoration.
+# =============================================================
+
+wdr:word-weib a drift:Word ;
+    drift:writtenForm "Weib"@de ;
+    drift:language "de" ;
+    rdfs:label "Weib"@de ;
+    ontolex:sense wdr:sense-weib-neutral , wdr:sense-weib-derogatory .
+
+wdr:sense-weib-neutral a drift:Sense ;
+    drift:gloss "an adult woman; a wife; the standard neutral designation for a female person"@en ;
+    drift:gloss "erwachsene Frau; Ehefrau (neutrales Standardwort)"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0750"^^xsd:gYear .
+
+wdr:sense-weib-derogatory a drift:Sense ;
+    drift:gloss "a woman (contemptuous or dismissive); used as a term of abuse"@en ;
+    drift:gloss "Frau (veraechlich, abwertend); Schimpfwort"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1700"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ]
+    ] .
+
+# --- drift event ---
+wdr:drift-weib-pejoration a drift:DriftEvent ;
+    drift:affectsWord wdr:word-weib ;
+    drift:senseFrom wdr:sense-weib-neutral ;
+    drift:senseTo wdr:sense-weib-derogatory ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-weib-dwds , wdr:src-weib-nubling .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-weib-dwds a drift:Source ;
+    dct:title "DWDS -- Weib"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Weib"^^xsd:anyURI .
+
+wdr:src-weib-nubling a drift:Source ;
+    dct:title "Nuebling, Damaris: Von der Jungfrau zur Magd, vom Maedchen zur Prostituierten. Die Pejorisierung der Frauenbezeichnungen (Jahrbuch fuer Germanistische Sprachgeschichte 2, 2011, S. 344-362)"@de ;
+    drift:sourceURL "https://www.germanistik.uni-mainz.de/files/2015/03/Nubling-2011-Pejorisierung-Frauenbezeichnungen.pdf"^^xsd:anyURI .

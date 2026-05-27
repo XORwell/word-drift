@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "harpy" (en)
+# Metaphorization: from the Harpies of Greek myth, the
+# "snatchers" who seized and fouled food. The monster-name
+# yielded a term for a rapacious, grasping or shrewish person.
+# =============================================================
+
+wdr:word-harpy a drift:Word ;
+    drift:writtenForm "harpy"@en ;
+    drift:language "en" ;
+    rdfs:label "harpy"@en ;
+    ontolex:sense wdr:sense-harpy-monster , wdr:sense-harpy-greedy .
+
+wdr:sense-harpy-monster a drift:Sense ;
+    drift:gloss "one of the fabulous monsters of Greek myth, with a woman's face and a bird's body and claws, that snatched away food and souls"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1390"^^xsd:gYear .
+
+wdr:sense-harpy-greedy a drift:Sense ;
+    drift:gloss "a rapacious, grasping person; a predatory or shrewish woman"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1400"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-harpy-harpies a drift:TriggerEvent ;
+    rdfs:label "The Harpies of Greek myth"@en ;
+    dct:description "The Harpies of Greek myth, whose name means 'snatchers', were winged monsters that seized and fouled food. The figure entered English by the late 14th century, and the extended sense of a repulsively greedy or grasping person is recorded from about 1400."@en ;
+    drift:eventDate "1400"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q181360 .
+
+# --- drift event ---
+wdr:drift-harpy-harpies a drift:DriftEvent ;
+    drift:affectsWord wdr:word-harpy ;
+    drift:senseFrom wdr:sense-harpy-monster ;
+    drift:senseTo wdr:sense-harpy-greedy ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1390"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1450"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-harpy-etym , wdr:src-harpy-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-harpy-harpies a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-harpy-harpies ;
+    drift:proposedTrigger wdr:trigger-harpy-harpies ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-harpy-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-harpy-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- harpy"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/harpy"^^xsd:anyURI .
+
+wdr:src-harpy-wikt a drift:Source ;
+    dct:title "Wiktionary -- harpy"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/harpy"^^xsd:anyURI .

@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "ampere" (en)
+# Metonymization: the surname Ampere (Andre-Marie Ampere,
+# founder of electrodynamics, ~1820) becomes the common name of
+# the SI unit of electric current. His electrodynamics work is
+# the identifiable trigger.
+# =============================================================
+
+wdr:word-ampere a drift:Word ;
+    drift:writtenForm "ampere"@en ;
+    drift:language "en" ;
+    rdfs:label "ampere"@en ;
+    ontolex:sense wdr:sense-ampere-name , wdr:sense-ampere-unit .
+
+wdr:sense-ampere-name a drift:Sense ;
+    drift:gloss "the surname of the French physicist and mathematician Andre-Marie Ampere"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1775"^^xsd:gYear .
+
+wdr:sense-ampere-unit a drift:Sense ;
+    drift:gloss "the SI base unit of electric current; commonly clipped to 'amp'"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1881"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1881"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-ampere-electrodynamics a drift:TriggerEvent ;
+    rdfs:label "Ampere founds electrodynamics"@en ;
+    dct:description "From 1820 Andre-Marie Ampere formulated the laws relating electric current and magnetism, founding electrodynamics. His name was adopted for the unit of current at the 1881 International Electrical Congress."@en ;
+    drift:eventDate "1820"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-ampere-electrodynamics a drift:DriftEvent ;
+    drift:affectsWord wdr:word-ampere ;
+    drift:senseFrom wdr:sense-ampere-name ;
+    drift:senseTo wdr:sense-ampere-unit ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1820"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1881"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-ampere-etym , wdr:src-ampere-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-ampere-electrodynamics a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-ampere-electrodynamics ;
+    drift:proposedTrigger wdr:trigger-ampere-electrodynamics ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-ampere-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-ampere-etym a drift:Source ;
+    dct:title "ampere -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/ampere"^^xsd:anyURI .
+
+wdr:src-ampere-wiki a drift:Source ;
+    dct:title "Andre-Marie Ampere -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Andr%C3%A9-Marie_Amp%C3%A8re"^^xsd:anyURI .

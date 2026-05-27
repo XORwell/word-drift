@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "kelvin" (en)
+# Metonymization: the title Kelvin (William Thomson, 1st Baron
+# Kelvin, 1824-1907, who devised the absolute temperature scale
+# in 1848) becomes the common name of the SI base unit of
+# thermodynamic temperature, the unit renamed "kelvin" in 1967.
+# His absolute scale is the identifiable trigger.
+# =============================================================
+
+wdr:word-kelvin a drift:Word ;
+    drift:writtenForm "kelvin"@en ;
+    drift:language "en" ;
+    rdfs:label "kelvin"@en ;
+    ontolex:sense wdr:sense-kelvin-name , wdr:sense-kelvin-unit .
+
+wdr:sense-kelvin-name a drift:Sense ;
+    drift:gloss "the title of the British physicist William Thomson, 1st Baron Kelvin"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1892"^^xsd:gYear .
+
+wdr:sense-kelvin-unit a drift:Sense ;
+    drift:gloss "the SI base unit of thermodynamic temperature"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1967"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1967"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-kelvin-absolute-scale a drift:TriggerEvent ;
+    rdfs:label "Thomson devises the absolute temperature scale"@en ;
+    dct:description "William Thomson proposed an absolute thermodynamic temperature scale in 1848. After he was ennobled as Baron Kelvin, the unit increment of thermodynamic temperature was renamed 'kelvin' in 1967 at the 13th General Conference on Weights and Measures."@en ;
+    drift:eventDate "1848"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q122701 .
+
+# --- drift event ---
+wdr:drift-kelvin-absolute-scale a drift:DriftEvent ;
+    drift:affectsWord wdr:word-kelvin ;
+    drift:senseFrom wdr:sense-kelvin-name ;
+    drift:senseTo wdr:sense-kelvin-unit ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1848"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1967"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-kelvin-wiki , wdr:src-kelvin-wiki-person .
+
+# --- causal hypothesis ---
+wdr:hyp-kelvin-absolute-scale a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-kelvin-absolute-scale ;
+    drift:proposedTrigger wdr:trigger-kelvin-absolute-scale ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-kelvin-wiki ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-kelvin-wiki a drift:Source ;
+    dct:title "Kelvin -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Kelvin"^^xsd:anyURI .
+
+wdr:src-kelvin-wiki-person a drift:Source ;
+    dct:title "William Thomson, 1st Baron Kelvin -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/William_Thomson,_1st_Baron_Kelvin"^^xsd:anyURI .

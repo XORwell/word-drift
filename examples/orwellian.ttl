@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Orwellian" (en)
+# Metaphorization: George Orwell, whose "Nineteen Eighty-Four"
+# (1949) depicted a totalitarian surveillance state -> descriptive
+# of oppressive state control. The novel is the identifiable trigger.
+# =============================================================
+
+wdr:word-orwellian a drift:Word ;
+    drift:writtenForm "Orwellian"@en ;
+    drift:language "en" ;
+    rdfs:label "Orwellian"@en ;
+    ontolex:sense wdr:sense-orwellian-author , wdr:sense-orwellian-totalitarian .
+
+wdr:sense-orwellian-author a drift:Sense ;
+    drift:gloss "of or pertaining to George Orwell or to his writings and political views"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1949"^^xsd:gYear .
+
+wdr:sense-orwellian-totalitarian a drift:Sense ;
+    drift:gloss "characteristic of the repressive, manipulative totalitarian state depicted in Orwell's fiction: pervasive surveillance, propaganda, doublethink, and the distortion of truth"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1950"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1950"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-orwellian-1984 a drift:TriggerEvent ;
+    rdfs:label "Publication of Orwell's 'Nineteen Eighty-Four' (1949)"@en ;
+    dct:description "George Orwell's novel 'Nineteen Eighty-Four', published in 1949, portrayed a surveillance state of perpetual war, thought control, and falsified history. Its immediate impact, deepened by Orwell's death in 1950, turned 'Orwellian' from a mere authorial adjective into a byword for oppressive state manipulation."@en ;
+    drift:eventDate "1949"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-orwellian-1984 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-orwellian ;
+    drift:senseFrom wdr:sense-orwellian-author ;
+    drift:senseTo wdr:sense-orwellian-totalitarian ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1949"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1970"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-orwellian-etym , wdr:src-orwellian-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-orwellian-1984 a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-orwellian-1984 ;
+    drift:proposedTrigger wdr:trigger-orwellian-1984 ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-orwellian-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-orwellian-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Orwellian"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/Orwellian"^^xsd:anyURI .
+
+wdr:src-orwellian-wiki a drift:Source ;
+    dct:title "Nineteen Eighty-Four -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Nineteen_Eighty-Four"^^xsd:anyURI .

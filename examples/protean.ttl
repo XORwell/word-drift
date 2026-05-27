@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "protean" (en)
+# Metaphorization: from Proteus, the Greek sea-god who could
+# change his shape at will. The proper name yielded an
+# adjective for readily assuming different forms, versatile.
+# =============================================================
+
+wdr:word-protean a drift:Word ;
+    drift:writtenForm "protean"@en ;
+    drift:language "en" ;
+    rdfs:label "protean"@en ;
+    ontolex:sense wdr:sense-protean-god , wdr:sense-protean-variable .
+
+wdr:sense-protean-god a drift:Sense ;
+    drift:gloss "of or pertaining to the Greek sea-god Proteus"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1590"^^xsd:gYear .
+
+wdr:sense-protean-variable a drift:Sense ;
+    drift:gloss "readily assuming different shapes or forms; exceedingly variable, versatile, and adaptable"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1590"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1590"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-protean-proteus a drift:TriggerEvent ;
+    rdfs:label "Proteus, the shape-shifting sea-god"@en ;
+    dct:description "Proteus, the Greek sea-god of Homeric and later myth, could elude capture by changing into any shape. The figure lent his name to the adjective 'protean', recorded in the 1590s, for anything endlessly variable or versatile."@en ;
+    drift:eventDate "1590"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q191481 .
+
+# --- drift event ---
+wdr:drift-protean-proteus a drift:DriftEvent ;
+    drift:affectsWord wdr:word-protean ;
+    drift:senseFrom wdr:sense-protean-god ;
+    drift:senseTo wdr:sense-protean-variable ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1590"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1640"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-protean-etym , wdr:src-protean-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-protean-proteus a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-protean-proteus ;
+    drift:proposedTrigger wdr:trigger-protean-proteus ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-protean-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-protean-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Protean"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/protean"^^xsd:anyURI .
+
+wdr:src-protean-wikt a drift:Source ;
+    dct:title "Wiktionary -- protean"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/protean"^^xsd:anyURI .

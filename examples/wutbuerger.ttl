@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "Wutbuerger" (de)
+# Neologism coined October 2010 by journalist Dirk Kurbjuweit
+# (Der Spiegel 41/2010) to describe angry middle-class citizens
+# protesting Stuttgart 21. Word of the Year 2010.
+# The word had no prior sense; the drift is a broadening from
+# Stuttgart-21-specific protest context to general anti-
+# establishment anger (Broadening + light Pejoration).
+# =============================================================
+
+wdr:word-wutbuerger a drift:Word ;
+    drift:writtenForm "Wutbuerger"@de ;
+    drift:language "de" ;
+    rdfs:label "Wutbuerger"@de ;
+    ontolex:sense wdr:sense-wutbuerger-specific , wdr:sense-wutbuerger-general .
+
+wdr:sense-wutbuerger-specific a drift:Sense ;
+    drift:gloss "an older, affluent, formerly civic-minded citizen who turns to furious protest against specific political projects such as Stuttgart 21"@en ;
+    drift:gloss "wohlhabender, konservativer Buerger der sich empört gegen als willkuerlich empfundene Entscheidungen wendet"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear .
+
+wdr:sense-wutbuerger-general a drift:Sense ;
+    drift:gloss "any citizen expressing diffuse, sometimes irrational rage against the political establishment; increasingly pejorative"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2011"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2011"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-wutbuerger-spiegel a drift:TriggerEvent ;
+    rdfs:label "Spiegel essay 'Der Wutbuerger' by Dirk Kurbjuweit"@en ;
+    dct:description "The essay in Der Spiegel Issue 41 of 11 October 2010 coined the term and made it immediately prominent, tying it to Stuttgart 21 protests."@en ;
+    drift:eventDate "2010"^^xsd:gYear ;
+    drift:triggerCategory drift:Media .
+
+# --- drift event ---
+wdr:drift-wutbuerger-2010 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-wutbuerger ;
+    drift:senseFrom wdr:sense-wutbuerger-specific ;
+    drift:senseTo wdr:sense-wutbuerger-general ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2011"^^xsd:gYear ;
+    drift:hasSource wdr:src-wutbuerger-wikipedia , wdr:src-wutbuerger-spiegel .
+
+# --- causal hypothesis ---
+wdr:hyp-wutbuerger-media a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-wutbuerger-2010 ;
+    drift:proposedTrigger wdr:trigger-wutbuerger-spiegel ;
+    drift:evidenceType drift:LexicographicNote , drift:FrequencyCorrelation ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-wutbuerger-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-wutbuerger-wikipedia a drift:Source ;
+    dct:title "Wutbuerger -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Wutb%C3%BCrger"^^xsd:anyURI .
+
+wdr:src-wutbuerger-spiegel a drift:Source ;
+    dct:title "Kurbjuweit, Dirk: Der Wutbuerger. Der Spiegel 41/2010, S. 26-27"@de ;
+    drift:sourceURL "https://www.spiegel.de/spiegel/print/d-74184748.html"^^xsd:anyURI .

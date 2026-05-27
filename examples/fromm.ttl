@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "fromm" (de)
+# Narrowing + Metaphorization: OHG fruma "benefit, utility"
+# -> MHG "capable, brave, righteous" -> NHG "pious, devoted to God"
+# Luther's Bible translation cemented the exclusively religious
+# sense; the Reformation is the datable trigger.
+# =============================================================
+
+wdr:word-fromm a drift:Word ;
+    drift:writtenForm "fromm"@de ;
+    drift:language "de" ;
+    rdfs:label "fromm"@de ;
+    ontolex:sense wdr:sense-fromm-capable , wdr:sense-fromm-pious .
+
+wdr:sense-fromm-capable a drift:Sense ;
+    drift:gloss "capable, brave, useful, upright; someone competent and of good character; 'that profits me' (das frommt mir)"@en ;
+    drift:gloss "tauglich, tapfer, nuetzlich, rechtschaffen; 'das frommt mir' (das nuetzt mir)"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "0750"^^xsd:gYear .
+
+wdr:sense-fromm-pious a drift:Sense ;
+    drift:gloss "pious, devout, god-fearing; devoted to religion; sometimes (in derivatives) mock-pious or sanctimonious"@en ;
+    drift:gloss "gottesfuerchtig, religioese Ergebenheit zeigend; in Ableitungen auch froemmelnd"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1500"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-fromm-luther a drift:TriggerEvent ;
+    rdfs:label "Luther's Bible translation 1522-1534"@en ;
+    dct:description "Luther's translation systematically used 'fromm' for the biblical concept of God-fearing righteousness, transposing the word into the religious sphere and displacing its earlier general sense of capability."@en ;
+    drift:eventDate "1522"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q1571095 .
+
+# --- drift event ---
+wdr:drift-fromm-lutheran a drift:DriftEvent ;
+    drift:affectsWord wdr:word-fromm ;
+    drift:senseFrom wdr:sense-fromm-capable ;
+    drift:senseTo wdr:sense-fromm-pious ;
+    drift:driftType drift:Narrowing ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-fromm-dwds , wdr:src-fromm-diva .
+
+# --- causal hypothesis ---
+wdr:hyp-fromm-luther a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-fromm-lutheran ;
+    drift:proposedTrigger wdr:trigger-fromm-luther ;
+    drift:evidenceType drift:LexicographicNote , drift:ScholarlyAttestation ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-fromm-diva ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-fromm-dwds a drift:Source ;
+    dct:title "DWDS -- fromm"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/fromm"^^xsd:anyURI .
+
+wdr:src-fromm-diva a drift:Source ;
+    dct:title "Lieber Gott, mach mich fromm: Zum Wort und Konzept fromm im Wandel der Zeit (DiVA, Stockholms Universitet)"@de ;
+    drift:sourceURL "https://www.diva-portal.org/smash/get/diva2:142956/FULLTEXT01.pdf"^^xsd:anyURI .

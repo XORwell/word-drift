@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "galvanisieren" (de)
+# Metonymization plus Broadening: the surname Galvani (Luigi
+# Galvani, frog-leg bioelectricity experiments ~1791) yields the
+# German verb meaning to apply electric current, then to zinc-coat
+# metal and figuratively to spur into action. His experiments are
+# the identifiable trigger.
+# =============================================================
+
+wdr:word-galvanisieren a drift:Word ;
+    drift:writtenForm "galvanisieren"@de ;
+    drift:language "de" ;
+    rdfs:label "galvanisieren"@de ;
+    ontolex:sense wdr:sense-galvanisieren-name , wdr:sense-galvanisieren-tech .
+
+wdr:sense-galvanisieren-name a drift:Sense ;
+    drift:gloss "derived from the surname of the Italian physician Luigi Galvani; literally to treat with an electric current"@en ;
+    drift:gloss "abgeleitet vom Familiennamen des italienischen Arztes Luigi Galvani; woertlich mit elektrischem Strom behandeln"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1801"^^xsd:gYear .
+
+wdr:sense-galvanisieren-tech a drift:Sense ;
+    drift:gloss "to electroplate or zinc-coat metal; figuratively, to rouse or energize"@en ;
+    drift:gloss "Metall galvanisch beschichten beziehungsweise verzinken; uebertragen auch aufruetteln, beleben"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-galvanisieren-frogleg a drift:TriggerEvent ;
+    rdfs:label "Galvani's bioelectricity experiments"@en ;
+    dct:description "Around 1791 Luigi Galvani published experiments on the twitching of frog-leg muscles under electric stimulation. The German verb formed from his name first meant to treat with current, then broadened to electroplating and figurative rousing."@en ;
+    drift:eventDate "1791"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-galvanisieren-frogleg a drift:DriftEvent ;
+    drift:affectsWord wdr:word-galvanisieren ;
+    drift:senseFrom wdr:sense-galvanisieren-name ;
+    drift:senseTo wdr:sense-galvanisieren-tech ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1791"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-galvanisieren-dwds , wdr:src-galvanisieren-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-galvanisieren-frogleg a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-galvanisieren-frogleg ;
+    drift:proposedTrigger wdr:trigger-galvanisieren-frogleg ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-galvanisieren-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-galvanisieren-dwds a drift:Source ;
+    dct:title "DWDS -- galvanisieren"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/galvanisieren"^^xsd:anyURI .
+
+wdr:src-galvanisieren-wiki a drift:Source ;
+    dct:title "Luigi Galvani -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Luigi_Galvani"^^xsd:anyURI .

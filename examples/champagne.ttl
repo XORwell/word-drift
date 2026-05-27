@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "champagne" (en)
+# Metonymization: the historic Champagne province of northeast
+# France gave its name first to wine made there, then to the
+# sparkling wine in particular. The place name is the trigger.
+# =============================================================
+
+wdr:word-champagne a drift:Word ;
+    drift:writtenForm "champagne"@en ;
+    drift:language "en" ;
+    rdfs:label "champagne"@en ;
+    ontolex:sense wdr:sense-champagne-region , wdr:sense-champagne-wine .
+
+wdr:sense-champagne-region a drift:Sense ;
+    drift:gloss "of or from Champagne, a former province in northeast France; short for 'vin de Champagne', wine made in that region"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1660"^^xsd:gYear .
+
+wdr:sense-champagne-wine a drift:Sense ;
+    drift:gloss "sparkling white wine, originally only that produced in the Champagne region by the methode champenoise"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1660"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1660"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-champagne-region a drift:TriggerEvent ;
+    rdfs:label "Wine production in the Champagne province of France"@en ;
+    dct:description "The former province of Champagne in northeast France gave its name to the wine made there; the term then narrowed to the sparkling wine produced by methode champenoise."@en ;
+    drift:eventDate "1660"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-champagne-region a drift:DriftEvent ;
+    drift:affectsWord wdr:word-champagne ;
+    drift:senseFrom wdr:sense-champagne-region ;
+    drift:senseTo wdr:sense-champagne-wine ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1660"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-champagne-etym , wdr:src-champagne-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-champagne-region a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-champagne-region ;
+    drift:proposedTrigger wdr:trigger-champagne-region ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-champagne-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-champagne-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- champagne"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/champagne"^^xsd:anyURI .
+
+wdr:src-champagne-wikt a drift:Source ;
+    dct:title "Wiktionary -- champagne"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/champagne"^^xsd:anyURI .

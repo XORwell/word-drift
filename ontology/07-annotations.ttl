@@ -1,0 +1,39 @@
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 07: Supplementary annotations
+# Purely ADDITIVE human-readable annotations (rdfs:label /
+# rdfs:comment) that close OOPS! pitfall P08 ("Missing
+# annotations") on properties that previously carried a label
+# but no descriptive comment, or vice versa. NO class/property
+# axioms (domain, range, sub*Of, type) are touched here — this
+# file changes documentation only, never semantics.
+# See data/reports/oops-scan.md for the scan that motivated it.
+# =============================================================
+
+# --- frequency-observation link properties (had labels, no comments) ---
+drift:ofWord
+    rdfs:comment "Links a frequency observation to the word it measures."@en .
+
+drift:ofSense
+    rdfs:comment "Links a frequency observation to the specific sense it measures, when the count is sense-disambiguated rather than form-level."@en .
+
+drift:observedYear
+    rdfs:comment "Calendar year (xsd:gYear) for which a frequency observation reports its value."@en .
+
+# --- drift-event link properties (had labels, no comments) ---
+drift:affectsWord
+    rdfs:comment "Links a drift event to the word whose meaning shifted."@en .
+
+# --- causal-hypothesis link property (had label, no comment) ---
+drift:aboutDrift
+    rdfs:comment "Links a causal hypothesis to the drift event it tries to explain (ADR 0004)."@en .
+
+# --- trigger-event classification property (had label, no comment) ---
+drift:triggerCategory
+    rdfs:comment "Classifies a trigger event by the kind of real-world event it is, drawn from drift:TriggerCategoryScheme (political, pandemic, technological, cultural, media, commercial)."@en .
+
+# --- source property (had label, no comment) ---
+drift:sourceURL
+    rdfs:comment "Dereferenceable URL of the source (corpus query, dictionary entry, dataset record, or publication)."@en .

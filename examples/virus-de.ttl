@@ -1,0 +1,86 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "Virus" (de) -- cross-lingual pair with "virus" (virus.ttl)
+# Metaphorization:
+#   "biologischer Krankheitserreger" ->
+#   "Computervirus: selbstreplizierendes Schadprogramm". The
+#   German "Computervirus" followed the English term after the
+#   naming of the computer virus (1984) and the PC era.
+# =============================================================
+
+wdr:word-virus-de a drift:Word ;
+    drift:writtenForm "Virus"@de ;
+    drift:language "de" ;
+    rdfs:label "Virus"@de ;
+    ontolex:sense wdr:sense-virus-de-bio , wdr:sense-virus-de-computer ;
+    drift:crossLingualOf wdr:word-virus .
+
+wdr:sense-virus-de-bio a drift:Sense ;
+    drift:gloss "an infectious biological agent that replicates inside living cells"@en ;
+    drift:gloss "biologischer Krankheitserreger, der sich in lebenden Zellen vermehrt"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1800"^^xsd:gYear .
+
+wdr:sense-virus-de-computer a drift:Sense ;
+    drift:gloss "computer virus: a self-replicating malicious program that spreads between computers"@en ;
+    drift:gloss "Computervirus: selbstreplizierendes Schadprogramm, das sich zwischen Rechnern verbreitet"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1987"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-computer-virus a drift:TriggerEvent ;
+    rdfs:label "naming of the computer virus and early PC infections"@en ;
+    dct:description "Fred Cohen defined and named the 'computer virus' in 1983-1984; the Brain virus (1986) and the spread of personal computers carried the term into German as 'Computervirus'."@en ;
+    drift:eventDate "1984"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q14001 .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-virus-de-computer a drift:DriftEvent ;
+    drift:affectsWord wdr:word-virus-de ;
+    drift:senseFrom wdr:sense-virus-de-bio ;
+    drift:senseTo wdr:sense-virus-de-computer ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1987"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1996"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-virus-de-dwds , wdr:src-virus-de-duden .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS and Duden are dictionary/lexicographic sources -> LexicographicNote.
+wdr:hyp-virus-de-computer a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-virus-de-computer ;
+    drift:proposedTrigger wdr:trigger-computer-virus ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-virus-de-dwds , wdr:src-virus-de-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-virus-de-dwds a drift:Source ;
+    dct:title "DWDS - Virus"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Virus"^^xsd:anyURI .
+
+wdr:src-virus-de-duden a drift:Source ;
+    dct:title "Duden - Virus"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/Virus"^^xsd:anyURI .

@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "cardigan" (en)
+# Metonymization: the title Cardigan (James Brudenell, 7th Earl
+# of Cardigan, 1797-1868) becomes the common name of a knitted
+# jacket, attested 1868. His wearing the garment while leading the
+# Charge of the Light Brigade (1854) is the identifiable trigger.
+# =============================================================
+
+wdr:word-cardigan a drift:Word ;
+    drift:writtenForm "cardigan"@en ;
+    drift:language "en" ;
+    rdfs:label "cardigan"@en ;
+    ontolex:sense wdr:sense-cardigan-name , wdr:sense-cardigan-garment .
+
+wdr:sense-cardigan-name a drift:Sense ;
+    drift:gloss "the title of James Thomas Brudenell, 7th Earl of Cardigan, English cavalry general"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1797"^^xsd:gYear .
+
+wdr:sense-cardigan-garment a drift:Sense ;
+    drift:gloss "a knitted woollen jacket or sweater fastening down the front"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1868"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1868"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-cardigan-balaclava a drift:TriggerEvent ;
+    rdfs:label "The Earl of Cardigan at the Charge of the Light Brigade"@en ;
+    dct:description "The 7th Earl of Cardigan reportedly wore a knitted woollen jacket while leading the Charge of the Light Brigade at Balaclava in 1854 during the Crimean War. The garment took his name, attested as 'cardigan' by 1868."@en ;
+    drift:eventDate "1854"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q335449 .
+
+# --- drift event ---
+wdr:drift-cardigan-balaclava a drift:DriftEvent ;
+    drift:affectsWord wdr:word-cardigan ;
+    drift:senseFrom wdr:sense-cardigan-name ;
+    drift:senseTo wdr:sense-cardigan-garment ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1854"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1868"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-cardigan-etym , wdr:src-cardigan-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-cardigan-balaclava a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-cardigan-balaclava ;
+    drift:proposedTrigger wdr:trigger-cardigan-balaclava ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-cardigan-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-cardigan-etym a drift:Source ;
+    dct:title "cardigan -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/cardigan"^^xsd:anyURI .
+
+wdr:src-cardigan-wiki a drift:Source ;
+    dct:title "James Brudenell, 7th Earl of Cardigan -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/James_Brudenell,_7th_Earl_of_Cardigan"^^xsd:anyURI .

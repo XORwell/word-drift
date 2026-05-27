@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "krass" (de)
+# Amelioration / Broadening (slang): from Latin "crassus"
+# (thick, gross) -> "grob, auffallend schlimm, extrem" (negative)
+# -> Jugendsprache intensifier "krass" = beeindruckend, toll,
+# extrem (often approving). A gradual youth-slang bleaching,
+# no crisp datable event.
+# =============================================================
+
+wdr:word-krass a drift:Word ;
+    drift:writtenForm "krass"@de ;
+    drift:language "de" ;
+    rdfs:label "krass"@de ;
+    ontolex:sense wdr:sense-krass-extrem , wdr:sense-krass-slang .
+
+wdr:sense-krass-extrem a drift:Sense ;
+    drift:gloss "blatant, gross, glaring; extreme in a bad or shocking way"@en ;
+    drift:gloss "grob, auffallend, krass schlimm; extrem in negativer Hinsicht (lat. crassus 'dick, grob')"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1700"^^xsd:gYear .
+
+wdr:sense-krass-slang a drift:Sense ;
+    drift:gloss "(youth slang) impressive, amazing, intense; used approvingly as a general intensifier"@en ;
+    drift:gloss "(Jugendsprache) beeindruckend, toll, heftig; allgemeiner, oft positiver Verstaerker"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1985"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-krass-jugendsprache a drift:TriggerEvent ;
+    rdfs:label "Jugendsprachliche Aufwertung eines Negativworts"@en ;
+    dct:description "Kein einzelnes datierbares Ereignis. In der Jugendsprache seit den 1980er Jahren wurde 'krass' vom negativen 'extrem schlimm' zu einem allgemeinen, oft positiven Verstaerker. Das Ankerjahr ist eine repraesentative Belegstelle, keine Ursache."@de ;
+    drift:eventDate "1985"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-krass-slang a drift:DriftEvent ;
+    drift:affectsWord wdr:word-krass ;
+    drift:senseFrom wdr:sense-krass-extrem ;
+    drift:senseTo wdr:sense-krass-slang ;
+    drift:driftType drift:Amelioration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1980"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2000"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-krass-dwds , wdr:src-krass-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-krass-jugendsprache a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-krass-slang ;
+    drift:proposedTrigger wdr:trigger-krass-jugendsprache ;
+    drift:evidenceType drift:Speculative ;
+    drift:confidence 0.55 ;
+    drift:hasSource wdr:src-krass-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-krass-dwds a drift:Source ;
+    dct:title "DWDS -- krass"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/krass"^^xsd:anyURI .
+
+wdr:src-krass-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- krass"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/krass"^^xsd:anyURI .

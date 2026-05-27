@@ -1,0 +1,87 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "surfen" (de)
+# Metaphorization (loanword + sense extension):
+#   English "surf" -> German "surfen" entered as a sports term
+#   (riding ocean waves on a board, 1970s) then was extended
+#   metaphorically to "browsing the internet" (das Internet
+#   surfen / im Netz surfen) in the mid-1990s.
+#   Jean Armour Polly coined "surfing the internet" in 1992;
+#   the German metaphor followed directly.
+# =============================================================
+
+wdr:word-surfen a drift:Word ;
+    drift:writtenForm "surfen"@de ;
+    drift:language "de" ;
+    rdfs:label "surfen"@de ;
+    ontolex:sense wdr:sense-surfen-sport , wdr:sense-surfen-internet ;
+    drift:crossLingualOf wdr:word-surf .
+
+wdr:sense-surfen-sport a drift:Sense ;
+    drift:gloss "to surf: to ride ocean waves on a surfboard (sporting activity)"@en ;
+    drift:gloss "Wellenreiten auf einem Surfbrett"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1975"^^xsd:gYear .
+
+wdr:sense-surfen-internet a drift:Sense ;
+    drift:gloss "to surf (the internet): to browse the World Wide Web, navigating from page to page"@en ;
+    drift:gloss "im Internet surfen: das Browsen im World Wide Web"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1994"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1994"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-www-mosaic a drift:TriggerEvent ;
+    rdfs:label "World Wide Web and Mosaic browser launch"@en ;
+    dct:description "The public launch of the WWW and graphical browsers (Mosaic 1993, Netscape 1994) popularised 'surfing the internet'; Jean Armour Polly's 1992 article coined the phrase in English, which entered German as 'im Internet surfen'."@en ;
+    drift:eventDate "1993"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-surfen-1994 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surfen ;
+    drift:senseFrom wdr:sense-surfen-sport ;
+    drift:senseTo wdr:sense-surfen-internet ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1993"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1998"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-surfen-dwds , wdr:src-surfen-duden .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS and Duden are dictionary/lexicographic sources -> LexicographicNote.
+wdr:hyp-surfen-www a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-surfen-1994 ;
+    drift:proposedTrigger wdr:trigger-www-mosaic ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.88 ;
+    drift:hasSource wdr:src-surfen-dwds , wdr:src-surfen-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-surfen-dwds a drift:Source ;
+    dct:title "DWDS - surfen"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/surfen"^^xsd:anyURI .
+
+wdr:src-surfen-duden a drift:Source ;
+    dct:title "Duden - surfen"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/surfen"^^xsd:anyURI .

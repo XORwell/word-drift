@@ -1,0 +1,21 @@
+# CQ11 — Reclaimed (reappropriated) words and their triggers.
+# Words whose drift is typed drift:Reappropriation (a formerly derogatory term
+# reclaimed by an in-group), with the proposed trigger and confidence. A social
+# pattern the taxonomy models distinctly from plain amelioration.
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?word ?year ?triggerLabel ?confidence WHERE {
+  ?e a drift:DriftEvent ;
+     drift:affectsWord ?w ;
+     drift:driftType drift:Reappropriation .
+  ?w drift:writtenForm ?word .
+  OPTIONAL { ?e drift:driftYear ?year . }
+  OPTIONAL {
+    ?h drift:aboutDrift ?e ;
+       drift:proposedTrigger ?tr ;
+       drift:confidence ?confidence .
+    ?tr rdfs:label ?triggerLabel . FILTER(lang(?triggerLabel) = "en")
+  }
+}
+ORDER BY ?year ?word

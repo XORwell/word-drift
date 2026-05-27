@@ -1,0 +1,532 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:hyp-gfds-hyp-blackfacing-2014 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-blackfacing-2014 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-blackfacing-2014 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-blackfacing-2014 .
+
+wdr:hyp-gfds-hyp-boostern-2021 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-boostern-2021 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-boostern-2021 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-boostern-2021 .
+
+wdr:hyp-gfds-hyp-crowdfunding-2012 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-crowdfunding-2012 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-crowdfunding-2012 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-crowdfunding-2012 .
+
+wdr:hyp-gfds-hyp-fake-news-2016 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-fake-news-2016 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-fake-news-2016 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-fake-news-2016 .
+
+wdr:hyp-gfds-hyp-for-future-2019 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-for-future-2019 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-for-future-2019 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-for-future-2019 .
+
+wdr:hyp-gfds-hyp-gate-2013 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-gate-2013 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-gate-2013 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-gate-2013 .
+
+wdr:hyp-gfds-hyp-gendersternchen-2018 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-gendersternchen-2018 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-gendersternchen-2018 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-gendersternchen-2018 .
+
+wdr:hyp-gfds-hyp-influencer-2017 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-influencer-2017 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-influencer-2017 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-influencer-2017 .
+
+wdr:hyp-gfds-hyp-leaken-2010 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-leaken-2010 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-leaken-2010 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-leaken-2010 .
+
+wdr:hyp-gfds-hyp-lockdown-2020 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-lockdown-2020 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-lockdown-2020 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-lockdown-2020 .
+
+wdr:hyp-gfds-hyp-refugees-welcome-2015 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-refugees-welcome-2015 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-refugees-welcome-2015 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-refugees-welcome-2015 .
+
+wdr:hyp-gfds-hyp-shitstorm-2011 a drift:CausalHypothesis ;
+    dct:date "2026-05-23"^^xsd:date ;
+    prov:wasAttributedTo wdr:curator-gfds ;
+    drift:aboutDrift wdr:drift-gfds-drift-shitstorm-2011 ;
+    drift:confidence 0.8 ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:hasSource wdr:src-gfds-anglizismus-shitstorm-2011 ;
+    drift:proposedTrigger wdr:trigger-gfds-trigger-shitstorm-2011 .
+
+wdr:drift-gfds-drift-blackfacing-2014 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-blackfacing ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2014"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-blackfacing-2014 ;
+    drift:senseFrom wdr:sense-gfds-blackfacing-prior ;
+    drift:senseTo wdr:sense-gfds-blackfacing-2014 .
+
+wdr:drift-gfds-drift-boostern-2021 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-boostern ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2021"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-boostern-2021 ;
+    drift:senseFrom wdr:sense-gfds-boostern-prior ;
+    drift:senseTo wdr:sense-gfds-boostern-2021 .
+
+wdr:drift-gfds-drift-crowdfunding-2012 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-crowdfunding ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2012"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-crowdfunding-2012 ;
+    drift:senseFrom wdr:sense-gfds-crowdfunding-prior ;
+    drift:senseTo wdr:sense-gfds-crowdfunding-2012 .
+
+wdr:drift-gfds-drift-fake-news-2016 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-fake-news ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2016"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-fake-news-2016 ;
+    drift:senseFrom wdr:sense-gfds-fake-news-prior ;
+    drift:senseTo wdr:sense-gfds-fake-news-2016 .
+
+wdr:drift-gfds-drift-for-future-2019 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-for-future ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2019"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-for-future-2019 ;
+    drift:senseFrom wdr:sense-gfds-for-future-prior ;
+    drift:senseTo wdr:sense-gfds-for-future-2019 .
+
+wdr:drift-gfds-drift-gate-2013 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-gate ;
+    drift:driftType drift:Metonymization ;
+    drift:driftYear "2013"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-gate-2013 ;
+    drift:senseFrom wdr:sense-gfds-gate-prior ;
+    drift:senseTo wdr:sense-gfds-gate-2013 .
+
+wdr:drift-gfds-drift-gendersternchen-2018 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-gendersternchen ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2018"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-gendersternchen-2018 ;
+    drift:senseFrom wdr:sense-gfds-gendersternchen-prior ;
+    drift:senseTo wdr:sense-gfds-gendersternchen-2018 .
+
+wdr:drift-gfds-drift-influencer-2017 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-influencer ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2017"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-influencer-2017 ;
+    drift:senseFrom wdr:sense-gfds-influencer-prior ;
+    drift:senseTo wdr:sense-gfds-influencer-2017 .
+
+wdr:drift-gfds-drift-leaken-2010 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-leaken ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2010"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-leaken-2010 ;
+    drift:senseFrom wdr:sense-gfds-leaken-prior ;
+    drift:senseTo wdr:sense-gfds-leaken-2010 .
+
+wdr:drift-gfds-drift-lockdown-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-lockdown ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-lockdown-2020 ;
+    drift:senseFrom wdr:sense-gfds-lockdown-prior ;
+    drift:senseTo wdr:sense-gfds-lockdown-2020 .
+
+wdr:drift-gfds-drift-refugees-welcome-2015 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-refugees-welcome ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2015"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-refugees-welcome-2015 ;
+    drift:senseFrom wdr:sense-gfds-refugees-welcome-prior ;
+    drift:senseTo wdr:sense-gfds-refugees-welcome-2015 .
+
+wdr:drift-gfds-drift-shitstorm-2011 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gfds-shitstorm ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2011"^^xsd:gYear ;
+    drift:hasSource wdr:src-gfds-anglizismus-shitstorm-2011 ;
+    drift:senseFrom wdr:sense-gfds-shitstorm-prior ;
+    drift:senseTo wdr:sense-gfds-shitstorm-2011 .
+
+wdr:trigger-gfds-trigger-blackfacing-2014 a drift:TriggerEvent ;
+    rdfs:label "racial sensitivity debate blackface Germany theater carnival"@en ;
+    dct:description "White actors painted black in theatrical/carnival contexts; racial sensitivity debate reached Germany"@en ;
+    drift:eventDate "2014"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-boostern-2021 a drift:TriggerEvent ;
+    rdfs:label "COVID-19 booster vaccination campaign Germany 2021"@en ;
+    dct:description "To receive a COVID-19 booster vaccination; Germanized verb from English 'boost' during pandemic"@en ;
+    owl:sameAs wd:Q81068910 ;
+    drift:eventDate "2021"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic .
+
+wdr:trigger-gfds-trigger-crowdfunding-2012 a drift:TriggerEvent ;
+    rdfs:label "Kickstarter internet crowdfunding startup culture rise"@en ;
+    dct:description "Raising capital from many small individual contributions via internet; new startup and creative funding model"@en ;
+    drift:eventDate "2012"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-fake-news-2016 a drift:TriggerEvent ;
+    rdfs:label "Trump election Brexit deliberate disinformation fake news 2016"@en ;
+    dct:description "Deliberately false information spread as news; Trump election and Brexit made term ubiquitous"@en ;
+    drift:eventDate "2016"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-for-future-2019 a drift:TriggerEvent ;
+    rdfs:label "Fridays for Future Greta Thunberg climate movement 2019"@en ;
+    dct:description "Phraseological formula from Fridays for Future climate movement; applied to other activist contexts"@en ;
+    drift:eventDate "2019"^^xsd:gYear ;
+    drift:triggerCategory drift:Ecological .
+
+wdr:trigger-gfds-trigger-gate-2013 a drift:TriggerEvent ;
+    rdfs:label "NSA surveillance scandal Germany Watergate suffix spread"@en ;
+    dct:description "Suffix for designating scandals; derived from Watergate; NSA-Gate and other scandals spread the suffix"@en ;
+    drift:eventDate "2013"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-gendersternchen-2018 a drift:TriggerEvent ;
+    rdfs:label "German gender-inclusive language reform feminist activism"@en ;
+    dct:description "Gender star (*) for gender-inclusive writing; feminist linguistic activism in German language"@en ;
+    drift:eventDate "2018"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-influencer-2017 a drift:TriggerEvent ;
+    rdfs:label "social media influencer marketing YouTube Instagram rise"@en ;
+    dct:description "Online celebrities who exert influence on their audience; social media marketing rose to prominence"@en ;
+    drift:eventDate "2017"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-gfds-trigger-leaken-2010 a drift:TriggerEvent ;
+    rdfs:label "WikiLeaks Julian Assange secret information leaks"@en ;
+    dct:description "Anonymous publication of secret information via internet; WikiLeaks made the term mainstream"@en ;
+    drift:eventDate "2010"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-gfds-trigger-lockdown-2020 a drift:TriggerEvent ;
+    rdfs:label "COVID-19 pandemic lockdown restrictions Germany 2020"@en ;
+    dct:description "Pandemic restriction measures including contact bans; COVID-19 made the English term standard in German"@en ;
+    owl:sameAs wd:Q81068910 ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic .
+
+wdr:trigger-gfds-trigger-refugees-welcome-2015 a drift:TriggerEvent ;
+    rdfs:label "European refugee crisis Germany welcome culture 2015"@en ;
+    dct:description "English slogan for welcome culture during refugee crisis; used in German protests and media"@en ;
+    drift:eventDate "2015"^^xsd:gYear ;
+    drift:triggerCategory drift:Economic .
+
+wdr:trigger-gfds-trigger-shitstorm-2011 a drift:TriggerEvent ;
+    rdfs:label "social media outrage culture Twitter Facebook rise Germany"@en ;
+    dct:description "Wave of online outrage in social networks; entered German public and even official discourse"@en ;
+    drift:eventDate "2011"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:word-gfds-blackfacing a drift:Word ;
+    rdfs:label "Blackfacing"@de ;
+    ontolex:sense wdr:sense-gfds-blackfacing-2014,
+        wdr:sense-gfds-blackfacing-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Blackfacing"@de .
+
+wdr:word-gfds-boostern a drift:Word ;
+    rdfs:label "boostern"@de ;
+    ontolex:sense wdr:sense-gfds-boostern-2021,
+        wdr:sense-gfds-boostern-prior ;
+    drift:language "de" ;
+    drift:writtenForm "boostern"@de .
+
+wdr:word-gfds-crowdfunding a drift:Word ;
+    rdfs:label "Crowdfunding"@de ;
+    ontolex:sense wdr:sense-gfds-crowdfunding-2012,
+        wdr:sense-gfds-crowdfunding-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Crowdfunding"@de .
+
+wdr:word-gfds-fake-news a drift:Word ;
+    rdfs:label "Fake News"@de ;
+    ontolex:sense wdr:sense-gfds-fake-news-2016,
+        wdr:sense-gfds-fake-news-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Fake News"@de .
+
+wdr:word-gfds-for-future a drift:Word ;
+    rdfs:label "[...] for future"@de ;
+    ontolex:sense wdr:sense-gfds-for-future-2019,
+        wdr:sense-gfds-for-future-prior ;
+    drift:language "de" ;
+    drift:writtenForm "[...] for future"@de .
+
+wdr:word-gfds-gate a drift:Word ;
+    rdfs:label "-gate"@de ;
+    ontolex:sense wdr:sense-gfds-gate-2013,
+        wdr:sense-gfds-gate-prior ;
+    drift:language "de" ;
+    drift:writtenForm "-gate"@de .
+
+wdr:word-gfds-gendersternchen a drift:Word ;
+    rdfs:label "Gendersternchen"@de ;
+    ontolex:sense wdr:sense-gfds-gendersternchen-2018,
+        wdr:sense-gfds-gendersternchen-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Gendersternchen"@de .
+
+wdr:word-gfds-influencer a drift:Word ;
+    rdfs:label "Influencer"@de ;
+    ontolex:sense wdr:sense-gfds-influencer-2017,
+        wdr:sense-gfds-influencer-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Influencer"@de .
+
+wdr:word-gfds-leaken a drift:Word ;
+    rdfs:label "leaken"@de ;
+    ontolex:sense wdr:sense-gfds-leaken-2010,
+        wdr:sense-gfds-leaken-prior ;
+    drift:language "de" ;
+    drift:writtenForm "leaken"@de .
+
+wdr:word-gfds-lockdown a drift:Word ;
+    rdfs:label "Lockdown"@de ;
+    ontolex:sense wdr:sense-gfds-lockdown-2020,
+        wdr:sense-gfds-lockdown-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Lockdown"@de .
+
+wdr:word-gfds-refugees-welcome a drift:Word ;
+    rdfs:label "Refugees Welcome"@de ;
+    ontolex:sense wdr:sense-gfds-refugees-welcome-2015,
+        wdr:sense-gfds-refugees-welcome-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Refugees Welcome"@de .
+
+wdr:word-gfds-shitstorm a drift:Word ;
+    rdfs:label "Shitstorm"@de ;
+    ontolex:sense wdr:sense-gfds-shitstorm-2011,
+        wdr:sense-gfds-shitstorm-prior ;
+    drift:language "de" ;
+    drift:writtenForm "Shitstorm"@de .
+
+wdr:sense-gfds-blackfacing-2014 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2014"^^xsd:gYear ;
+    drift:gloss "white performers darkening their skin to portray Black people; Anglo-American racial sensitivity debate reached Germany"@en .
+
+wdr:sense-gfds-blackfacing-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously dominant in German"@en .
+
+wdr:sense-gfds-boostern-2021 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2021"^^xsd:gYear ;
+    drift:gloss "to receive a COVID-19 booster vaccination; Germanized verb specifically for third vaccine dose"@en .
+
+wdr:sense-gfds-boostern-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "to boost; to increase or improve something"@en .
+
+wdr:sense-gfds-crowdfunding-2012 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2012"^^xsd:gYear ;
+    drift:gloss "raising capital from many small individual internet contributions; new model for startups and creative projects"@en .
+
+wdr:sense-gfds-crowdfunding-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established in German"@en .
+
+wdr:sense-gfds-fake-news-2016 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2016"^^xsd:gYear ;
+    drift:gloss "deliberately fabricated false information spread as news; term became a political weapon during Trump election and Brexit"@en .
+
+wdr:sense-gfds-fake-news-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "false news; inaccurate reporting"@en .
+
+wdr:sense-gfds-for-future-2019 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2019"^^xsd:gYear ;
+    drift:gloss "phraseological suffix from Fridays for Future; applied to any activist cause (Scientists for Future, etc.)"@en .
+
+wdr:sense-gfds-for-future-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established as a formulaic suffix"@en .
+
+wdr:sense-gfds-gate-2013 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2013"^^xsd:gYear ;
+    drift:gloss "suffix denoting any political scandal; spread in Germany via NSA-Gate surveillance scandal"@en .
+
+wdr:sense-gfds-gate-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "a suffix from the Watergate hotel name"@en .
+
+wdr:sense-gfds-gendersternchen-2018 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2018"^^xsd:gYear ;
+    drift:gloss "gender star; asterisk used in German writing for gender-inclusive language including non-binary persons"@en .
+
+wdr:sense-gfds-gendersternchen-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established"@en .
+
+wdr:sense-gfds-influencer-2017 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2017"^^xsd:gYear ;
+    drift:gloss "a social media content creator with a large following who influences purchasing decisions and culture"@en .
+
+wdr:sense-gfds-influencer-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "a person who influences others"@en .
+
+wdr:sense-gfds-leaken-2010 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:gloss "to anonymously publish secret or classified information via the internet; Germanized verb from WikiLeaks era"@en .
+
+wdr:sense-gfds-leaken-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "to leak; a liquid escaping through a crack"@en .
+
+wdr:sense-gfds-lockdown-2020 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:gloss "pandemic-era term for population-wide contact restrictions and business closures; became the standard German term"@en .
+
+wdr:sense-gfds-lockdown-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "a prison lockdown; emergency security confinement"@en .
+
+wdr:sense-gfds-refugees-welcome-2015 a drift:Sense ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2015"^^xsd:gYear ;
+    drift:gloss "English-language welcome culture slogan used in German protests and media during the refugee crisis"@en .
+
+wdr:sense-gfds-refugees-welcome-prior a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "not previously established as a slogan"@en .
+
+wdr:sense-gfds-shitstorm-2011 a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2011"^^xsd:gYear ;
+    drift:gloss "a wave of public outrage directed at a person or organization via social media; entered German official discourse"@en .
+
+wdr:sense-gfds-shitstorm-prior a drift:Sense ;
+    drift:connotation drift:Negative ;
+    drift:gloss "English slang for an extremely chaotic or disastrous situation"@en .
+
+wdr:src-gfds-anglizismus-blackfacing-2014 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2014: Blackfacing"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Blackfacing"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-boostern-2021 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2021: boostern"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/boostern"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-crowdfunding-2012 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2012: Crowdfunding"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Crowdfunding"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-fake-news-2016 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2016: Fake News"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Fake%20News"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-for-future-2019 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2019: [...] for future"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Anglizismus_des_Jahres"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-gate-2013 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2013: -gate"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/-gate"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-gendersternchen-2018 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2018: Gendersternchen"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Gendersternchen"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-influencer-2017 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2017: Influencer"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Influencer"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-leaken-2010 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2010: leaken"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/leaken"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-lockdown-2020 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2020: Lockdown"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Lockdown"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-refugees-welcome-2015 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2015: Refugees Welcome"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Anglizismus_des_Jahres"^^xsd:anyURI .
+
+wdr:src-gfds-anglizismus-shitstorm-2011 a drift:Source ;
+    dct:title "GfdS / Wikipedia - anglizismus des Jahres 2011: Shitstorm"@en ;
+    drift:sourceURL "https://www.dwds.de/wb/Shitstorm"^^xsd:anyURI .
+
+wdr:curator-gfds a prov:Agent ;
+    rdfs:label "WORD-DRIFT GfdS curator"@en ;
+    dct:description "Automated GfdS ingest pipeline (gfds_import.py)"@en .
+

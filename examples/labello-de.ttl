@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Labello" (de)
+# Broadening: Beiersdorf's lip-balm brand (introduced 1909)
+# -> umgangssprachlich generic word for any Lippenpflegestift.
+# The 1909 brand launch is the commercial trigger.
+# =============================================================
+
+wdr:word-labello-de a drift:Word ;
+    drift:writtenForm "Labello"@de ;
+    drift:language "de" ;
+    rdfs:label "Labello"@de ;
+    ontolex:sense wdr:sense-labello-de-brand , wdr:sense-labello-de-generic .
+
+wdr:sense-labello-de-brand a drift:Sense ;
+    drift:gloss "Beiersdorf's brand of lip-care stick"@en ;
+    drift:gloss "die Marke Labello fuer Lippenpflegestifte von Beiersdorf"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1909"^^xsd:gYear .
+
+wdr:sense-labello-de-generic a drift:Sense ;
+    drift:gloss "any lip-care stick, regardless of maker (colloquial German)"@en ;
+    drift:gloss "umgangssprachlich jeder Lippenpflegestift, unabhaengig vom Hersteller"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1960"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-labello-de-brand a drift:TriggerEvent ;
+    rdfs:label "Beiersdorf introduces Labello"@en ;
+    dct:description "Beiersdorf introduced the Labello lip-care stick in 1909. The brand became so dominant in German-speaking markets that the name is colloquially used for any lip balm."@en ;
+    drift:eventDate "1909"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-labello-de-brand a drift:DriftEvent ;
+    drift:affectsWord wdr:word-labello-de ;
+    drift:senseFrom wdr:sense-labello-de-brand ;
+    drift:senseTo wdr:sense-labello-de-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1909"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1970"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-labello-de-wikt , wdr:src-labello-de-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-labello-de-brand a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-labello-de-brand ;
+    drift:proposedTrigger wdr:trigger-labello-de-brand ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-labello-de-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-labello-de-wikt a drift:Source ;
+    dct:title "Wie Labello zum Synonym fuer Lippenpflegestifte wurde -- derStandard"@de ;
+    drift:sourceURL "https://www.derstandard.de/story/3000000306725/wie-labello-zum-synonym-fuer-lippenpflegestifte-wurde"^^xsd:anyURI .
+
+wdr:src-labello-de-wiki a drift:Source ;
+    dct:title "Labello -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Labello"^^xsd:anyURI .

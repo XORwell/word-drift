@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "draconian" (en)
+# Metaphorization: Draco, the Athenian lawgiver whose code (c. 621
+# BC) punished most offences with death -> excessively harsh.
+# The legal code is the identifiable trigger.
+# =============================================================
+
+wdr:word-draconian a drift:Word ;
+    drift:writtenForm "draconian"@en ;
+    drift:language "en" ;
+    rdfs:label "draconian"@en ;
+    ontolex:sense wdr:sense-draconian-laws , wdr:sense-draconian-harsh .
+
+wdr:sense-draconian-laws a drift:Sense ;
+    drift:gloss "of or pertaining to Draco, the Athenian legislator, or to the severe written law code he is said to have produced around 621 BC"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1759"^^xsd:gYear .
+
+wdr:sense-draconian-harsh a drift:Sense ;
+    drift:gloss "excessively harsh or severe, especially of laws, rules, or penalties"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1800"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-draconian-code a drift:TriggerEvent ;
+    rdfs:label "Draco's Athenian law code (c. 621 BC)"@en ;
+    dct:description "The Athenian lawgiver Draco issued the city's first written code around 621 BC, notorious for prescribing death for even minor offences. The proverbial severity of these laws gave English 'draconian', which generalized to mean any disproportionately harsh measure."@en ;
+    drift:eventDate "0621"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-draconian-code a drift:DriftEvent ;
+    drift:affectsWord wdr:word-draconian ;
+    drift:senseFrom wdr:sense-draconian-laws ;
+    drift:senseTo wdr:sense-draconian-harsh ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1759"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-draconian-etym , wdr:src-draconian-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-draconian-code a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-draconian-code ;
+    drift:proposedTrigger wdr:trigger-draconian-code ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-draconian-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-draconian-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- draconian"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/draconian"^^xsd:anyURI .
+
+wdr:src-draconian-wiki a drift:Source ;
+    dct:title "Draco (lawgiver) -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Draco_(lawgiver)"^^xsd:anyURI .

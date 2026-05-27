@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Foen" / "Foehn" (de)
+# Broadening: Sanitas/AEG trademark "Fon" for an electric hair
+# dryer (registered 1909) -> generic German word for any
+# Haartrockner. The 1909 brand registration is the trigger.
+# =============================================================
+
+wdr:word-foehn-de a drift:Word ;
+    drift:writtenForm "Föhn"@de ;
+    drift:language "de" ;
+    rdfs:label "Föhn"@de ;
+    ontolex:sense wdr:sense-foehn-de-brand , wdr:sense-foehn-de-generic .
+
+wdr:sense-foehn-de-brand a drift:Sense ;
+    drift:gloss "the Sanitas (later AEG) brand 'Foen' for an electric hair dryer"@en ;
+    drift:gloss "die Marke Foen von Sanitas (spaeter AEG) fuer einen elektrischen Haartrockner"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1909"^^xsd:gYear .
+
+wdr:sense-foehn-de-generic a drift:Sense ;
+    drift:gloss "any electric hair dryer, regardless of maker (colloquial German, often spelled Foehn)"@en ;
+    drift:gloss "umgangssprachlich jeder elektrische Haartrockner, oft Foehn geschrieben"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1950"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1950"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-foehn-de-brand a drift:TriggerEvent ;
+    rdfs:label "Sanitas registers the Foen hair-dryer brand"@en ;
+    dct:description "The company Sanitas registered the trademark Foen for its electric hair dryer in 1909 (first model 1908). After AEG acquired Sanitas the brand persisted, and the word became the ordinary German term for any hair dryer."@en ;
+    drift:eventDate "1909"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-foehn-de-brand a drift:DriftEvent ;
+    drift:affectsWord wdr:word-foehn-de ;
+    drift:senseFrom wdr:sense-foehn-de-brand ;
+    drift:senseTo wdr:sense-foehn-de-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1909"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-foehn-de-wikt , wdr:src-foehn-de-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-foehn-de-brand a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-foehn-de-brand ;
+    drift:proposedTrigger wdr:trigger-foehn-de-brand ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-foehn-de-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-foehn-de-wikt a drift:Source ;
+    dct:title "Föhn -- Wiktionary"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/F%C3%B6hn"^^xsd:anyURI .
+
+wdr:src-foehn-de-wiki a drift:Source ;
+    dct:title "Haartrockner -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Haartrockner"^^xsd:anyURI .

@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "masochism" (en)
+# Metonymization: the surname Sacher-Masoch (Leopold von
+# Sacher-Masoch, 1836-1895, author of "Venus in Furs") becomes a
+# common clinical term coined 1883 by Krafft-Ebing, in English by
+# 1892. His writings are the identifiable trigger.
+# =============================================================
+
+wdr:word-masochism a drift:Word ;
+    drift:writtenForm "masochism"@en ;
+    drift:language "en" ;
+    rdfs:label "masochism"@en ;
+    ontolex:sense wdr:sense-masochism-name , wdr:sense-masochism-pleasure .
+
+wdr:sense-masochism-name a drift:Sense ;
+    drift:gloss "derived from the surname of the Austrian novelist Leopold von Sacher-Masoch"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1836"^^xsd:gYear .
+
+wdr:sense-masochism-pleasure a drift:Sense ;
+    drift:gloss "the deriving of pleasure, especially sexual gratification, from one's own pain or humiliation"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1892"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1892"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-masochism-sacher-masoch a drift:TriggerEvent ;
+    rdfs:label "Sacher-Masoch's novels and Krafft-Ebing's coinage"@en ;
+    dct:description "Leopold von Sacher-Masoch featured submission and pain in works such as 'Venus in Furs' (1869). The German neurologist Richard von Krafft-Ebing coined 'Masochismus' from his name in 1883; the English 'masochism' is attested by 1892."@en ;
+    drift:eventDate "1883"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q78474 .
+
+# --- drift event ---
+wdr:drift-masochism-sacher-masoch a drift:DriftEvent ;
+    drift:affectsWord wdr:word-masochism ;
+    drift:senseFrom wdr:sense-masochism-name ;
+    drift:senseTo wdr:sense-masochism-pleasure ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1869"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1892"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-masochism-etym , wdr:src-masochism-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-masochism-sacher-masoch a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-masochism-sacher-masoch ;
+    drift:proposedTrigger wdr:trigger-masochism-sacher-masoch ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-masochism-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-masochism-etym a drift:Source ;
+    dct:title "masochism -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/masochism"^^xsd:anyURI .
+
+wdr:src-masochism-wiki a drift:Source ;
+    dct:title "Leopold von Sacher-Masoch -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Leopold_von_Sacher-Masoch"^^xsd:anyURI .

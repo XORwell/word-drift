@@ -1,0 +1,97 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "attack" (en) -- SemEval-2020 Task 1 English target word.
+# Broadening: a primarily military/physical assault sense in the
+# 19th century broadens into modern medical ("heart attack"),
+# sporting, and figurative senses across the 20th century.
+# DETECTION-BENCHMARK WORD (ADR 0004): SemEval attests the change
+# empirically (graded change 0.82, binary-changed gold label), but
+# the CAUSE is gradual polysemy with no single datable trigger.
+# We therefore attach the strong reproducible detection signal
+# (ChangeSignalAlignment) but keep the causal claim Speculative and
+# the confidence modest: a strong change signal is NOT a strong
+# cause (the two axes are separated, ADR 0004).
+# =============================================================
+
+wdr:word-attack a drift:Word ;
+    drift:writtenForm "attack"@en ;
+    drift:language "en" ;
+    rdfs:label "attack"@en ;
+    ontolex:sense wdr:sense-attack-military , wdr:sense-attack-broadened .
+
+wdr:sense-attack-military a drift:Sense ;
+    drift:gloss "an act of setting upon someone or something with force; a military or physical assault"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-attack-broadened a drift:Sense ;
+    drift:gloss "a sudden onset more generally: a bout of illness (e.g. heart attack), an offensive move in sport or a game, or a forceful piece of criticism"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (honest: gradual, undetermined) ---
+# Not a crisp eponym/event. The SemEval T1 (1810-1860) vs T2
+# (1960-2010) periodisation brackets a century of gradual
+# polysemous extension; we record that diffuse process as a
+# single trigger node so the hypothesis can point at it, and we
+# flag its diffuseness in the description and the Speculative type.
+wdr:trigger-attack-polysemy a drift:TriggerEvent ;
+    rdfs:label "gradual polysemous extension of 'attack' across the 20th century"@en ;
+    dct:description "No single datable event. Across the 20th century 'attack' extended from military/physical assault into medical, sporting and figurative domains. The cause is gradual polysemy and is undetermined; recorded here as a diffuse trigger so the change can be aligned with the SemEval signal without asserting a specific cause."@en ;
+    drift:eventDate "1950"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-attack-broadening a drift:DriftEvent ;
+    drift:affectsWord wdr:word-attack ;
+    drift:senseFrom wdr:sense-attack-military ;
+    drift:senseTo wdr:sense-attack-broadened ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1860"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-attack-etymonline .
+
+# --- causal hypothesis ---
+# ChangeSignalAlignment: SemEval-2020 Task 1 (EN) gives 'attack' a
+# graded change of 0.82 and a binary "changed" gold label; the
+# T1->T2 diachronic split aligns with the broadening interval above.
+# Speculative: the CAUSE is gradual/undetermined, so confidence is
+# held modest (0.6) even though the detection signal is strong.
+wdr:hyp-attack-polysemy a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-attack-broadening ;
+    drift:proposedTrigger wdr:trigger-attack-polysemy ;
+    drift:evidenceType drift:ChangeSignalAlignment , drift:Speculative ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-attack-semeval , wdr:src-attack-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-attack-semeval a drift:Source ;
+    dct:title "SemEval-2020 Task 1 (English) -- graded change 0.82 for 'attack'"@en ;
+    drift:sourceURL "https://zenodo.org/records/3931969"^^xsd:anyURI ;
+    rdfs:comment "Graded-change gold score 0.82 (binary label: changed) for 'attack'. In-repo as wdr:drift-semeval-attack (data/semeval.ttl). Used as ChangeSignalAlignment evidence; the score attests the change, not its cause."@en .
+
+wdr:src-attack-etymonline a drift:Source ;
+    dct:title "attack (n.) -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/attack"^^xsd:anyURI .

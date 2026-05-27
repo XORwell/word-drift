@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "pasteurize" (en)
+# Metonymization: the surname Pasteur (Louis Pasteur, who
+# developed gentle heat treatment of liquids ~1864) becomes the
+# everyday verb for heat-treating food to kill microbes. His
+# heat-preservation work is the identifiable trigger.
+# =============================================================
+
+wdr:word-pasteurize a drift:Word ;
+    drift:writtenForm "pasteurize"@en ;
+    drift:language "en" ;
+    rdfs:label "pasteurize"@en ;
+    ontolex:sense wdr:sense-pasteurize-name , wdr:sense-pasteurize-verb .
+
+wdr:sense-pasteurize-name a drift:Sense ;
+    drift:gloss "derived from the surname of the French chemist and microbiologist Louis Pasteur"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1822"^^xsd:gYear .
+
+wdr:sense-pasteurize-verb a drift:Sense ;
+    drift:gloss "to heat a food or drink to a controlled temperature for a set time to destroy pathogens without changing it much; a routine word in dairy and food processing"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1881"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1881"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-pasteurize-heat a drift:TriggerEvent ;
+    rdfs:label "Pasteur develops controlled heat treatment of liquids"@en ;
+    dct:description "Around 1864 Louis Pasteur showed that gentle heating of wine and beer killed spoilage microbes without ruining the product. The process and the verb derived from his name spread once the germ theory of disease was accepted."@en ;
+    drift:eventDate "1864"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-pasteurize-heat a drift:DriftEvent ;
+    drift:affectsWord wdr:word-pasteurize ;
+    drift:senseFrom wdr:sense-pasteurize-name ;
+    drift:senseTo wdr:sense-pasteurize-verb ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1864"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1881"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-pasteurize-etym , wdr:src-pasteurize-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-pasteurize-heat a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-pasteurize-heat ;
+    drift:proposedTrigger wdr:trigger-pasteurize-heat ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-pasteurize-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-pasteurize-etym a drift:Source ;
+    dct:title "pasteurize -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/pasteurize"^^xsd:anyURI .
+
+wdr:src-pasteurize-wiki a drift:Source ;
+    dct:title "Louis Pasteur -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Louis_Pasteur"^^xsd:anyURI .

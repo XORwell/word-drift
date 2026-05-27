@@ -1,0 +1,88 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "face" (en) -- SemEval-2020 Task 1 English target word.
+# Broadening: the anatomical-front-of-the-head sense broadens as
+# figurative and surface senses (face value, to lose/save face,
+# the face of a cliff or building, the public face of a movement)
+# gain relative weight across the 20th century.
+# DETECTION-BENCHMARK WORD (ADR 0004): SemEval attests the change
+# empirically (graded change 0.64, binary-changed gold label), but
+# the CAUSE is gradual polysemy with no single datable trigger.
+# ChangeSignalAlignment + honest Speculative cause at modest
+# confidence: detection strength is NOT causal confidence.
+# =============================================================
+
+wdr:word-face a drift:Word ;
+    drift:writtenForm "face"@en ;
+    drift:language "en" ;
+    rdfs:label "face"@en ;
+    ontolex:sense wdr:sense-face-anatomical , wdr:sense-face-figurative .
+
+wdr:sense-face-anatomical a drift:Sense ;
+    drift:gloss "the front part of a person's head, from forehead to chin"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1300"^^xsd:gYear .
+
+wdr:sense-face-figurative a drift:Sense ;
+    drift:gloss "extended and figurative uses: an outward surface or front (the face of a cliff, a clock face); public standing or dignity (to lose or save face); nominal worth (face value); the public representative of a cause"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (honest: gradual, undetermined) ---
+wdr:trigger-face-polysemy a drift:TriggerEvent ;
+    rdfs:label "gradual polysemous extension of 'face' across the 20th century"@en ;
+    dct:description "No single datable event. The figurative and surface senses of 'face' gained relative weight gradually; the cause is undetermined polysemy. Recorded as a diffuse trigger so the change can be aligned with the SemEval signal without asserting a specific cause."@en ;
+    drift:eventDate "1950"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-face-broadening a drift:DriftEvent ;
+    drift:affectsWord wdr:word-face ;
+    drift:senseFrom wdr:sense-face-anatomical ;
+    drift:senseTo wdr:sense-face-figurative ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1860"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-face-etymonline .
+
+# --- causal hypothesis ---
+# ChangeSignalAlignment from SemEval graded change 0.64 (changed
+# gold label); Speculative cause -> confidence held modest (0.6).
+wdr:hyp-face-polysemy a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-face-broadening ;
+    drift:proposedTrigger wdr:trigger-face-polysemy ;
+    drift:evidenceType drift:ChangeSignalAlignment , drift:Speculative ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-face-semeval , wdr:src-face-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-face-semeval a drift:Source ;
+    dct:title "SemEval-2020 Task 1 (English) -- graded change 0.64 for 'face'"@en ;
+    drift:sourceURL "https://zenodo.org/records/3931969"^^xsd:anyURI ;
+    rdfs:comment "Graded-change gold score 0.64 (binary label: changed) for 'face'. In-repo as wdr:drift-semeval-face (data/semeval.ttl). Used as ChangeSignalAlignment evidence; the score attests the change, not its cause."@en .
+
+wdr:src-face-etymonline a drift:Source ;
+    dct:title "face (n.) -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/face"^^xsd:anyURI .

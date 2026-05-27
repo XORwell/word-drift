@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "biro" (en)
+# Metonymization: the Biro brand of ballpoint pen (after Laszlo
+# Biro, patented 1938) -> generic British-English word for any
+# ballpoint pen. The Biro brand is the commercial trigger.
+# =============================================================
+
+wdr:word-biro a drift:Word ;
+    drift:writtenForm "biro"@en ;
+    drift:language "en" ;
+    rdfs:label "biro"@en ;
+    ontolex:sense wdr:sense-biro-brand , wdr:sense-biro-generic .
+
+wdr:sense-biro-brand a drift:Sense ;
+    drift:gloss "the Biro brand of ballpoint pen, named after inventor Laszlo Biro"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1938"^^xsd:gYear .
+
+wdr:sense-biro-generic a drift:Sense ;
+    drift:gloss "any ballpoint pen (chiefly British and Commonwealth English)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1947"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1947"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-biro-patent a drift:TriggerEvent ;
+    rdfs:label "Laszlo Biro patents the ballpoint pen"@en ;
+    dct:description "Laszlo Biro patented his ballpoint pen in 1938, and pens were marketed under the Biro name. In Britain and the Commonwealth the brand name became the ordinary word for any ballpoint pen."@en ;
+    drift:eventDate "1938"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-biro-patent a drift:DriftEvent ;
+    drift:affectsWord wdr:word-biro ;
+    drift:senseFrom wdr:sense-biro-brand ;
+    drift:senseTo wdr:sense-biro-generic ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1938"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1955"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-biro-wikt , wdr:src-biro-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-biro-patent a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-biro-patent ;
+    drift:proposedTrigger wdr:trigger-biro-patent ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-biro-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-biro-wikt a drift:Source ;
+    dct:title "biro -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/biro"^^xsd:anyURI .
+
+wdr:src-biro-wiki a drift:Source ;
+    dct:title "Laszlo Biro -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/L%C3%A1szl%C3%B3_B%C3%ADr%C3%B3"^^xsd:anyURI .

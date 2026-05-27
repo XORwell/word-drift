@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "Gutmensch" (de)
+# Pejoration: neutral "good person" -> sneering label for naive
+# do-gooders; Unwort des Jahres 2015; promoted by right-wing
+# polemicists from the 1990s onward.
+# =============================================================
+
+wdr:word-gutmensch a drift:Word ;
+    drift:writtenForm "Gutmensch"@de ;
+    drift:language "de" ;
+    rdfs:label "Gutmensch"@de ;
+    ontolex:sense wdr:sense-gutmensch-positive , wdr:sense-gutmensch-pejorative .
+
+wdr:sense-gutmensch-positive a drift:Sense ;
+    drift:gloss "a genuinely good person; someone with good intentions and moral character"@en ;
+    drift:gloss "Mensch mit echten guten Absichten und moralischem Charakter"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1981"^^xsd:gYear .
+
+wdr:sense-gutmensch-pejorative a drift:Sense ;
+    drift:gloss "a self-righteous, naive moraliser who imposes political correctness on others; a do-gooder (derogatory)"@en ;
+    drift:gloss "selbstgerechter, wirklichkeitsferner Moralist; abwertend fuer politisch korrekte Personen"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1993"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1993"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-gutmensch-unwort a drift:TriggerEvent ;
+    rdfs:label "Gutmensch chosen as Unwort des Jahres 2015"@en ;
+    dct:description "In January 2016 a language-critical jury named Gutmensch the non-word of 2015, reflecting how the term had become a right-wing polemical weapon to dismiss liberal opponents."@en ;
+    drift:eventDate "2015"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-gutmensch-1990s a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gutmensch ;
+    drift:senseFrom wdr:sense-gutmensch-positive ;
+    drift:senseTo wdr:sense-gutmensch-pejorative ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1993"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2015"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-gutmensch-duden , wdr:src-gutmensch-amnesty .
+
+# --- causal hypothesis ---
+wdr:hyp-gutmensch-politics a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-gutmensch-1990s ;
+    drift:proposedTrigger wdr:trigger-gutmensch-unwort ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-gutmensch-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-gutmensch-duden a drift:Source ;
+    dct:title "Duden Online -- Gutmensch"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/Gutmensch"^^xsd:anyURI .
+
+wdr:src-gutmensch-amnesty a drift:Source ;
+    dct:title "Amnesty Journal -- Gutmensch, der (2015)"@de ;
+    drift:sourceURL "https://www.amnesty.de/journal/2015/dezember/gutmensch-der"^^xsd:anyURI .

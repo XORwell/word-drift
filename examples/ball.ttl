@@ -1,0 +1,89 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "ball" (en) -- SemEval-2020 Task 1 English target word.
+# Broadening: a spherical-object / sporting sense in the 19th
+# century broadens as the social-dance sense ("a formal dance")
+# and figurative/idiomatic uses (on the ball, have a ball) gain
+# relative weight in the 20th century.
+# DETECTION-BENCHMARK WORD (ADR 0004): SemEval attests the change
+# empirically (graded change 0.67, binary-changed gold label), but
+# the CAUSE is gradual polysemy with no single datable trigger.
+# Strong detection signal (ChangeSignalAlignment) + honest
+# Speculative cause at modest confidence: detection strength is
+# NOT causal confidence (axes separated, ADR 0004).
+# =============================================================
+
+wdr:word-ball a drift:Word ;
+    drift:writtenForm "ball"@en ;
+    drift:language "en" ;
+    rdfs:label "ball"@en ;
+    ontolex:sense wdr:sense-ball-object , wdr:sense-ball-broadened .
+
+wdr:sense-ball-object a drift:Sense ;
+    drift:gloss "a spherical or roughly round object, especially one used in a game or sport"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1200"^^xsd:gYear .
+
+wdr:sense-ball-broadened a drift:Sense ;
+    drift:gloss "extended and figurative uses: a formal social dance; informally a very enjoyable time (to have a ball); idiomatic alertness (on the ball)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (honest: gradual, undetermined) ---
+wdr:trigger-ball-polysemy a drift:TriggerEvent ;
+    rdfs:label "gradual polysemous extension of 'ball' across the 20th century"@en ;
+    dct:description "No single datable event. The distribution of 'ball' across its object, social-dance and figurative senses shifted gradually; the cause is undetermined polysemy. Recorded as a diffuse trigger so the change can be aligned with the SemEval signal without asserting a specific cause."@en ;
+    drift:eventDate "1950"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-ball-broadening a drift:DriftEvent ;
+    drift:affectsWord wdr:word-ball ;
+    drift:senseFrom wdr:sense-ball-object ;
+    drift:senseTo wdr:sense-ball-broadened ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1860"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-ball-etymonline .
+
+# --- causal hypothesis ---
+# ChangeSignalAlignment from SemEval graded change 0.67 (changed
+# gold label); Speculative cause -> confidence held modest (0.55).
+wdr:hyp-ball-polysemy a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-ball-broadening ;
+    drift:proposedTrigger wdr:trigger-ball-polysemy ;
+    drift:evidenceType drift:ChangeSignalAlignment , drift:Speculative ;
+    drift:confidence 0.55 ;
+    drift:hasSource wdr:src-ball-semeval , wdr:src-ball-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-ball-semeval a drift:Source ;
+    dct:title "SemEval-2020 Task 1 (English) -- graded change 0.67 for 'ball'"@en ;
+    drift:sourceURL "https://zenodo.org/records/3931969"^^xsd:anyURI ;
+    rdfs:comment "Graded-change gold score 0.67 (binary label: changed) for 'ball'. In-repo as wdr:drift-semeval-ball (data/semeval.ttl). Used as ChangeSignalAlignment evidence; the score attests the change, not its cause."@en .
+
+wdr:src-ball-etymonline a drift:Source ;
+    dct:title "ball (n.1) -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/ball"^^xsd:anyURI .

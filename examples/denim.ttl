@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "denim" (en)
+# Metonymization: from French "serge de Nimes", a serge from the
+# city of Nimes. The phrase "de Nimes" was clipped and reanalysed
+# as a single English fabric name.
+# =============================================================
+
+wdr:word-denim a drift:Word ;
+    drift:writtenForm "denim"@en ;
+    drift:language "en" ;
+    rdfs:label "denim"@en ;
+    ontolex:sense wdr:sense-denim-place , wdr:sense-denim-fabric .
+
+wdr:sense-denim-place a drift:Sense ;
+    drift:gloss "serge de Nimes; a twilled serge cloth associated with the French city of Nimes"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1695"^^xsd:gYear .
+
+wdr:sense-denim-fabric a drift:Sense ;
+    drift:gloss "a coarse durable twilled cotton fabric, typically with a blue warp, used for work clothes and jeans"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-denim-nimes a drift:TriggerEvent ;
+    rdfs:label "Textile production at Nimes"@en ;
+    dct:description "The serge cloth exported as 'serge de Nimes' carried the city name. English speakers clipped the phrase to 'de Nim' and reanalysed it as the fabric name 'denim'."@en ;
+    drift:eventDate "1695"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-denim-nimes a drift:DriftEvent ;
+    drift:affectsWord wdr:word-denim ;
+    drift:senseFrom wdr:sense-denim-place ;
+    drift:senseTo wdr:sense-denim-fabric ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1695"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-denim-etym , wdr:src-denim-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-denim-nimes a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-denim-nimes ;
+    drift:proposedTrigger wdr:trigger-denim-nimes ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-denim-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-denim-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- denim"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/denim"^^xsd:anyURI .
+
+wdr:src-denim-wikt a drift:Source ;
+    dct:title "Wiktionary -- denim"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/denim"^^xsd:anyURI .

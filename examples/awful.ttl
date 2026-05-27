@@ -1,0 +1,58 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORKED EXAMPLE - "awful" (en)
+# Pejoration:
+#   "inspiring awe; worthy of deep respect or reverence" (positive)
+#   -> "very bad, terrible, appalling" (negative).
+#   Contrast "awesome" which retained/regained the positive sense.
+# =============================================================
+
+wdr:word-awful a drift:Word ;
+    drift:writtenForm "awful"@en ;
+    drift:language "en" ;
+    rdfs:label "awful"@en ;
+    ontolex:sense wdr:sense-awful-awe , wdr:sense-awful-bad .
+
+wdr:sense-awful-awe a drift:Sense ;
+    drift:gloss "inspiring awe; deserving profound respect or reverential fear"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1300"^^xsd:gYear .
+
+wdr:sense-awful-bad a drift:Sense ;
+    drift:gloss "very bad, unpleasant, or of poor quality; terrible, appalling"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1809"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1809"^^xsd:gYear ]
+    ] .
+
+# --- drift event: pejoration (no external trigger; purely language-internal) ---
+wdr:drift-awful-1800s a drift:DriftEvent ;
+    drift:affectsWord wdr:word-awful ;
+    drift:senseFrom wdr:sense-awful-awe ;
+    drift:senseTo wdr:sense-awful-bad ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1750"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-awful-etymonline , wdr:src-awful-oed .
+
+# --- sources ---
+wdr:src-awful-etymonline a drift:Source ;
+    dct:title "Etymonline - awful (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/awful"^^xsd:anyURI .
+
+wdr:src-awful-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - awful, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/awful_adj"^^xsd:anyURI .

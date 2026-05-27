@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "stan" (en)
+# Eponym -> common noun/verb: from the obsessive fan in Eminem's
+# 2000 song "Stan" -> a noun for an overzealous fan, and a verb
+# "to stan" (to be an enthusiastic fan of). Fan-account culture
+# on Twitter in the 2010s entrenched the verb.
+# =============================================================
+
+wdr:word-stan a drift:Word ;
+    drift:writtenForm "stan"@en ;
+    drift:language "en" ;
+    rdfs:label "stan"@en ;
+    ontolex:sense wdr:sense-stan-character , wdr:sense-stan-fan .
+
+wdr:sense-stan-character a drift:Sense ;
+    drift:gloss "the obsessive, ultimately violent fan in Eminem's 2000 song 'Stan' (proper name)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2000"^^xsd:gYear .
+
+wdr:sense-stan-fan a drift:Sense ;
+    drift:gloss "an overzealous or obsessive fan; (verb) to be an enthusiastic and devoted fan of someone"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2008"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2008"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-stan-eminem a drift:TriggerEvent ;
+    rdfs:label "Eminem's song 'Stan' (2000)"@en ;
+    dct:description "Eminem's 2000 song 'Stan', about a fan whose devotion turns deadly, gave its name to the common noun for an obsessive fan; social-media fandom later generalised it into the verb 'to stan'."@en ;
+    drift:eventDate "2000"^^xsd:gYear ;
+    drift:triggerCategory drift:Media ;
+    owl:sameAs wd:Q312122 .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-stan-2008 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-stan ;
+    drift:senseFrom wdr:sense-stan-character ;
+    drift:senseTo wdr:sense-stan-fan ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2008"^^xsd:gYear ;
+    drift:hasSource wdr:src-stan-mw , wdr:src-stan-wikipedia .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster's etymology explicitly derives the fan sense from the
+# Eminem song; attributed lexicographic evidence.
+wdr:hyp-stan-eminem a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-stan-2008 ;
+    drift:proposedTrigger wdr:trigger-stan-eminem ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-stan-mw ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-stan-mw a drift:Source ;
+    dct:title "Merriam-Webster - stan"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/dictionary/stan"^^xsd:anyURI .
+
+wdr:src-stan-wikipedia a drift:Source ;
+    dct:title "Stan (song) - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Stan_(song)"^^xsd:anyURI .

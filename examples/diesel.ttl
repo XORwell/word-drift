@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Diesel" (de)
+# Metonymization: surname of the engineer Rudolf Diesel
+# (1858-1913) -> the engine type he patented -> the fuel and
+# vehicle class. The 1892/1893 engine patent is the trigger.
+# =============================================================
+
+wdr:word-diesel a drift:Word ;
+    drift:writtenForm "Diesel"@de ;
+    drift:language "de" ;
+    rdfs:label "Diesel"@de ;
+    ontolex:sense wdr:sense-diesel-name , wdr:sense-diesel-engine .
+
+wdr:sense-diesel-name a drift:Sense ;
+    drift:gloss "surname of the engineer Rudolf Diesel (1858-1913)"@en ;
+    drift:gloss "Familienname des Ingenieurs Rudolf Diesel (1858-1913)"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1858"^^xsd:gYear .
+
+wdr:sense-diesel-engine a drift:Sense ;
+    drift:gloss "compression-ignition engine; by extension the fuel it burns and a vehicle driven by such an engine"@en ;
+    drift:gloss "Selbstzuendermotor; uebertragen der zugehoerige Kraftstoff und ein damit angetriebenes Fahrzeug"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1893"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1893"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-diesel-patent a drift:TriggerEvent ;
+    rdfs:label "Rudolf Diesel's engine patent"@en ;
+    dct:description "Rudolf Diesel patented his compression-ignition engine (German patent filed 1892, granted 1893) and published the design in 1893. The engine and, later, its fuel were named after the inventor, turning his surname into a generic technical term."@en ;
+    drift:eventDate "1893"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-diesel-patent a drift:DriftEvent ;
+    drift:affectsWord wdr:word-diesel ;
+    drift:senseFrom wdr:sense-diesel-name ;
+    drift:senseTo wdr:sense-diesel-engine ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1893"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-diesel-dwds , wdr:src-diesel-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-diesel-patent a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-diesel-patent ;
+    drift:proposedTrigger wdr:trigger-diesel-patent ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-diesel-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-diesel-dwds a drift:Source ;
+    dct:title "DWDS -- Diesel"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Diesel"^^xsd:anyURI .
+
+wdr:src-diesel-wiki a drift:Source ;
+    dct:title "Rudolf Diesel -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Rudolf_Diesel"^^xsd:anyURI .

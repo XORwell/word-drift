@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Mach" (de)
+# Metonymization: the surname Mach (Ernst Mach, who studied
+# supersonic flow and shock waves around 1887) becomes the
+# everyday name of the Mach number, the ratio of speed to the
+# speed of sound. His work on supersonic flow is the trigger.
+# =============================================================
+
+wdr:word-mach-de a drift:Word ;
+    drift:writtenForm "Mach"@de ;
+    drift:language "de" ;
+    rdfs:label "Mach"@de ;
+    ontolex:sense wdr:sense-mach-de-name , wdr:sense-mach-de-unit .
+
+wdr:sense-mach-de-name a drift:Sense ;
+    drift:gloss "the surname of the Austrian physicist and philosopher Ernst Mach"@en ;
+    drift:gloss "Familienname des oesterreichischen Physikers und Philosophen Ernst Mach"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1838"^^xsd:gYear .
+
+wdr:sense-mach-de-unit a drift:Sense ;
+    drift:gloss "the Mach number, the ratio of an object's speed to the local speed of sound; an everyday term for high-speed and supersonic flight"@en ;
+    drift:gloss "die Mach-Zahl, das Verhaeltnis der Geschwindigkeit zur oertlichen Schallgeschwindigkeit; alltagssprachlich fuer Ueberschallgeschwindigkeit"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1929"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1929"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-mach-de-shockwave a drift:TriggerEvent ;
+    rdfs:label "Mach studies supersonic shock waves"@en ;
+    dct:description "Around 1887 Ernst Mach photographed shock waves around projectiles moving faster than sound and described the relationship now expressed by the Mach number. The dimensionless number was named for him by Jakob Ackeret in 1929."@en ;
+    drift:eventDate "1887"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-mach-de-shockwave a drift:DriftEvent ;
+    drift:affectsWord wdr:word-mach-de ;
+    drift:senseFrom wdr:sense-mach-de-name ;
+    drift:senseTo wdr:sense-mach-de-unit ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1887"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1929"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-mach-de-wiki , wdr:src-mach-de-wikiunit .
+
+# --- causal hypothesis ---
+wdr:hyp-mach-de-shockwave a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-mach-de-shockwave ;
+    drift:proposedTrigger wdr:trigger-mach-de-shockwave ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-mach-de-wikiunit ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-mach-de-wiki a drift:Source ;
+    dct:title "Ernst Mach -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Ernst_Mach"^^xsd:anyURI .
+
+wdr:src-mach-de-wikiunit a drift:Source ;
+    dct:title "Mach-Zahl -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Mach-Zahl"^^xsd:anyURI .

@@ -1,0 +1,78 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "herculean" (en)
+# Metaphorization: Hercules, the hero of the Twelve Labours
+# -> requiring great strength or effort. The myth is the trigger.
+# =============================================================
+
+wdr:word-herculean a drift:Word ;
+    drift:writtenForm "herculean"@en ;
+    drift:language "en" ;
+    rdfs:label "herculean"@en ;
+    ontolex:sense wdr:sense-herculean-hero , wdr:sense-herculean-effort .
+
+wdr:sense-herculean-hero a drift:Sense ;
+    drift:gloss "of or pertaining to Hercules, the Greek and Roman hero famed for prodigious strength and the Twelve Labours"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1590"^^xsd:gYear .
+
+wdr:sense-herculean-effort a drift:Sense ;
+    drift:gloss "requiring or showing immense strength, size, or effort; extremely difficult to accomplish"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-herculean-labours a drift:TriggerEvent ;
+    rdfs:label "Myth of Hercules and the Twelve Labours"@en ;
+    dct:description "Hercules (Greek Herakles) was the archetypal hero of superhuman strength, set the Twelve Labours as penance. His legend, transmitted through classical literature, made 'herculean' an adjective for any task of extraordinary difficulty or any feat of great power, attested in English around 1600."@en ;
+    drift:eventDate "1590"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-herculean-labours a drift:DriftEvent ;
+    drift:affectsWord wdr:word-herculean ;
+    drift:senseFrom wdr:sense-herculean-hero ;
+    drift:senseTo wdr:sense-herculean-effort ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1590"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1650"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-herculean-etym , wdr:src-herculean-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-herculean-labours a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-herculean-labours ;
+    drift:proposedTrigger wdr:trigger-herculean-labours ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-herculean-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-herculean-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Herculean"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/herculean"^^xsd:anyURI .
+
+wdr:src-herculean-wiki a drift:Source ;
+    dct:title "Heracles -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Heracles"^^xsd:anyURI .

@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "hamburger" (en)
+# Metonymization: "Hamburg steak" (a chopped-beef preparation
+# associated with the German port city of Hamburg) gave its name
+# to "hamburger", which then narrowed to the bun-and-patty
+# sandwich. The Hamburg link is reported but not firmly explained,
+# so confidence is moderate.
+# =============================================================
+
+wdr:word-hamburger a drift:Word ;
+    drift:writtenForm "hamburger"@en ;
+    drift:language "en" ;
+    rdfs:label "hamburger"@en ;
+    ontolex:sense wdr:sense-hamburger-steak , wdr:sense-hamburger-sandwich .
+
+wdr:sense-hamburger-steak a drift:Sense ;
+    drift:gloss "Hamburg steak; a chopped or minced beef preparation named after the German city of Hamburg"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1880"^^xsd:gYear .
+
+wdr:sense-hamburger-sandwich a drift:Sense ;
+    drift:gloss "a cooked beef patty served in a bun; the familiar fast-food sandwich"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1909"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1909"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-hamburger-hamburg a drift:TriggerEvent ;
+    rdfs:label "Hamburg steak named for the city of Hamburg"@en ;
+    dct:description "The chopped-beef 'Hamburg steak' (attested by 1880) carried the name of the German port of Hamburg; 'hamburger' then narrowed to the sandwich (by 1909). The reason the city is invoked is not firmly established in the sources."@en ;
+    drift:eventDate "1880"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial ;
+    owl:sameAs wd:Q1055 .
+
+# --- drift event ---
+wdr:drift-hamburger-hamburg a drift:DriftEvent ;
+    drift:affectsWord wdr:word-hamburger ;
+    drift:senseFrom wdr:sense-hamburger-steak ;
+    drift:senseTo wdr:sense-hamburger-sandwich ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1880"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1909"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-hamburger-etym , wdr:src-hamburger-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-hamburger-hamburg a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-hamburger-hamburg ;
+    drift:proposedTrigger wdr:trigger-hamburger-hamburg ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-hamburger-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-hamburger-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- hamburger"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/hamburger"^^xsd:anyURI .
+
+wdr:src-hamburger-wikt a drift:Source ;
+    dct:title "Wiktionary -- hamburger"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/hamburger"^^xsd:anyURI .

@@ -1,0 +1,122 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "woke" (en)
+# Amelioration then Pejoration + Reversal:
+#   1. African-American vernacular "alert to racial injustice" (positive)
+#   2. 2010s progressive activist adoption (still positive, broadened)
+#   3. 2019+ right-wing counter-discourse: pejorative label for
+#      perceived excessive social-justice activism (reversal)
+# =============================================================
+
+wdr:word-woke a drift:Word ;
+    drift:writtenForm "woke"@en ;
+    drift:language "en" ;
+    rdfs:label "woke"@en ;
+    ontolex:sense wdr:sense-woke-aware , wdr:sense-woke-progressive , wdr:sense-woke-pejorative .
+
+wdr:sense-woke-aware a drift:Sense ;
+    drift:gloss "alert to racial injustice and discrimination; socially conscious (African-American vernacular)"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1940"^^xsd:gYear .
+
+wdr:sense-woke-progressive a drift:Sense ;
+    drift:gloss "broadly aware of social inequalities including race, gender, and class; associated with progressive activism"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2014"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2014"^^xsd:gYear ]
+    ] .
+
+wdr:sense-woke-pejorative a drift:Sense ;
+    drift:gloss "dismissive label for perceived excessive political correctness or identity-politics activism; used ironically or as a slur"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2019"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2019"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-blm-movement a drift:TriggerEvent ;
+    rdfs:label "Black Lives Matter movement"@en ;
+    dct:description "The BLM movement, especially after 2013, mainstreamed 'woke' as a marker of social-justice awareness."@en ;
+    drift:eventDate "2013"^^xsd:gYear ;
+    drift:triggerCategory drift:Political ;
+    owl:sameAs wd:Q19600530 .
+
+wdr:trigger-culture-wars a drift:TriggerEvent ;
+    rdfs:label "US culture-war polarisation (2019-)"@en ;
+    dct:description "Conservative politicians and media adopted 'woke' as a derisive label for progressive excess, completing the reversal."@en ;
+    drift:eventDate "2019"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event 1: amelioration / broadening (AAVE -> mainstream; causation in hypothesis below) ---
+wdr:drift-woke-2014 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-woke ;
+    drift:senseFrom wdr:sense-woke-aware ;
+    drift:senseTo wdr:sense-woke-progressive ;
+    drift:driftType drift:Amelioration , drift:Broadening ;
+    drift:driftYear "2014"^^xsd:gYear ;
+    drift:hasSource wdr:src-woke-etymonline , wdr:src-woke-oed .
+
+# --- drift event 2: pejoration + reversal (causation in hypothesis below) ---
+wdr:drift-woke-2019 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-woke ;
+    drift:senseFrom wdr:sense-woke-progressive ;
+    drift:senseTo wdr:sense-woke-pejorative ;
+    drift:driftType drift:Pejoration , drift:Reversal ;
+    drift:driftYear "2019"^^xsd:gYear ;
+    drift:hasSource wdr:src-woke-etymonline , wdr:src-woke-wikipedia .
+
+# --- causal hypotheses (ADR 0004) ---
+# Etymonline only notes the "2010s colloquial use ... in relation to political
+# and social awareness" as an exception, without dating it or naming BLM; OED
+# attests the senses but the BLM trigger link is the curator's inference
+# -> LexicographicNote + Speculative, modest confidence.
+wdr:hyp-woke-blm a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-woke-2014 ;
+    drift:proposedTrigger wdr:trigger-blm-movement ;
+    drift:evidenceType drift:LexicographicNote , drift:Speculative ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-woke-etymonline , wdr:src-woke-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+# The right-wing pejorative reversal is documented on Wikipedia (general
+# source); etymonline does not connect it to a specific culture-war event
+# -> Speculative, modest confidence.
+wdr:hyp-woke-culturewars a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-woke-2019 ;
+    drift:proposedTrigger wdr:trigger-culture-wars ;
+    drift:evidenceType drift:Speculative ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-woke-etymonline , wdr:src-woke-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-woke-etymonline a drift:Source ;
+    dct:title "Etymonline - woke (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/woke"^^xsd:anyURI .
+
+wdr:src-woke-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - woke, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/woke_adj"^^xsd:anyURI .
+
+wdr:src-woke-wikipedia a drift:Source ;
+    dct:title "Woke - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Woke"^^xsd:anyURI .

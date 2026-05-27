@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore &mdash; WORD-DRIFT</title>
+  <meta name="description" content="Overview-first faceted explorer for the WORD-DRIFT knowledge graph. Browse thousands of lexical drift events by type, language, decade, and trigger." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <link rel="stylesheet" href="assets/explore.css" />
+  <script src="assets/theme.js"></script>
+</head>
+<body>
+
+  <!-- Site nav -->
+  <nav class="site-nav">
+    <a class="wordmark" href="index.html">WORD&#8209;<span>DRIFT</span></a>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="explore.html" class="active">Explore</a></li>
+      <li><a href="downloads.html">Data</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener noreferrer">Repository</a></li>
+    </ul>
+  </nav>
+
+  <div id="explore-root">
+
+    <!-- Top bar -->
+    <div id="explore-topbar">
+      <span class="topbar-title">Interactive Explorer</span>
+      <div class="stat-chips" id="meta-chips">
+        <span class="stat-chip">Loading&hellip;</span>
+      </div>
+      <div class="topbar-actions">
+        <div class="wd-search-wrap" role="search">
+          <input type="search" id="wd-search" class="wd-search-input"
+                 placeholder="Search words &amp; triggers&hellip;  (press /)"
+                 autocomplete="off" aria-label="Global search for words and triggers"
+                 role="combobox" aria-expanded="false" aria-controls="wd-search-results" aria-autocomplete="list" />
+          <div id="wd-search-results" class="wd-search-results" role="listbox" hidden></div>
+        </div>
+        <button type="button" id="wd-random-btn" class="wd-icon-btn" title="Open a random word">Random word</button>
+        <button type="button" id="wd-help-btn" class="wd-icon-btn" title="How to read this explorer" aria-label="Show onboarding help">?</button>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <nav class="exp-tabs" role="tablist">
+      <button class="exp-tab-btn active" data-tab="overview" role="tab" aria-selected="true" aria-controls="panel-overview">Overview</button>
+      <button class="exp-tab-btn" data-tab="triggers" role="tab" aria-selected="false" aria-controls="panel-triggers">Triggers</button>
+      <button class="exp-tab-btn" data-tab="detail" data-detail-label="Word Detail" role="tab" aria-selected="false" aria-controls="panel-detail">Word Detail</button>
+      <button class="exp-tab-btn" data-tab="compare" role="tab" aria-selected="false" aria-controls="panel-compare">Compare</button>
+      <button class="exp-tab-btn" data-tab="network" role="tab" aria-selected="false" aria-controls="panel-network">Network</button>
+      <button class="exp-tab-btn" data-tab="map" role="tab" aria-selected="false" aria-controls="panel-map">Map</button>
+      <button class="exp-tab-btn" data-tab="trends" role="tab" aria-selected="false" aria-controls="panel-trends">Trends</button>
+      <button class="exp-tab-btn" data-tab="loss" role="tab" aria-selected="false" aria-controls="panel-loss">Lexical loss</button>
+    </nav>
+
+    <!-- ====== PANEL: OVERVIEW ====================================== -->
+    <section id="panel-overview" class="exp-panel active" role="tabpanel">
+
+      <!-- Stacked histogram + beeswarm timeline -->
+      <div class="tl-section">
+        <div class="tl-section-header">
+          Drift timeline
+          <span>Stacked histogram by decade (top) + individual events (bottom). Brush to zoom. Click a dot to open that word.</span>
+        </div>
+        <div class="lens-toggle-row">
+          <span class="lens-label">Color by:</span>
+          <button class="lens-btn active" id="lens-type" title="Color dots by drift type">Drift type</button>
+          <button class="lens-btn" id="lens-cause" title="Color dots by identified cause">Cause</button>
+          <label class="links-toggle-label" title="Draw connector lines from drift events to their trigger markers">
+            <input type="checkbox" id="show-links" />
+            Show cause links
+          </label>
+        </div>
+        <div id="overview-tl-wrap"></div>
+      </div>
+
+      <!-- Featured row (shown on the overview only when no filter is active) -->
+      <div id="featured-row" class="featured-row" hidden>
+        <div class="featured-label">Featured drifts</div>
+        <div class="featured-cards" id="featured-cards"></div>
+      </div>
+
+      <!-- Active filters bar -->
+      <div id="active-filters-bar" class="active-filters" aria-live="polite"></div>
+
+      <!-- Body: facet sidebar + word grid -->
+      <div class="overview-body">
+
+        <!-- Facet panel -->
+        <aside class="facet-panel" aria-label="Filter options">
+          <div class="facet-panel-header">
+            Filters
+            <button class="facet-clear-btn" id="clear-all-btn" title="Clear all filters">Clear all</button>
+          </div>
+          <div class="facet-body">
+
+            <div>
+              <div class="facet-group-label">Search</div>
+              <input type="search" class="facet-search" id="facet-search" placeholder="Word contains..." autocomplete="off" aria-label="Filter by word text" />
+            </div>
+
+            <div>
+              <div class="facet-group-label">Language</div>
+              <div class="facet-chips" id="facet-lang"></div>
+            </div>
+
+            <div>
+              <div class="facet-group-label">Drift type</div>
+              <div class="facet-chips" id="facet-type"></div>
+            </div>
+
+            <div>
+              <div class="facet-group-label">Connotation shift</div>
+              <div class="facet-chips" id="facet-connotation"></div>
+            </div>
+
+            <div>
+              <div class="facet-group-label">Evidence type</div>
+              <div class="facet-chips" id="facet-evidence"></div>
+            </div>
+
+            <div>
+              <div class="facet-group-label">Source</div>
+              <div class="facet-chips" id="facet-source"></div>
+            </div>
+
+            <div>
+              <div class="facet-group-label">Quality</div>
+              <div class="facet-chips" id="facet-quality"></div>
+            </div>
+
+            <div>
+              <div class="facet-group-label">Year range</div>
+              <div class="year-range-row">
+                <input type="number" class="year-input" id="year-from" placeholder="700" aria-label="From year" />
+                <span class="year-sep">to</span>
+                <input type="number" class="year-input" id="year-to" placeholder="2026" aria-label="To year" />
+              </div>
+            </div>
+
+            <label class="facet-toggle">
+              <input type="checkbox" id="facet-has-trigger" />
+              Has trigger event
+            </label>
+
+          </div>
+        </aside>
+
+        <!-- Word grid -->
+        <div class="word-grid-wrap">
+          <div class="word-grid-info" id="grid-info"></div>
+          <div class="word-grid" id="word-grid" role="list"></div>
+        </div>
+
+      </div>
+
+      <!-- Legend -->
+      <div class="legend-section">
+        <div class="legend-title" id="legend-title">Drift type colours</div>
+        <div class="legend-row" id="dt-legend"></div>
+      </div>
+
+    </section>
+
+    <!-- ====== PANEL: TRIGGERS ====================================== -->
+    <section id="panel-triggers" class="exp-panel" role="tabpanel">
+      <div class="tl-section">
+        <div class="tl-section-header">
+          Trigger events timeline
+          <span>Circle area = number of words reframed. Hover to inspect. Click to see affected words.</span>
+        </div>
+        <div id="trigger-tl-wrap"></div>
+      </div>
+
+      <div class="trigger-detail-panel empty" id="trigger-detail">
+        Click a trigger circle to see its details.
+      </div>
+
+    </section>
+
+    <!-- ====== PANEL: DETAIL ====================================== -->
+    <section id="panel-detail" class="exp-panel" role="tabpanel">
+      <div class="detail-header">
+        <button class="detail-back-btn" id="detail-back-btn" aria-label="Back to overview">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Overview
+        </button>
+        <div>
+          <span class="detail-word-title" id="detail-word-title">Select a word</span>
+          <span class="detail-word-lang" id="detail-word-lang"></span>
+        </div>
+      </div>
+
+      <!-- Per-word dashboard: at-a-glance, causal hypotheses, senses,
+           frequency sparkline, cross-lingual sibling, sources.
+           Rendered by renderDetailDashboard(); empty until a word is opened. -->
+      <div id="detail-dashboard" class="detail-dashboard" hidden></div>
+
+      <div id="detail-triggers" class="detail-triggers" hidden></div>
+
+      <div id="detail-svg-section">
+        <div id="detail-inner">
+          <div class="detail-svg-wrap" id="detail-tl-section">
+            <div class="detail-tabs">
+              <button class="detail-tab-btn active" data-dtab="tl">Sense timeline</button>
+              <button class="detail-tab-btn" data-dtab="graph">Force graph</button>
+            </div>
+            <div class="detail-sub-panel active" id="detail-tl-panel">
+              <div id="detail-tl-wrap"><p class="empty-msg">Select a word to view its timeline.</p></div>
+            </div>
+            <div class="detail-sub-panel" id="detail-graph-panel">
+              <div id="detail-graph-wrap"><p class="empty-msg">Select a word to view its force graph.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- detail legend -->
+      <div class="legend-section">
+        <div class="legend-title">Sense timeline legend</div>
+        <div class="legend-row">
+          <div class="legend-item"><div class="legend-swatch" style="background:var(--positive);opacity:0.8;"></div> Positive connotation</div>
+          <div class="legend-item"><div class="legend-swatch" style="background:var(--neutral);"></div> Neutral connotation</div>
+          <div class="legend-item"><div class="legend-swatch" style="background:var(--negative);"></div> Negative connotation</div>
+          <div class="legend-item"><div class="legend-swatch circle" style="background:var(--cause-t0);"></div> Trigger event</div>
+          <div class="legend-item"><div class="legend-swatch" style="background:var(--accent);height:2px;width:24px;border-radius:1px;"></div> Drift arrow</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ====== PANEL: COMPARE (plugin view) ======================== -->
+    <section id="panel-compare" class="exp-panel" role="tabpanel" aria-label="Compare view">
+      <p class="empty-msg">Compare view loading&hellip;</p>
+    </section>
+
+    <!-- ====== PANEL: NETWORK (plugin view) ======================== -->
+    <section id="panel-network" class="exp-panel" role="tabpanel" aria-label="Network view">
+      <p class="empty-msg">Network view loading&hellip;</p>
+    </section>
+
+    <!-- ====== PANEL: MAP (plugin view) ============================ -->
+    <section id="panel-map" class="exp-panel" role="tabpanel" aria-label="Map view">
+      <p class="empty-msg">Map view loading&hellip;</p>
+    </section>
+
+    <!-- ====== PANEL: TRENDS (plugin view) ========================= -->
+    <section id="panel-trends" class="exp-panel" role="tabpanel" aria-label="Trends view">
+      <p class="empty-msg">Trends view loading&hellip;</p>
+    </section>
+
+    <section id="panel-loss" class="exp-panel" role="tabpanel" aria-label="Lexical loss view">
+      <p class="empty-msg">Lexical loss view loading&hellip;</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="exp-footer">
+      <span>
+        WORD-DRIFT &mdash; Lexical semantic change knowledge graph
+        &bull; <a href="about.html">About</a>
+        &bull; <a href="about.html#license">License</a>
+      </span>
+      <span>
+        At thousands of words, replace the static JSON with live SPARQL against
+        <a href="https://qlever.cs.uni-freiburg.de/" target="_blank" rel="noopener noreferrer">QLever</a>
+        for real-time faceted queries.
+      </span>
+    </footer>
+
+  </div>
+
+  <!-- Onboarding overlay (one-time; reopenable via the ? button) -->
+  <div id="wd-onboard" class="wd-onboard" hidden role="dialog" aria-modal="true" aria-labelledby="wd-onboard-title">
+    <div class="wd-onboard-box">
+      <button type="button" class="wd-onboard-close" id="wd-onboard-close" aria-label="Close">&times;</button>
+      <h2 id="wd-onboard-title">How to read WORD-DRIFT</h2>
+      <p class="wd-onboard-lead">
+        This explorer maps how word meanings shift over time, and what may have caused each shift.
+      </p>
+
+      <div class="wd-onboard-section">
+        <h3>Connotation colours</h3>
+        <ul class="wd-onboard-legend">
+          <li><span class="conn-dot" style="background:var(--positive);"></span> <strong>Positive</strong> connotation</li>
+          <li><span class="conn-dot" style="background:var(--neutral);"></span> <strong>Neutral</strong> connotation</li>
+          <li><span class="conn-dot" style="background:var(--negative);"></span> <strong>Negative</strong> connotation</li>
+        </ul>
+        <p>A word's arc (for example neutral then negative) shows whether its tone improved (amelioration) or worsened (pejoration).</p>
+      </div>
+
+      <div class="wd-onboard-section">
+        <h3>The five-level evidence ladder</h3>
+        <p>Each causal hypothesis is rated by how strong its evidence is, weakest to strongest:</p>
+        <ol class="wd-onboard-ladder">
+          <li><strong>Speculative</strong> &mdash; temporal coincidence only</li>
+          <li><strong>FrequencyCorrelation</strong> &mdash; usage frequency tracks the event</li>
+          <li><strong>ChangeSignalAlignment</strong> &mdash; computational change signal aligns</li>
+          <li><strong>LexicographicNote</strong> &mdash; a dictionary records the shift</li>
+          <li><strong>ScholarlyAttestation</strong> &mdash; peer-reviewed scholarship attests it</li>
+        </ol>
+      </div>
+
+      <button type="button" class="wd-onboard-cta" id="wd-onboard-dismiss">Got it, explore</button>
+    </div>
+  </div>
+
+  <!-- Tooltip -->
+  <div id="exp-tooltip" role="tooltip" aria-live="polite"></div>
+
+  <!-- D3 v7 from CDN -->
+  <script src="assets/vendor/d3.v7.9.0.min.js"></script>
+
+  <!-- Main application. Plain (non-defer) so it runs right after d3 and BEFORE
+       the deferred view modules below; window.WD is published synchronously at
+       its end, so modules can always call WD.registerView(...) when they run. -->
+  <script src="assets/app.js"></script>
+
+  <!-- View modules: loaded AFTER the main script so window.WD exists when they
+       run. Each calls WD.registerView(...) to wire up its tab. Developed as
+       independent, parallel modules against the contract in assets/views/API.md. -->
+  <script defer src="assets/views/compare.js"></script>
+  <script defer src="assets/views/network.js"></script>
+  <script defer src="assets/views/map.js"></script>
+  <script defer src="assets/views/trends.js"></script>
+  <script defer src="assets/views/loss.js"></script>
+  <script defer src="assets/views/exporter.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Hochzeit" (de)
+# Narrowing: OHG/MHG hochgezit "high feast / major festival
+# (including church feasts)" -> NHG exclusively "wedding".
+# One of the classic textbook examples of Bedeutungsverengung.
+# =============================================================
+
+wdr:word-hochzeit a drift:Word ;
+    drift:writtenForm "Hochzeit"@de ;
+    drift:language "de" ;
+    rdfs:label "Hochzeit"@de ;
+    ontolex:sense wdr:sense-hochzeit-feast , wdr:sense-hochzeit-wedding .
+
+wdr:sense-hochzeit-feast a drift:Sense ;
+    drift:gloss "a major feast or festival; any high celebration, including church feasts such as Easter, Pentecost, Christmas, and All Saints"@en ;
+    drift:gloss "hohes Fest, grosse Feier; auch kirchliche Hochfeste"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "0900"^^xsd:gYear .
+
+wdr:sense-hochzeit-wedding a drift:Sense ;
+    drift:gloss "a wedding; the celebration of a marriage"@en ;
+    drift:gloss "Heiratsfeier, Trauung und Hochzeitsfeier"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1200"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1200"^^xsd:gYear ]
+    ] .
+
+# --- drift event ---
+wdr:drift-hochzeit-narrowing a drift:DriftEvent ;
+    drift:affectsWord wdr:word-hochzeit ;
+    drift:senseFrom wdr:sense-hochzeit-feast ;
+    drift:senseTo wdr:sense-hochzeit-wedding ;
+    drift:driftType drift:Narrowing ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-hochzeit-dwds , wdr:src-hochzeit-wiktionary .
+
+# --- no identifiable discrete trigger for this gradual narrowing ---
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-hochzeit-dwds a drift:Source ;
+    dct:title "DWDS -- Hochzeit"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Hochzeit"^^xsd:anyURI .
+
+wdr:src-hochzeit-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Hochzeit"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Hochzeit"^^xsd:anyURI .

@@ -1,0 +1,66 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# ================================================================
+# WORD-DRIFT -- ChangeSignalAlignment evidence (WS-EVAL-ALIGN, gap G2)
+# Generated: 2026-05-24. Method + full ceiling analysis:
+#   data/reports/change-signal-alignment.md
+#
+# ADR 0004 discipline: this file attaches the strongest *reproducible*
+# evidence tier (drift:ChangeSignalAlignment) to EXISTING curated causal
+# hypotheses. It NEVER re-types or re-confidences a hypothesis, NEVER
+# asserts a cause, and NEVER invents a number. It only adds:
+#   (a) drift:evidenceType drift:ChangeSignalAlignment to an existing wdr:hyp-*
+#   (b) a drift:hasSource pointing at the DWUG German usage-graph dataset that
+#       carries the change signal.
+#
+# Ceiling (honest): of WORD-DRIFT's 256 causal hypotheses (249 distinct
+# words), exactly TWO curated words -- "geil" and "Wende" -- also appear as
+# target words in a DWUG/SemEval gold dataset that is present in this repo.
+# The SemEval-2020 EN targets (attack, ball, circle, ...) carry the only
+# in-repo *numeric* graded-change scores but have NO curated causal
+# hypotheses (they are general polysemous vocabulary, not the eponym/event/
+# toponym-heavy curated set -- see gap G4, selection bias). So the alignment
+# ceiling is 2, not >=10. Reported truthfully rather than padded.
+#
+# Reproducible signal used (in-repo, no network, no invented value):
+#   DWUG German (data/dwug.ttl) lifts the DWUG usage graphs for both words to
+#   >=2 period-separated sense clusters -- the field's own usage-graph change
+#   measure. "geil": cluster c1 (modern, 1980-1990) vs c2 (old, 1850-1900).
+#   "Wende": cluster c1 (1989-1991) vs c2 (1850-1960). The diachronic split
+#   aligns with each hypothesis's proposed trigger date (geil ~1975 youth
+#   slang; Wende 1989 Mauerfall). The numeric DWUG/DURel graded-change value
+#   is NOT in this repo (only the cluster structure is), so it is cited, not
+#   transcribed -- see the report for the coverage limit.
+# ================================================================
+
+# --- the DWUG German change-signal dataset source ---
+# Typed as drift:Source only: drift:Dataset / drift:reliabilityTier are listed
+# in ADR 0004 but not yet defined in the ontology (v0.3), and this workstream
+# must not change ontology semantics. drift:Source is all the SHACL hypothesis
+# shape requires for drift:hasSource.
+wdr:src-dwug-de-changesignal a drift:Source ;
+    dct:title "DWUG German -- diachronic usage-graph change signal (Schlechtweg et al.)"@en ;
+    drift:sourceURL "https://zenodo.org/records/14028509"^^xsd:anyURI ;
+    rdfs:comment "DWUG German usage graphs: word usages clustered into senses with diachronic period labels. The split of a word's usages into period-separated clusters is the field's accepted usage-graph change measure. Used here as ChangeSignalAlignment evidence; the cluster structure for 'geil' and 'Wende' is present in data/dwug.ttl, the numeric graded-change score is not (cited, not transcribed). Dataset reliability is high (peer-published, Zenodo-archived)."@en .
+
+wdr:alignment-curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT ChangeSignalAlignment curator (WS-EVAL-ALIGN, 2026-05-24)"@en .
+
+# --- geil: strengthen from LexicographicNote -> + ChangeSignalAlignment ---
+# DWUG 'geil' shows two period-separated sense clusters (modern positive vs old
+# lewd); the diachronic split aligns with the 1970s-80s youth-slang reframing.
+wdr:hyp-geil-youthslang
+    drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-dwug-de-changesignal .
+
+# --- Wende: strengthen from Freq/Lexicographic -> + ChangeSignalAlignment ---
+# DWUG 'Wende' shows a 1989-1991 cluster distinct from the older general-sense
+# cluster; the diachronic split aligns with the 1989 Mauerfall trigger.
+wdr:hyp-wende-mauerfall
+    drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-dwug-de-changesignal .

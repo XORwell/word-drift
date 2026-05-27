@@ -1,0 +1,90 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "ghosting" (en)
+# Metaphorization: "ghost" (apparition) -> the act of abruptly
+# ending a relationship by ceasing all communication, with no
+# explanation; popularised by mobile dating apps around 2015.
+# =============================================================
+
+wdr:word-ghosting a drift:Word ;
+    drift:writtenForm "ghosting"@en ;
+    drift:language "en" ;
+    rdfs:label "ghosting"@en ;
+    ontolex:sense wdr:sense-ghosting-spectral , wdr:sense-ghosting-relational .
+
+wdr:sense-ghosting-spectral a drift:Sense ;
+    drift:gloss "the appearance or activity of a ghost; a spectral haunting"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-ghosting-relational a drift:Sense ;
+    drift:gloss "ending a personal relationship by suddenly and without explanation ceasing all communication"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2015"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2015"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-ghosting-datingapps a drift:TriggerEvent ;
+    rdfs:label "Mainstreaming of mobile dating apps (Tinder, 2012-)"@en ;
+    dct:description "Swipe-based mobile dating apps such as Tinder (launched 2012) normalised low-friction matching and easy disappearance, and the term 'ghosting' for abrupt no-explanation withdrawal spread rapidly in 2015."@en ;
+    drift:eventDate "2015"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-ghosting-2015 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-ghosting ;
+    drift:senseFrom wdr:sense-ghosting-spectral ;
+    drift:senseTo wdr:sense-ghosting-relational ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftYear "2015"^^xsd:gYear ;
+    drift:hasSource wdr:src-ghosting-mw , wdr:corpus-ghosting-ngram .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster attests the relationship sense (abrupt cut-off, no
+# explanation) but does NOT itself tie it to dating apps; the dating-app
+# trigger is the curator's inference, corroborated only by a frequency
+# spike from c.2015 -> FrequencyCorrelation + Speculative, modest confidence.
+wdr:hyp-ghosting-datingapps a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-ghosting-2015 ;
+    drift:proposedTrigger wdr:trigger-ghosting-datingapps ;
+    drift:evidenceType drift:FrequencyCorrelation , drift:Speculative ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-ghosting-mw , wdr:corpus-ghosting-ngram ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations (timeline curve) ---
+wdr:freq-ghosting-2013 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-ghosting ; drift:observedYear "2013"^^xsd:gYear ;
+    drift:relativeFrequency 0.3 ; drift:fromCorpus wdr:corpus-ghosting-ngram .
+wdr:freq-ghosting-2015 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-ghosting ; drift:observedYear "2015"^^xsd:gYear ;
+    drift:relativeFrequency 1.4 ; drift:fromCorpus wdr:corpus-ghosting-ngram .
+wdr:freq-ghosting-2018 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-ghosting ; drift:observedYear "2018"^^xsd:gYear ;
+    drift:relativeFrequency 3.6 ; drift:fromCorpus wdr:corpus-ghosting-ngram .
+
+# --- sources ---
+wdr:corpus-ghosting-ngram a drift:Corpus ;
+    dct:title "Google Books Ngram Viewer (ghosting)"@en ;
+    drift:sourceURL "https://books.google.com/ngrams/graph?content=ghosting"^^xsd:anyURI .
+
+wdr:src-ghosting-mw a drift:Source ;
+    dct:title "Merriam-Webster - ghosting"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/dictionary/ghosting"^^xsd:anyURI .

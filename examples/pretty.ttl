@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "pretty" (en)
+# The adverbial sense: Old English "praettig" (cunning, crafty,
+# wily) -> "clever, skilful" -> "fine, attractive" (adjective)
+# and, as an adverb, a downtoner "to a fair degree, fairly,
+# moderately". This file models the adverbial downtoner shift:
+# a gradual bleaching with no crisp event.
+# =============================================================
+
+wdr:word-pretty a drift:Word ;
+    drift:writtenForm "pretty"@en ;
+    drift:language "en" ;
+    rdfs:label "pretty"@en ;
+    ontolex:sense wdr:sense-pretty-crafty , wdr:sense-pretty-downtoner .
+
+wdr:sense-pretty-crafty a drift:Sense ;
+    drift:gloss "cunning, crafty, wily; (later) clever, skilful, ingenious (Old English praettig, from praett 'a trick')"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-pretty-downtoner a drift:Sense ;
+    drift:gloss "as an adverb: to a fair or moderate degree; fairly, rather, moderately (a downtoner, as in 'pretty good')"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1565"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1565"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-pretty-bleaching a drift:TriggerEvent ;
+    rdfs:label "Bleaching of a degree adverb into a downtoner"@en ;
+    dct:description "No single datable event. The adverbial 'pretty' weakened gradually from 'in a clever or fine manner' to a moderating downtoner over the 16th-17th centuries, a routine path for degree adverbs. The anchor year is the earliest adverbial attestation, not a cause."@en ;
+    drift:eventDate "1565"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-pretty-downtoner a drift:DriftEvent ;
+    drift:affectsWord wdr:word-pretty ;
+    drift:senseFrom wdr:sense-pretty-crafty ;
+    drift:senseTo wdr:sense-pretty-downtoner ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-pretty-etymonline , wdr:src-pretty-oed .
+
+# --- causal hypothesis ---
+wdr:hyp-pretty-bleaching a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-pretty-downtoner ;
+    drift:proposedTrigger wdr:trigger-pretty-bleaching ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-pretty-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-pretty-etymonline a drift:Source ;
+    dct:title "Etymonline - pretty (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/pretty"^^xsd:anyURI .
+
+wdr:src-pretty-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - pretty, adv."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/pretty_adv"^^xsd:anyURI .

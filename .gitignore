@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+etl/.cache/
+*.log
+.DS_Store
+
+# IAA local-LLM annotation cache (resumable, not source)
+eval/iaa/.cache/
+
+# Wikidata lookup cache for scripts/resolve-trigger-qids.py (resumable, not source)
+.cache/

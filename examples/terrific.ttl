@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "terrific" (en)
+# Amelioration: "causing terror, frightful, dreadful" (from
+# Latin terrere, to frighten) -> a weakened intensifier "very
+# great, severe" -> "excellent, wonderful, splendid". No crisp
+# event; a gradual hyperbolic bleaching, the same path as
+# "tremendous" and "awful" before it.
+# =============================================================
+
+wdr:word-terrific a drift:Word ;
+    drift:writtenForm "terrific"@en ;
+    drift:language "en" ;
+    rdfs:label "terrific"@en ;
+    ontolex:sense wdr:sense-terrific-frightful , wdr:sense-terrific-excellent .
+
+wdr:sense-terrific-frightful a drift:Sense ;
+    drift:gloss "causing terror; frightful, dreadful; provoking fear (from Latin terrificus, terrere 'to frighten')"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1660"^^xsd:gYear .
+
+wdr:sense-terrific-excellent a drift:Sense ;
+    drift:gloss "excellent, wonderful, splendid; remarkably good; (also) very great in degree"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1888"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1888"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-terrific-hyperbole a drift:TriggerEvent ;
+    rdfs:label "Hyperbolic bleaching of a fear word into praise"@en ;
+    dct:description "No single datable event. Like 'awful', 'tremendous' and 'dreadful', the word weakened through colloquial hyperbole from 'frightful' to 'very great' to 'excellent' over the 19th century. The anchor year marks the colloquial positive attestation, not a cause."@en ;
+    drift:eventDate "1888"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-terrific-amelioration a drift:DriftEvent ;
+    drift:affectsWord wdr:word-terrific ;
+    drift:senseFrom wdr:sense-terrific-frightful ;
+    drift:senseTo wdr:sense-terrific-excellent ;
+    drift:driftType drift:Amelioration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-terrific-etymonline , wdr:src-terrific-oed .
+
+# --- causal hypothesis ---
+wdr:hyp-terrific-hyperbole a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-terrific-amelioration ;
+    drift:proposedTrigger wdr:trigger-terrific-hyperbole ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.65 ;
+    drift:hasSource wdr:src-terrific-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-terrific-etymonline a drift:Source ;
+    dct:title "Etymonline - terrific (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/terrific"^^xsd:anyURI .
+
+wdr:src-terrific-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - terrific, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/terrific_adj"^^xsd:anyURI .

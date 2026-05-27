@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "labyrinth" (en)
+# Metaphorization: from the Cretan Labyrinth that Daedalus
+# built to hold the Minotaur. The name of the maze yielded a
+# figure for any bewildering, intricate situation.
+# =============================================================
+
+wdr:word-labyrinth a drift:Word ;
+    drift:writtenForm "labyrinth"@en ;
+    drift:language "en" ;
+    rdfs:label "labyrinth"@en ;
+    ontolex:sense wdr:sense-labyrinth-maze , wdr:sense-labyrinth-tangle .
+
+wdr:sense-labyrinth-maze a drift:Sense ;
+    drift:gloss "a structure of intricate winding passages and turnings, like the Cretan maze built by Daedalus to house the Minotaur"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1400"^^xsd:gYear .
+
+wdr:sense-labyrinth-tangle a drift:Sense ;
+    drift:gloss "a bewildering, tortuous, or inextricably involved situation, argument, or arrangement"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1540"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1540"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-labyrinth-crete a drift:TriggerEvent ;
+    rdfs:label "The Cretan Labyrinth of Daedalus and the Minotaur"@en ;
+    dct:description "In Greek myth Daedalus built the Labyrinth on Crete, a maze so intricate that the Minotaur could not escape it. The name, in English from about 1400 for the maze, yielded by the 1540s the figurative sense of any bewildering, intricate situation."@en ;
+    drift:eventDate "1540"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q48963 .
+
+# --- drift event ---
+wdr:drift-labyrinth-crete a drift:DriftEvent ;
+    drift:affectsWord wdr:word-labyrinth ;
+    drift:senseFrom wdr:sense-labyrinth-maze ;
+    drift:senseTo wdr:sense-labyrinth-tangle ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1560"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-labyrinth-etym , wdr:src-labyrinth-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-labyrinth-crete a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-labyrinth-crete ;
+    drift:proposedTrigger wdr:trigger-labyrinth-crete ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-labyrinth-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-labyrinth-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- labyrinth"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/labyrinth"^^xsd:anyURI .
+
+wdr:src-labyrinth-wikt a drift:Source ;
+    dct:title "Wiktionary -- labyrinth"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/labyrinth"^^xsd:anyURI .

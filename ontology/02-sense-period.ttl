@@ -1,0 +1,75 @@
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix time:  <http://www.w3.org/2006/time#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 02: Sense over time (diachrony)
+# When a sense is attested, its connotation at a point in time,
+# and frequency observations that drive the timeline view.
+# =============================================================
+
+# --- Attestation interval --------------------------------------------------
+
+drift:attestedDuring a owl:ObjectProperty ;
+    rdfs:label "attested during"@en ;
+    rdfs:domain drift:Sense ;
+    rdfs:range time:Interval ;
+    rdfs:comment "Time interval in which the sense is attested in corpora. Open-ended intervals (still in use) omit the end."@en .
+
+drift:firstAttested a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "first attested"@en ;
+    rdfs:domain drift:Sense ;
+    rdfs:range xsd:gYear ;
+    rdfs:comment "Earliest year the sense is documented. Coarse anchor for the timeline when no full interval is known. Functional: a sense has a single earliest attestation year."@en .
+
+# --- Connotation / valence at a point --------------------------------------
+
+drift:ConnotationScheme a skos:ConceptScheme ;
+    skos:prefLabel "Connotation scale"@en ;
+    rdfs:comment "Three-point valence used to mark how a sense is evaluated socially: positive, neutral, negative."@en .
+
+drift:Positive a skos:Concept ; skos:inScheme drift:ConnotationScheme ; skos:prefLabel "positive"@en .
+drift:Neutral  a skos:Concept ; skos:inScheme drift:ConnotationScheme ; skos:prefLabel "neutral"@en .
+drift:Negative a skos:Concept ; skos:inScheme drift:ConnotationScheme ; skos:prefLabel "negative"@en .
+
+drift:connotation a owl:ObjectProperty ;
+    rdfs:label "connotation"@en ;
+    rdfs:domain drift:Sense ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Social evaluation carried by the sense (drift:Positive / drift:Neutral / drift:Negative). The axis on which pejoration and amelioration are measured."@en .
+
+# --- Frequency observation (drives the timeline curve) ---------------------
+
+drift:FrequencyObservation a owl:Class ;
+    rdfs:label "frequency observation"@en ;
+    rdfs:comment "A single (year, value) measurement of how often a word or sense occurs in a named corpus. Reified so each point carries its own provenance."@en .
+
+drift:ofWord a owl:ObjectProperty ;
+    rdfs:label "of word"@en ;
+    rdfs:domain drift:FrequencyObservation ;
+    rdfs:range drift:Word .
+
+drift:ofSense a owl:ObjectProperty ;
+    rdfs:label "of sense"@en ;
+    rdfs:domain drift:FrequencyObservation ;
+    rdfs:range drift:Sense .
+
+drift:observedYear a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "observed year"@en ;
+    rdfs:domain drift:FrequencyObservation ;
+    rdfs:range xsd:gYear .
+
+drift:relativeFrequency a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "relative frequency"@en ;
+    rdfs:domain drift:FrequencyObservation ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Relative frequency (e.g. per million tokens) in the source corpus for the observed year. Functional: one reified observation reports one value for one (word/sense, year)."@en .
+
+drift:fromCorpus a owl:ObjectProperty ;
+    rdfs:label "from corpus"@en ;
+    rdfs:domain drift:FrequencyObservation ;
+    rdfs:range drift:Corpus ;
+    rdfs:comment "The corpus the observation is drawn from. Domain is drift:FrequencyObservation (all observed usages); attestation-level provenance uses drift:hasSource instead."@en .

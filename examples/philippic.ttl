@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "philippic" (en)
+# Metonymization: Demosthenes' orations against Philip II of
+# Macedon (from 351 BC) -> any bitter denunciatory speech.
+# The orations are the identifiable trigger.
+# =============================================================
+
+wdr:word-philippic a drift:Word ;
+    drift:writtenForm "philippic"@en ;
+    drift:language "en" ;
+    rdfs:label "philippic"@en ;
+    ontolex:sense wdr:sense-philippic-orations , wdr:sense-philippic-tirade .
+
+wdr:sense-philippic-orations a drift:Sense ;
+    drift:gloss "one of the orations of Demosthenes against Philip II of Macedon, or of Cicero against Mark Antony in imitation of them"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1592"^^xsd:gYear .
+
+wdr:sense-philippic-tirade a drift:Sense ;
+    drift:gloss "a bitter verbal attack or denunciation; an impassioned invective speech"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1711"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1711"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-philippic-demosthenes a drift:TriggerEvent ;
+    rdfs:label "Demosthenes' Philippics against Philip II (from 351 BC)"@en ;
+    dct:description "From 351 BC the Athenian orator Demosthenes delivered a series of vehement speeches urging resistance to Philip II of Macedon; these were called the 'Philippics'. Cicero later borrowed the name for his attacks on Mark Antony. The proper name generalized to mean any bitter denunciatory oration."@en ;
+    drift:eventDate "0351"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-philippic-demosthenes a drift:DriftEvent ;
+    drift:affectsWord wdr:word-philippic ;
+    drift:senseFrom wdr:sense-philippic-orations ;
+    drift:senseTo wdr:sense-philippic-tirade ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1592"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1750"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-philippic-etym , wdr:src-philippic-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-philippic-demosthenes a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-philippic-demosthenes ;
+    drift:proposedTrigger wdr:trigger-philippic-demosthenes ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-philippic-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-philippic-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- philippic"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/philippic"^^xsd:anyURI .
+
+wdr:src-philippic-wiki a drift:Source ;
+    dct:title "Philippics (Demosthenes) -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Philippics"^^xsd:anyURI .

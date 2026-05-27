@@ -1,0 +1,86 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "spiegeln" (de) -- cross-lingual pair with "mirror" (mirror.ttl)
+# Metaphorization:
+#   "reflektieren, widerspiegeln" ->
+#   "eine identische Kopie von Daten auf einem anderen Server
+#    vorhalten" (einen Server / eine Festplatte spiegeln). German
+#    mirrored the English computing sense as FTP mirror sites and
+#    later disk mirroring (RAID) spread in the 1990s.
+# =============================================================
+
+wdr:word-spiegeln a drift:Word ;
+    drift:writtenForm "spiegeln"@de ;
+    drift:language "de" ;
+    rdfs:label "spiegeln"@de ;
+    ontolex:sense wdr:sense-spiegeln-reflect , wdr:sense-spiegeln-server ;
+    drift:crossLingualOf wdr:word-mirror .
+
+wdr:sense-spiegeln-reflect a drift:Sense ;
+    drift:gloss "to reflect (as in a mirror); to mirror or be reflected"@en ;
+    drift:gloss "reflektieren, widerspiegeln (wie in einem Spiegel)"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1400"^^xsd:gYear .
+
+wdr:sense-spiegeln-server a drift:Sense ;
+    drift:gloss "to mirror data: to maintain an identical synchronised copy of files on another server or disk"@en ;
+    drift:gloss "Daten spiegeln: eine identische, synchron gehaltene Kopie auf einem anderen Server oder Datentraeger vorhalten"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1994"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1994"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-ftp-mirroring a drift:TriggerEvent ;
+    rdfs:label "rise of internet FTP mirror sites"@en ;
+    dct:description "As anonymous-FTP archives spread across the early internet, popular archives were duplicated onto 'mirror' servers; German 'spiegeln' took on the computing sense for server and disk mirroring in the 1990s."@en ;
+    drift:eventDate "1991"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-spiegeln-server a drift:DriftEvent ;
+    drift:affectsWord wdr:word-spiegeln ;
+    drift:senseFrom wdr:sense-spiegeln-reflect ;
+    drift:senseTo wdr:sense-spiegeln-server ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1994"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2000"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-spiegeln-dwds , wdr:src-spiegeln-duden .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS and Duden are dictionary/lexicographic sources -> LexicographicNote.
+wdr:hyp-spiegeln-ftp a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-spiegeln-server ;
+    drift:proposedTrigger wdr:trigger-ftp-mirroring ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.72 ;
+    drift:hasSource wdr:src-spiegeln-dwds , wdr:src-spiegeln-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-spiegeln-dwds a drift:Source ;
+    dct:title "DWDS - spiegeln"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/spiegeln"^^xsd:anyURI .
+
+wdr:src-spiegeln-duden a drift:Source ;
+    dct:title "Duden - spiegeln"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/spiegeln"^^xsd:anyURI .

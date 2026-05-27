@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Spiesser" (de)
+# Pejoration: a "Spiessbuerger" was originally a town militiaman
+# armed with a pike (Spiess); in student slang from the 18th c.
+# the word turned against the townsman, and 19th c. bourgeois
+# critique fixed "Spiesser" as a narrow, philistine conformist.
+# Student culture and 19th c. critique are the trigger.
+# =============================================================
+
+wdr:word-spiesser a drift:Word ;
+    drift:writtenForm "Spiesser"@de ;
+    drift:language "de" ;
+    rdfs:label "Spiesser"@de ;
+    ontolex:sense wdr:sense-spiesser-militiaman , wdr:sense-spiesser-conformist .
+
+wdr:sense-spiesser-militiaman a drift:Sense ;
+    drift:gloss "a townsman serving in the civic militia, armed with a pike; a full citizen of a medieval or early-modern town"@en ;
+    drift:gloss "Buerger im staedtischen Wehraufgebot, mit einem Spiess bewaffnet; Vollbuerger einer Stadt"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1400"^^xsd:gYear .
+
+wdr:sense-spiesser-conformist a drift:Sense ;
+    drift:gloss "a narrow-minded, conventional, philistine person; a smug conformist hostile to anything unfamiliar"@en ;
+    drift:gloss "engstirniger, konventioneller, spiessiger Mensch; selbstzufriedener Konformist, der allem Fremden ablehnend gegenuebersteht"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1840"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1840"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-spiesser-buergerkritik a drift:TriggerEvent ;
+    rdfs:label "Student slang and 19th c. critique of the bourgeoisie"@en ;
+    dct:description "From the 18th c. students used 'Spiessbuerger' to mock the settled townsman as the opposite of the free academic. The 19th c. intellectual and artistic critique of bourgeois conformism fixed the short form 'Spiesser' as a pejorative for the narrow, philistine conformist."@en ;
+    drift:eventDate "1840"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-spiesser-buergerkritik a drift:DriftEvent ;
+    drift:affectsWord wdr:word-spiesser ;
+    drift:senseFrom wdr:sense-spiesser-militiaman ;
+    drift:senseTo wdr:sense-spiesser-conformist ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1750"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-spiesser-dwds , wdr:src-spiesser-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-spiesser-buergerkritik a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-spiesser-buergerkritik ;
+    drift:proposedTrigger wdr:trigger-spiesser-buergerkritik ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-spiesser-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-spiesser-dwds a drift:Source ;
+    dct:title "DWDS -- Spiesser"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Spie%C3%9Fer"^^xsd:anyURI .
+
+wdr:src-spiesser-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Spiessbuerger"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Spie%C3%9Fb%C3%BCrger"^^xsd:anyURI .

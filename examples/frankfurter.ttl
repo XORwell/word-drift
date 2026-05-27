@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "frankfurter" (en)
+# Metonymization: German "Frankfurter (Wurst)", sausage of
+# Frankfurt am Main, gave English "frankfurter" for the smoked
+# sausage / hot dog. The city is the trigger.
+# =============================================================
+
+wdr:word-frankfurter a drift:Word ;
+    drift:writtenForm "frankfurter"@en ;
+    drift:language "en" ;
+    rdfs:label "frankfurter"@en ;
+    ontolex:sense wdr:sense-frankfurter-city , wdr:sense-frankfurter-sausage .
+
+wdr:sense-frankfurter-city a drift:Sense ;
+    drift:gloss "of or from Frankfurt am Main, Germany; German 'Frankfurter (Wurst)', sausage of Frankfurt"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1894"^^xsd:gYear .
+
+wdr:sense-frankfurter-sausage a drift:Sense ;
+    drift:gloss "a smoked beef-and-pork sausage; a hot dog"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1894"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1894"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-frankfurter-frankfurt a drift:TriggerEvent ;
+    rdfs:label "Sausage of Frankfurt am Main"@en ;
+    dct:description "A smoked sausage associated with Frankfurt am Main; German 'Frankfurter Wurst' was adopted in American English as 'frankfurter' (attested 1894), the city name standing for the product."@en ;
+    drift:eventDate "1894"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial ;
+    owl:sameAs wd:Q1794 .
+
+# --- drift event ---
+wdr:drift-frankfurter-frankfurt a drift:DriftEvent ;
+    drift:affectsWord wdr:word-frankfurter ;
+    drift:senseFrom wdr:sense-frankfurter-city ;
+    drift:senseTo wdr:sense-frankfurter-sausage ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1877"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1894"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-frankfurter-etym , wdr:src-frankfurter-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-frankfurter-frankfurt a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-frankfurter-frankfurt ;
+    drift:proposedTrigger wdr:trigger-frankfurter-frankfurt ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-frankfurter-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-frankfurter-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- frankfurter"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/frankfurter"^^xsd:anyURI .
+
+wdr:src-frankfurter-wikt a drift:Source ;
+    dct:title "Wiktionary -- frankfurter"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/frankfurter"^^xsd:anyURI .

@@ -1,0 +1,20 @@
+# CQ12 — Drift events provenanced to at least one source (provenance completeness).
+# Every drift event must cite a source (SHACL drift:hasSource minCount 1). This
+# query surfaces the source title(s) behind each documented shift, the
+# auditable answer to "where does this claim come from?". Distinct source count
+# per drift event lets a reviewer spot single-sourced vs corroborated claims.
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX dct:   <http://purl.org/dc/terms/>
+
+SELECT ?word
+       (COUNT(DISTINCT ?src) AS ?nSources)
+       (GROUP_CONCAT(DISTINCT ?title; SEPARATOR=" | ") AS ?sources)
+WHERE {
+  ?e a drift:DriftEvent ;
+     drift:affectsWord ?w ;
+     drift:hasSource ?src .
+  ?w drift:writtenForm ?word .
+  OPTIONAL { ?src dct:title ?title . }
+}
+GROUP BY ?e ?word
+ORDER BY DESC(?nSources) ?word

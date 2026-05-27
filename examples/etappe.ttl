@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Etappe" (de)
+# Metaphorization/Broadening: borrowed from French "etape" as a
+# military term for the supply zone behind the front and a day's
+# march, it broadens through general military and WWI usage into
+# the everyday sense "stage, phase, leg of a journey". The
+# mass military experience of WWI fixes the general sense.
+# =============================================================
+
+wdr:word-etappe a drift:Word ;
+    drift:writtenForm "Etappe"@de ;
+    drift:language "de" ;
+    rdfs:label "Etappe"@de ;
+    ontolex:sense wdr:sense-etappe-military , wdr:sense-etappe-general .
+
+wdr:sense-etappe-military a drift:Sense ;
+    drift:gloss "the supply and rear zone behind the front; a halting place or a day's march on a military route"@en ;
+    drift:gloss "rueckwaertiges Versorgungsgebiet hinter der Front; Rastort oder Tagesmarsch auf einem Truppenweg"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1800"^^xsd:gYear .
+
+wdr:sense-etappe-general a drift:Sense ;
+    drift:gloss "a stage, phase, or leg; a distinct section of a journey, race, or process"@en ;
+    drift:gloss "Abschnitt, Phase, Teilstrecke eines Weges, Rennens oder Vorgangs"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (diffuse: gradual 19th-century generalisation) ---
+wdr:trigger-etappe-generaluse a drift:TriggerEvent ;
+    rdfs:label "gradual 19th-century generalisation of military 'Etappe'"@en ;
+    dct:description "DWDS records the military supply-zone sense from around 1700 and a generalised 'Tagesmarsch, Streckenabschnitt' (day's march, section of route) and figurative 'Zeit-, Entwicklungsabschnitt' (stage, phase) developing through the 19th century. No single datable event is recorded; the cause is gradual generalisation of the military term into everyday usage."@en ;
+    drift:eventDate "1850"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-etappe-wwi a drift:DriftEvent ;
+    drift:affectsWord wdr:word-etappe ;
+    drift:senseFrom wdr:sense-etappe-military ;
+    drift:senseTo wdr:sense-etappe-general ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-etappe-dwds , wdr:src-etappe-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-etappe-wwi a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-etappe-wwi ;
+    drift:proposedTrigger wdr:trigger-etappe-generaluse ;
+    drift:evidenceType drift:LexicographicNote , drift:Speculative ;
+    drift:confidence 0.5 ;
+    drift:hasSource wdr:src-etappe-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-etappe-dwds a drift:Source ;
+    dct:title "DWDS -- Etappe"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Etappe"^^xsd:anyURI .
+
+wdr:src-etappe-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Etappe"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Etappe"^^xsd:anyURI .

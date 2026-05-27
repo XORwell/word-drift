@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "gruen" (de) -- cross-lingual pair with "green" (green.ttl)
+# Metaphorization:
+#   "die Farbe wachsender Vegetation" ->
+#   "umweltbewusst; zur oekologischen Bewegung gehoerend". The
+#   German ecology movement and the founding of Die Gruenen
+#   (1980) fixed the political/ecological sense, sharing the
+#   same trigger as English "green".
+# =============================================================
+
+wdr:word-gruen a drift:Word ;
+    drift:writtenForm "gruen"@de ;
+    drift:language "de" ;
+    rdfs:label "gruen"@de ;
+    ontolex:sense wdr:sense-gruen-colour , wdr:sense-gruen-eco ;
+    drift:crossLingualOf wdr:word-green .
+
+wdr:sense-gruen-colour a drift:Sense ;
+    drift:gloss "the colour of growing foliage; green"@en ;
+    drift:gloss "die Farbe wachsender Vegetation; gruen"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0800"^^xsd:gYear .
+
+wdr:sense-gruen-eco a drift:Sense ;
+    drift:gloss "environmentally friendly; relating to ecological politics and the Green party"@en ;
+    drift:gloss "umweltbewusst; zur oekologischen Bewegung bzw. zur Partei Die Gruenen gehoerend"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1980"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1980"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+# Shared with green.ttl (en): the same ecology-movement trigger node
+# powers the cross-lingual same-trigger query. Defined fully in green.ttl.
+# (wdr:trigger-ecology-movement, drift:eventDate 1972)
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-gruen-eco a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gruen ;
+    drift:senseFrom wdr:sense-gruen-colour ;
+    drift:senseTo wdr:sense-gruen-eco ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1980"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1995"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-gruen-dwds , wdr:src-gruen-duden .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS and Duden are dictionary/lexicographic sources -> LexicographicNote.
+wdr:hyp-gruen-ecology a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-gruen-eco ;
+    drift:proposedTrigger wdr:trigger-ecology-movement ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.82 ;
+    drift:hasSource wdr:src-gruen-dwds , wdr:src-gruen-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-gruen-dwds a drift:Source ;
+    dct:title "DWDS - gruen"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/gr%C3%BCn"^^xsd:anyURI .
+
+wdr:src-gruen-duden a drift:Source ;
+    dct:title "Duden - gruen"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/gruen"^^xsd:anyURI .

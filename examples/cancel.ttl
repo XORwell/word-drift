@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "cancel" (en)
+# Metaphorization / Broadening: "annul, call off (an event,
+# subscription)" -> "withdraw public and social support from a
+# person, typically a public figure, in response to objectionable
+# behaviour" (to cancel someone). Driven by social-media call-out
+# culture around 2017.
+# =============================================================
+
+wdr:word-cancel a drift:Word ;
+    drift:writtenForm "cancel"@en ;
+    drift:language "en" ;
+    rdfs:label "cancel"@en ;
+    ontolex:sense wdr:sense-cancel-annul , wdr:sense-cancel-social .
+
+wdr:sense-cancel-annul a drift:Sense ;
+    drift:gloss "to call off or annul an event, arrangement, or subscription; to mark with crossed lines"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1400"^^xsd:gYear .
+
+wdr:sense-cancel-social a drift:Sense ;
+    drift:gloss "to withdraw public, social, or commercial support from a person (especially a public figure) over objectionable conduct or speech"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2017"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2017"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-cancel-callout a drift:TriggerEvent ;
+    rdfs:label "Social-media call-out culture and #MeToo (2017)"@en ;
+    dct:description "The 2017 surge of social-media accountability movements, especially #MeToo, popularised 'cancelling' public figures, fixing the new transitive sense of 'to cancel someone'."@en ;
+    drift:eventDate "2017"^^xsd:gYear ;
+    drift:triggerCategory drift:Media .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-cancel-2017 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-cancel ;
+    drift:senseFrom wdr:sense-cancel-annul ;
+    drift:senseTo wdr:sense-cancel-social ;
+    drift:driftType drift:Metaphorization , drift:Broadening ;
+    drift:driftYear "2017"^^xsd:gYear ;
+    drift:hasSource wdr:src-cancel-mw , wdr:src-cancel-wikipedia .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster's account ties the new sense to social-media call-out
+# culture; Wikipedia documents the 2017 timeline. Attributed, not ours.
+wdr:hyp-cancel-callout a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-cancel-2017 ;
+    drift:proposedTrigger wdr:trigger-cancel-callout ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-cancel-mw ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-cancel-mw a drift:Source ;
+    dct:title "Merriam-Webster - cancel culture"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/wordplay/cancel-culture-words-were-watching"^^xsd:anyURI .
+
+wdr:src-cancel-wikipedia a drift:Source ;
+    dct:title "Cancel culture - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Cancel_culture"^^xsd:anyURI .

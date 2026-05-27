@@ -1,0 +1,37 @@
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:trigger-wd-covid-19-pandemic a drift:TriggerEvent ;
+    rdfs:label "COVID-19 pandemic"@en ;
+    owl:sameAs wd:Q81068910 ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic .
+
+wdr:trigger-wd-german-reunification a drift:TriggerEvent ;
+    rdfs:label "German reunification"@en ;
+    owl:sameAs wd:Q56039 ;
+    drift:eventDate "1990"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-wd-querdenken-711-protest-movement a drift:TriggerEvent ;
+    rdfs:label "Querdenken 711 protest movement"@en ;
+    owl:sameAs wd:Q115500066 ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+wdr:trigger-wd-rise-of-funk-music a drift:TriggerEvent ;
+    rdfs:label "Rise of funk music"@en ;
+    owl:sameAs wd:Q164444 ;
+    drift:eventDate "1965"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+wdr:trigger-wd-world-wide-web-invention a drift:TriggerEvent ;
+    rdfs:label "World Wide Web invention"@en ;
+    owl:sameAs wd:Q466 ;
+    drift:eventDate "1989"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+

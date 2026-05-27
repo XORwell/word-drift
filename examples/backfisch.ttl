@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Backfisch" (de)
+# Metaphorization: literally a fish for frying, the word becomes
+# in student slang a playful term for an adolescent girl (roughly
+# 14-17). DWDS attests the figurative sense already in the mid-16th
+# century (studentensprachlich); 19th c. popular literature (the
+# "Backfischroman") later spread it across the German-speaking public.
+# =============================================================
+
+wdr:word-backfisch a drift:Word ;
+    drift:writtenForm "Backfisch"@de ;
+    drift:language "de" ;
+    rdfs:label "Backfisch"@de ;
+    ontolex:sense wdr:sense-backfisch-fish , wdr:sense-backfisch-girl .
+
+wdr:sense-backfisch-fish a drift:Sense ;
+    drift:gloss "a small fish suitable only for frying rather than for the table whole; later, fried fish"@en ;
+    drift:gloss "kleiner Fisch, nur zum Braten geeignet, nicht fuer die ganze Tafel; spaeter gebratener Fisch"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1500"^^xsd:gYear .
+
+wdr:sense-backfisch-girl a drift:Sense ;
+    drift:gloss "an adolescent girl roughly fourteen to seventeen; a teenage girl no longer a child but not yet a woman"@en ;
+    drift:gloss "halbwuechsiges Maedchen etwa zwischen vierzehn und siebzehn; kein Kind mehr, aber noch keine Frau"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1550"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1550"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-backfisch-literatur a drift:TriggerEvent ;
+    rdfs:label "Student slang origin and 19th c. spread via the Backfischroman"@en ;
+    dct:description "DWDS records the figurative sense 'adolescent girl' as student slang from the mid-16th century. The genre of the 'Backfischroman' for young female readers later spread the figurative sense across the German-speaking public in the 19th century."@en ;
+    drift:eventDate "1550"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-backfisch-literatur a drift:DriftEvent ;
+    drift:affectsWord wdr:word-backfisch ;
+    drift:senseFrom wdr:sense-backfisch-fish ;
+    drift:senseTo wdr:sense-backfisch-girl ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1550"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-backfisch-dwds , wdr:src-backfisch-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-backfisch-literatur a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-backfisch-literatur ;
+    drift:proposedTrigger wdr:trigger-backfisch-literatur ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.65 ;
+    drift:hasSource wdr:src-backfisch-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-backfisch-dwds a drift:Source ;
+    dct:title "DWDS -- Backfisch"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Backfisch"^^xsd:anyURI .
+
+wdr:src-backfisch-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Backfisch"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Backfisch"^^xsd:anyURI .

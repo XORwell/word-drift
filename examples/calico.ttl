@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "calico" (en)
+# Metonymization: Calicut (modern Kozhikode) on the Malabar coast
+# of India, the port where Europeans first obtained the cotton
+# cloth, gave its name to "calico". The port is the trigger.
+# =============================================================
+
+wdr:word-calico a drift:Word ;
+    drift:writtenForm "calico"@en ;
+    drift:language "en" ;
+    rdfs:label "calico"@en ;
+    ontolex:sense wdr:sense-calico-calicut , wdr:sense-calico-cloth .
+
+wdr:sense-calico-calicut a drift:Sense ;
+    drift:gloss "of or from Calicut (modern Kozhikode), the Malabar-coast port where Europeans first obtained the cloth"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1530"^^xsd:gYear .
+
+wdr:sense-calico-cloth a drift:Sense ;
+    drift:gloss "a plain cotton cloth (originally white); in American English later a printed cotton fabric"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1530"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1530"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-calico-calicut a drift:TriggerEvent ;
+    rdfs:label "Cloth of Calicut (Kozhikode)"@en ;
+    dct:description "Europeans first obtained the cotton cloth at the Malabar-coast port of Calicut (modern Kozhikode); the place name became the cloth name 'calico', attested in English from the 1530s."@en ;
+    drift:eventDate "1530"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial ;
+    owl:sameAs wd:Q28729 .
+
+# --- drift event ---
+wdr:drift-calico-calicut a drift:DriftEvent ;
+    drift:affectsWord wdr:word-calico ;
+    drift:senseFrom wdr:sense-calico-calicut ;
+    drift:senseTo wdr:sense-calico-cloth ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1530"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-calico-etym , wdr:src-calico-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-calico-calicut a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-calico-calicut ;
+    drift:proposedTrigger wdr:trigger-calico-calicut ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-calico-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-calico-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- calico"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/calico"^^xsd:anyURI .
+
+wdr:src-calico-wikt a drift:Source ;
+    dct:title "Wiktionary -- calico"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/calico"^^xsd:anyURI .

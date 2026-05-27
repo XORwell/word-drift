@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "sadism" (en)
+# Metonymization: the surname Sade (Marquis de Sade, 1740-1815,
+# notorious for the cruelty in his novels) becomes a common term
+# for pleasure taken in cruelty, attested in English by 1888 from
+# French "sadisme". His writings are the identifiable trigger.
+# =============================================================
+
+wdr:word-sadism a drift:Word ;
+    drift:writtenForm "sadism"@en ;
+    drift:language "en" ;
+    rdfs:label "sadism"@en ;
+    ontolex:sense wdr:sense-sadism-name , wdr:sense-sadism-cruelty .
+
+wdr:sense-sadism-name a drift:Sense ;
+    drift:gloss "derived from the surname of the French author Donatien Alphonse Francois, Marquis de Sade"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1740"^^xsd:gYear .
+
+wdr:sense-sadism-cruelty a drift:Sense ;
+    drift:gloss "the deriving of pleasure, especially sexual gratification, from inflicting pain or cruelty on others"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1888"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1888"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-sadism-sade a drift:TriggerEvent ;
+    rdfs:label "The novels of the Marquis de Sade"@en ;
+    dct:description "The Marquis de Sade became notorious for the cruel sexual practices described in his novels. His name was taken into French as 'sadisme' and into English by 1888 as the term for pleasure in cruelty."@en ;
+    drift:eventDate "1791"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q123867 .
+
+# --- drift event ---
+wdr:drift-sadism-sade a drift:DriftEvent ;
+    drift:affectsWord wdr:word-sadism ;
+    drift:senseFrom wdr:sense-sadism-name ;
+    drift:senseTo wdr:sense-sadism-cruelty ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1791"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1888"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-sadism-etym , wdr:src-sadism-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-sadism-sade a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-sadism-sade ;
+    drift:proposedTrigger wdr:trigger-sadism-sade ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-sadism-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-sadism-etym a drift:Source ;
+    dct:title "sadism -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/sadism"^^xsd:anyURI .
+
+wdr:src-sadism-wiki a drift:Source ;
+    dct:title "Marquis de Sade -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Marquis_de_Sade"^^xsd:anyURI .

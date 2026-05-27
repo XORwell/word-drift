@@ -1,0 +1,965 @@
+{
+  "generator": "scripts/fetch-trigger-coords.py",
+  "source": "Wikidata (P625 coordinate location; P19/P159/P740 place fallback)",
+  "qidLinkedTriggers": 156,
+  "withCoordinates": 95,
+  "withoutCoordinates": 61,
+  "coordSourceBreakdown": {
+    "P159": 11,
+    "P19": 57,
+    "P625": 26,
+    "P740": 1
+  },
+  "triggers": [
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-akademie-plato",
+      "label": "Plato founds his school in the grove Akademeia",
+      "qid": "Q859",
+      "lat": 37.984167,
+      "lon": 23.728056,
+      "eventDate": "0387",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-ampere-electrodynamics",
+      "label": "Ampere founds electrodynamics",
+      "qid": "Q675",
+      "lat": 45.7675,
+      "lon": 4.835,
+      "eventDate": "1820",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-angora-city",
+      "label": "Angora (Ancyra / Ankara), Turkey",
+      "qid": "Q3640",
+      "lat": 39.93576,
+      "lon": 32.83869,
+      "eventDate": "1745",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-aspirin-bayer",
+      "label": "Bayer launches Aspirin brand",
+      "qid": "Q152051",
+      "lat": 51.033333,
+      "lon": 6.983333,
+      "eventDate": "1899",
+      "category": "Commercial",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-atlas-mercator",
+      "label": "Mercator's 'Atlas' map collection (1595)",
+      "qid": "Q6353",
+      "lat": 51.126111,
+      "lon": 4.290833,
+      "eventDate": "1595",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-aws-launch",
+      "label": "Amazon Web Services launch and popularisation of cloud computing (2006)",
+      "qid": "Q456157",
+      "lat": 47.605,
+      "lon": -122.33,
+      "eventDate": "2006",
+      "category": "Technology",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-bakelite-baekeland",
+      "label": "Baekeland markets Bakelite resin",
+      "qid": "Q243442",
+      "lat": 51.053611,
+      "lon": 3.725278,
+      "eventDate": "1909",
+      "category": "Commercial",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-becquerel-radioactivity",
+      "label": "Becquerel's discovery of radioactivity",
+      "qid": "Q41269",
+      "lat": 48.856667,
+      "lon": 2.352222,
+      "eventDate": "1896",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-bikini-tests",
+      "label": "Operation Crossroads nuclear tests at Bikini Atoll",
+      "qid": "Q569545",
+      "lat": 11.6,
+      "lon": 165.5,
+      "eventDate": "1946",
+      "category": "Cultural",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-biro-patent",
+      "label": "Laszlo Biro patents the ballpoint pen",
+      "qid": "Q312680",
+      "lat": 47.498333,
+      "lon": 19.040833,
+      "eventDate": "1938",
+      "category": "Commercial",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-blitz-london",
+      "label": "The Blitz: German bombing campaign against Britain",
+      "qid": "Q6900329",
+      "lat": 51.506944,
+      "lon": -0.1275,
+      "eventDate": "1940",
+      "category": "Political",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-bourbon-county",
+      "label": "Bourbon County, Kentucky",
+      "qid": "Q486105",
+      "lat": 38.2,
+      "lon": -84.21,
+      "eventDate": "1840",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-bowdlerize-shakespeare",
+      "label": "Thomas Bowdler's 'Family Shakespeare' (1818)",
+      "qid": "Q1333546",
+      "lat": 51.381389,
+      "lon": -2.359722,
+      "eventDate": "1818",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-boykott-landleague",
+      "label": "Irish Land League ostracism of Captain Boycott",
+      "qid": "Q455534",
+      "lat": 52.6725,
+      "lon": 0.95,
+      "eventDate": "1880",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-braille-system",
+      "label": "Braille devises the raised-dot system",
+      "qid": "Q93182",
+      "lat": 48.891944,
+      "lon": 2.793611,
+      "eventDate": "1824",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-calico-calicut",
+      "label": "Cloth of Calicut (Kozhikode)",
+      "qid": "Q28729",
+      "lat": 11.247778,
+      "lon": 75.780278,
+      "eventDate": "1530",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-canary-islands",
+      "label": "Songbird of the Canary Islands",
+      "qid": "Q5813",
+      "lat": 28.0,
+      "lon": -15.75,
+      "eventDate": "1570",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-cardigan-balaclava",
+      "label": "The Earl of Cardigan at the Charge of the Light Brigade",
+      "qid": "Q335449",
+      "lat": 51.571878,
+      "lon": -0.867897,
+      "eventDate": "1854",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-cassandra-troy",
+      "label": "Cassandra, the unbelieved prophetess of Troy",
+      "qid": "Q170779",
+      "lat": 39.9575,
+      "lon": 26.238889,
+      "eventDate": "1660",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-cellophane-brand",
+      "label": "Cellophane brand film commercialised",
+      "qid": "Q117187",
+      "lat": 47.374444,
+      "lon": 8.541111,
+      "eventDate": "1912",
+      "category": "Commercial",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-celsius-scale",
+      "label": "Celsius proposes the centigrade temperature scale",
+      "qid": "Q81130",
+      "lat": 59.849761,
+      "lon": 17.638947,
+      "eventDate": "1742",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-cologne-eau",
+      "label": "Production of eau de Cologne",
+      "qid": "Q365",
+      "lat": 50.942222,
+      "lon": 6.957778,
+      "eventDate": "1709",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-curie-radioactivity",
+      "label": "The Curies' discovery of radium",
+      "qid": "Q37463",
+      "lat": 48.856667,
+      "lon": 2.352222,
+      "eventDate": "1898",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-currant-corinth",
+      "label": "Corinth raisin trade",
+      "qid": "Q103011",
+      "lat": 37.938611,
+      "lon": 22.927222,
+      "eventDate": "1500",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-dahlia-cavanilles",
+      "label": "Cavanilles names the genus Dahlia for Anders Dahl",
+      "qid": "Q496775",
+      "lat": 58.385726,
+      "lon": 13.648169,
+      "eventDate": "1791",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-dalmatian-region",
+      "label": "The Dalmatia region",
+      "qid": "Q528042",
+      "lat": 43.812761,
+      "lon": 16.218756,
+      "eventDate": "1810",
+      "category": "Cultural",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-damast-damaskus",
+      "label": "Figured cloth from Damascus",
+      "qid": "Q3766",
+      "lat": 33.513056,
+      "lon": 36.291944,
+      "eventDate": "1400",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-denim-nimes",
+      "label": "Textile production at Nimes",
+      "qid": "Q42807",
+      "lat": 43.838333,
+      "lon": 4.359722,
+      "eventDate": "1695",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-diesel-patent",
+      "label": "Rudolf Diesel's engine patent",
+      "qid": "Q12674",
+      "lat": 48.856667,
+      "lon": 2.352222,
+      "eventDate": "1893",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-escalator-otis",
+      "label": "Otis markets the Escalator brand",
+      "qid": "Q1134069",
+      "lat": 41.727778,
+      "lon": -72.840278,
+      "eventDate": "1900",
+      "category": "Commercial",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-fahrenheit-scale",
+      "label": "Fahrenheit invents the mercury thermometer and scale",
+      "qid": "Q57073",
+      "lat": 54.348291,
+      "lon": 18.654023,
+      "eventDate": "1714",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-frankfurter-frankfurt",
+      "label": "Sausage of Frankfurt am Main",
+      "qid": "Q1794",
+      "lat": 50.110556,
+      "lon": 8.682222,
+      "eventDate": "1894",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-fuchsia-plumier",
+      "label": "Plumier names the genus Fuchsia for Leonhart Fuchs",
+      "qid": "Q60756",
+      "lat": 48.866667,
+      "lon": 10.716667,
+      "eventDate": "1703",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-galvanisieren-frogleg",
+      "label": "Galvani's bioelectricity experiments",
+      "qid": "Q1589",
+      "lat": 44.493889,
+      "lon": 11.342778,
+      "eventDate": "1791",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-galvanize-frogleg",
+      "label": "Galvani's bioelectricity experiments",
+      "qid": "Q1589",
+      "lat": 44.493889,
+      "lon": 11.342778,
+      "eventDate": "1791",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-gerrymander-redistricting",
+      "label": "Massachusetts redistricting under Governor Gerry",
+      "qid": "Q1325397",
+      "lat": 44.190833,
+      "lon": -70.7075,
+      "eventDate": "1812",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-gfds-trigger-bundeskanzlerin-2005",
+      "label": "Angela Merkel elected first female German chancellor",
+      "qid": "Q567",
+      "lat": 53.57188,
+      "lon": 9.96623,
+      "eventDate": "2005",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-gfds-trigger-wutburger-2010",
+      "label": "Stuttgart 21 railway protest movement Germany 2010",
+      "qid": "Q574459",
+      "lat": 52.09,
+      "lon": 11.116667,
+      "eventDate": "2010",
+      "category": "Political",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-guillotine-revolution",
+      "label": "Proposal and adoption of the beheading machine in the French Revolution",
+      "qid": "Q220650",
+      "lat": 45.745278,
+      "lon": -0.634444,
+      "eventDate": "1792",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-guy-gunpowder",
+      "label": "The Gunpowder Plot of Guy Fawkes",
+      "qid": "Q13898",
+      "lat": 53.95,
+      "lon": -1.083333,
+      "eventDate": "1605",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-hamburger-hamburg",
+      "label": "Hamburg steak named for the city of Hamburg",
+      "qid": "Q1055",
+      "lat": 53.55,
+      "lon": 10.0,
+      "eventDate": "1880",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-hertz-waves",
+      "label": "Hertz demonstrates electromagnetic waves",
+      "qid": "Q41257",
+      "lat": 53.55,
+      "lon": 10.0,
+      "eventDate": "1888",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-influencer-instagram",
+      "label": "Rise of Instagram and influencer marketing (mid-2010s)",
+      "qid": "Q209330",
+      "lat": 37.775,
+      "lon": -122.419444,
+      "eventDate": "2015",
+      "category": "Commercial",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-jeans-genoa",
+      "label": "Genoese cloth trade",
+      "qid": "Q1449",
+      "lat": 44.407186,
+      "lon": 8.933983,
+      "eventDate": "1567",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-joule-heat",
+      "label": "Joule's work on the mechanical equivalent of heat",
+      "qid": "Q8962",
+      "lat": 53.482778,
+      "lon": -2.293056,
+      "eventDate": "1843",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-kafkaesque-prozess",
+      "label": "Posthumous publication of Kafka's novels ('Der Prozess', 1925)",
+      "qid": "Q905",
+      "lat": 50.0875,
+      "lon": 14.421389,
+      "eventDate": "1925",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-kaiser-augustus",
+      "label": "Establishment of the Roman imperial title under Augustus",
+      "qid": "Q1405",
+      "lat": 41.893056,
+      "lon": 12.482778,
+      "eventDate": "0027",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-kamikaze-leyte",
+      "label": "Japanese kamikaze suicide attacks in the Pacific War",
+      "qid": "Q308999",
+      "lat": 10.37,
+      "lon": 125.355,
+      "eventDate": "1944",
+      "category": "Political",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-kelvin-absolute-scale",
+      "label": "Thomson devises the absolute temperature scale",
+      "qid": "Q122701",
+      "lat": 54.596667,
+      "lon": -5.93,
+      "eventDate": "1848",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-klasse-marx",
+      "label": "1848 socialist movement and Marx's Das Kapital (1867)",
+      "qid": "Q9061",
+      "lat": 49.75565,
+      "lon": 6.63935,
+      "eventDate": "1848",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-kleenex-kc",
+      "label": "Kimberly-Clark launches Kleenex",
+      "qid": "Q1741634",
+      "lat": 32.811667,
+      "lon": -96.950833,
+      "eventDate": "1924",
+      "category": "Commercial",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-labello-de-brand",
+      "label": "Beiersdorf introduces Labello",
+      "qid": "Q201691",
+      "lat": 53.55,
+      "lon": 10.0,
+      "eventDate": "1909",
+      "category": "Commercial",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-leotard-trapeze",
+      "label": "Jules Leotard performs the flying trapeze in a close-fitting garment",
+      "qid": "Q356388",
+      "lat": 43.604444,
+      "lon": 1.443333,
+      "eventDate": "1859",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-lesbian-sappho",
+      "label": "Sappho of Lesbos and her reception",
+      "qid": "Q17892",
+      "lat": 39.21,
+      "lon": 26.28,
+      "eventDate": "1870",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-linoleum-walton",
+      "label": "Walton markets Linoleum floor covering",
+      "qid": "Q907886",
+      "lat": 53.7,
+      "lon": -1.91,
+      "eventDate": "1864",
+      "category": "Commercial",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-luddite-uprising",
+      "label": "Luddite machine-breaking uprisings",
+      "qid": "Q1159675",
+      "lat": 53.0,
+      "lon": -1.122,
+      "eventDate": "1811",
+      "category": "Technology",
+      "coordSource": "P740"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-mach-de-shockwave",
+      "label": "Mach studies supersonic shock waves",
+      "qid": "Q93996",
+      "lat": 49.134167,
+      "lon": 16.652778,
+      "eventDate": "1887",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-machiavellian-principe",
+      "label": "Machiavelli's 'Il Principe' (1532)",
+      "qid": "Q1399",
+      "lat": 43.771389,
+      "lon": 11.254167,
+      "eventDate": "1532",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-magenta-battle",
+      "label": "Battle of Magenta (1859)",
+      "qid": "Q681430",
+      "lat": 45.456111,
+      "lon": 8.801944,
+      "eventDate": "1859",
+      "category": "Political",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-masochism-sacher-masoch",
+      "label": "Sacher-Masoch's novels and Krafft-Ebing's coinage",
+      "qid": "Q78474",
+      "lat": 49.8425,
+      "lon": 24.032222,
+      "eventDate": "1883",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-mauerfall",
+      "label": "Fall of the Berlin Wall (Mauerfall)",
+      "qid": "Q69163529",
+      "lat": 52.518611,
+      "lon": 13.404444,
+      "eventDate": "1989",
+      "category": "Political",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-mausoleum-halicarnassus",
+      "label": "Construction of the tomb of Mausolus at Halicarnassus",
+      "qid": "Q296857",
+      "lat": 37.5,
+      "lon": 28.0,
+      "eventDate": "0353",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-maverick-cattle",
+      "label": "Samuel Maverick's unbranded Texas cattle",
+      "qid": "Q346455",
+      "lat": 34.0,
+      "lon": -81.0,
+      "eventDate": "1867",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-mesmerize-mesmer",
+      "label": "Franz Mesmer's animal magnetism in vogue in Paris",
+      "qid": "Q160202",
+      "lat": 47.7157,
+      "lon": 8.9595,
+      "eventDate": "1784",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-morse-code-telegraph",
+      "label": "Morse and Vail develop the telegraph code",
+      "qid": "Q75698",
+      "lat": 42.375278,
+      "lon": -71.064444,
+      "eventDate": "1838",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-narcissism-coinage",
+      "label": "Coinage of 'Narcissism' as a clinical term",
+      "qid": "Q552983",
+      "lat": 51.3727,
+      "lon": -0.1099,
+      "eventDate": "1899",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-nicotine-tobacco",
+      "label": "Nicot introduces tobacco to the French court",
+      "qid": "Q318368",
+      "lat": 43.838333,
+      "lon": 4.359722,
+      "eventDate": "1560",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-nylon-dupont",
+      "label": "DuPont announces nylon",
+      "qid": "Q221062",
+      "lat": 39.748333,
+      "lon": -75.551389,
+      "eventDate": "1938",
+      "category": "Commercial",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-ohm-de-law",
+      "label": "Ohm publishes Ohm's law",
+      "qid": "Q1585",
+      "lat": 49.5925,
+      "lon": 11.005,
+      "eventDate": "1827",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-ohm-law",
+      "label": "Ohm publishes Ohm's law",
+      "qid": "Q1585",
+      "lat": 49.5925,
+      "lon": 11.005,
+      "eventDate": "1827",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-paisley-town",
+      "label": "Shawl production at Paisley, Scotland",
+      "qid": "Q211870",
+      "lat": 55.845556,
+      "lon": -4.423889,
+      "eventDate": "1834",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-pascal-unit-pressure",
+      "label": "Pascal's work on hydrostatics and pressure",
+      "qid": "Q1290",
+      "lat": 45.77841,
+      "lon": 3.08526,
+      "eventDate": "1648",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-pasteurize-heat",
+      "label": "Pasteur develops controlled heat treatment of liquids",
+      "qid": "Q529",
+      "lat": 47.092222,
+      "lon": 5.489722,
+      "eventDate": "1864",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-philippic-demosthenes",
+      "label": "Demosthenes' Philippics against Philip II (from 351 BC)",
+      "qid": "Q117253",
+      "lat": 37.974635,
+      "lon": 23.844008,
+      "eventDate": "0351",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-quisling-invasion",
+      "label": "German invasion of Norway and Quisling's coup attempt",
+      "qid": "Q151364",
+      "lat": 59.165833,
+      "lon": 8.019722,
+      "eventDate": "1940",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-roentgen-discovery",
+      "label": "Roentgen's discovery of X-rays at Wuerzburg",
+      "qid": "Q35149",
+      "lat": 51.192592,
+      "lon": 7.257092,
+      "eventDate": "1895",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-rugby-school",
+      "label": "Handling code at Rugby School",
+      "qid": "Q1143281",
+      "lat": 52.36797,
+      "lon": -1.26004,
+      "eventDate": "1823",
+      "category": "Cultural",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-sardonic-sardinia",
+      "label": "Belief in a Sardinian plant causing a fatal grin",
+      "qid": "Q1462",
+      "lat": 40.0,
+      "lon": 9.0,
+      "eventDate": "1630",
+      "category": "Cultural",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-saxophone-patent",
+      "label": "Sax patents the saxophone",
+      "qid": "Q181995",
+      "lat": 50.256389,
+      "lon": 4.913611,
+      "eventDate": "1846",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-sherry-jerez",
+      "label": "Wine of Xeres (Jerez de la Frontera)",
+      "qid": "Q12303",
+      "lat": 36.7,
+      "lon": -6.116667,
+      "eventDate": "1600",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-shrapnel-shell",
+      "label": "Shrapnel develops the bursting case shot",
+      "qid": "Q941215",
+      "lat": 51.3469,
+      "lon": -2.251,
+      "eventDate": "1784",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-silhouette-minister",
+      "label": "Tenure of Etienne de Silhouette as controller-general of finances",
+      "qid": "Q290240",
+      "lat": 45.834444,
+      "lon": 1.261667,
+      "eventDate": "1759",
+      "category": "Cultural",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-spa-town",
+      "label": "Fame of Spa's mineral springs",
+      "qid": "Q39865",
+      "lat": 50.492277,
+      "lon": 5.862211,
+      "eventDate": "1620",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-stonewall",
+      "label": "Stonewall Riots and gay liberation movement",
+      "qid": "Q51402",
+      "lat": 40.7338,
+      "lon": -74.0021,
+      "eventDate": "1969",
+      "category": "Political",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-streaming-services",
+      "label": "rise of broadband streaming media services",
+      "qid": "Q866",
+      "lat": 37.625,
+      "lon": -122.415,
+      "eventDate": "2005",
+      "category": "Technology",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-suede-sweden",
+      "label": "Gloves of Sweden (gants de Suede)",
+      "qid": "Q34",
+      "lat": 61.0,
+      "lon": 15.0,
+      "eventDate": "1884",
+      "category": "Commercial",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-tesla-electromagnetism",
+      "label": "Tesla's work on electromagnetism and alternating current",
+      "qid": "Q9036",
+      "lat": 44.5643,
+      "lon": 15.3181,
+      "eventDate": "1888",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-tuxedo-park",
+      "label": "Dinner jacket worn at Tuxedo Park",
+      "qid": "Q3273900",
+      "lat": 41.2014,
+      "lon": -74.2017,
+      "eventDate": "1886",
+      "category": "Cultural",
+      "coordSource": "P625"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-twitter-launch",
+      "label": "Launch of Twitter social media platform (2006)",
+      "qid": "Q918",
+      "lat": 30.111944,
+      "lon": -97.316944,
+      "eventDate": "2006",
+      "category": "Technology",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-uhu-de-brand",
+      "label": "Fischer markets Uhu adhesive",
+      "qid": "Q63281550",
+      "lat": 48.695278,
+      "lon": 8.135,
+      "eventDate": "1932",
+      "category": "Commercial",
+      "coordSource": "P159"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-vandalismus-gregoire",
+      "label": "Henri Gregoire coins 'vandalisme' during the French Revolution",
+      "qid": "Q561218",
+      "lat": 48.596667,
+      "lon": 6.710833,
+      "eventDate": "1794",
+      "category": "Political",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-volt-pile",
+      "label": "Volta invents the voltaic pile",
+      "qid": "Q680",
+      "lat": 45.81025,
+      "lon": 9.086139,
+      "eventDate": "1800",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-watt-engine",
+      "label": "Watt's improved steam engine",
+      "qid": "Q9041",
+      "lat": 55.95,
+      "lon": -4.766667,
+      "eventDate": "1776",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-zeppelin-lz1",
+      "label": "First flight of the airship LZ 1 over Lake Constance",
+      "qid": "Q75780",
+      "lat": 47.663333,
+      "lon": 9.175278,
+      "eventDate": "1900",
+      "category": "Technology",
+      "coordSource": "P19"
+    },
+    {
+      "triggerId": "https://w3id.org/word-drift/resource/trigger-zipper-goodrich",
+      "label": "B.F. Goodrich markets the Zipper boot",
+      "qid": "Q1537591",
+      "lat": 35.226944,
+      "lon": -80.843333,
+      "eventDate": "1923",
+      "category": "Commercial",
+      "coordSource": "P159"
+    }
+  ]
+}

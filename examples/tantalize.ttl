@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "tantalize" (en)
+# Metaphorization: the myth of Tantalus, punished with food and
+# water forever out of reach -> to tease by holding something
+# desirable just beyond grasp. The myth is the identifiable trigger.
+# =============================================================
+
+wdr:word-tantalize a drift:Word ;
+    drift:writtenForm "tantalize"@en ;
+    drift:language "en" ;
+    rdfs:label "tantalize"@en ;
+    ontolex:sense wdr:sense-tantalize-myth , wdr:sense-tantalize-tease .
+
+wdr:sense-tantalize-myth a drift:Sense ;
+    drift:gloss "to subject to the punishment of Tantalus, who in Greek myth stood in water and beneath fruit that withdrew whenever he reached for them"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1590"^^xsd:gYear .
+
+wdr:sense-tantalize-tease a drift:Sense ;
+    drift:gloss "to tease or torment by presenting something desirable while keeping it out of reach; to excite a hope that cannot be satisfied"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1597"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1597"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-tantalize-tantalus a drift:TriggerEvent ;
+    rdfs:label "Greek myth of Tantalus"@en ;
+    dct:description "In Greek myth Tantalus was condemned in the underworld to stand in a pool beneath fruit-laden boughs, both of which drew away whenever he reached to drink or eat. The verb 'tantalize' was coined in late sixteenth-century English directly from his name to mean teasing with the unattainable."@en ;
+    drift:eventDate "1590"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-tantalize-tantalus a drift:DriftEvent ;
+    drift:affectsWord wdr:word-tantalize ;
+    drift:senseFrom wdr:sense-tantalize-myth ;
+    drift:senseTo wdr:sense-tantalize-tease ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1590"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-tantalize-etym , wdr:src-tantalize-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-tantalize-tantalus a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-tantalize-tantalus ;
+    drift:proposedTrigger wdr:trigger-tantalize-tantalus ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-tantalize-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-tantalize-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- tantalize"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/tantalize"^^xsd:anyURI .
+
+wdr:src-tantalize-wiki a drift:Source ;
+    dct:title "Tantalus -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Tantalus"^^xsd:anyURI .

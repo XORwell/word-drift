@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "shrapnel" (en)
+# Metonymization plus Broadening: the surname Shrapnel (Henry
+# Shrapnel, who developed the bursting case shot from 1784,
+# adopted by the British Army in 1803) becomes the everyday word
+# for shell fragments and any flying debris. His shell is the
+# identifiable trigger.
+# =============================================================
+
+wdr:word-shrapnel a drift:Word ;
+    drift:writtenForm "shrapnel"@en ;
+    drift:language "en" ;
+    rdfs:label "shrapnel"@en ;
+    ontolex:sense wdr:sense-shrapnel-shell , wdr:sense-shrapnel-fragments .
+
+wdr:sense-shrapnel-shell a drift:Sense ;
+    drift:gloss "the spherical case shot named after its inventor Henry Shrapnel: a shell packed with bullets that bursts in mid-air"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1806"^^xsd:gYear .
+
+wdr:sense-shrapnel-fragments a drift:Sense ;
+    drift:gloss "fragments thrown out by any exploding shell, bomb, or device; loosely, any small flying debris from an explosion"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1940"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1940"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-shrapnel-shell a drift:TriggerEvent ;
+    rdfs:label "Shrapnel develops the bursting case shot"@en ;
+    dct:description "From 1784 Henry Shrapnel developed a shell filled with shot that burst in flight; the British Army adopted it in 1803 and it carried his name. By the 1940s (the Blitz) the word had broadened to mean shell fragments in general (a use lexicographers note as strictly erroneous)."@en ;
+    drift:eventDate "1784"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-shrapnel-shell a drift:DriftEvent ;
+    drift:affectsWord wdr:word-shrapnel ;
+    drift:senseFrom wdr:sense-shrapnel-shell ;
+    drift:senseTo wdr:sense-shrapnel-fragments ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1806"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1945"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-shrapnel-etym , wdr:src-shrapnel-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-shrapnel-shell a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-shrapnel-shell ;
+    drift:proposedTrigger wdr:trigger-shrapnel-shell ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-shrapnel-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-shrapnel-etym a drift:Source ;
+    dct:title "shrapnel -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/shrapnel"^^xsd:anyURI .
+
+wdr:src-shrapnel-wiki a drift:Source ;
+    dct:title "Henry Shrapnel -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Henry_Shrapnel"^^xsd:anyURI .

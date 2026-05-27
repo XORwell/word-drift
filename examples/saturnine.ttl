@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "saturnine" (en)
+# Metaphorization: from the Roman god and planet Saturn, in
+# astrology the coldest and slowest planet. "Born under Saturn"
+# yielded an adjective for a gloomy, morose, sluggish temper.
+# =============================================================
+
+wdr:word-saturnine a drift:Word ;
+    drift:writtenForm "saturnine"@en ;
+    drift:language "en" ;
+    rdfs:label "saturnine"@en ;
+    ontolex:sense wdr:sense-saturnine-planet , wdr:sense-saturnine-gloomy .
+
+wdr:sense-saturnine-planet a drift:Sense ;
+    drift:gloss "born under or governed by the planet Saturn"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1450"^^xsd:gYear .
+
+wdr:sense-saturnine-gloomy a drift:Sense ;
+    drift:gloss "gloomy, morose, sluggish, grave; of a cold and saturnine temperament not readily made cheerful"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1450"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1450"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-saturnine-saturn a drift:TriggerEvent ;
+    rdfs:label "Astrological temperament of those born under Saturn"@en ;
+    dct:description "In medieval astrology Saturn was the most remote, coldest, and slowest of the known planets, and those born under it were held to be gloomy, grave, and sluggish. The planetary adjective (mid-15c.) carried this morose sense from the outset."@en ;
+    drift:eventDate "1450"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-saturnine-saturn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-saturnine ;
+    drift:senseFrom wdr:sense-saturnine-planet ;
+    drift:senseTo wdr:sense-saturnine-gloomy ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-saturnine-etym , wdr:src-saturnine-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-saturnine-saturn a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-saturnine-saturn ;
+    drift:proposedTrigger wdr:trigger-saturnine-saturn ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-saturnine-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-saturnine-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- saturnine"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/saturnine"^^xsd:anyURI .
+
+wdr:src-saturnine-wikt a drift:Source ;
+    dct:title "Wiktionary -- saturnine"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/saturnine"^^xsd:anyURI .

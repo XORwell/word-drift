@@ -1,0 +1,96 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "alternativlos" (de)
+# Pejoration: neutral bureaucratic adjective "having no alternative"
+# -> rhetorical weapon that dismisses debate; Unwort 2010.
+# Sharp datable trigger: Angela Merkel's repeated use in 2009/2010
+# to justify the Euro bailout and other contested decisions.
+# =============================================================
+
+wdr:word-alternativlos a drift:Word ;
+    drift:writtenForm "alternativlos"@de ;
+    drift:language "de" ;
+    rdfs:label "alternativlos"@de ;
+    ontolex:sense wdr:sense-alternativlos-neutral , wdr:sense-alternativlos-pejorative .
+
+wdr:sense-alternativlos-neutral a drift:Sense ;
+    drift:gloss "having no alternative; describing a situation where no other course of action is available"@en ;
+    drift:gloss "ohne Alternative; keine andere Moeglichkeit bietend"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear .
+
+wdr:sense-alternativlos-pejorative a drift:Sense ;
+    drift:gloss "a political rhetoric device that falsely frames a debatable decision as the only possible option, suppressing discussion; widely mocked and criticised"@en ;
+    drift:gloss "politisches Schlagwort: fingiertes Sachzwang-Argument, das Alternativen leugnet und Diskussionen unterbindet"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2010"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2010"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-alternativlos-merkel a drift:TriggerEvent ;
+    rdfs:label "Angela Merkel's repeated use of 'alternativlos' 2009-2010"@en ;
+    dct:description "Chancellor Merkel systematically used 'alternativlos' to justify the Euro rescue package, health reform, and Stuttgart 21, prompting the Gesellschaft fuer deutsche Sprache to name it Unwort des Jahres 2010."@en ;
+    drift:eventDate "2010"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-alternativlos-2010 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-alternativlos ;
+    drift:senseFrom wdr:sense-alternativlos-neutral ;
+    drift:senseTo wdr:sense-alternativlos-pejorative ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2010"^^xsd:gYear ;
+    drift:hasSource wdr:src-alternativlos-wiki , wdr:src-alternativlos-taz .
+
+# --- causal hypothesis ---
+wdr:hyp-alternativlos-merkel a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-alternativlos-2010 ;
+    drift:proposedTrigger wdr:trigger-alternativlos-merkel ;
+    drift:evidenceType drift:LexicographicNote , drift:FrequencyCorrelation ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-alternativlos-wiki ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations ---
+wdr:freq-alternativlos-2009 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-alternativlos ;
+    drift:observedYear "2009"^^xsd:gYear ;
+    drift:relativeFrequency 0.3 ;
+    drift:fromCorpus wdr:corpus-dwds .
+
+wdr:freq-alternativlos-2010 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-alternativlos ;
+    drift:observedYear "2010"^^xsd:gYear ;
+    drift:relativeFrequency 2.8 ;
+    drift:fromCorpus wdr:corpus-dwds .
+
+wdr:corpus-dwds a drift:Corpus ;
+    dct:title "DWDS Wortverlaufskurve (BBAW)"@de ;
+    drift:sourceURL "https://www.dwds.de/r/plot"^^xsd:anyURI .
+
+# --- sources ---
+wdr:src-alternativlos-wiki a drift:Source ;
+    dct:title "Alternativlos -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Alternativlos"^^xsd:anyURI .
+
+wdr:src-alternativlos-taz a drift:Source ;
+    dct:title "taz -- Unwort des Jahres 2010: Kaum Alternativen zu alternativlos"@de ;
+    drift:sourceURL "https://taz.de/Unwort-des-Jahres-2010/!5128500/"^^xsd:anyURI .

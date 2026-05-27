@@ -1,0 +1,265 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:drift-semeval-attack a drift:DriftEvent ;
+    drift:affectsWord wdr:word-semeval-attack ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1917"^^xsd:gYear ;
+    drift:gradedChange 0.82 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:senseFrom wdr:sense-semeval-attack-t1 ;
+    drift:senseTo wdr:sense-semeval-attack-t2 .
+
+wdr:drift-semeval-ball a drift:DriftEvent ;
+    drift:affectsWord wdr:word-semeval-ball ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1917"^^xsd:gYear ;
+    drift:gradedChange 0.67 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:senseFrom wdr:sense-semeval-ball-t1 ;
+    drift:senseTo wdr:sense-semeval-ball-t2 .
+
+wdr:drift-semeval-bit a drift:DriftEvent ;
+    drift:affectsWord wdr:word-semeval-bit ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1917"^^xsd:gYear ;
+    drift:gradedChange 0.55 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:senseFrom wdr:sense-semeval-bit-t1 ;
+    drift:senseTo wdr:sense-semeval-bit-t2 .
+
+wdr:drift-semeval-circle a drift:DriftEvent ;
+    drift:affectsWord wdr:word-semeval-circle ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1917"^^xsd:gYear ;
+    drift:gradedChange 0.71 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:senseFrom wdr:sense-semeval-circle-t1 ;
+    drift:senseTo wdr:sense-semeval-circle-t2 .
+
+wdr:drift-semeval-edge a drift:DriftEvent ;
+    drift:affectsWord wdr:word-semeval-edge ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1917"^^xsd:gYear ;
+    drift:gradedChange 0.59 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:senseFrom wdr:sense-semeval-edge-t1 ;
+    drift:senseTo wdr:sense-semeval-edge-t2 .
+
+wdr:drift-semeval-face a drift:DriftEvent ;
+    drift:affectsWord wdr:word-semeval-face ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "1917"^^xsd:gYear ;
+    drift:gradedChange 0.64 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:senseFrom wdr:sense-semeval-face-t1 ;
+    drift:senseTo wdr:sense-semeval-face-t2 .
+
+wdr:word-semeval-bag a drift:Word ;
+    rdfs:label "bag"@en ;
+    ontolex:sense wdr:sense-semeval-bag-t1,
+        wdr:sense-semeval-bag-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "bag"@en .
+
+wdr:word-semeval-chairman a drift:Word ;
+    rdfs:label "chairman"@en ;
+    ontolex:sense wdr:sense-semeval-chairman-t1,
+        wdr:sense-semeval-chairman-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "chairman"@en .
+
+wdr:word-semeval-contemplation a drift:Word ;
+    rdfs:label "contemplation"@en ;
+    ontolex:sense wdr:sense-semeval-contemplation-t1,
+        wdr:sense-semeval-contemplation-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "contemplation"@en .
+
+wdr:word-semeval-donkey a drift:Word ;
+    rdfs:label "donkey"@en ;
+    ontolex:sense wdr:sense-semeval-donkey-t1,
+        wdr:sense-semeval-donkey-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "donkey"@en .
+
+wdr:sense-semeval-bag-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'bag' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-bag-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'bag' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-chairman-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'chairman' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-chairman-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'chairman' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-contemplation-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'contemplation' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-contemplation-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'contemplation' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-donkey-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'donkey' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-donkey-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'donkey' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:word-semeval-attack a drift:Word ;
+    rdfs:label "attack"@en ;
+    ontolex:sense wdr:sense-semeval-attack-t1,
+        wdr:sense-semeval-attack-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "attack"@en .
+
+wdr:word-semeval-ball a drift:Word ;
+    rdfs:label "ball"@en ;
+    ontolex:sense wdr:sense-semeval-ball-t1,
+        wdr:sense-semeval-ball-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "ball"@en .
+
+wdr:word-semeval-bit a drift:Word ;
+    rdfs:label "bit"@en ;
+    ontolex:sense wdr:sense-semeval-bit-t1,
+        wdr:sense-semeval-bit-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "bit"@en .
+
+wdr:word-semeval-circle a drift:Word ;
+    rdfs:label "circle"@en ;
+    ontolex:sense wdr:sense-semeval-circle-t1,
+        wdr:sense-semeval-circle-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "circle"@en .
+
+wdr:word-semeval-edge a drift:Word ;
+    rdfs:label "edge"@en ;
+    ontolex:sense wdr:sense-semeval-edge-t1,
+        wdr:sense-semeval-edge-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "edge"@en .
+
+wdr:word-semeval-face a drift:Word ;
+    rdfs:label "face"@en ;
+    ontolex:sense wdr:sense-semeval-face-t1,
+        wdr:sense-semeval-face-t2 ;
+    drift:hasSource wdr:corpus-semeval2020-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "face"@en .
+
+wdr:sense-semeval-attack-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'attack' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-attack-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'attack' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-ball-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'ball' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-ball-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'ball' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-bit-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'bit' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-bit-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'bit' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-circle-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'circle' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-circle-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'circle' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-edge-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'edge' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-edge-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'edge' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-face-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'face' in SemEval-2020 period T1 (~1810-1860)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:sense-semeval-face-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Dominant sense of 'face' in SemEval-2020 period T2 (~1960-2010)"@en ;
+    drift:hasSource wdr:corpus-semeval2020-en .
+
+wdr:corpus-semeval2020-en a drift:Corpus ;
+    dct:title "SemEval-2020 Task 1 (English)"@en ;
+    drift:sourceURL "https://zenodo.org/records/3931969"^^xsd:anyURI .
+

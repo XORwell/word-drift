@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "sandwich" (en)
+# Metonymization: eponym from John Montagu, 4th Earl of
+# Sandwich (circa 1762). The title (a place name) was applied
+# to the food he popularised. The Earl is the identifiable
+# origin of the food sense.
+# =============================================================
+
+wdr:word-sandwich a drift:Word ;
+    drift:writtenForm "sandwich"@en ;
+    drift:language "en" ;
+    rdfs:label "sandwich"@en ;
+    ontolex:sense wdr:sense-sandwich-earl , wdr:sense-sandwich-food .
+
+wdr:sense-sandwich-earl a drift:Sense ;
+    drift:gloss "the title of John Montagu, 4th Earl of Sandwich, an English nobleman"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1660"^^xsd:gYear .
+
+wdr:sense-sandwich-food a drift:Sense ;
+    drift:gloss "two or more slices of bread with a filling between them, eaten as a light meal"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1762"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1762"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-sandwich-earl a drift:TriggerEvent ;
+    rdfs:label "John Montagu, 4th Earl of Sandwich, popularises bread-and-filling meals"@en ;
+    dct:description "Around 1762 John Montagu, 4th Earl of Sandwich, was reported to order meat served between bread so he could eat without leaving the gaming table. His title became attached to the food, producing the modern food sense via metonymy."@en ;
+    drift:eventDate "1762"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-sandwich-earl a drift:DriftEvent ;
+    drift:affectsWord wdr:word-sandwich ;
+    drift:senseFrom wdr:sense-sandwich-earl ;
+    drift:senseTo wdr:sense-sandwich-food ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1762"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1780"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-sandwich-etym , wdr:src-sandwich-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-sandwich-earl a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-sandwich-earl ;
+    drift:proposedTrigger wdr:trigger-sandwich-earl ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-sandwich-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-sandwich-etym a drift:Source ;
+    dct:title "etymonline -- sandwich"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/sandwich"^^xsd:anyURI .
+
+wdr:src-sandwich-wiki a drift:Source ;
+    dct:title "John Montagu, 4th Earl of Sandwich -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/John_Montagu,_4th_Earl_of_Sandwich"^^xsd:anyURI .

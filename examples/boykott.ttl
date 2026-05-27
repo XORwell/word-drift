@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Boykott" (de)
+# Metonymization: proper name of land agent Charles C. Boycott
+# (a person) -> generic noun for organized collective ostracism.
+# The 1880 Irish Land League action is the identifiable trigger.
+# =============================================================
+
+wdr:word-boykott a drift:Word ;
+    drift:writtenForm "Boykott"@de ;
+    drift:language "de" ;
+    rdfs:label "Boykott"@de ;
+    ontolex:sense wdr:sense-boykott-name , wdr:sense-boykott-generic .
+
+wdr:sense-boykott-name a drift:Sense ;
+    drift:gloss "proper name of Captain Charles C. Boycott (1832-1897), English land agent in County Mayo"@en ;
+    drift:gloss "Eigenname des englischen Gutsverwalters Charles C. Boycott (1832-1897) in der irischen Grafschaft Mayo"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1832"^^xsd:gYear .
+
+wdr:sense-boykott-generic a drift:Sense ;
+    drift:gloss "organized refusal to deal with a person, business, or country as a means of coercion or protest"@en ;
+    drift:gloss "organisierte Verweigerung des Verkehrs mit einer Person, Firma oder einem Land als Druck- oder Protestmittel"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1880"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1880"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-boykott-landleague a drift:TriggerEvent ;
+    rdfs:label "Irish Land League ostracism of Captain Boycott"@en ;
+    dct:description "In 1880 the Irish Land League organized a campaign of social and economic isolation against land agent Charles Boycott after he refused to lower rents. The action drew international press coverage and his surname became the common term for the tactic."@en ;
+    drift:eventDate "1880"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-boykott-landleague a drift:DriftEvent ;
+    drift:affectsWord wdr:word-boykott ;
+    drift:senseFrom wdr:sense-boykott-name ;
+    drift:senseTo wdr:sense-boykott-generic ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1880"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1890"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-boykott-dwds , wdr:src-boykott-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-boykott-landleague a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-boykott-landleague ;
+    drift:proposedTrigger wdr:trigger-boykott-landleague ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-boykott-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-boykott-dwds a drift:Source ;
+    dct:title "DWDS -- Boykott"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Boykott"^^xsd:anyURI .
+
+wdr:src-boykott-wiki a drift:Source ;
+    dct:title "Boykott -- Wikipedia"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Boykott"^^xsd:anyURI .

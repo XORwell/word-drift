@@ -1,0 +1,95 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "bit" (en) -- SemEval-2020 Task 1 English target word.
+# Broadening: the "a small piece / amount" sense gains a precise
+# computing sense, "binary digit", the smallest unit of digital
+# information. Unlike the other SemEval EN targets in this batch,
+# 'bit' HAS a datable trigger: the term "bit" (a contraction of
+# "binary digit") was coined by John W. Tukey and used in print in
+# Claude Shannon's 1948 information-theory paper.
+# DETECTION-BENCHMARK WORD (ADR 0004): SemEval attests the change
+# empirically (graded change 0.55, binary-changed gold label). The
+# computing sense is also lexicographically attested, so this
+# hypothesis carries a genuine trigger and BOTH ChangeSignalAlignment
+# and LexicographicNote. Confidence stays modest (0.65): SemEval
+# alone detects, it does not isolate the cause; the lexicographic
+# note supplies the genuine but still-attributed causal link.
+# =============================================================
+
+wdr:word-bit a drift:Word ;
+    drift:writtenForm "bit"@en ;
+    drift:language "en" ;
+    rdfs:label "bit"@en ;
+    ontolex:sense wdr:sense-bit-piece , wdr:sense-bit-binarydigit .
+
+wdr:sense-bit-piece a drift:Sense ;
+    drift:gloss "a small piece, portion or quantity of something; a short while"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-bit-binarydigit a drift:Sense ;
+    drift:gloss "in computing, a binary digit; the smallest unit of information, taking the value 0 or 1"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1948"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1948"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (genuine, datable) ---
+wdr:trigger-bit-binarydigit a drift:TriggerEvent ;
+    rdfs:label "coining of 'bit' (binary digit) and the rise of digital computing"@en ;
+    dct:description "The term 'bit', a contraction of 'binary digit' attributed to John W. Tukey, appeared in print in Claude Shannon's 1948 paper 'A Mathematical Theory of Communication'. The subsequent spread of digital computing established the computing sense, broadening the word from 'a small piece' into a technical unit of information."@en ;
+    drift:eventDate "1948"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-bit-binarydigit a drift:DriftEvent ;
+    drift:affectsWord wdr:word-bit ;
+    drift:senseFrom wdr:sense-bit-piece ;
+    drift:senseTo wdr:sense-bit-binarydigit ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1948"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1990"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-bit-etymonline .
+
+# --- causal hypothesis ---
+# Genuine trigger: the computing sense is lexicographically
+# attested (LexicographicNote) AND the SemEval graded change 0.55
+# gives a reproducible detection signal aligned with the T2 period
+# (ChangeSignalAlignment). Confidence held modest (0.65): the
+# change signal detects but does not isolate the cause.
+wdr:hyp-bit-binarydigit a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-bit-binarydigit ;
+    drift:proposedTrigger wdr:trigger-bit-binarydigit ;
+    drift:evidenceType drift:ChangeSignalAlignment , drift:LexicographicNote ;
+    drift:confidence 0.65 ;
+    drift:hasSource wdr:src-bit-semeval , wdr:src-bit-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-bit-semeval a drift:Source ;
+    dct:title "SemEval-2020 Task 1 (English) -- graded change 0.55 for 'bit'"@en ;
+    drift:sourceURL "https://zenodo.org/records/3931969"^^xsd:anyURI ;
+    rdfs:comment "Graded-change gold score 0.55 (binary label: changed) for 'bit'. In-repo as wdr:drift-semeval-bit (data/semeval.ttl). Used as ChangeSignalAlignment evidence; the score attests the change, not its cause."@en .
+
+wdr:src-bit-etymonline a drift:Source ;
+    dct:title "bit (n.2) -- Online Etymology Dictionary (computing sense, coined 1948)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/bit"^^xsd:anyURI .

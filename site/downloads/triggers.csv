@@ -1,0 +1,682 @@
+trigger_id,label,event_date,category,wikidata_qid
+trigger-akademie-plato,Plato founds his school in the grove Akademeia,0387,Cultural,Q859
+trigger-alternativlos-merkel,Angela Merkel's repeated use of 'alternativlos' 2009-2010,2010,Political,
+trigger-ampere-electrodynamics,Ampere founds electrodynamics,1820,Technology,Q675
+trigger-angora-city,"Angora (Ancyra / Ankara), Turkey",1745,Commercial,Q3640
+trigger-apple-macintosh,Apple Macintosh launch and personal computing revolution,1984,Technology,Q1137478
+trigger-arbeit-protestant,Protestant Reformation and the valorisation of secular vocation (Beruf),1530,Cultural,Q12562
+trigger-aspirin-bayer,Bayer launches Aspirin brand,1899,Commercial,Q152051
+trigger-assassin-crusades,Crusader contact with the Nizari Ismailis,1192,Political,
+trigger-atlas-mercator,Mercator's 'Atlas' map collection (1595),1595,Cultural,Q6353
+trigger-attack-polysemy,gradual polysemous extension of 'attack' across the 20th century,1950,Cultural,
+trigger-aws-launch,Amazon Web Services launch and popularisation of cloud computing (2006),2006,Technology,Q456157
+trigger-backfisch-literatur,Student slang origin and 19th c. spread via the Backfischroman,1550,Cultural,
+trigger-bakelite-baekeland,Baekeland markets Bakelite resin,1909,Commercial,Q243442
+trigger-ball-polysemy,gradual polysemous extension of 'ball' across the 20th century,1950,Cultural,
+trigger-banause-bildung,"Neo-humanist cult of Bildung, late 18th to 19th century",1800,Cultural,
+trigger-based-lilb,Lil B's reappropriation of 'based' (c. 2010),2010,Media,
+trigger-becquerel-radioactivity,Becquerel's discovery of radioactivity,1896,Technology,Q41269
+trigger-bikini-tests,Operation Crossroads nuclear tests at Bikini Atoll,1946,Cultural,Q569545
+trigger-billig-price,Pejoration ueber die Preisbedeutung,1850,Commercial,
+trigger-biro-patent,Laszlo Biro patents the ballpoint pen,1938,Commercial,Q312680
+trigger-bit-binarydigit,coining of 'bit' (binary digit) and the rise of digital computing,1948,Technology,
+trigger-blitz-london,The Blitz: German bombing campaign against Britain,1940,Political,Q6900329
+trigger-blm-movement,Black Lives Matter movement,2013,Political,Q19600530
+trigger-bourbon-county,"Bourbon County, Kentucky",1840,Commercial,Q486105
+trigger-bowdlerize-shakespeare,Thomas Bowdler's 'Family Shakespeare' (1818),1818,Cultural,Q1333546
+trigger-boykott-landleague,Irish Land League ostracism of Captain Boycott,1880,Political,Q455534
+trigger-braille-system,Braille devises the raised-dot system,1824,Technology,Q93182
+trigger-brutal-intensifier,Colloquial bleaching of a cruelty word into an intensifier,1970,Cultural,
+trigger-calico-calicut,Cloth of Calicut (Kozhikode),1530,Commercial,Q28729
+trigger-canary-islands,Songbird of the Canary Islands,1570,Commercial,Q5813
+trigger-cancel-callout,Social-media call-out culture and #MeToo (2017),2017,Media,
+trigger-cardigan-balaclava,The Earl of Cardigan at the Charge of the Light Brigade,1854,Cultural,Q335449
+trigger-cassandra-troy,"Cassandra, the unbelieved prophetess of Troy",1660,Cultural,Q170779
+trigger-cellophane-brand,Cellophane brand film commercialised,1912,Commercial,Q117187
+trigger-celsius-scale,Celsius proposes the centigrade temperature scale,1742,Technology,Q81130
+trigger-champagne-region,Wine production in the Champagne province of France,1660,Commercial,
+trigger-chauvinismus-play,Cogniard brothers' play 'La cocarde tricolore' (1831),1831,Cultural,Q1798716
+trigger-circle-polysemy,gradual polysemous extension of 'circle' across the 20th century,1950,Cultural,
+trigger-cologne-eau,Production of eau de Cologne,1709,Commercial,Q365
+trigger-computer-virus,naming of the computer virus and early PC infections,1984,Technology,Q14001
+trigger-covid,COVID-19 pandemic,2020,Pandemic,Q81068910
+trigger-cravat-croats,Croat cavalry in the Thirty Years War,1650,Cultural,
+trigger-cringe-memeculture,"Social-media meme culture (2010s, r/cringe)",2011,Media,
+trigger-culture-wars,US culture-war polarisation (2019-),2019,Political,
+trigger-curie-radioactivity,The Curies' discovery of radium,1898,Technology,Q37463
+trigger-currant-corinth,Corinth raisin trade,1500,Commercial,Q103011
+trigger-dahlia-cavanilles,Cavanilles names the genus Dahlia for Anders Dahl,1791,Cultural,Q496775
+trigger-dalmatian-region,The Dalmatia region,1810,Cultural,Q528042
+trigger-damast-damaskus,Figured cloth from Damascus,1400,Commercial,Q3766
+trigger-denim-nimes,Textile production at Nimes,1695,Commercial,Q42807
+trigger-diesel-patent,Rudolf Diesel's engine patent,1893,Technology,Q12674
+trigger-doomscrolling-covid,COVID-19 pandemic,2020,Pandemic,Q81068910
+trigger-draconian-code,Draco's Athenian law code (c. 621 BC),0621,Political,
+trigger-ecology-movement,the modern environmental movement and the rise of Green politics,1972,Political,
+trigger-edge-polysemy,gradual polysemous extension of 'edge' across the 20th century,1950,Cultural,
+trigger-egregious-irony,Ironic reversal of a term of praise,1573,Cultural,
+trigger-escalator-otis,Otis markets the Escalator brand,1900,Commercial,Q1134069
+trigger-etappe-generaluse,gradual 19th-century generalisation of military 'Etappe',1850,Cultural,
+trigger-face-polysemy,gradual polysemous extension of 'face' across the 20th century,1950,Cultural,
+trigger-facebook-like,Facebook Like button launch (2009),2009,Technology,Q355
+trigger-fahrenheit-scale,Fahrenheit invents the mercury thermometer and scale,1714,Technology,Q57073
+trigger-fascism-mussolini,Rise of Mussolini's Fasci and the March on Rome,1922,Political,Q468823
+trigger-filterblase-pariser,"Eli Pariser, 'The Filter Bubble' (2011)",2011,Media,Q111687183
+trigger-foehn-de-brand,Sanitas registers the Foen hair-dryer brand,1909,Commercial,
+trigger-frankenstein-shelley,Mary Shelley's 'Frankenstein' (1818),1818,Cultural,Q150827
+trigger-frankfurter-frankfurt,Sausage of Frankfurt am Main,1894,Commercial,Q1794
+trigger-frau-leveling,Soziale Generalisierung eines Standestitels,1700,Cultural,
+trigger-fromm-luther,Luther's Bible translation 1522-1534,1522,Cultural,Q1571095
+trigger-front-wwi,First World War static trench warfare 1914-1918,1914,Political,Q361
+trigger-ftp-mirroring,rise of internet FTP mirror sites,1991,Technology,
+trigger-fuchsia-plumier,Plumier names the genus Fuchsia for Leonhart Fuchs,1703,Cultural,Q60756
+trigger-funk-genre,emergence of funk music,1965,Cultural,Q164444
+trigger-galvanisieren-frogleg,Galvani's bioelectricity experiments,1791,Technology,Q1589
+trigger-galvanize-frogleg,Galvani's bioelectricity experiments,1791,Technology,Q1589
+trigger-gargantuan-rabelais,Rabelais's 'Gargantua' (1534),1534,Cultural,Q822290
+trigger-gaslighting-politics,Political and media discourse surge (2016-2018),2016,Media,
+trigger-geil-youthslang,West German youth slang of the 1970s-80s,1975,Cultural,
+trigger-gendersternchen-debate,German gender-inclusive language debate (2010s),2015,Cultural,
+trigger-gerrymander-redistricting,Massachusetts redistricting under Governor Gerry,1812,Political,Q1325397
+trigger-gfds-trigger-abwrackpramie-2009,German economic stimulus cash for clunkers program 2009,2009,Economic,
+trigger-gfds-trigger-aids-kondom-1987,HIV AIDS epidemic public awareness campaign,1987,Political,
+trigger-gfds-trigger-alternative-fakten-2017,Kellyanne Conway alternative facts Trump inauguration 2017,2017,Political,
+trigger-gfds-trigger-alternativlos-2010,Merkel austerity policy alternativlos rhetoric 2010,2010,Political,
+trigger-gfds-trigger-ampel-aus-2024,collapse of German traffic light coalition 2024,2024,Political,
+trigger-gfds-trigger-anti-abschiebe-industrie-2018,German asylum legal aid NGO vilification 2018,2018,Political,
+trigger-gfds-trigger-aufmupfig-1971,1968 student protest movement,1971,Political,
+trigger-gfds-trigger-aura-2024,TikTok gaming aura points social status youth slang 2024,2024,Cultural,
+trigger-gfds-trigger-auslanderfrei-1991,Hoyerswerda anti-foreigner riots East Germany 1991,1991,Political,
+trigger-gfds-trigger-babo-2013,Haftbefehl Babo rap song German youth slang spread 2013,2013,Cultural,
+trigger-gfds-trigger-besserwessi-1991,post-reunification East-West German social tensions,1991,Political,
+trigger-gfds-trigger-betriebsratsverseucht-2009,German employer anti-union works council rhetoric 2009,2009,Political,
+trigger-gfds-trigger-biodeutsch-2024,German identity politics ethnic nationality debate 2024,2024,Political,
+trigger-gfds-trigger-blackfacing-2014,racial sensitivity debate blackface Germany theater carnival,2014,Political,
+trigger-gfds-trigger-boostern-2021,COVID-19 booster vaccination campaign Germany 2021,2021,Pandemic,Q81068910
+trigger-gfds-trigger-bundeskanzlerin-2005,Angela Merkel elected first female German chancellor,2005,Political,Q567
+trigger-gfds-trigger-corona-diktatur-2020,COVID-19 pandemic measures Querdenken conspiracy movement 2020,2020,Pandemic,
+trigger-gfds-trigger-corona-pandemie-2020,COVID-19 coronavirus global pandemic 2020,2020,Pandemic,Q81068910
+trigger-gfds-trigger-cringe-2021,YouTube streaming culture youth embarrassment slang,2021,Cultural,
+trigger-gfds-trigger-crowdfunding-2012,Kickstarter internet crowdfunding startup culture rise,2012,Cultural,
+trigger-gfds-trigger-das-alte-europa-2003,Rumsfeld old Europe statement Iraq War 2003,2003,Political,
+trigger-gfds-trigger-der-11-september-2001,September 11 terrorist attacks United States 2001,2001,Political,Q40231
+trigger-gfds-trigger-diatenanpassung-1995,German parliamentary salary increase euphemism 1995,1995,Political,
+trigger-gfds-trigger-die-neuen-bundeslander-1990,German reunification October 1990,1990,Political,
+trigger-gfds-trigger-doner-morde-2011,NSU neo-Nazi murder series Turkish German victims,2011,Political,
+trigger-gfds-trigger-ehrenmann-ehrenfrau-2018,hip-hop honor culture German youth praise slang,2018,Cultural,
+trigger-gfds-trigger-ellenbogengesellschaft-1982,CDU FDP government social welfare cuts 1982,1982,Political,
+trigger-gfds-trigger-entlassungsproduktivitat-2005,German corporate restructuring mass layoff profits 2005,2005,Political,
+trigger-gfds-trigger-ethnische-sauberung-1992,Yugoslav Wars ethnic cleansing 1992,1992,Political,
+trigger-gfds-trigger-fake-news-2016,Trump election Brexit deliberate disinformation fake news 2016,2016,Political,
+trigger-gfds-trigger-fanmeile-2006,2006 FIFA World Cup public viewing Germany,2006,Political,
+trigger-gfds-trigger-finanzkrise-2008,Lehman Brothers collapse global financial crisis 2008,2008,Economic,
+trigger-gfds-trigger-fluchtlinge-2015,European migration crisis Germany 2015,2015,Economic,
+trigger-gfds-trigger-fly-sein-2016,hip-hop fly aesthetic German youth language adoption,2016,Cultural,
+trigger-gfds-trigger-for-future-2019,Fridays for Future Greta Thunberg climate movement 2019,2019,Ecological,
+trigger-gfds-trigger-freiwillige-ausreise-2006,German asylum deportation policy coerced departure euphemism,2006,Political,
+trigger-gfds-trigger-gammelfleischparty-2008,youth party culture over-30 parties generational slang,2008,Political,
+trigger-gfds-trigger-gate-2013,NSA surveillance scandal Germany Watergate suffix spread,2013,Political,
+trigger-gfds-trigger-gendersternchen-2018,German gender-inclusive language reform feminist activism,2018,Political,
+trigger-gfds-trigger-gesundheitsreform-1988,West German healthcare cost reform 1988,1988,Pandemic,
+trigger-gfds-trigger-glykol-1985,Austrian glycol wine scandal 1985,1985,Political,
+trigger-gfds-trigger-goofy-2023,TikTok goofy trend German youth positive silliness,2023,Cultural,
+trigger-gfds-trigger-gotteskrieger-2001,September 11 attacks Taliban al-Qaeda terrorism,2001,Political,
+trigger-gfds-trigger-groko-2013,CDU SPD grand coalition negotiations Germany 2013,2013,Political,
+trigger-gfds-trigger-gutmensch-2015,refugee crisis Germany right-wing backlash humanitarian critics 2015,2015,Economic,
+trigger-gfds-trigger-hartz-iv-2004,Hartz IV labor market welfare reform Germany 2004,2004,Economic,
+trigger-gfds-trigger-hartzen-2009,Hartz IV unemployment welfare stigma youth slang,2009,Cultural,
+trigger-gfds-trigger-hei-er-herbst-1983,NATO rearmament peace movement protests 1983,1983,Political,
+trigger-gfds-trigger-hei-zeit-2018,European extreme heat summer 2018 climate change,2018,Ecological,
+trigger-gfds-trigger-herdpramie-2007,German childcare home care benefit political debate 2007,2007,Political,
+trigger-gfds-trigger-holocaust-1979,US TV series Holocaust broadcast in Germany,1979,Political,
+trigger-gfds-trigger-humankapital-2004,OECD education policy human capital discourse Germany,2004,Political,
+trigger-gfds-trigger-i-bims-2017,Vong-Sprache German internet meme absurdist language 2017,2017,Cultural,
+trigger-gfds-trigger-ich-ag-2002,Hartz labor reform individual self-employment model Germany,2002,Economic,
+trigger-gfds-trigger-influencer-2017,social media influencer marketing YouTube Instagram rise,2017,Cultural,
+trigger-gfds-trigger-jamaika-aus-2017,failed Jamaica coalition negotiations Germany 2017,2017,Political,
+trigger-gfds-trigger-klimahysterie-2019,Fridays for Future climate movement delegitimization 2019,2019,Ecological,
+trigger-gfds-trigger-klimakatastrophe-2007,IPCC Fourth Assessment Report climate crisis 2007,2007,Ecological,
+trigger-gfds-trigger-klimaterroristen-2022,Letzte Generation climate activists criminalization Germany 2022,2022,Ecological,
+trigger-gfds-trigger-kollateralschaden-1999,NATO Kosovo bombing civilian casualties 1999,1999,Political,Q46083
+trigger-gfds-trigger-konspirative-wohnung-1978,RAF Schleyer kidnapping 1977,1978,Political,
+trigger-gfds-trigger-krisenmodus-2023,polycrisis simultaneous Germany 2023,2023,Economic,
+trigger-gfds-trigger-lauft-bei-dir-2014,German internet meme ironic praise social media spread,2014,Cultural,
+trigger-gfds-trigger-leaken-2010,WikiLeaks Julian Assange secret information leaks,2010,Political,
+trigger-gfds-trigger-lichtgrenze-2014,25th anniversary Berlin Wall fall light installation 2014,2014,Political,
+trigger-gfds-trigger-lockdown-2020,COVID-19 pandemic lockdown restrictions Germany 2020,2020,Pandemic,Q81068910
+trigger-gfds-trigger-lost-2020,gaming social media youth slang digital communication,2020,Cultural,
+trigger-gfds-trigger-lugenpresse-2014,Pegida movement right-wing press delegitimization 2014,2014,Political,
+trigger-gfds-trigger-millennium-1999,Y2K millennium transition year 2000,1999,Political,
+trigger-gfds-trigger-multimedia-1995,early internet and digital media revolution 1995,1995,Cultural,
+trigger-gfds-trigger-national-befreite-zone-2000,German neo-Nazi far-right territorial extremism,2000,Political,
+trigger-gfds-trigger-niveaulimbo-2010,youth party culture declining standards social commentary,2010,Political,
+trigger-gfds-trigger-notleidende-banken-2008,2008 global financial crisis bank bailout rhetoric,2008,Economic,
+trigger-gfds-trigger-nulllosung-1981,NATO double-track decision nuclear debate,1981,Political,
+trigger-gfds-trigger-opfer-abo-2012,German misogynist victim-blaming discourse sexual violence,2012,Political,
+trigger-gfds-trigger-peanuts-1994,Hilmar Kopper Deutsche Bank peanuts statement 1994,1994,Economic,
+trigger-gfds-trigger-politikverdrossenheit-1992,German party financing scandals public distrust 1992,1992,Political,
+trigger-gfds-trigger-postfaktisch-2016,Brexit Trump post-truth politics rise 2016,2016,Political,
+trigger-gfds-trigger-pushback-2021,EU border pushback illegal migration human rights violations 2021,2021,Political,
+trigger-gfds-trigger-rasterfahndung-1980,West German anti-terrorism policing 1970s,1980,Political,
+trigger-gfds-trigger-reformstau-1997,late Kohl government reform paralysis 1997,1997,Political,
+trigger-gfds-trigger-refugees-welcome-2015,European refugee crisis Germany welcome culture 2015,2015,Economic,
+trigger-gfds-trigger-reisefreiheit-1989,Fall of the Berlin Wall November 1989,1989,Political,
+trigger-gfds-trigger-remigration-2023,AfD Potsdam meeting Correctiv remigration leak 2023,2023,Political,
+trigger-gfds-trigger-rentnerschwemme-1996,German pension system demographic ageing debate,1996,Political,
+trigger-gfds-trigger-respektrente-2019,German minimum pension reform proposal 2019,2019,Political,
+trigger-gfds-trigger-rettungsroutine-2012,European sovereign debt crisis bailout packages,2012,Economic,
+trigger-gfds-trigger-rot-grun-1998,first federal SPD Greens coalition 1998,1998,Political,
+trigger-gfds-trigger-ruckfuhrungspatenschaften-2020,EU migrant deportation policy euphemism 2020,2020,Political,
+trigger-gfds-trigger-schwarzgeldaffare-2000,CDU Kohl illegal party donations scandal,2000,Political,
+trigger-gfds-trigger-shitstorm-2011,social media outrage culture Twitter Facebook rise Germany,2011,Cultural,
+trigger-gfds-trigger-smash-2022,Smash or Pass internet game TikTok youth meme,2022,Cultural,
+trigger-gfds-trigger-smombie-2015,smartphone addiction distracted pedestrian culture youth,2015,Cultural,
+trigger-gfds-trigger-sozialabbau-1993,German austerity welfare state cuts 1993,1993,Political,
+trigger-gfds-trigger-sozialtourismus-2013,EU free movement benefit tourism debate Germany 2013,2013,Political,
+trigger-gfds-trigger-sozialvertragliches-fruhableben-1998,German pension costs elderly demographic cynicism 1998,1998,Political,
+trigger-gfds-trigger-sparpaket-1996,German federal austerity package 1996,1996,Political,
+trigger-gfds-trigger-stresstest-2011,Fukushima nuclear disaster bank stress tests 2011,2011,Ecological,
+trigger-gfds-trigger-superwahljahr-1994,multiple simultaneous German elections 1994,1994,Political,
+trigger-gfds-trigger-swag-2011,hip-hop culture swag concept German youth language adoption,2011,Cultural,
+trigger-gfds-trigger-szene-1977,RAF German Autumn terrorism 1977,1977,Political,
+trigger-gfds-trigger-tatervolk-2003,Hohmann antisemitic Tätervolk speech Bundestag 2003,2003,Political,
+trigger-gfds-trigger-teuro-2002,Euro currency introduction price perception Germany,2002,Economic,
+trigger-gfds-trigger-tschernobyl-1986,Chernobyl nuclear disaster April 1986,1986,Ecological,
+trigger-gfds-trigger-uberfremdung-1993,German far-right anti-immigration rhetoric 1993,1993,Political,
+trigger-gfds-trigger-umweltauto-1984,catalytic converter environmental debate Germany,1984,Ecological,
+trigger-gfds-trigger-volksverrater-2016,German far-right populist anti-politician rhetoric 2016,2016,Political,
+trigger-gfds-trigger-wellenbrecher-2021,fourth COVID wave lockdown measures Germany 2021,2021,Pandemic,Q81068910
+trigger-gfds-trigger-wohlstandsmull-1997,German long-term unemployment stigma debate 1997,1997,Political,
+trigger-gfds-trigger-wutburger-2010,Stuttgart 21 railway protest movement Germany 2010,2010,Political,Q574459
+trigger-gfds-trigger-yolo-2012,Drake YOLO hip-hop internet meme spread 2012,2012,Cultural,
+trigger-gfds-trigger-zeitenwende-2022,Russia invasion of Ukraine German policy shift 2022,2022,Political,
+trigger-ghosting-datingapps,"Mainstreaming of mobile dating apps (Tinder, 2012-)",2015,Technology,
+trigger-granola-brand,Granola registered as a cereal brand,1886,Commercial,
+trigger-guillotine-revolution,Proposal and adoption of the beheading machine in the French Revolution,1792,Political,Q220650
+trigger-gutmensch-unwort,Gutmensch chosen as Unwort des Jahres 2015,2015,Political,
+trigger-guy-gunpowder,The Gunpowder Plot of Guy Fawkes,1605,Political,Q13898
+trigger-halcyon-alcyone,Alcyone and the calm of the halcyon days,1540,Cultural,Q912904
+trigger-hamburger-hamburg,Hamburg steak named for the city of Hamburg,1880,Commercial,Q1055
+trigger-harpy-harpies,The Harpies of Greek myth,1400,Cultural,Q181360
+trigger-heimat-romantik,German Romanticism and 19th c. nationalism,1800,Cultural,
+trigger-herculean-labours,Myth of Hercules and the Twelve Labours,1590,Cultural,
+trigger-hermetic-hermes,Hermes Trismegistus and the hermetic seal,1600,Cultural,Q192358
+trigger-hertz-waves,Hertz demonstrates electromagnetic waves,1888,Technology,Q41257
+trigger-hooligan-press,London press police-court reports of summer 1898,1898,Media,
+trigger-impfgegner-covid,COVID-19 vaccination debate (2020-2021),2020,Pandemic,Q81068910
+trigger-influencer-instagram,Rise of Instagram and influencer marketing (mid-2010s),2015,Commercial,Q209330
+trigger-jeans-genoa,Genoese cloth trade,1567,Commercial,Q1449
+trigger-jingoism-song,G. W. Hunt's 1878 music-hall song during the Russo-Turkish crisis,1878,Media,
+trigger-joule-heat,Joule's work on the mechanical equivalent of heat,1843,Technology,Q8962
+trigger-jovial-jove,Astrological disposition of those born under Jupiter,1580,Cultural,
+trigger-kafkaesque-prozess,"Posthumous publication of Kafka's novels ('Der Prozess', 1925)",1925,Cultural,Q905
+trigger-kaiser-augustus,Establishment of the Roman imperial title under Augustus,0027,Political,Q1405
+trigger-kamikaze-leyte,Japanese kamikaze suicide attacks in the Pacific War,1944,Political,Q308999
+trigger-kavalier-hofkultur,"Baroque court culture and the Kavalierstour, 17th century",1650,Cultural,
+trigger-kelvin-absolute-scale,Thomson devises the absolute temperature scale,1848,Technology,Q122701
+trigger-ketzer-albigensian,Albigensian Crusade against the Cathars,1209,Cultural,Q51657
+trigger-klasse-marx,1848 socialist movement and Marx's Das Kapital (1867),1848,Political,Q9061
+trigger-kleenex-kc,Kimberly-Clark launches Kleenex,1924,Commercial,Q1741634
+trigger-klimakleber-lg,Letzte Generation street-blockade campaign from January 2022,2022,Political,Q110819215
+trigger-krass-jugendsprache,Jugendsprachliche Aufwertung eines Negativworts,1985,Cultural,
+trigger-labello-de-brand,Beiersdorf introduces Labello,1909,Commercial,Q201691
+trigger-labyrinth-crete,The Cretan Labyrinth of Daedalus and the Minotaur,1540,Cultural,Q48963
+trigger-laconic-sparta,Reputation of Laconian (Spartan) terseness,1580,Cultural,
+trigger-lazarett-venice,Founding of the Venetian Lazzaretto Vecchio,1423,Pandemic,
+trigger-leotard-trapeze,Jules Leotard performs the flying trapeze in a close-fitting garment,1859,Cultural,Q356388
+trigger-lesbian-sappho,Sappho of Lesbos and her reception,1870,Cultural,Q17892
+trigger-linoleum-walton,Walton markets Linoleum floor covering,1864,Commercial,Q907886
+trigger-literally-bleaching,Semantic bleaching of an assertive into an intensifier,1800,Cultural,
+trigger-luddite-uprising,Luddite machine-breaking uprisings,1811,Technology,Q1159675
+trigger-luegenpresse-pegida,"PEGIDA movement demonstrations, Dresden 2014",2014,Political,Q18762431
+trigger-lunatic-luna,Belief that the moon (Luna) caused recurring madness,1290,Cultural,
+trigger-mach-de-shockwave,Mach studies supersonic shock waves,1887,Technology,Q93996
+trigger-machiavellian-principe,Machiavelli's 'Il Principe' (1532),1532,Political,Q1399
+trigger-magenta-battle,Battle of Magenta (1859),1859,Political,Q681430
+trigger-malapropism-rivals,Premiere of Sheridan's The Rivals,1775,Cultural,Q7760957
+trigger-marathon-olympics,Marathon race at the 1896 Athens Olympics,1896,Cultural,Q8080
+trigger-masochism-sacher-masoch,Sacher-Masoch's novels and Krafft-Ebing's coinage,1883,Cultural,Q78474
+trigger-mauerfall,Fall of the Berlin Wall (Mauerfall),1989,Political,Q69163529
+trigger-mausoleum-halicarnassus,Construction of the tomb of Mausolus at Halicarnassus,0353,Cultural,Q296857
+trigger-maverick-cattle,Samuel Maverick's unbranded Texas cattle,1867,Cultural,Q346455
+trigger-mentor-telemaque,Fenelon's 'Les Aventures de Telemaque' (1699),1699,Cultural,Q421615
+trigger-mercurial-mercury,Astrological temperament of those born under Mercury,1640,Cultural,
+trigger-mesmerize-mesmer,Franz Mesmer's animal magnetism in vogue in Paris,1784,Cultural,Q160202
+trigger-monty-python-spam,Monty Python's Flying Circus 'Spam' sketch (1970),1970,Cultural,Q1777591
+trigger-morse-code-telegraph,Morse and Vail develop the telegraph code,1838,Technology,Q75698
+trigger-narcissism-coinage,Coinage of 'Narcissism' as a clinical term,1899,Cultural,Q552983
+trigger-naughty-weakening,Gradual weakening of a moral condemnation,1630,Cultural,
+trigger-nemesis-goddess,Greek goddess Nemesis,1590,Cultural,
+trigger-nicotine-tobacco,Nicot introduces tobacco to the French court,1560,Cultural,Q318368
+trigger-notorious-collocation,Pejoration by negative collocation,1593,Cultural,
+trigger-nylon-dupont,DuPont announces nylon,1938,Commercial,Q221062
+trigger-odyssey-homer,Homer's epic poem the Odyssey,1889,Cultural,Q35160
+trigger-ohm-de-law,Ohm publishes Ohm's law,1827,Technology,Q1585
+trigger-ohm-law,Ohm publishes Ohm's law,1827,Technology,Q1585
+trigger-orwellian-1984,Publication of Orwell's 'Nineteen Eighty-Four' (1949),1949,Political,
+trigger-owid-1990s-club-culture,1990s club culture,1995,Cultural,
+trigger-owid-1990s-fashion-revival,1990s fashion revival,1995,Cultural,
+trigger-owid-1990s-marketing-strategies,1990s marketing strategies,1995,Economic,
+trigger-owid-1990s-secularization-trends,1990s secularization trends,1995,Cultural,
+trigger-owid-1990s-slang,1990s slang,1995,Cultural,
+trigger-owid-1990s-youth-fashion,1990s youth fashion,1995,Cultural,
+trigger-owid-1990s-youth-subculture,1990s youth subculture,1995,Legal,
+trigger-owid-2000s-fashion-trends,2000s fashion trends,2004,Cultural,
+trigger-owid-2008-financial-crisis,2008 financial crisis,2004,Economic,
+trigger-owid-2012-european-debt-crisis-protests,2012 European debt crisis protests,2014,Political,
+trigger-owid-2015-refugee-crisis,2015 refugee crisis,2014,Political,
+trigger-owid-3d-printing-technology,3D printing technology,2014,Technology,
+trigger-owid-5g-mobile-technology,5G mobile technology,2014,Technology,
+trigger-owid-adoption-practices-in-germany,adoption practices in Germany,2004,Social,
+trigger-owid-adventure-tourism-growth,adventure tourism growth,1995,Sport,
+trigger-owid-aging-population-marketing,aging population marketing,2004,Social,
+trigger-owid-airline-loyalty-programs,airline loyalty programs,1995,Economic,
+trigger-owid-alcohol-industry-trends,alcohol industry trends,2004,Economic,
+trigger-owid-aldi-supermarket-brand,Aldi supermarket brand,2004,Economic,
+trigger-owid-aldi-supermarket-chain,Aldi supermarket chain,1995,Economic,
+trigger-owid-allergy-awareness,allergy awareness,2004,Health,
+trigger-owid-american-sneaker-fashion,American sneaker fashion,2004,Cultural,
+trigger-owid-animal-microchipping-technology,animal microchipping technology,2004,Technology,
+trigger-owid-anti-aging-treatments,anti-aging treatments,2004,Health,
+trigger-owid-arab-spring,Arab Spring,2014,Political,
+trigger-owid-asylum-policy-debates,asylum policy debates,1995,Political,
+trigger-owid-automated-parking-systems,automated parking systems,2004,Technology,
+trigger-owid-automotive-safety-technology,automotive safety technology,1995,Technology,
+trigger-owid-automotive-technology,automotive technology,2004,Technology,
+trigger-owid-autonomous-vehicle-technology,autonomous vehicle technology,2014,Technology,
+trigger-owid-beauty-trends,beauty trends,2014,Cultural,
+trigger-owid-biodiversity-conservation,biodiversity conservation,2014,Environmental,
+trigger-owid-biotechnology,Biotechnology,2014,Technology,
+trigger-owid-blogging-platforms,blogging platforms,2004,Technology,
+trigger-owid-body-modification-trends,body modification trends,1995,Social,
+trigger-owid-body-positivity-movement,body positivity movement,2014,Media,
+trigger-owid-bologna-process-1999,Bologna Process (1999),2004,Social,
+trigger-owid-brexit-political-movement,Brexit political movement,2014,Political,
+trigger-owid-brexit-referendum,Brexit referendum,2014,Political,
+trigger-owid-bric-economic-forecast,BRIC economic forecast,2004,Economic,
+trigger-owid-bric-economic-grouping,BRIC economic grouping,2004,Economic,
+trigger-owid-budget-travel-industry,budget travel industry,1995,Economic,
+trigger-owid-bundesfreiwilligendienst-initiative,Bundesfreiwilligendienst initiative,2014,Social,
+trigger-owid-bundesfreiwilligendienst-program,Bundesfreiwilligendienst program,2014,Social,
+trigger-owid-canine-sports-evolution,canine sports evolution,2005,Sport,
+trigger-owid-care-work-discourse,care work discourse,2014,Social,
+trigger-owid-carving-sport,carving sport,1995,Sport,
+trigger-owid-casualwear-fashion-trends,casualwear fashion trends,1995,Cultural,
+trigger-owid-cd-rom-technology,CD-ROM technology,1995,Technology,
+trigger-owid-cd-technology,CD Technology,1995,Technology,
+trigger-owid-cds,CDs,1995,Technology,
+trigger-owid-celebrity-behavior-imitation,celebrity behavior imitation,1995,Cultural,
+trigger-owid-child-protection-online,child protection online,2014,Social,
+trigger-owid-climate-change-mitigation,Climate Change Mitigation,2004,Environmental,
+trigger-owid-climate-movement,climate movement,2004,Environmental,
+trigger-owid-cloud-computing,cloud computing,2004,Technology,
+trigger-owid-cocktail-culture,cocktail culture,2004,Cultural,
+trigger-owid-cold-war-nuclear-arms,Cold War nuclear arms,1995,Political,
+trigger-owid-colloquial-language-evolution,colloquial language evolution,2004,Linguistic,
+trigger-owid-colloquial-language-shift,colloquial language shift,1995,Linguistic,
+trigger-owid-computer-security-era,computer security era,2004,Technology,
+trigger-owid-confectionery-trends,confectionery trends,2014,Social,
+trigger-owid-conflict-diamond-trade,conflict diamond trade,2004,Political,
+trigger-owid-consumer-fraud,consumer fraud,2004,Legal,
+trigger-owid-corporate-hr-practices,corporate HR practices,1995,Economic,
+trigger-owid-corporate-socializing,corporate socializing,2004,Economic,
+trigger-owid-corporate-strategy,corporate strategy,1995,Economic,
+trigger-owid-corporate-travel-policy-changes,corporate travel policy changes,2014,Economic,
+trigger-owid-cosmetic-dentistry-rise,cosmetic dentistry rise,2004,Health,
+trigger-owid-cosmetic-procedures,cosmetic procedures,2004,Health,
+trigger-owid-craft-beer-movement,craft beer movement,2014,Cultural,
+trigger-owid-crime-in-the-1990s,crime in the 1990s,1995,Social,
+trigger-owid-crowdsourcing-platforms,crowdsourcing platforms,2014,Technology,
+trigger-owid-culinary-terminology,culinary terminology,1995,Cultural,
+trigger-owid-cultural-identity,Cultural Identity,2014,Social,
+trigger-owid-customer-service-industry,customer service industry,1995,Economic,
+trigger-owid-cybercrime,cybercrime,2014,Technology,
+trigger-owid-dating-culture,dating culture,1995,Social,
+trigger-owid-ddr-stasi-archives,DDR Stasi archives,2004,Legal,
+trigger-owid-dementia-care-facilities,dementia care facilities,2004,Health,
+trigger-owid-dental-technology,dental technology,2004,Health,
+trigger-owid-diesel-emissions-regulation,Diesel emissions regulation,2014,Technology,
+trigger-owid-diesel-emissions-scandal,Diesel emissions scandal,2014,Legal,
+trigger-owid-digital-advertising,digital advertising,2004,Technology,
+trigger-owid-digital-age,digital age,2004,Technology,
+trigger-owid-digital-banking-revolution,digital banking revolution,1995,Technology,
+trigger-owid-digital-computing,digital computing,1995,Technology,
+trigger-owid-digital-crime-proliferation,digital crime proliferation,2004,Legal,
+trigger-owid-digital-culture,digital culture,1995,Technology,
+trigger-owid-digital-detox-movement,digital detox movement,2014,Health,
+trigger-owid-digital-economy,digital economy,1995,Technology,
+trigger-owid-digital-economy-monetization,digital economy monetization,2014,Economic,
+trigger-owid-digital-identity,Digital Identity,2004,Technology,
+trigger-owid-digital-labor,digital labor,2014,Technology,
+trigger-owid-digital-media-evolution,digital media evolution,1995,Technology,
+trigger-owid-digital-media-transition,digital media transition,2014,Media,
+trigger-owid-digital-overuse-awareness,digital overuse awareness,2014,Technology,
+trigger-owid-digital-photography-era,digital photography era,1995,Technology,
+trigger-owid-digital-school-culture,digital school culture,2004,Social,
+trigger-owid-digital-surveillance-culture,digital surveillance culture,2004,Technology,
+trigger-owid-digital-surveillance-technology,digital surveillance technology,2004,Technology,
+trigger-owid-digital-technology,digital technology,1995,Technology,
+trigger-owid-digital-technology-proliferation,digital technology proliferation,2004,Technology,
+trigger-owid-digital-transformation-in-business,digital transformation in business,2014,Economic,
+trigger-owid-digital-tv-development,digital TV development,1995,Technology,
+trigger-owid-digital-wellness-movement,digital wellness movement,2014,Health,
+trigger-owid-disability-rights-legislation,disability rights legislation,2014,Legal,
+trigger-owid-e-cigarette-proliferation,e-cigarette proliferation,2014,Technology,
+trigger-owid-e-commerce-laws,e-commerce laws,2014,Legal,
+trigger-owid-early-computer-input-devices,early computer input devices,1995,Technology,
+trigger-owid-early-internet-adoption,early internet adoption,1995,Technology,
+trigger-owid-early-internet-and-gaming,early internet and gaming,1995,Technology,
+trigger-owid-early-internet-cafes,early internet cafes,1995,Technology,
+trigger-owid-economic-globalization,economic globalization,2004,Economic,
+trigger-owid-education,education,1995,Cultural,
+trigger-owid-education-policy,education policy,2004,Social,
+trigger-owid-educational-initiatives,educational initiatives,2004,Social,
+trigger-owid-educational-policy-reform,educational policy reform,2004,Social,
+trigger-owid-elderly-care-services,elderly care services,2004,Health,
+trigger-owid-electronic-quiz-shows,electronic quiz shows,2004,Technology,
+trigger-owid-email-technology-adoption,email technology adoption,1995,Technology,
+trigger-owid-energy-infrastructure-policy,energy infrastructure policy,2014,Economic,
+trigger-owid-energy-transition,Energy Transition,2004,Environmental,
+trigger-owid-english-loanword-adaptation,English loanword adaptation,1995,Linguistic,
+trigger-owid-english-loanword-procrastination,English loanword 'procrastination',2004,Linguistic,
+trigger-owid-environmental-and-social-concerns,environmental and social concerns,1995,Social,
+trigger-owid-environmental-movement,environmental movement,2005,Environmental,
+trigger-owid-environmental-tourism,environmental tourism,2004,Cultural,
+trigger-owid-eu-migration-policy,EU migration policy,2014,Political,
+trigger-owid-eu-migration-policy-proposals,EU migration policy proposals,2014,Political,
+trigger-owid-european-currency-systems,European currency systems,1995,Economic,
+trigger-owid-european-migration-crisis,European migration crisis,2014,Political,
+trigger-owid-eurozone-banking-crisis,Eurozone banking crisis,2014,Economic,
+trigger-owid-extreme-sports,extreme sports,1995,Sport,
+trigger-owid-extreme-sports-culture,extreme sports culture,1995,Cultural,
+trigger-owid-fashion,fashion,1995,Cultural,
+trigger-owid-fashion-trends,fashion trends,1995,Cultural,
+trigger-owid-festivals-and-social-events,festivals and social events,2004,Cultural,
+trigger-owid-financial-crisis-management,financial crisis management,2014,Economic,
+trigger-owid-financial-inclusion-policies,financial inclusion policies,2014,Economic,
+trigger-owid-fireworks-technology,fireworks technology,2004,Technology,
+trigger-owid-fitness-footwear-trend,fitness footwear trend,2004,Economic,
+trigger-owid-fitness-trends,fitness trends,1995,Health,
+trigger-owid-fitness-trends-1990s,fitness trends 1990s,1995,Health,
+trigger-owid-flexible-work-practices,flexible work practices,1995,Economic,
+trigger-owid-flexible-work-trends,flexible work trends,2014,Economic,
+trigger-owid-food-industry-innovation,food industry innovation,2004,Economic,
+trigger-owid-food-industry-specialization,food industry specialization,2014,Cultural,
+trigger-owid-food-trend,Food Trend,2014,Cultural,
+trigger-owid-food-trends,food trends,2004,Cultural,
+trigger-owid-football-match-flares,football match flares,2004,Sport,
+trigger-owid-football-world-championships,Football World Championships,2004,Sport,
+trigger-owid-foreign-vehicle-toll,foreign vehicle toll,2014,Economic,
+trigger-owid-formula-1-culture,Formula 1 culture,1995,Sport,
+trigger-owid-furniture-innovation,furniture innovation,2014,Economic,
+trigger-owid-gdpr-general-data-protection-regulation,GDPR (General Data Protection Regulation),2014,Legal,
+trigger-owid-gender-equality-movement,gender equality movement,1995,Social,
+trigger-owid-gender-specific-workplace-terminology,gender-specific workplace terminology,1995,Social,
+trigger-owid-genetic-engineering,genetic engineering,1995,Scientific,
+trigger-owid-genetically-modified-crops,genetically modified crops,1995,Scientific,
+trigger-owid-geocaching,geocaching,2004,Technology,
+trigger-owid-german-adaptation-of-english-fashion-terms,German adaptation of English fashion terms,1995,Cultural,
+trigger-owid-german-energy-transition,German Energy Transition,2014,Environmental,
+trigger-owid-german-federal-politics,German federal politics,2005,Political,
+trigger-owid-german-tuition-fee-policy,German tuition fee policy,2004,Economic,
+trigger-owid-gig-economy,gig economy,2014,Economic,
+trigger-owid-global-coffee-culture,global coffee culture,2004,Cultural,
+trigger-owid-global-consumer-culture,global consumer culture,2014,Economic,
+trigger-owid-global-financial-standardization,global financial standardization,2004,Economic,
+trigger-owid-green-funerary-practices,green funerary practices,2004,Environmental,
+trigger-owid-gui-design,GUI design,1995,Technology,
+trigger-owid-hartz-iv-labor-market-reform,Hartz IV labor market reform,2004,Legal,
+trigger-owid-hartz-iv-policy,Hartz IV policy,2004,Social,
+trigger-owid-hartz-iv-reform,Hartz IV reform,2004,Economic,
+trigger-owid-health-and-diet-trends,health and diet trends,2014,Health,
+trigger-owid-health-and-wellness,health and wellness,1995,Health,
+trigger-owid-health-and-wellness-trends,health and wellness trends,2014,Health,
+trigger-owid-health-food-trend,health food trend,2014,Health,
+trigger-owid-health-food-trends,health food trends,2014,Health,
+trigger-owid-health-insurance-reforms,health insurance reforms,1995,Health,
+trigger-owid-health-science,health science,1995,Health,
+trigger-owid-healthcare-cost-regulation,healthcare cost regulation,2004,Health,
+trigger-owid-healthcare-economics,healthcare economics,2004,Health,
+trigger-owid-healthcare-system-reform,healthcare system reform,2004,Health,
+trigger-owid-high-definition-media-technology,high-definition media technology,2004,Technology,
+trigger-owid-higher-education-expansion,higher education expansion,2004,Social,
+trigger-owid-higher-education-reform,higher education reform,2014,Social,
+trigger-owid-hip-hop-culture,hip-hop culture,2014,Cultural,
+trigger-owid-idiomatic-expression,idiomatic expression,1995,Linguistic,
+trigger-owid-imported-food-trends,imported food trends,1995,Cultural,
+trigger-owid-industrial-automation,industrial automation,2014,Technology,
+trigger-owid-inline-skating-boom,inline skating boom,1995,Sport,
+trigger-owid-innovative-beverage-packaging,innovative beverage packaging,2004,Technology,
+trigger-owid-interactive-media,interactive media,1995,Media,
+trigger-owid-internet-adoption,internet adoption,1995,Technology,
+trigger-owid-internet-advertising-rise,internet advertising rise,1995,Technology,
+trigger-owid-internet-based-travel-community,internet-based travel community,2014,Technology,
+trigger-owid-internet-business-models,internet business models,2004,Technology,
+trigger-owid-internet-chat-rooms,internet chat rooms,1995,Technology,
+trigger-owid-internet-communication,internet communication,1995,Technology,
+trigger-owid-internet-culture,internet culture,1995,Technology,
+trigger-owid-internet-development,internet development,1995,Technology,
+trigger-owid-internet-email-adoption,internet/email adoption,1995,Technology,
+trigger-owid-internet-infrastructure-development,internet infrastructure development,2014,Technology,
+trigger-owid-internet-pornography,internet pornography,1995,Technology,
+trigger-owid-internet-service-providers,internet service providers,2004,Technology,
+trigger-owid-internet-subscription-scams,internet subscription scams,2004,Technology,
+trigger-owid-internet-technology,internet technology,1995,Technology,
+trigger-owid-iran-nuclear-program,Iran nuclear program,2014,Political,
+trigger-owid-islamic-clothing-debates,Islamic Clothing Debates,2004,Cultural,
+trigger-owid-labor-market-changes,labor market changes,1995,Economic,
+trigger-owid-labor-market-reforms,Labor Market Reforms,2014,Economic,
+trigger-owid-landmines-in-conflict-zones,landmines in conflict zones,1995,Political,
+trigger-owid-late-20th-century-fashion-trends,late 20th century fashion trends,1995,Cultural,
+trigger-owid-law-enforcement-tech,law enforcement tech,2014,Legal,
+trigger-owid-leisure-activity-terminology,leisure activity terminology,2004,Cultural,
+trigger-owid-lgbtq-representation,LGBTQ+ representation,2014,Cultural,
+trigger-owid-lifestyle-trends,lifestyle trends,2004,Cultural,
+trigger-owid-management-literature,management literature,1995,Social,
+trigger-owid-media-culture,media culture,2004,Media,
+trigger-owid-media-driven-body-positivity-discourse,media-driven body positivity discourse,2004,Social,
+trigger-owid-media-globalization,media globalization,1995,Media,
+trigger-owid-media-production,media production,1995,Media,
+trigger-owid-medical-cannabis-legalization,medical cannabis legalization,2014,Health,
+trigger-owid-mental-health-awareness,mental health awareness,2004,Health,
+trigger-owid-mental-health-discourse,mental health discourse,1995,Health,
+trigger-owid-mental-health-terminology,mental health terminology,2004,Health,
+trigger-owid-migration-policy,Migration policy,2014,Political,
+trigger-owid-migration-policy-reforms,migration policy reforms,2014,Legal,
+trigger-owid-military-ai-development,military AI development,2014,Technology,
+trigger-owid-mobile-internet-and-international-data-usage,mobile internet and international data usage,2004,Technology,
+trigger-owid-modern-funeral-practices,modern funeral practices,2004,Cultural,
+trigger-owid-modern-home-lighting-trends,modern home lighting trends,1995,Technology,
+trigger-owid-motorcycle-safety-regulations,motorcycle safety regulations,2004,Legal,
+trigger-owid-museum-technology,museum technology,1995,Cultural,
+trigger-owid-nightlife-culture,nightlife culture,1995,Cultural,
+trigger-owid-nutritional-labeling,nutritional labeling,2004,Health,
+trigger-owid-online-auction-culture,online auction culture,2014,Technology,
+trigger-owid-online-dating,online dating,2004,Social,
+trigger-owid-online-dating-platforms,online dating platforms,2004,Technology,
+trigger-owid-online-fraud,online fraud,2014,Legal,
+trigger-owid-online-marketing-tactics,online marketing tactics,2014,Media,
+trigger-owid-online-messaging-apps,online messaging apps,1995,Technology,
+trigger-owid-online-retail-promotions,online retail promotions,2014,Economic,
+trigger-owid-online-shopping,online shopping,2014,Technology,
+trigger-owid-parental-leave-policy-reforms,parental leave policy reforms,2014,Social,
+trigger-owid-pay-tv-industry-development,pay-TV industry development,1995,Technology,
+trigger-owid-pay-tv-technology-adoption,pay-TV technology adoption,1995,Technology,
+trigger-owid-personal-computer-era,personal computer era,1995,Technology,
+trigger-owid-personal-computing,personal computing,1995,Technology,
+trigger-owid-pickpocketing-in-public-spaces,pickpocketing in public spaces,2014,Social,
+trigger-owid-political-style-of-gerhard-schroder,political style of Gerhard Schröder,2004,Political,
+trigger-owid-pop-culture,pop culture,2004,Cultural,
+trigger-owid-pop-culture-trends,Pop culture trends,2004,Cultural,
+trigger-owid-pop-music-industry,pop music industry,1995,Cultural,
+trigger-owid-popular-culture,popular culture,1995,Cultural,
+trigger-owid-popular-culture-of-the-1990s,popular culture of the 1990s,1995,Cultural,
+trigger-owid-population-policy,population policy,2014,Political,
+trigger-owid-post-reunification-germany,post-reunification Germany,1995,Social,
+trigger-owid-post-truth-era-2016-2017,post-truth era (2016-2017),2014,Media,
+trigger-owid-post-wwii-restitution-debates,post-WWII restitution debates,1995,Political,
+trigger-owid-poultry-terminology,Poultry Terminology,2014,Cultural,
+trigger-owid-prepaid-telecommunications,prepaid telecommunications,1995,Technology,
+trigger-owid-private-pension-reforms,private pension reforms,2004,Economic,
+trigger-owid-public-broadcasting,public broadcasting,1995,Media,
+trigger-owid-public-finance-practices,public finance practices,1995,Economic,
+trigger-owid-public-telephone-design-innovations,public telephone design innovations,2004,Technology,
+trigger-owid-real-estate-boom,real estate boom,1995,Economic,
+trigger-owid-real-estate-innovation,real estate innovation,2004,Economic,
+trigger-owid-reality-tv-format-evolution,reality TV format evolution,1995,Media,
+trigger-owid-refugee-crisis-in-germany,refugee crisis in Germany,2014,Social,
+trigger-owid-religious-institution-transformation,religious institution transformation,2004,Cultural,
+trigger-owid-remote-work-rise,remote work rise,2004,Economic,
+trigger-owid-renewable-energy-movement,Renewable Energy Movement,1995,Environmental,
+trigger-owid-retail-automation,retail automation,1995,Technology,
+trigger-owid-retail-commerce,retail commerce,2004,Economic,
+trigger-owid-rise-of-discount-retail,rise of discount retail,1995,Economic,
+trigger-owid-sars-cov-2-pandemic,SARS-CoV-2 pandemic,2014,Health,
+trigger-owid-secure-email-service,secure email service,2004,Technology,
+trigger-owid-service-animal-awareness,service animal awareness,2004,Cultural,
+trigger-owid-sharing-economy,sharing economy,1995,Economic,
+trigger-owid-ski-technology,ski technology,1995,Sport,
+trigger-owid-slang-usage,slang usage,1995,Linguistic,
+trigger-owid-smart-wearable-technology,Smart wearable technology,2014,Technology,
+trigger-owid-smartphone-technology,smartphone technology,2004,Technology,
+trigger-owid-social-inclusion-programs,social inclusion programs,2004,Social,
+trigger-owid-social-media,social media,2004,Media,
+trigger-owid-social-media-advertising,social media advertising,2014,Media,
+trigger-owid-social-media-discourse,social media discourse,2014,Social,
+trigger-owid-social-media-rise,social media rise,2004,Social,
+trigger-owid-social-welfare-policies,social welfare policies,2004,Political,
+trigger-owid-social-welfare-reforms,Social Welfare Reforms,1995,Social,
+trigger-owid-spa-gesellschaft-movement,Spaßgesellschaft movement,1995,Cultural,
+trigger-owid-spanish-cuisine-import,Spanish cuisine import,2004,Cultural,
+trigger-owid-specialty-coffee-culture,specialty coffee culture,2004,Cultural,
+trigger-owid-sport-climbing,sport climbing,1995,Sport,
+trigger-owid-sport-event-celebrations,sport event celebrations,1995,Sport,
+trigger-owid-sports-culture,sports culture,1995,Sport,
+trigger-owid-sports-development,sports development,1995,Sport,
+trigger-owid-sports-regulations,sports regulations,1995,Sport,
+trigger-owid-sports-stadium-culture,sports stadium culture,1995,Sport,
+trigger-owid-stand-up-comedy-boom,stand-up comedy boom,1995,Cultural,
+trigger-owid-stock-market-expansion,stock market expansion,1995,Economic,
+trigger-owid-stock-market-trends,stock market trends,1995,Economic,
+trigger-owid-streaming-services,streaming services,2014,Technology,
+trigger-owid-tabloid-journalism,tabloid journalism,1995,Media,
+trigger-owid-targeted-marketing-for-middle-aged-consumers,targeted marketing for middle-aged consumers,2004,Economic,
+trigger-owid-techno-music-scene,Techno music scene,1995,Cultural,
+trigger-owid-techno-subculture,techno subculture,1995,Cultural,
+trigger-owid-technoparty-scene,Technoparty scene,1995,Cultural,
+trigger-owid-telecom-technology,telecom technology,1995,Technology,
+trigger-owid-telecommunications-industry,telecommunications industry,1995,Technology,
+trigger-owid-television-formats,television formats,2004,Media,
+trigger-owid-television-game-shows,television game shows,2004,Cultural,
+trigger-owid-television-programming,television programming,1995,Media,
+trigger-owid-the-bucket-list-film,The Bucket List (film),2014,Cultural,
+trigger-owid-tourism-industry,tourism industry,1995,Economic,
+trigger-owid-tourism-policy,tourism policy,2014,Economic,
+trigger-owid-traffic-safety-initiatives,traffic safety initiatives,2014,Legal,
+trigger-owid-tuition-fees-in-public-higher-education,tuition fees in public higher education,2004,Social,
+trigger-owid-urban-crime-trends,urban crime trends,1995,Legal,
+trigger-owid-urban-infrastructure,urban infrastructure,1995,Technology,
+trigger-owid-urban-recreational-planning,urban recreational planning,2004,Sport,
+trigger-owid-volkswagen-diesel-emissions-scandal,Volkswagen Diesel emissions scandal,2014,Environmental,
+trigger-owid-volkswagen-emissions-scandal,Volkswagen emissions scandal,2014,Environmental,
+trigger-owid-war-on-terror,War on Terror,2004,Political,
+trigger-owid-wearable-tech-revolution,wearable tech revolution,2014,Technology,
+trigger-owid-weather-phenomena,Weather phenomena,1995,Environmental,
+trigger-owid-wellness-culture,Wellness Culture,1995,Cultural,
+trigger-owid-wellness-industry-growth,wellness industry growth,2004,Health,
+trigger-owid-wellness-tourism,wellness tourism,2004,Cultural,
+trigger-owid-wireless-communication-technology,wireless communication technology,1995,Technology,
+trigger-owid-workplace-flexibility,workplace flexibility,1995,Economic,
+trigger-owid-workplace-flexibility-reforms,workplace flexibility reforms,1995,Economic,
+trigger-owid-workplace-policy,workplace policy,2014,Economic,
+trigger-owid-workplace-psychology,workplace psychology,2004,Health,
+trigger-owid-youth-slang,youth slang,2004,Cultural,
+trigger-owid-youth-subculture,youth subculture,1995,Social,
+trigger-owid-youth-subculture-slang,youth subculture slang,2004,Linguistic,
+trigger-paisley-town,"Shawl production at Paisley, Scotland",1834,Commercial,Q211870
+trigger-panic-pan,Greek myth of the god Pan and 'panic' fear,1600,Cultural,
+trigger-pascal-unit-pressure,Pascal's work on hydrostatics and pressure,1648,Technology,Q1290
+trigger-pasteurize-heat,Pasteur develops controlled heat treatment of liquids,1864,Technology,Q529
+trigger-pfaffe-reformation,Protestant Reformation in the German lands,1517,Cultural,Q12562
+trigger-philippic-demosthenes,Demosthenes' Philippics against Philip II (from 351 BC),0351,Political,Q117253
+trigger-philister-studentensprache,"German university student slang, late 17th century",1693,Cultural,
+trigger-pretty-bleaching,Bleaching of a degree adverb into a downtoner,1565,Cultural,
+trigger-procrustean-procrustes,"Procrustes, the bed-stretcher of Greek myth",1822,Cultural,Q271949
+trigger-proletariat-sozialismus,1840s socialist movement and the Communist Manifesto (1848),1840,Political,
+trigger-propaganda-congregatio,Founding of the Congregatio de Propaganda Fide,1622,Cultural,Q386359
+trigger-protean-proteus,"Proteus, the shape-shifting sea-god",1590,Cultural,Q191481
+trigger-quarantaene-venice,Venetian and Ragusan plague isolation regime,1377,Pandemic,
+trigger-queer-nation,Queer Nation and ACT UP activist reappropriation,1990,Political,Q5687582
+trigger-querdenken-711,Querdenken 711 protest movement,2020,Political,Q115500066
+trigger-quisling-invasion,German invasion of Norway and Quisling's coup attempt,1940,Political,Q151364
+trigger-quixotic-cervantes,Publication of Cervantes' Don Quixote,1605,Cultural,Q480
+trigger-robot-rur,Coining of 'robot' in Karel Capek's play R.U.R.,1920,Cultural,Q1164094
+trigger-roentgen-discovery,Roentgen's discovery of X-rays at Wuerzburg,1895,Technology,Q35149
+trigger-rugby-school,Handling code at Rugby School,1823,Cultural,Q1143281
+trigger-sabotage-cgt,French syndicalist promotion of 'sabotage' as industrial action,1910,Political,
+trigger-sadism-sade,The novels of the Marquis de Sade,1791,Cultural,Q123867
+trigger-salvage-marinelaw,Marine insurance and salvage law,1680,Commercial,
+trigger-sandwich-earl,"John Montagu, 4th Earl of Sandwich, popularises bread-and-filling meals",1762,Cultural,
+trigger-sardonic-sardinia,Belief in a Sardinian plant causing a fatal grin,1630,Cultural,Q1462
+trigger-saturnine-saturn,Astrological temperament of those born under Saturn,1450,Cultural,
+trigger-saxophone-patent,Sax patents the saxophone,1846,Technology,Q181995
+trigger-schuetzengraben-wwi,First World War trench warfare on the Western Front 1914-1918,1914,Political,Q361
+trigger-schwurbler-covid,COVID-19 pandemic and Querdenken protests in Germany,2020,Pandemic,Q81068910
+trigger-sherry-jerez,Wine of Xeres (Jerez de la Frontera),1600,Commercial,Q12303
+trigger-shrapnel-shell,Shrapnel develops the bursting case shot,1784,Technology,Q941215
+trigger-sick-slang,Youth-culture slang reversal of a negative term,1980,Cultural,
+trigger-silhouette-minister,Tenure of Etienne de Silhouette as controller-general of finances,1759,Cultural,Q290240
+trigger-siren-sirens,The Sirens of Greek myth,1580,Cultural,Q150986
+trigger-slop-genai,Proliferation of generative AI content,2022,Technology,Q115564437
+trigger-sophisticated-revaluation,Revaluation of worldliness from corruption to refinement,1895,Cultural,
+trigger-south-sea-bubble,the South Sea Bubble financial crisis (1720),1720,Commercial,Q18643921
+trigger-spa-town,Fame of Spa's mineral springs,1620,Commercial,Q39865
+trigger-spartan-sparta,Reputation of Spartan austerity,1640,Cultural,
+trigger-spiesser-buergerkritik,Student slang and 19th c. critique of the bourgeoisie,1840,Cultural,
+trigger-stan-eminem,Eminem's song 'Stan' (2000),2000,Media,Q312122
+trigger-stentorian-stentor,"Stentor, the loud-voiced herald of Homer's Iliad",1600,Cultural,
+trigger-stonewall,Stonewall Riots and gay liberation movement,1969,Political,Q51402
+trigger-streaming-services,rise of broadband streaming media services,2005,Technology,Q866
+trigger-streik-arbeiterbewegung,"German labour movement and trade unions, 1860s-1870s",1865,Political,
+trigger-suede-sweden,Gloves of Sweden (gants de Suede),1884,Commercial,Q34
+trigger-sus-amongus,Among Us popularity surge (2020),2020,Cultural,Q96417649
+trigger-tank-somme,British 'tank' codename and combat debut on the Somme,1916,Technology,Q1284532
+trigger-tantalize-tantalus,Greek myth of Tantalus,1590,Cultural,
+trigger-tempo-de-brand,Tempo paper handkerchief brand registered,1929,Commercial,
+trigger-terrific-hyperbole,Hyperbolic bleaching of a fear word into praise,1888,Cultural,
+trigger-tesla-electromagnetism,Tesla's work on electromagnetism and alternating current,1888,Technology,Q9036
+trigger-thermos-brand,Thermos brand vacuum flask launched,1904,Commercial,
+trigger-tierc-chernobyl-nuclear-disaster-april-1986,Chernobyl nuclear disaster April 1986,1986,Environmental,
+trigger-tierc-computer-virus-concept-introduction-and-adoption,Computer virus concept introduction and adoption,1972,Social,
+trigger-tierc-emergence-of-consumer-quadcopter-drones,Emergence of consumer quadcopter drones,2012,Social,
+trigger-tierc-established-as-mainstream-german-internet-discourse-term,Established as mainstream German internet discourse term,2011,Technological,
+trigger-tierc-fall-of-berlin-wall-and-cold-war-cyberattacks,Fall of Berlin Wall and Cold War cyberattacks,1989,Political,
+trigger-tierc-german-green-party-founding-and-grassroots-activism,German Green Party founding and grassroots activism,1980,Social,
+trigger-tierc-german-immigration-and-integration-debate,German immigration and integration debate,2000,Political,
+trigger-tierc-greta-thunberg-climate-activism-and-fridaysforfuture,Greta Thunberg climate activism and FridaysForFuture,2018,Environmental,
+trigger-tierc-social-media-and-digital-platform-emergence,Social media and digital platform emergence,2004,Technological,
+trigger-toll-youth,Post-war West German youth culture and rock music,1960,Cultural,
+trigger-troll-usenet,Usenet 'trolling for newbies' coinage (early 1990s),1992,Technology,
+trigger-trommelfeuer-wwi,"First World War material battles, Verdun and the Somme 1916",1916,Political,Q361
+trigger-turkey-trade,Confusion of guinea fowl with the American bird,1555,Commercial,
+trigger-tuxedo-park,Dinner jacket worn at Tuxedo Park,1886,Cultural,Q3273900
+trigger-twitter-launch,Launch of Twitter social media platform (2006),2006,Technology,Q918
+trigger-uhu-de-brand,Fischer markets Uhu adhesive,1932,Commercial,Q63281550
+trigger-unfriend-facebook,Facebook 'friend' / 'unfriend' interface (mid-2000s),2008,Technology,Q355
+trigger-usenet-spam,Usenet bulk posting incidents (early 1990s),1993,Technology,
+trigger-vandalismus-gregoire,Henri Gregoire coins 'vandalisme' during the French Revolution,1794,Political,Q561218
+trigger-viral-web,rise of the World Wide Web and email forwarding culture,1999,Technology,
+trigger-volt-pile,Volta invents the voltaic pile,1800,Technology,Q680
+trigger-wahnsinn-ausruf,Umgangssprachliche Aufwertung eines Negativworts zum Ausruf,1960,Cultural,
+trigger-watt-engine,Watt's improved steam engine,1776,Technology,Q9041
+trigger-wd-covid-19-pandemic,COVID-19 pandemic,2020,Pandemic,Q81068910
+trigger-wd-german-reunification,German reunification,1990,Political,Q56039
+trigger-wd-querdenken-711-protest-movement,Querdenken 711 protest movement,2020,Political,Q115500066
+trigger-wd-rise-of-funk-music,Rise of funk music,1965,Cultural,Q164444
+trigger-wd-world-wide-web-invention,World Wide Web invention,1989,Technology,Q466
+trigger-wutbuerger-spiegel,Spiegel essay 'Der Wutbuerger' by Dirk Kurbjuweit,2010,Media,
+trigger-www-mosaic,World Wide Web and Mosaic browser launch,1993,Technology,Q381047
+trigger-xerox-914,Xerox launches the 914 copier,1959,Commercial,Q3570933
+trigger-yahoo-gulliver,Swift's 'Gulliver's Travels' (1726),1726,Cultural,Q181488
+trigger-zeppelin-lz1,First flight of the airship LZ 1 over Lake Constance,1900,Technology,Q75780
+trigger-zipper-goodrich,B.F. Goodrich markets the Zipper boot,1923,Commercial,Q1537591

@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Lazarett" (de)
+# Metonymization: the name of the Venetian plague island Santa
+# Maria di Nazaret (its hospital, blended with St Lazarus, called
+# lazzaretto) became the common noun for an isolation/plague
+# hospital, then for a military field hospital. The 1423 founding
+# of the Venetian Lazzaretto Vecchio is the trigger.
+# =============================================================
+
+wdr:word-lazarett a drift:Word ;
+    drift:writtenForm "Lazarett"@de ;
+    drift:language "de" ;
+    rdfs:label "Lazarett"@de ;
+    ontolex:sense wdr:sense-lazarett-island , wdr:sense-lazarett-hospital .
+
+wdr:sense-lazarett-island a drift:Sense ;
+    drift:gloss "the Venetian quarantine island and its plague hospital on Santa Maria di Nazaret (the lazzaretto)"@en ;
+    drift:gloss "die venezianische Quarantaeneinsel und ihr Pesthospital auf Santa Maria di Nazaret (das lazzaretto)"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1423"^^xsd:gYear .
+
+wdr:sense-lazarett-hospital a drift:Sense ;
+    drift:gloss "a hospital for the isolation of the sick, especially a plague or military field hospital"@en ;
+    drift:gloss "Krankenhaus zur Absonderung Kranker, insbesondere Seuchen- oder Feldlazarett"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1500"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-lazarett-venice a drift:TriggerEvent ;
+    rdfs:label "Founding of the Venetian Lazzaretto Vecchio"@en ;
+    dct:description "In 1423 Venice converted the island of Santa Maria di Nazaret into a permanent plague hospital and quarantine station, the Lazzaretto Vecchio. The island name (blended with St Lazarus) generalised into a common noun for an isolation hospital and spread into German as Lazarett."@en ;
+    drift:eventDate "1423"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic .
+
+# --- drift event ---
+wdr:drift-lazarett-venice a drift:DriftEvent ;
+    drift:affectsWord wdr:word-lazarett ;
+    drift:senseFrom wdr:sense-lazarett-island ;
+    drift:senseTo wdr:sense-lazarett-hospital ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1423"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1550"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-lazarett-dwds , wdr:src-lazarett-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-lazarett-venice a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-lazarett-venice ;
+    drift:proposedTrigger wdr:trigger-lazarett-venice ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-lazarett-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-lazarett-dwds a drift:Source ;
+    dct:title "DWDS -- Lazarett"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Lazarett"^^xsd:anyURI .
+
+wdr:src-lazarett-wiki a drift:Source ;
+    dct:title "Lazaretto -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Lazaretto"^^xsd:anyURI .

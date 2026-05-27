@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "viral" (en)
+# Metaphorization (+ Narrowing in the digital sense):
+#   Medical adjective "relating to a virus" ->
+#   digital metaphor "spreading rapidly online like a virus"
+#   Trigger: early internet / social media culture (late 1990s-2000s)
+# =============================================================
+
+wdr:word-viral a drift:Word ;
+    drift:writtenForm "viral"@en ;
+    drift:language "en" ;
+    rdfs:label "viral"@en ;
+    ontolex:sense wdr:sense-viral-medical , wdr:sense-viral-internet .
+
+wdr:sense-viral-medical a drift:Sense ;
+    drift:gloss "of, relating to, or caused by a virus; virology adjective"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1948"^^xsd:gYear .
+
+wdr:sense-viral-internet a drift:Sense ;
+    drift:gloss "spreading rapidly and widely through the internet or social networks, like a virus"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1999"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1999"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-viral-web a drift:TriggerEvent ;
+    rdfs:label "rise of the World Wide Web and email forwarding culture"@en ;
+    dct:description "The 1990s web popularised the concept of content spreading exponentially like a biological virus. The term 'viral marketing' (Jurvetson/Draper 1997) anchored the metaphor."@en ;
+    drift:eventDate "1999"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-viral-2000s a drift:DriftEvent ;
+    drift:affectsWord wdr:word-viral ;
+    drift:senseFrom wdr:sense-viral-medical ;
+    drift:senseTo wdr:sense-viral-internet ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1999"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2010"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-viral-etymonline , wdr:src-viral-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-viral-web a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-viral-2000s ;
+    drift:proposedTrigger wdr:trigger-viral-web ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-viral-etymonline , wdr:src-viral-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-viral-etymonline a drift:Source ;
+    dct:title "Etymonline - viral (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/viral"^^xsd:anyURI .
+
+wdr:src-viral-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - viral, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/viral_adj"^^xsd:anyURI .

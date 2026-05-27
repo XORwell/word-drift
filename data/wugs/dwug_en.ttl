@@ -1,0 +1,1058 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:drift-dwugen-afternoon-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-afternoon-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-afternoon-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-afternoon-nn-t2 .
+
+wdr:drift-dwugen-bar-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-bar-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.6103 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-bar-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-bar-nn-t2 .
+
+wdr:drift-dwugen-chef-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-chef-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.6308 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-chef-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-chef-nn-t2 .
+
+wdr:drift-dwugen-fiction-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-fiction-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.285 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-fiction-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-fiction-nn-t2 .
+
+wdr:drift-dwugen-gas-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-gas-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2836 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-gas-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-gas-nn-t2 .
+
+wdr:drift-dwugen-graft-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-graft-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.6333 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-graft-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-graft-nn-t2 .
+
+wdr:drift-dwugen-grain-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-grain-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.3491 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-grain-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-grain-nn-t2 .
+
+wdr:drift-dwugen-head-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-head-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2854 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-head-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-head-nn-t2 .
+
+wdr:drift-dwugen-heel-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-heel-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2823 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-heel-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-heel-nn-t2 .
+
+wdr:drift-dwugen-include-vb a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-include-vb ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-include-vb-t1 ;
+    drift:senseTo wdr:sense-dwugen-include-vb-t2 .
+
+wdr:drift-dwugen-land-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-land-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2663 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-land-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-land-nn-t2 .
+
+wdr:drift-dwugen-lane-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-lane-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2018 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-lane-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-lane-nn-t2 .
+
+wdr:drift-dwugen-lass-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-lass-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2024 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-lass-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-lass-nn-t2 .
+
+wdr:drift-dwugen-maxim-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-maxim-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.1958 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-maxim-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-maxim-nn-t2 .
+
+wdr:drift-dwugen-multitude-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-multitude-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2365 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-multitude-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-multitude-nn-t2 .
+
+wdr:drift-dwugen-ounce-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-ounce-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.3235 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-ounce-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-ounce-nn-t2 .
+
+wdr:drift-dwugen-part-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-part-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2162 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-part-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-part-nn-t2 .
+
+wdr:drift-dwugen-pick-vb a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-pick-vb ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.3104 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-pick-vb-t1 ;
+    drift:senseTo wdr:sense-dwugen-pick-vb-t2 .
+
+wdr:drift-dwugen-pin-vb a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-pin-vb ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.3429 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-pin-vb-t1 ;
+    drift:senseTo wdr:sense-dwugen-pin-vb-t2 .
+
+wdr:drift-dwugen-plane-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-plane-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.8936 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-plane-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-plane-nn-t2 .
+
+wdr:drift-dwugen-player-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-player-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.409 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-player-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-player-nn-t2 .
+
+wdr:drift-dwugen-prop-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-prop-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.6742 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-prop-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-prop-nn-t2 .
+
+wdr:drift-dwugen-quilt-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-quilt-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.1238 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-quilt-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-quilt-nn-t2 .
+
+wdr:drift-dwugen-rag-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-rag-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2027 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-rag-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-rag-nn-t2 .
+
+wdr:drift-dwugen-rally-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-rally-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.4974 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-rally-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-rally-nn-t2 .
+
+wdr:drift-dwugen-record-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-record-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.4369 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-record-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-record-nn-t2 .
+
+wdr:drift-dwugen-relationship-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-relationship-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.1471 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-relationship-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-relationship-nn-t2 .
+
+wdr:drift-dwugen-risk-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-risk-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-risk-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-risk-nn-t2 .
+
+wdr:drift-dwugen-savage-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-savage-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.1257 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-savage-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-savage-nn-t2 .
+
+wdr:drift-dwugen-stab-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-stab-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.4606 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-stab-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-stab-nn-t2 .
+
+wdr:drift-dwugen-stroke-vb a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-stroke-vb ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2894 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-stroke-vb-t1 ;
+    drift:senseTo wdr:sense-dwugen-stroke-vb-t2 .
+
+wdr:drift-dwugen-thump-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-thump-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.1458 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-thump-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-thump-nn-t2 .
+
+wdr:drift-dwugen-tip-vb a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-tip-vb ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.5361 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-tip-vb-t1 ;
+    drift:senseTo wdr:sense-dwugen-tip-vb-t2 .
+
+wdr:drift-dwugen-tree-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-tree-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-tree-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-tree-nn-t2 .
+
+wdr:drift-dwugen-twist-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-twist-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.494 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-twist-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-twist-nn-t2 .
+
+wdr:drift-dwugen-word-nn a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugen-word-nn ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1910"^^xsd:gYear ;
+    drift:gradedChange 0.2243 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:senseFrom wdr:sense-dwugen-word-nn-t1 ;
+    drift:senseTo wdr:sense-dwugen-word-nn-t2 .
+
+wdr:word-dwugen-afternoon-nn a drift:Word ;
+    rdfs:label "afternoon"@en ;
+    ontolex:sense wdr:sense-dwugen-afternoon-nn-t1,
+        wdr:sense-dwugen-afternoon-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "afternoon"@en .
+
+wdr:word-dwugen-bar-nn a drift:Word ;
+    rdfs:label "bar"@en ;
+    ontolex:sense wdr:sense-dwugen-bar-nn-t1,
+        wdr:sense-dwugen-bar-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "bar"@en .
+
+wdr:word-dwugen-chef-nn a drift:Word ;
+    rdfs:label "chef"@en ;
+    ontolex:sense wdr:sense-dwugen-chef-nn-t1,
+        wdr:sense-dwugen-chef-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "chef"@en .
+
+wdr:word-dwugen-fiction-nn a drift:Word ;
+    rdfs:label "fiction"@en ;
+    ontolex:sense wdr:sense-dwugen-fiction-nn-t1,
+        wdr:sense-dwugen-fiction-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "fiction"@en .
+
+wdr:word-dwugen-gas-nn a drift:Word ;
+    rdfs:label "gas"@en ;
+    ontolex:sense wdr:sense-dwugen-gas-nn-t1,
+        wdr:sense-dwugen-gas-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "gas"@en .
+
+wdr:word-dwugen-graft-nn a drift:Word ;
+    rdfs:label "graft"@en ;
+    ontolex:sense wdr:sense-dwugen-graft-nn-t1,
+        wdr:sense-dwugen-graft-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "graft"@en .
+
+wdr:word-dwugen-grain-nn a drift:Word ;
+    rdfs:label "grain"@en ;
+    ontolex:sense wdr:sense-dwugen-grain-nn-t1,
+        wdr:sense-dwugen-grain-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "grain"@en .
+
+wdr:word-dwugen-head-nn a drift:Word ;
+    rdfs:label "head"@en ;
+    ontolex:sense wdr:sense-dwugen-head-nn-t1,
+        wdr:sense-dwugen-head-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "head"@en .
+
+wdr:word-dwugen-heel-nn a drift:Word ;
+    rdfs:label "heel"@en ;
+    ontolex:sense wdr:sense-dwugen-heel-nn-t1,
+        wdr:sense-dwugen-heel-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "heel"@en .
+
+wdr:word-dwugen-include-vb a drift:Word ;
+    rdfs:label "include"@en ;
+    ontolex:sense wdr:sense-dwugen-include-vb-t1,
+        wdr:sense-dwugen-include-vb-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "include"@en .
+
+wdr:word-dwugen-land-nn a drift:Word ;
+    rdfs:label "land"@en ;
+    ontolex:sense wdr:sense-dwugen-land-nn-t1,
+        wdr:sense-dwugen-land-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "land"@en .
+
+wdr:word-dwugen-lane-nn a drift:Word ;
+    rdfs:label "lane"@en ;
+    ontolex:sense wdr:sense-dwugen-lane-nn-t1,
+        wdr:sense-dwugen-lane-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "lane"@en .
+
+wdr:word-dwugen-lass-nn a drift:Word ;
+    rdfs:label "lass"@en ;
+    ontolex:sense wdr:sense-dwugen-lass-nn-t1,
+        wdr:sense-dwugen-lass-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "lass"@en .
+
+wdr:word-dwugen-maxim-nn a drift:Word ;
+    rdfs:label "maxim"@en ;
+    ontolex:sense wdr:sense-dwugen-maxim-nn-t1,
+        wdr:sense-dwugen-maxim-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "maxim"@en .
+
+wdr:word-dwugen-multitude-nn a drift:Word ;
+    rdfs:label "multitude"@en ;
+    ontolex:sense wdr:sense-dwugen-multitude-nn-t1,
+        wdr:sense-dwugen-multitude-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "multitude"@en .
+
+wdr:word-dwugen-ounce-nn a drift:Word ;
+    rdfs:label "ounce"@en ;
+    ontolex:sense wdr:sense-dwugen-ounce-nn-t1,
+        wdr:sense-dwugen-ounce-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "ounce"@en .
+
+wdr:word-dwugen-part-nn a drift:Word ;
+    rdfs:label "part"@en ;
+    ontolex:sense wdr:sense-dwugen-part-nn-t1,
+        wdr:sense-dwugen-part-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "part"@en .
+
+wdr:word-dwugen-pick-vb a drift:Word ;
+    rdfs:label "pick"@en ;
+    ontolex:sense wdr:sense-dwugen-pick-vb-t1,
+        wdr:sense-dwugen-pick-vb-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "pick"@en .
+
+wdr:word-dwugen-pin-vb a drift:Word ;
+    rdfs:label "pin"@en ;
+    ontolex:sense wdr:sense-dwugen-pin-vb-t1,
+        wdr:sense-dwugen-pin-vb-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "pin"@en .
+
+wdr:word-dwugen-plane-nn a drift:Word ;
+    rdfs:label "plane"@en ;
+    ontolex:sense wdr:sense-dwugen-plane-nn-t1,
+        wdr:sense-dwugen-plane-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "plane"@en .
+
+wdr:word-dwugen-player-nn a drift:Word ;
+    rdfs:label "player"@en ;
+    ontolex:sense wdr:sense-dwugen-player-nn-t1,
+        wdr:sense-dwugen-player-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "player"@en .
+
+wdr:word-dwugen-prop-nn a drift:Word ;
+    rdfs:label "prop"@en ;
+    ontolex:sense wdr:sense-dwugen-prop-nn-t1,
+        wdr:sense-dwugen-prop-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "prop"@en .
+
+wdr:word-dwugen-quilt-nn a drift:Word ;
+    rdfs:label "quilt"@en ;
+    ontolex:sense wdr:sense-dwugen-quilt-nn-t1,
+        wdr:sense-dwugen-quilt-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "quilt"@en .
+
+wdr:word-dwugen-rag-nn a drift:Word ;
+    rdfs:label "rag"@en ;
+    ontolex:sense wdr:sense-dwugen-rag-nn-t1,
+        wdr:sense-dwugen-rag-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "rag"@en .
+
+wdr:word-dwugen-rally-nn a drift:Word ;
+    rdfs:label "rally"@en ;
+    ontolex:sense wdr:sense-dwugen-rally-nn-t1,
+        wdr:sense-dwugen-rally-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "rally"@en .
+
+wdr:word-dwugen-record-nn a drift:Word ;
+    rdfs:label "record"@en ;
+    ontolex:sense wdr:sense-dwugen-record-nn-t1,
+        wdr:sense-dwugen-record-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "record"@en .
+
+wdr:word-dwugen-relationship-nn a drift:Word ;
+    rdfs:label "relationship"@en ;
+    ontolex:sense wdr:sense-dwugen-relationship-nn-t1,
+        wdr:sense-dwugen-relationship-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "relationship"@en .
+
+wdr:word-dwugen-risk-nn a drift:Word ;
+    rdfs:label "risk"@en ;
+    ontolex:sense wdr:sense-dwugen-risk-nn-t1,
+        wdr:sense-dwugen-risk-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "risk"@en .
+
+wdr:word-dwugen-savage-nn a drift:Word ;
+    rdfs:label "savage"@en ;
+    ontolex:sense wdr:sense-dwugen-savage-nn-t1,
+        wdr:sense-dwugen-savage-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "savage"@en .
+
+wdr:word-dwugen-stab-nn a drift:Word ;
+    rdfs:label "stab"@en ;
+    ontolex:sense wdr:sense-dwugen-stab-nn-t1,
+        wdr:sense-dwugen-stab-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "stab"@en .
+
+wdr:word-dwugen-stroke-vb a drift:Word ;
+    rdfs:label "stroke"@en ;
+    ontolex:sense wdr:sense-dwugen-stroke-vb-t1,
+        wdr:sense-dwugen-stroke-vb-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "stroke"@en .
+
+wdr:word-dwugen-thump-nn a drift:Word ;
+    rdfs:label "thump"@en ;
+    ontolex:sense wdr:sense-dwugen-thump-nn-t1,
+        wdr:sense-dwugen-thump-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "thump"@en .
+
+wdr:word-dwugen-tip-vb a drift:Word ;
+    rdfs:label "tip"@en ;
+    ontolex:sense wdr:sense-dwugen-tip-vb-t1,
+        wdr:sense-dwugen-tip-vb-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "tip"@en .
+
+wdr:word-dwugen-tree-nn a drift:Word ;
+    rdfs:label "tree"@en ;
+    ontolex:sense wdr:sense-dwugen-tree-nn-t1,
+        wdr:sense-dwugen-tree-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "tree"@en .
+
+wdr:word-dwugen-twist-nn a drift:Word ;
+    rdfs:label "twist"@en ;
+    ontolex:sense wdr:sense-dwugen-twist-nn-t1,
+        wdr:sense-dwugen-twist-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "twist"@en .
+
+wdr:word-dwugen-word-nn a drift:Word ;
+    rdfs:label "word"@en ;
+    ontolex:sense wdr:sense-dwugen-word-nn-t1,
+        wdr:sense-dwugen-word-nn-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-en ;
+    drift:language "en"^^xsd:language ;
+    drift:writtenForm "word"@en .
+
+wdr:sense-dwugen-afternoon-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'afternoon' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-afternoon-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'afternoon' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-bar-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'bar' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-bar-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'bar' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-chef-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'chef' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-chef-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'chef' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-fiction-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'fiction' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-fiction-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'fiction' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-gas-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'gas' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-gas-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'gas' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-graft-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'graft' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-graft-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'graft' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-grain-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'grain' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-grain-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'grain' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-head-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'head' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-head-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'head' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-heel-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'heel' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-heel-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'heel' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-include-vb-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'include' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-include-vb-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'include' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-land-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'land' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-land-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'land' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-lane-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'lane' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-lane-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'lane' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-lass-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'lass' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-lass-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'lass' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-maxim-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'maxim' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-maxim-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'maxim' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-multitude-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'multitude' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-multitude-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'multitude' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-ounce-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'ounce' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-ounce-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'ounce' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-part-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'part' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-part-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'part' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-pick-vb-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'pick' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-pick-vb-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'pick' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-pin-vb-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'pin' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-pin-vb-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'pin' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-plane-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'plane' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-plane-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'plane' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-player-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'player' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-player-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'player' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-prop-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'prop' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-prop-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'prop' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-quilt-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'quilt' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-quilt-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'quilt' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-rag-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'rag' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-rag-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'rag' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-rally-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'rally' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-rally-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'rally' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-record-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'record' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-record-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'record' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-relationship-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'relationship' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-relationship-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'relationship' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-risk-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'risk' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-risk-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'risk' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-savage-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'savage' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-savage-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'savage' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-stab-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'stab' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-stab-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'stab' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-stroke-vb-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'stroke' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-stroke-vb-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'stroke' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-thump-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'thump' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-thump-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'thump' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-tip-vb-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'tip' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-tip-vb-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'tip' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-tree-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'tree' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-tree-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'tree' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-twist-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'twist' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-twist-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'twist' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-word-nn-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'word' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:sense-dwugen-word-nn-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'word' in the later period (~1985) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-en .
+
+wdr:src-wugs-dwug-en a drift:Corpus ;
+    rdfs:label "DWUG"@en ;
+    dct:identifier "doi:10.5281/zenodo.5544443" ;
+    dct:title "DWUG English (Diachronic Word Usage Graphs, Schlechtweg et al.)"@en ;
+    rdfs:comment "Benchmark (gold human-annotated lexical semantic change). Ingested as detection-grade backbone: derived target-word + gold graded-change only, no raw usage graphs, no causal claim (ADR 0004)."@en ;
+    drift:sourceURL "https://zenodo.org/records/14028531"^^xsd:anyURI .
+

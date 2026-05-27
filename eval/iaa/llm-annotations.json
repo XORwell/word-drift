@@ -1,0 +1,1620 @@
+{
+  "backend": "ollama",
+  "annotators": {
+    "qwen3:14b": {
+      "hyp-akademie-plato": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-alternativlos-merkel": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-ampere-electrodynamics": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-arbeit-protestant": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-aspirin-bayer": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-assassin-crusades": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-atlas-mercator": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-backfisch-literatur": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-bakelite-baekeland": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-banause-bildung": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-bikini-tests": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-biro-patent": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-blitz-london": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-bowdlerize-shakespeare": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-boykott-landleague": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-braille-system": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-cellophane-brand": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-chauvinismus-play": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-cloud-aws": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-cologne-eau": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-cravat-croats": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-currant-corinth": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-damast-damaskus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-denim-nimes": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-diesel-patent": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-draconian-code": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-escalator-otis": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-etappe-wwi": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-fascism-mussolini": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-foehn-de-brand": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-frankenstein-shelley": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-fromm-luther": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-front-wwi": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-funk-genre": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-galvanisieren-frogleg": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-galvanize-frogleg": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-gargantuan-rabelais": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-gay-stonewall": {
+        "q1": "no",
+        "q2": 2
+      },
+      "hyp-geil-youthslang": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-gerrymander-redistricting": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-granola-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-guillotine-revolution": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-gutmensch-politics": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-guy-gunpowder": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-heimat-romantik": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-herculean-labours": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-hertz-waves": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-hooligan-press": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-jeans-genoa": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-jingoism-song": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kafkaesque-prozess": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kaiser-augustus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kamikaze-leyte": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kavalier-hofkultur": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-ketzer-albigensian": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-klasse-marx": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kleenex-kc": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-klimakleber-lg": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-labello-de-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-laconic-sparta": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-lazarett-venice": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-lesbian-sappho": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-linoleum-walton": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-luddite-uprising": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-luegenpresse-pegida": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-mach-de-shockwave": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-machiavellian-principe": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-malapropism-rivals": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-marathon-olympics": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-maus-macintosh": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mausoleum-halicarnassus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-maverick-cattle": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mentor-telemaque": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mesmerize-mesmer": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-morse-code-telegraph": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-narcissism-coinage": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-nemesis-goddess": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-nicotine-tobacco": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-nylon-dupont": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-ohm-de-law": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-ohm-law": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-orwellian-1984": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-panic-pan": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-pasteurize-heat": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-pfaffe-reformation": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-philippic-demosthenes": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-philister-studentensprache": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-proletariat-sozialismus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-propaganda-congregatio": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-quarantaene-venice": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-queer-nation": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-querdenker-711": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-querdenker-covid": {
+        "q1": "no",
+        "q2": 2
+      },
+      "hyp-quisling-invasion": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-quixotic-cervantes": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-robot-rur": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-roentgen-discovery": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-rugby-school": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-sabotage-cgt": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-sandwich-earl": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-saxophone-patent": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-schuetzengraben-wwi": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-schwurbler-covid": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-shrapnel-shell": {
+        "q1": "no",
+        "q2": 2
+      },
+      "hyp-silhouette-minister": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-spa-town": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-spam-montypython": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-spam-usenet": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-spartan-sparta": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spiesser-buergerkritik": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-streik-arbeiterbewegung": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-surfen-www": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tank-somme": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tantalize-tantalus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tempo-de-brand": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-thermos-brand": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-toll-youth": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-trommelfeuer-wwi": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-turkey-trade": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-tuxedo-park": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-tweet-twitter": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-uhu-de-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-vandalismus-gregoire": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-viral-web": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-volt-pile": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-watt-engine": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-wende-mauerfall": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-woke-blm": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-woke-culturewars": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-wutbuerger-media": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-xerox-914": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-yahoo-gulliver": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-zeppelin-lz1": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-zipper-goodrich": {
+        "q1": "yes",
+        "q2": 4
+      }
+    },
+    "phi4:latest": {
+      "hyp-akademie-plato": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-alternativlos-merkel": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-ampere-electrodynamics": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-arbeit-protestant": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-aspirin-bayer": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-assassin-crusades": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-atlas-mercator": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-backfisch-literatur": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-bakelite-baekeland": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-banause-bildung": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-bikini-tests": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-biro-patent": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-blitz-london": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-bowdlerize-shakespeare": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-boykott-landleague": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-braille-system": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-cellophane-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-chauvinismus-play": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-cloud-aws": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-cologne-eau": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-cravat-croats": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-currant-corinth": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-damast-damaskus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-denim-nimes": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-diesel-patent": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-draconian-code": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-escalator-otis": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-etappe-wwi": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-fascism-mussolini": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-foehn-de-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-frankenstein-shelley": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-fromm-luther": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-front-wwi": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-funk-genre": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-galvanisieren-frogleg": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-galvanize-frogleg": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-gargantuan-rabelais": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-gay-stonewall": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-geil-youthslang": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-gerrymander-redistricting": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-granola-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-guillotine-revolution": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-gutmensch-politics": {
+        "q1": "no",
+        "q2": 4
+      },
+      "hyp-guy-gunpowder": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-heimat-romantik": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-herculean-labours": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-hertz-waves": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-hooligan-press": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-jeans-genoa": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-jingoism-song": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-kafkaesque-prozess": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kaiser-augustus": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-kamikaze-leyte": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kavalier-hofkultur": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-ketzer-albigensian": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-klasse-marx": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kleenex-kc": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-klimakleber-lg": {
+        "q1": "no",
+        "q2": 3
+      },
+      "hyp-labello-de-brand": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-laconic-sparta": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-lazarett-venice": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-lesbian-sappho": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-linoleum-walton": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-luddite-uprising": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-luegenpresse-pegida": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mach-de-shockwave": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-machiavellian-principe": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-malapropism-rivals": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-marathon-olympics": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-maus-macintosh": {
+        "q1": "no",
+        "q2": 2
+      },
+      "hyp-mausoleum-halicarnassus": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-maverick-cattle": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mentor-telemaque": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mesmerize-mesmer": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-morse-code-telegraph": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-narcissism-coinage": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-nemesis-goddess": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-nicotine-tobacco": {
+        "q1": "no",
+        "q2": 2
+      },
+      "hyp-nylon-dupont": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-ohm-de-law": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-ohm-law": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-orwellian-1984": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-panic-pan": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-pasteurize-heat": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-pfaffe-reformation": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-philippic-demosthenes": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-philister-studentensprache": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-proletariat-sozialismus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-propaganda-congregatio": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-quarantaene-venice": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-queer-nation": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-querdenker-711": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-querdenker-covid": {
+        "q1": "no",
+        "q2": 3
+      },
+      "hyp-quisling-invasion": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-quixotic-cervantes": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-robot-rur": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-roentgen-discovery": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-rugby-school": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-sabotage-cgt": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-sandwich-earl": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-saxophone-patent": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-schuetzengraben-wwi": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-schwurbler-covid": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-shrapnel-shell": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-silhouette-minister": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spa-town": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spam-montypython": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-spam-usenet": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spartan-sparta": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spiesser-buergerkritik": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-streik-arbeiterbewegung": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-surfen-www": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-tank-somme": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tantalize-tantalus": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-tempo-de-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-thermos-brand": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-toll-youth": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-trommelfeuer-wwi": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-turkey-trade": {
+        "q1": "no",
+        "q2": 2
+      },
+      "hyp-tuxedo-park": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tweet-twitter": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-uhu-de-brand": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-vandalismus-gregoire": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-viral-web": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-volt-pile": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-watt-engine": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-wende-mauerfall": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-woke-blm": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-woke-culturewars": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-wutbuerger-media": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-xerox-914": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-yahoo-gulliver": {
+        "q1": "no",
+        "q2": 5
+      },
+      "hyp-zeppelin-lz1": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-zipper-goodrich": {
+        "q1": "yes",
+        "q2": 5
+      }
+    },
+    "gemma3:27b": {
+      "hyp-akademie-plato": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-alternativlos-merkel": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-ampere-electrodynamics": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-arbeit-protestant": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-aspirin-bayer": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-assassin-crusades": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-atlas-mercator": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-backfisch-literatur": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-bakelite-baekeland": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-banause-bildung": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-bikini-tests": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-biro-patent": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-blitz-london": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-bowdlerize-shakespeare": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-boykott-landleague": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-braille-system": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-cellophane-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-chauvinismus-play": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-cloud-aws": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-cologne-eau": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-cravat-croats": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-currant-corinth": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-damast-damaskus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-denim-nimes": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-diesel-patent": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-draconian-code": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-escalator-otis": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-etappe-wwi": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-fascism-mussolini": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-foehn-de-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-frankenstein-shelley": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-fromm-luther": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-front-wwi": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-funk-genre": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-galvanisieren-frogleg": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-galvanize-frogleg": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-gargantuan-rabelais": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-gay-stonewall": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-geil-youthslang": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-gerrymander-redistricting": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-granola-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-guillotine-revolution": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-gutmensch-politics": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-guy-gunpowder": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-heimat-romantik": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-herculean-labours": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-hertz-waves": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-hooligan-press": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-jeans-genoa": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-jingoism-song": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-kafkaesque-prozess": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-kaiser-augustus": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-kamikaze-leyte": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kavalier-hofkultur": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-ketzer-albigensian": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-klasse-marx": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-kleenex-kc": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-klimakleber-lg": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-labello-de-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-laconic-sparta": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-lazarett-venice": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-lesbian-sappho": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-linoleum-walton": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-luddite-uprising": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-luegenpresse-pegida": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mach-de-shockwave": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-machiavellian-principe": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-malapropism-rivals": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-marathon-olympics": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-maus-macintosh": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mausoleum-halicarnassus": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-maverick-cattle": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mentor-telemaque": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-mesmerize-mesmer": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-morse-code-telegraph": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-narcissism-coinage": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-nemesis-goddess": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-nicotine-tobacco": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-nylon-dupont": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-ohm-de-law": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-ohm-law": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-orwellian-1984": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-panic-pan": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-pasteurize-heat": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-pfaffe-reformation": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-philippic-demosthenes": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-philister-studentensprache": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-proletariat-sozialismus": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-propaganda-congregatio": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-quarantaene-venice": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-queer-nation": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-querdenker-711": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-querdenker-covid": {
+        "q1": "no",
+        "q2": 2
+      },
+      "hyp-quisling-invasion": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-quixotic-cervantes": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-robot-rur": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-roentgen-discovery": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-rugby-school": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-sabotage-cgt": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-sandwich-earl": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-saxophone-patent": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-schuetzengraben-wwi": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-schwurbler-covid": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-shrapnel-shell": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-silhouette-minister": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spa-town": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spam-montypython": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-spam-usenet": {
+        "q1": "yes",
+        "q2": 3
+      },
+      "hyp-spartan-sparta": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-spiesser-buergerkritik": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-streik-arbeiterbewegung": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-surfen-www": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tank-somme": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tantalize-tantalus": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tempo-de-brand": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-thermos-brand": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-toll-youth": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-trommelfeuer-wwi": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-turkey-trade": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-tuxedo-park": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-tweet-twitter": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-uhu-de-brand": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-vandalismus-gregoire": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-viral-web": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-volt-pile": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-watt-engine": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-wende-mauerfall": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-woke-blm": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-woke-culturewars": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-wutbuerger-media": {
+        "q1": "yes",
+        "q2": 4
+      },
+      "hyp-xerox-914": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-yahoo-gulliver": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-zeppelin-lz1": {
+        "q1": "yes",
+        "q2": 5
+      },
+      "hyp-zipper-goodrich": {
+        "q1": "yes",
+        "q2": 4
+      }
+    }
+  },
+  "n_items": 134
+}

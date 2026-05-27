@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data &amp; Downloads &mdash; WORD-DRIFT</title>
+  <meta name="description" content="Download the WORD-DRIFT dataset (RDF, CSV, nanopublications), audit the claims ledger, and reproduce the build. A page for reviewers and reusers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <script>
+    // Apply the persisted theme before first paint (default light) to avoid a flash.
+    try {
+      if (localStorage.getItem("wd.theme") === "dark") {
+        document.documentElement.dataset.theme = "dark";
+      }
+    } catch (e) {}
+  </script>
+  <style>
+    /* Downloads page: a compact resource list reusing the site palette. */
+    .dl-list { margin-top: 1.75rem; display: grid; gap: 0.85rem; }
+    .dl-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem 1.25rem;
+      align-items: start;
+      padding: 1rem 1.15rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .dl-item.dl-feature {
+      border-color: var(--accent);
+      border-left-width: 3px;
+    }
+    .dl-item-main h3 {
+      margin: 0 0 0.3rem;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .dl-item-main p {
+      margin: 0;
+      font-size: 0.83rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .dl-item-main p + p { margin-top: 0.4rem; }
+    .dl-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.55rem;
+    }
+    .dl-chip {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.02em;
+      padding: 0.12rem 0.5rem;
+      border-radius: 5px;
+      background: var(--bg-card2);
+      color: var(--text-faint);
+      border: 1px solid var(--border-soft);
+    }
+    .dl-chip.cc { color: var(--positive); }
+    .dl-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      align-items: stretch;
+      min-width: 9.5rem;
+    }
+    .dl-actions .btn { white-space: nowrap; justify-content: center; }
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 7px;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      transition: background .15s ease, color .15s ease;
+    }
+    .dl-btn.secondary {
+      background: transparent;
+      color: var(--accent-hi);
+      border-color: var(--border);
+    }
+    .dl-btn:hover { background: var(--accent-hi); border-color: var(--accent-hi); color: #fff; }
+    .dl-btn.secondary:hover { background: var(--bg-card2); color: var(--accent-hi); }
+    @media (max-width: 640px) {
+      .dl-item { grid-template-columns: 1fr; }
+      .dl-actions { min-width: 0; flex-direction: row; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a class="wordmark" href="index.html">WORD&#8209;<span>DRIFT</span></a>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="downloads.html" class="active">Data</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener">Repository</a></li>
+    </ul>
+    <button type="button" id="wd-theme-toggle" class="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light or dark theme">
+      <span class="icon-dark" aria-hidden="true">&#9790;</span><span class="icon-light" aria-hidden="true">&#9728;</span>
+    </button>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="hero" style="padding-bottom: 2.5rem;">
+    <p class="hero-eyebrow">Data &amp; downloads &mdash; for reviewers and reusers</p>
+    <h1 style="font-size: clamp(1.6rem, 4vw, 2.6rem);">
+      Download, audit, and<br /><span class="drift-word">reproduce the resource</span>
+    </h1>
+    <p class="hero-sub">
+      Every causal claim in WORD-DRIFT is an auditable row with source URLs, a
+      typed evidence tier, and a confidence. This page links the full dataset,
+      the claims ledger, the quality gates, and the provenance reports so other
+      researchers can review and reuse the graph.
+    </p>
+  </section>
+
+  <!-- CLAIMS LEDGER (highlighted reviewer artifact) -->
+  <section class="section" id="ledger" style="padding-top: 0;">
+    <p class="section-label">Start here</p>
+    <h2 class="section-title">The claims ledger</h2>
+    <div class="section-body">
+      <p>
+        The single most useful artifact for a reviewer. One row per
+        <code>drift:CausalHypothesis</code>: the word, the sense it shifted from
+        and to, the drift type, the proposed trigger and its Wikidata QID, the
+        typed evidence tier, the confidence, and the <strong>source URLs</strong>
+        backing the claim. Open it in any spreadsheet, pick a row, follow its
+        <code>source_urls</code>, and check whether the
+        <code>evidence_types</code> and <code>confidence</code> are justified.
+        See <a href="https://github.com/XORwell/word-drift/tree/main/docs/REVIEW.md" target="_blank" rel="noopener">docs/REVIEW.md</a> for the per-claim audit recipe.
+      </p>
+    </div>
+    <div class="dl-list">
+      <div class="dl-item dl-feature">
+        <div class="dl-item-main">
+          <h3>claims-ledger.csv</h3>
+          <p>
+            One auditable row per causal hypothesis. Columns:
+            <code>hypothesis_id, word, language, sense_from, sense_to, drift_type,
+            drift_year, proposed_trigger, trigger_date, trigger_category,
+            wikidata_qid, evidence_types, confidence, source_urls, source_titles,
+            attributed_to, date</code>.
+          </p>
+          <div class="dl-meta">
+            <span class="dl-chip">CSV</span>
+            <span class="dl-chip">one row per hypothesis</span>
+            <span class="dl-chip cc">CC-BY 4.0</span>
+          </div>
+        </div>
+        <div class="dl-actions">
+          <a class="dl-btn" href="downloads/claims-ledger.csv" download>Download CSV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATASET DOWNLOADS -->
+  <div class="section-full" id="dataset">
+    <div class="section-full-inner">
+      <p class="section-label">Dataset</p>
+      <h2 class="section-title">Full dataset and tables</h2>
+      <div class="section-body">
+        <p>
+          The complete graph in three RDF serializations plus the tabular
+          extracts. All curated RDF instances are released under
+          <strong>CC-BY 4.0</strong>; the schema, shapes, queries, and code are
+          MIT (see <a href="about.html#license">License</a>). Source datasets
+          retain their own licenses (see <a href="about.html#data">Data sources</a>).
+        </p>
+      </div>
+
+      <div class="dl-list">
+        <div class="dl-item">
+          <div class="dl-item-main">
+            <h3>word-drift.ttl</h3>
+            <p>The full knowledge graph in Turtle. The canonical, human-readable serialization.</p>
+            <div class="dl-meta">
+              <span class="dl-chip">RDF / Turtle</span>
+              <span class="dl-chip cc">CC-BY 4.0</span>
+            </div>
+          </div>
+          <div class="dl-actions">
+            <a class="dl-btn" href="downloads/word-drift.ttl" download>Download .ttl</a>
+          </div>
+        </div>
+
+        <div class="dl-item">
+          <div class="dl-item-main">
+            <h3>word-drift.nt</h3>
+            <p>The full graph as N-Triples. One triple per line; convenient for streaming, diffing, and line-oriented tooling.</p>
+            <div class="dl-meta">
+              <span class="dl-chip">RDF / N-Triples</span>
+              <span class="dl-chip cc">CC-BY 4.0</span>
+            </div>
+          </div>
+          <div class="dl-actions">
+            <a class="dl-btn" href="downloads/word-drift.nt" download>Download .nt</a>
+          </div>
+        </div>
+
+        <div class="dl-item">
+          <div class="dl-item-main">
+            <h3>word-drift.jsonld</h3>
+            <p>The full graph as JSON-LD. Drop-in for JSON tooling that understands linked data contexts.</p>
+            <div class="dl-meta">
+              <span class="dl-chip">RDF / JSON-LD</span>
+              <span class="dl-chip cc">CC-BY 4.0</span>
+            </div>
+          </div>
+          <div class="dl-actions">
+            <a class="dl-btn" href="downloads/word-drift.jsonld" download>Download .jsonld</a>
+          </div>
+        </div>
+
+        <div class="dl-item">
+          <div class="dl-item-main">
+            <h3>words.csv</h3>
+            <p>One row per word: <code>word_id, written_form, language, n_senses</code>. A lightweight index of the lexical layer.</p>
+            <div class="dl-meta">
+              <span class="dl-chip">CSV</span>
+              <span class="dl-chip cc">CC-BY 4.0</span>
+            </div>
+          </div>
+          <div class="dl-actions">
+            <a class="dl-btn" href="downloads/words.csv" download>Download CSV</a>
+          </div>
+        </div>
+
+        <div class="dl-item">
+          <div class="dl-item-main">
+            <h3>triggers.csv</h3>
+            <p>One row per trigger event: <code>trigger_id, label, event_date, category, wikidata_qid</code>. The real-world events that reframe words.</p>
+            <div class="dl-meta">
+              <span class="dl-chip">CSV</span>
+              <span class="dl-chip cc">CC-BY 4.0</span>
+            </div>
+          </div>
+          <div class="dl-actions">
+            <a class="dl-btn" href="downloads/triggers.csv" download>Download CSV</a>
+          </div>
+        </div>
+
+        <div class="dl-item">
+          <div class="dl-item-main">
+            <h3>word-drift-nanopubs.trig</h3>
+            <p>
+              The curated causal hypotheses as nanopublications (TriG): each claim
+              packaged with its own assertion, provenance, and publication-info
+              graphs. The most self-contained, citable unit of provenance.
+            </p>
+            <div class="dl-meta">
+              <span class="dl-chip">RDF / TriG</span>
+              <span class="dl-chip">nanopublications</span>
+              <span class="dl-chip cc">CC-BY 4.0</span>
+            </div>
+          </div>
+          <div class="dl-actions">
+            <a class="dl-btn" href="../data/nanopub/word-drift-nanopubs.trig" download>Download .trig</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPRODUCIBILITY -->
+  <section class="section" id="reproduce">
+    <p class="section-label">Reproducibility</p>
+    <h2 class="section-title">Rebuild it with one command</h2>
+    <div class="section-body">
+      <p>
+        The downloadable artifacts on this page are not hand-edited. They are
+        regenerated by the build, which runs a sequence of quality gates first.
+        Clone the repository and run:
+      </p>
+    </div>
+
+    <pre class="cite-block"># Regenerate the claims ledger, CSVs, and RDF serializations:
+make export
+
+# Full quality gate + frozen-release checklist (does NOT publish anything):
+make release
+#   = validate (SHACL) + test (pytest) + lint-data + check-qids + stats</pre>
+
+    <div class="about-grid" style="margin-top: 1.75rem;">
+      <div class="about-block">
+        <h3>SHACL validation gate</h3>
+        <p>
+          <code>make validate</code> runs <code>validate.py</code>, loading the
+          ontology modules and the
+          <a href="https://github.com/XORwell/word-drift/tree/main/shapes" target="_blank" rel="noopener">SHACL shapes</a>
+          (<code>causal-hypothesis-shape.ttl</code>,
+          <code>drift-event-shape.ttl</code>, <code>word-sense-shape.ttl</code>).
+          Every drift claim must structurally cite a source; every hypothesis must
+          carry a confidence and a typed evidence tier.
+        </p>
+      </div>
+      <div class="about-block">
+        <h3>QID gate</h3>
+        <p>
+          <code>make check-qids</code> runs
+          <a href="https://github.com/XORwell/word-drift/tree/main/scripts/audit-trigger-qids.py" target="_blank" rel="noopener">audit-trigger-qids.py</a>:
+          every trigger <code>owl:sameAs</code> must resolve to a verified-OK
+          Wikidata entity (no categories, disambiguation pages, deleted items, or
+          label mismatches).
+        </p>
+      </div>
+      <div class="about-block">
+        <h3>Lint gate</h3>
+        <p>
+          <code>make lint-data</code> runs
+          <a href="https://github.com/XORwell/word-drift/tree/main/scripts/lint-data.py" target="_blank" rel="noopener">lint-data.py</a>
+          for data-shape checks beyond SHACL (year ranges, dangling references,
+          orphaned senses).
+        </p>
+      </div>
+      <div class="about-block">
+        <h3>Competency SPARQL</h3>
+        <p>
+          The
+          <a href="https://github.com/XORwell/word-drift/tree/main/queries/competency" target="_blank" rel="noopener">12 competency questions</a>
+          (<code>queries/competency/*.rq</code>) encode what the graph should be
+          able to answer. Run them all with
+          <a href="https://github.com/XORwell/word-drift/tree/main/scripts/run-competency-questions.py" target="_blank" rel="noopener">run-competency-questions.py</a>.
+          The causal joins (cq01, cq02, cq09) are the ones pure detection data
+          cannot answer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROVENANCE & QUALITY -->
+  <div class="section-full" id="quality">
+    <div class="section-full-inner">
+      <p class="section-label">Provenance &amp; quality</p>
+      <h2 class="section-title">How the claims were checked</h2>
+      <div class="section-body">
+        <p>
+          The reports below document what was verified, what is still weak, and
+          how. They are the honest record behind the confidence scores. The
+          curated causal layer is deliberately high-precision rather than
+          representative; the limitations are spelled out in the data card.
+        </p>
+      </div>
+
+      <div class="about-grid" style="margin-top: 1.75rem;">
+        <div class="about-block">
+          <h3>Reviewer guide</h3>
+          <p>
+            <a href="https://github.com/XORwell/word-drift/tree/main/docs/REVIEW.md" target="_blank" rel="noopener">docs/REVIEW.md</a>
+            &mdash; how to audit a single claim, run the queries, check the gates,
+            and where per-claim provenance lives.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Data card</h3>
+          <p>
+            <a href="https://github.com/XORwell/word-drift/tree/main/docs/data-card.md" target="_blank" rel="noopener">docs/data-card.md</a>
+            &mdash; composition, intended use, known biases and limitations,
+            FAIR distribution.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Wikidata audit</h3>
+          <p>
+            <a href="https://github.com/XORwell/word-drift/tree/main/data/reports/wikidata-audit.md" target="_blank" rel="noopener">wikidata-audit.md</a>
+            &mdash; resolution status of every trigger <code>owl:sameAs</code> link.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Verification reports</h3>
+          <p>
+            <a href="https://github.com/XORwell/word-drift/tree/main/data/reports" target="_blank" rel="noopener">data/reports/verify-chunk*.md</a>
+            &mdash; per-chunk manual verification of curated claims against their
+            sources.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Inter-annotator agreement</h3>
+          <p>
+            <a href="https://github.com/XORwell/word-drift/tree/main/eval/iaa" target="_blank" rel="noopener">eval/iaa/</a>
+            (annotation sheet, key, kappa script) and
+            <a href="https://github.com/XORwell/word-drift/tree/main/data/reports/iaa-pilot.md" target="_blank" rel="noopener">iaa-pilot.md</a>.
+            An LLM reliability baseline, not human ground truth; a human round is
+            the documented next step.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Design decisions</h3>
+          <p>
+            <a href="https://github.com/XORwell/word-drift/tree/main/docs/plans" target="_blank" rel="noopener">docs/plans/</a>
+            (research-grade plan + waves) and
+            <a href="https://github.com/XORwell/word-drift/tree/main/docs/research-log.md" target="_blank" rel="noopener">docs/research-log.md</a>
+            &mdash; the running record of what was built and why.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITATION -->
+  <section class="section" id="cite">
+    <p class="section-label">Citation</p>
+    <h2 class="section-title">How to cite WORD-DRIFT</h2>
+    <div class="section-body">
+      <p>
+        If you use the schema, data, or visualiser in your research, please cite
+        the repository. Machine-readable metadata is in
+        <a href="https://github.com/XORwell/word-drift/tree/main/CITATION.cff" target="_blank" rel="noopener">CITATION.cff</a>.
+        A companion paper describing the causal ontology layer is in preparation;
+        this entry will be updated when it is published.
+      </p>
+    </div>
+
+    <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--text); margin-top: 2rem; margin-bottom: 0.5rem;">
+      BibTeX
+    </h3>
+    <pre class="cite-block">@misc{worddrift2026,
+  title  = {{WORD-DRIFT}: A Knowledge Graph for Evidenced Causal
+            Hypotheses in Lexical Semantic Change},
+  author = {Nennemann, Christian},
+  year   = {2026},
+  url    = {https://github.com/XORwell/word-drift},
+  note   = {Version 0.4. Data: CC-BY 4.0; Code: MIT.}
+}</pre>
+
+    <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--text); margin-top: 2rem; margin-bottom: 0.5rem;">
+      Plain text
+    </h3>
+    <div class="cite-block">Nennemann, C. (2026). WORD-DRIFT: A Knowledge Graph for Evidenced
+Causal Hypotheses in Lexical Semantic Change (Version 0.4).
+https://github.com/XORwell/word-drift</div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-sub);">
+      Repository:
+      <a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener" style="color: var(--accent-hi);">
+        github.com/XORwell/word-drift
+      </a>
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span>
+      <strong style="color: var(--text-sub);">WORD&#8209;DRIFT</strong>
+      &mdash; RDF/SHACL knowledge graph for lexical semantic change
+    </span>
+    <div class="site-footer-links">
+      <a href="about.html">About</a>
+      <a href="about.html#license">License</a>
+      <a href="downloads.html#cite">Cite</a>
+      <a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener">Repository</a>
+    </div>
+    <span>Schema v0.1 &mdash; 2025</span>
+  </footer>
+
+  <script>
+    // Theme toggle: flip data-theme on <html>, persist under "wd.theme".
+    (function () {
+      var btn = document.getElementById("wd-theme-toggle");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        var dark = document.documentElement.dataset.theme === "dark";
+        if (dark) { delete document.documentElement.dataset.theme; }
+        else { document.documentElement.dataset.theme = "dark"; }
+        try { localStorage.setItem("wd.theme", dark ? "light" : "dark"); } catch (e) {}
+      });
+    })();
+  </script>
+
+</body>
+</html>

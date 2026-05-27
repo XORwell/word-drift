@@ -1,0 +1,2398 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:word-dwug-abgesang a drift:Word ;
+    rdfs:label "Abgesang"@de ;
+    ontolex:sense wdr:sense-dwug-abgesang-c0,
+        wdr:sense-dwug-abgesang-c1,
+        wdr:sense-dwug-abgesang-c2,
+        wdr:sense-dwug-abgesang-c3 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Abgesang"@de .
+
+wdr:word-dwug-ackergerat a drift:Word ;
+    rdfs:label "Ackergerät"@de ;
+    ontolex:sense wdr:sense-dwug-ackergerat-c0 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Ackergerät"@de .
+
+wdr:word-dwug-armenhaus a drift:Word ;
+    rdfs:label "Armenhaus"@de ;
+    ontolex:sense wdr:sense-dwug-armenhaus-c0,
+        wdr:sense-dwug-armenhaus-c1 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Armenhaus"@de .
+
+wdr:word-dwug-ausnahmegesetz a drift:Word ;
+    rdfs:label "Ausnahmegesetz"@de ;
+    ontolex:sense wdr:sense-dwug-ausnahmegesetz-c0,
+        wdr:sense-dwug-ausnahmegesetz-c1 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Ausnahmegesetz"@de .
+
+wdr:word-dwug-behandlung a drift:Word ;
+    rdfs:label "Behandlung"@de ;
+    ontolex:sense wdr:sense-dwug-behandlung-c0,
+        wdr:sense-dwug-behandlung-c1,
+        wdr:sense-dwug-behandlung-c10,
+        wdr:sense-dwug-behandlung-c11,
+        wdr:sense-dwug-behandlung-c12,
+        wdr:sense-dwug-behandlung-c13,
+        wdr:sense-dwug-behandlung-c14,
+        wdr:sense-dwug-behandlung-c15,
+        wdr:sense-dwug-behandlung-c16,
+        wdr:sense-dwug-behandlung-c17,
+        wdr:sense-dwug-behandlung-c2,
+        wdr:sense-dwug-behandlung-c3,
+        wdr:sense-dwug-behandlung-c4,
+        wdr:sense-dwug-behandlung-c5,
+        wdr:sense-dwug-behandlung-c6,
+        wdr:sense-dwug-behandlung-c7,
+        wdr:sense-dwug-behandlung-c8,
+        wdr:sense-dwug-behandlung-c9 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Behandlung"@de .
+
+wdr:word-dwug-dynamik a drift:Word ;
+    rdfs:label "Dynamik"@de ;
+    ontolex:sense wdr:sense-dwug-dynamik-c0,
+        wdr:sense-dwug-dynamik-c1,
+        wdr:sense-dwug-dynamik-c2,
+        wdr:sense-dwug-dynamik-c3,
+        wdr:sense-dwug-dynamik-c4,
+        wdr:sense-dwug-dynamik-c5,
+        wdr:sense-dwug-dynamik-c6,
+        wdr:sense-dwug-dynamik-c7 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Dynamik"@de .
+
+wdr:word-dwug-einreichung a drift:Word ;
+    rdfs:label "Einreichung"@de ;
+    ontolex:sense wdr:sense-dwug-einreichung-c0,
+        wdr:sense-dwug-einreichung-c1 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Einreichung"@de .
+
+wdr:word-dwug-eintagsfliege a drift:Word ;
+    rdfs:label "Eintagsfliege"@de ;
+    ontolex:sense wdr:sense-dwug-eintagsfliege-c0,
+        wdr:sense-dwug-eintagsfliege-c1,
+        wdr:sense-dwug-eintagsfliege-c2,
+        wdr:sense-dwug-eintagsfliege-c3 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Eintagsfliege"@de .
+
+wdr:word-dwug-engpa a drift:Word ;
+    rdfs:label "Engpaß"@de ;
+    ontolex:sense wdr:sense-dwug-engpa-c0,
+        wdr:sense-dwug-engpa-c1,
+        wdr:sense-dwug-engpa-c2,
+        wdr:sense-dwug-engpa-c3,
+        wdr:sense-dwug-engpa-c4 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Engpaß"@de .
+
+wdr:word-dwug-entscheidung a drift:Word ;
+    rdfs:label "Entscheidung"@de ;
+    ontolex:sense wdr:sense-dwug-entscheidung-c0,
+        wdr:sense-dwug-entscheidung-c1,
+        wdr:sense-dwug-entscheidung-c10,
+        wdr:sense-dwug-entscheidung-c11,
+        wdr:sense-dwug-entscheidung-c12,
+        wdr:sense-dwug-entscheidung-c13,
+        wdr:sense-dwug-entscheidung-c14,
+        wdr:sense-dwug-entscheidung-c15,
+        wdr:sense-dwug-entscheidung-c16,
+        wdr:sense-dwug-entscheidung-c17,
+        wdr:sense-dwug-entscheidung-c2,
+        wdr:sense-dwug-entscheidung-c3,
+        wdr:sense-dwug-entscheidung-c4,
+        wdr:sense-dwug-entscheidung-c5,
+        wdr:sense-dwug-entscheidung-c6,
+        wdr:sense-dwug-entscheidung-c7,
+        wdr:sense-dwug-entscheidung-c8,
+        wdr:sense-dwug-entscheidung-c9 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Entscheidung"@de .
+
+wdr:word-dwug-festspiel a drift:Word ;
+    rdfs:label "Festspiel"@de ;
+    ontolex:sense wdr:sense-dwug-festspiel-c0,
+        wdr:sense-dwug-festspiel-c1,
+        wdr:sense-dwug-festspiel-c2,
+        wdr:sense-dwug-festspiel-c3,
+        wdr:sense-dwug-festspiel-c4,
+        wdr:sense-dwug-festspiel-c5,
+        wdr:sense-dwug-festspiel-c6,
+        wdr:sense-dwug-festspiel-c7 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Festspiel"@de .
+
+wdr:word-dwug-frechheit a drift:Word ;
+    rdfs:label "Frechheit"@de ;
+    ontolex:sense wdr:sense-dwug-frechheit-c0,
+        wdr:sense-dwug-frechheit-c1,
+        wdr:sense-dwug-frechheit-c2 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Frechheit"@de .
+
+wdr:word-dwug-fu a drift:Word ;
+    rdfs:label "Fuß"@de ;
+    ontolex:sense wdr:sense-dwug-fu-c0,
+        wdr:sense-dwug-fu-c1,
+        wdr:sense-dwug-fu-c10,
+        wdr:sense-dwug-fu-c11,
+        wdr:sense-dwug-fu-c12,
+        wdr:sense-dwug-fu-c13,
+        wdr:sense-dwug-fu-c2,
+        wdr:sense-dwug-fu-c3,
+        wdr:sense-dwug-fu-c4,
+        wdr:sense-dwug-fu-c5,
+        wdr:sense-dwug-fu-c6,
+        wdr:sense-dwug-fu-c7,
+        wdr:sense-dwug-fu-c8,
+        wdr:sense-dwug-fu-c9 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Fuß"@de .
+
+wdr:word-dwug-gesichtsausdruck a drift:Word ;
+    rdfs:label "Gesichtsausdruck"@de ;
+    ontolex:sense wdr:sense-dwug-gesichtsausdruck-c0,
+        wdr:sense-dwug-gesichtsausdruck-c1,
+        wdr:sense-dwug-gesichtsausdruck-c2,
+        wdr:sense-dwug-gesichtsausdruck-c3,
+        wdr:sense-dwug-gesichtsausdruck-c4 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Gesichtsausdruck"@de .
+
+wdr:word-dwug-knotenpunkt a drift:Word ;
+    rdfs:label "Knotenpunkt"@de ;
+    ontolex:sense wdr:sense-dwug-knotenpunkt-c0,
+        wdr:sense-dwug-knotenpunkt-c1,
+        wdr:sense-dwug-knotenpunkt-c2,
+        wdr:sense-dwug-knotenpunkt-c3,
+        wdr:sense-dwug-knotenpunkt-c4 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Knotenpunkt"@de .
+
+wdr:word-dwug-kubikmeter a drift:Word ;
+    rdfs:label "Kubikmeter"@de ;
+    ontolex:sense wdr:sense-dwug-kubikmeter-c0 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Kubikmeter"@de .
+
+wdr:word-dwug-lyzeum a drift:Word ;
+    rdfs:label "Lyzeum"@de ;
+    ontolex:sense wdr:sense-dwug-lyzeum-c0,
+        wdr:sense-dwug-lyzeum-c1,
+        wdr:sense-dwug-lyzeum-c2,
+        wdr:sense-dwug-lyzeum-c3,
+        wdr:sense-dwug-lyzeum-c4 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Lyzeum"@de .
+
+wdr:word-dwug-manschette a drift:Word ;
+    rdfs:label "Manschette"@de ;
+    ontolex:sense wdr:sense-dwug-manschette-c0,
+        wdr:sense-dwug-manschette-c1,
+        wdr:sense-dwug-manschette-c10,
+        wdr:sense-dwug-manschette-c11,
+        wdr:sense-dwug-manschette-c12,
+        wdr:sense-dwug-manschette-c2,
+        wdr:sense-dwug-manschette-c3,
+        wdr:sense-dwug-manschette-c4,
+        wdr:sense-dwug-manschette-c5,
+        wdr:sense-dwug-manschette-c6,
+        wdr:sense-dwug-manschette-c7,
+        wdr:sense-dwug-manschette-c8,
+        wdr:sense-dwug-manschette-c9 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Manschette"@de .
+
+wdr:word-dwug-mi-klang a drift:Word ;
+    rdfs:label "Mißklang"@de ;
+    ontolex:sense wdr:sense-dwug-mi-klang-c0,
+        wdr:sense-dwug-mi-klang-c1,
+        wdr:sense-dwug-mi-klang-c2,
+        wdr:sense-dwug-mi-klang-c3,
+        wdr:sense-dwug-mi-klang-c4,
+        wdr:sense-dwug-mi-klang-c5 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Mißklang"@de .
+
+wdr:word-dwug-mulatte a drift:Word ;
+    rdfs:label "Mulatte"@de ;
+    ontolex:sense wdr:sense-dwug-mulatte-c0,
+        wdr:sense-dwug-mulatte-c1,
+        wdr:sense-dwug-mulatte-c2,
+        wdr:sense-dwug-mulatte-c3,
+        wdr:sense-dwug-mulatte-c4 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Mulatte"@de .
+
+wdr:word-dwug-mut a drift:Word ;
+    rdfs:label "Mut"@de ;
+    ontolex:sense wdr:sense-dwug-mut-c0,
+        wdr:sense-dwug-mut-c1,
+        wdr:sense-dwug-mut-c2,
+        wdr:sense-dwug-mut-c3,
+        wdr:sense-dwug-mut-c4,
+        wdr:sense-dwug-mut-c5,
+        wdr:sense-dwug-mut-c6,
+        wdr:sense-dwug-mut-c7 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Mut"@de .
+
+wdr:word-dwug-naturschonheit a drift:Word ;
+    rdfs:label "Naturschönheit"@de ;
+    ontolex:sense wdr:sense-dwug-naturschonheit-c0,
+        wdr:sense-dwug-naturschonheit-c1,
+        wdr:sense-dwug-naturschonheit-c2,
+        wdr:sense-dwug-naturschonheit-c3,
+        wdr:sense-dwug-naturschonheit-c4,
+        wdr:sense-dwug-naturschonheit-c5 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Naturschönheit"@de .
+
+wdr:word-dwug-ohrwurm a drift:Word ;
+    rdfs:label "Ohrwurm"@de ;
+    ontolex:sense wdr:sense-dwug-ohrwurm-c0,
+        wdr:sense-dwug-ohrwurm-c1 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Ohrwurm"@de .
+
+wdr:word-dwug-pachtzins a drift:Word ;
+    rdfs:label "Pachtzins"@de ;
+    ontolex:sense wdr:sense-dwug-pachtzins-c0 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Pachtzins"@de .
+
+wdr:word-dwug-rezeption a drift:Word ;
+    rdfs:label "Rezeption"@de ;
+    ontolex:sense wdr:sense-dwug-rezeption-c0,
+        wdr:sense-dwug-rezeption-c1,
+        wdr:sense-dwug-rezeption-c2,
+        wdr:sense-dwug-rezeption-c3,
+        wdr:sense-dwug-rezeption-c4,
+        wdr:sense-dwug-rezeption-c5,
+        wdr:sense-dwug-rezeption-c6,
+        wdr:sense-dwug-rezeption-c7,
+        wdr:sense-dwug-rezeption-c8 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Rezeption"@de .
+
+wdr:word-dwug-schmiere a drift:Word ;
+    rdfs:label "Schmiere"@de ;
+    ontolex:sense wdr:sense-dwug-schmiere-c0,
+        wdr:sense-dwug-schmiere-c1,
+        wdr:sense-dwug-schmiere-c2,
+        wdr:sense-dwug-schmiere-c3,
+        wdr:sense-dwug-schmiere-c4,
+        wdr:sense-dwug-schmiere-c5,
+        wdr:sense-dwug-schmiere-c6,
+        wdr:sense-dwug-schmiere-c7 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Schmiere"@de .
+
+wdr:word-dwug-seminar a drift:Word ;
+    rdfs:label "Seminar"@de ;
+    ontolex:sense wdr:sense-dwug-seminar-c0,
+        wdr:sense-dwug-seminar-c1,
+        wdr:sense-dwug-seminar-c10,
+        wdr:sense-dwug-seminar-c11,
+        wdr:sense-dwug-seminar-c12,
+        wdr:sense-dwug-seminar-c13,
+        wdr:sense-dwug-seminar-c14,
+        wdr:sense-dwug-seminar-c15,
+        wdr:sense-dwug-seminar-c2,
+        wdr:sense-dwug-seminar-c3,
+        wdr:sense-dwug-seminar-c4,
+        wdr:sense-dwug-seminar-c5,
+        wdr:sense-dwug-seminar-c6,
+        wdr:sense-dwug-seminar-c7,
+        wdr:sense-dwug-seminar-c8,
+        wdr:sense-dwug-seminar-c9 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Seminar"@de .
+
+wdr:word-dwug-sensation a drift:Word ;
+    rdfs:label "Sensation"@de ;
+    ontolex:sense wdr:sense-dwug-sensation-c0,
+        wdr:sense-dwug-sensation-c1,
+        wdr:sense-dwug-sensation-c10,
+        wdr:sense-dwug-sensation-c2,
+        wdr:sense-dwug-sensation-c3,
+        wdr:sense-dwug-sensation-c4,
+        wdr:sense-dwug-sensation-c5,
+        wdr:sense-dwug-sensation-c6,
+        wdr:sense-dwug-sensation-c7,
+        wdr:sense-dwug-sensation-c8,
+        wdr:sense-dwug-sensation-c9 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Sensation"@de .
+
+wdr:word-dwug-spielball a drift:Word ;
+    rdfs:label "Spielball"@de ;
+    ontolex:sense wdr:sense-dwug-spielball-c0,
+        wdr:sense-dwug-spielball-c1,
+        wdr:sense-dwug-spielball-c2,
+        wdr:sense-dwug-spielball-c3,
+        wdr:sense-dwug-spielball-c4,
+        wdr:sense-dwug-spielball-c5,
+        wdr:sense-dwug-spielball-c6,
+        wdr:sense-dwug-spielball-c7,
+        wdr:sense-dwug-spielball-c8 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Spielball"@de .
+
+wdr:word-dwug-tier a drift:Word ;
+    rdfs:label "Tier"@de ;
+    ontolex:sense wdr:sense-dwug-tier-c0,
+        wdr:sense-dwug-tier-c1,
+        wdr:sense-dwug-tier-c2,
+        wdr:sense-dwug-tier-c3,
+        wdr:sense-dwug-tier-c4 ;
+    drift:hasSource wdr:corpus-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Tier"@de .
+
+wdr:sense-dwug-abgesang-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1811"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1811"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Abgesang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-abgesang-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1811"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1811"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Abgesang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-abgesang-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1951"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1951"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Abgesang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-abgesang-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Abgesang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-ackergerat-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1809"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1986"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1809"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Ackergerät' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-armenhaus-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1803"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1803"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Armenhaus' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-armenhaus-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1834"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1834"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Armenhaus' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-ausnahmegesetz-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1819"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1819"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Ausnahmegesetz' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-ausnahmegesetz-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1855"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1855"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Ausnahmegesetz' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1810"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1810"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1822"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1822"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c10 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1883"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1883"^^xsd:gYear ;
+    drift:gloss "Cluster 10 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c11 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1952"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1952"^^xsd:gYear ;
+    drift:gloss "Cluster 11 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c12 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1980"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1980"^^xsd:gYear ;
+    drift:gloss "Cluster 12 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c13 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1871"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1871"^^xsd:gYear ;
+    drift:gloss "Cluster 13 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c14 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1875"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1875"^^xsd:gYear ;
+    drift:gloss "Cluster 14 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c15 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1821"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1821"^^xsd:gYear ;
+    drift:gloss "Cluster 15 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c16 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1814"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1814"^^xsd:gYear ;
+    drift:gloss "Cluster 16 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c17 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1855"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1855"^^xsd:gYear ;
+    drift:gloss "Cluster 17 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1811"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1811"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1824"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1857"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1824"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1875"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1974"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1875"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1820"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1972"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1820"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1883"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1967"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1883"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1949"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1949"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1976"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1976"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-behandlung-c9 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1820"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1820"^^xsd:gYear ;
+    drift:gloss "Cluster 9 sense of 'Behandlung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1803"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1803"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1831"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1985"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1831"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1857"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1857"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1857"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1980"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1857"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1803"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1803"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1857"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1857"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1975"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1975"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-dynamik-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1976"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1976"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Dynamik' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-einreichung-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1832"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1832"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Einreichung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-einreichung-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Einreichung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-eintagsfliege-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1828"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1828"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Eintagsfliege' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-eintagsfliege-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1805"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1805"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Eintagsfliege' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-eintagsfliege-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1889"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1958"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1889"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Eintagsfliege' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-eintagsfliege-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1982"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1982"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Eintagsfliege' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-engpa-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1842"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1842"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Engpaß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-engpa-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1813"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1953"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1813"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Engpaß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-engpa-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1895"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1967"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1895"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Engpaß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-engpa-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1879"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1879"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Engpaß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-engpa-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1860"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1860"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Engpaß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1810"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1810"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1964"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c10 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1968"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1968"^^xsd:gYear ;
+    drift:gloss "Cluster 10 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c11 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1970"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1970"^^xsd:gYear ;
+    drift:gloss "Cluster 11 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c12 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1852"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1852"^^xsd:gYear ;
+    drift:gloss "Cluster 12 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c13 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1832"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1832"^^xsd:gYear ;
+    drift:gloss "Cluster 13 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c14 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1968"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1968"^^xsd:gYear ;
+    drift:gloss "Cluster 14 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c15 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1984"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1984"^^xsd:gYear ;
+    drift:gloss "Cluster 15 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c16 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:gloss "Cluster 16 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c17 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1948"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1948"^^xsd:gYear ;
+    drift:gloss "Cluster 17 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1881"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1956"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1881"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1976"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1976"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1837"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1837"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1877"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1877"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1877"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1877"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1848"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1848"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1876"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1876"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-entscheidung-c9 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1867"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1867"^^xsd:gYear ;
+    drift:gloss "Cluster 9 sense of 'Entscheidung' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1824"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1824"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1814"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1953"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1814"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1833"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1833"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1882"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1882"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1966"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1966"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1898"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1898"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1853"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1853"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-festspiel-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1884"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1884"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Festspiel' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-frechheit-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1802"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1802"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Frechheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-frechheit-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1867"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1867"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Frechheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-frechheit-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1856"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1856"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Frechheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1802"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1802"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1800"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1983"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1800"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c10 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1952"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1952"^^xsd:gYear ;
+    drift:gloss "Cluster 10 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c11 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1981"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1981"^^xsd:gYear ;
+    drift:gloss "Cluster 11 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c12 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:gloss "Cluster 12 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c13 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1952"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1952"^^xsd:gYear ;
+    drift:gloss "Cluster 13 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1895"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1895"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1834"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1977"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1834"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1955"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1955"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1960"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1967"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1960"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1968"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1968"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1869"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1869"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1965"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1965"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-fu-c9 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1866"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1866"^^xsd:gYear ;
+    drift:gloss "Cluster 9 sense of 'Fuß' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-gesichtsausdruck-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1830"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1830"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Gesichtsausdruck' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-gesichtsausdruck-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1860"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1860"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Gesichtsausdruck' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-gesichtsausdruck-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1851"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1851"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Gesichtsausdruck' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-gesichtsausdruck-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Gesichtsausdruck' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-gesichtsausdruck-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1985"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1985"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Gesichtsausdruck' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-knotenpunkt-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1855"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1855"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Knotenpunkt' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-knotenpunkt-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1808"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1988"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1808"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Knotenpunkt' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-knotenpunkt-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1857"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1985"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1857"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Knotenpunkt' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-knotenpunkt-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1857"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1857"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Knotenpunkt' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-knotenpunkt-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1874"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1886"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1874"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Knotenpunkt' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-kubikmeter-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1828"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1828"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Kubikmeter' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-lyzeum-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1804"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1804"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Lyzeum' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-lyzeum-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1890"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1890"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Lyzeum' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-lyzeum-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1891"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1891"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Lyzeum' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-lyzeum-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1890"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1890"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Lyzeum' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-lyzeum-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1947"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1947"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Lyzeum' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1800"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1800"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1869"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1869"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c10 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1965"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1965"^^xsd:gYear ;
+    drift:gloss "Cluster 10 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c11 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1964"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1964"^^xsd:gYear ;
+    drift:gloss "Cluster 11 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c12 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1962"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1962"^^xsd:gYear ;
+    drift:gloss "Cluster 12 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1839"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1988"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1839"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1800"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1974"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1800"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1970"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1970"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1869"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1869"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1869"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1869"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1962"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1962"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-manschette-c9 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1981"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1981"^^xsd:gYear ;
+    drift:gloss "Cluster 9 sense of 'Manschette' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mi-klang-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1806"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1806"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Mißklang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mi-klang-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1820"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1988"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1820"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Mißklang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mi-klang-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1858"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Mißklang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mi-klang-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1823"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1840"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1823"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Mißklang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mi-klang-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1955"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1955"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Mißklang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mi-klang-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1882"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1882"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Mißklang' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mulatte-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1801"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1801"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Mulatte' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mulatte-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1892"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1892"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Mulatte' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mulatte-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1958"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1958"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Mulatte' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mulatte-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1892"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1892"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Mulatte' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mulatte-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1958"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1958"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Mulatte' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1802"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1802"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1822"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1976"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1822"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1832"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1983"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1832"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1963"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1963"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1887"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1887"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1864"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1864"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1816"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1816"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-mut-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1981"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1981"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Mut' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-naturschonheit-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1808"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1808"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Naturschönheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-naturschonheit-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1987"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1987"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Naturschönheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-naturschonheit-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1846"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1846"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Naturschönheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-naturschonheit-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1846"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1846"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Naturschönheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-naturschonheit-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1984"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1984"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Naturschönheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-naturschonheit-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1857"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1857"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Naturschönheit' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-ohrwurm-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1969"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1969"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Ohrwurm' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-ohrwurm-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1800"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1800"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Ohrwurm' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-pachtzins-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1826"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1826"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Pachtzins' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1821"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1821"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1969"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1969"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1817"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1977"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1817"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1843"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1866"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1843"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1802"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1802"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1854"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1843"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1843"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1843"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1843"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-rezeption-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Rezeption' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1831"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1831"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1855"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1855"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1886"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1988"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1886"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1848"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1980"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1848"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1897"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1946"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1897"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1949"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1949"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1976"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1976"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-schmiere-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1848"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1848"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Schmiere' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1815"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1988"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1815"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1978"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c10 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1978"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1978"^^xsd:gYear ;
+    drift:gloss "Cluster 10 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c11 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 11 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c12 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1815"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1815"^^xsd:gYear ;
+    drift:gloss "Cluster 12 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c13 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 13 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c14 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1953"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1953"^^xsd:gYear ;
+    drift:gloss "Cluster 14 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c15 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Cluster 15 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1976"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1882"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1882"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1897"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1897"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1847"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1847"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1835"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1862"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1862"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-seminar-c9 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1873"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1873"^^xsd:gYear ;
+    drift:gloss "Cluster 9 sense of 'Seminar' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1801"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1801"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1820"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1898"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1820"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c10 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1836"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1836"^^xsd:gYear ;
+    drift:gloss "Cluster 10 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1810"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1835"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1810"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1834"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1834"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1972"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1972"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1851"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1851"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1871"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1871"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1895"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1895"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1898"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1898"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-sensation-c9 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1887"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1887"^^xsd:gYear ;
+    drift:gloss "Cluster 9 sense of 'Sensation' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1809"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1809"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1826"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1826"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1865"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1966"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1865"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1965"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1975"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1965"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1988"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1988"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c5 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1840"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1840"^^xsd:gYear ;
+    drift:gloss "Cluster 5 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c6 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1884"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1884"^^xsd:gYear ;
+    drift:gloss "Cluster 6 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c7 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1989"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1989"^^xsd:gYear ;
+    drift:gloss "Cluster 7 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-spielball-c8 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1875"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1875"^^xsd:gYear ;
+    drift:gloss "Cluster 8 sense of 'Spielball' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-tier-c0 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1802"^^xsd:gYear ] ;
+            time:hasEnd [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1802"^^xsd:gYear ;
+    drift:gloss "Cluster 0 sense of 'Tier' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-tier-c1 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1965"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1965"^^xsd:gYear ;
+    drift:gloss "Cluster 1 sense of 'Tier' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-tier-c2 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1990"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Cluster 2 sense of 'Tier' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-tier-c3 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1982"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1982"^^xsd:gYear ;
+    drift:gloss "Cluster 3 sense of 'Tier' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:sense-dwug-tier-c4 a drift:Sense ;
+    drift:attestedDuring [ a time:Interval ;
+            time:hasBeginning [ a time:Instant ;
+                    time:inXSDgYear "1953"^^xsd:gYear ] ] ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1953"^^xsd:gYear ;
+    drift:gloss "Cluster 4 sense of 'Tier' (DWUG DE)"@en ;
+    drift:hasSource wdr:corpus-dwug-de .
+
+wdr:corpus-dwug-de a drift:Corpus ;
+    dct:title "DWUG German"@en ;
+    drift:sourceURL "https://zenodo.org/records/14028509"^^xsd:anyURI .
+

@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Damast" (de)
+# Metonymization: named after the Syrian city of Damascus
+# (Damaskus), the source of the patterned figured silk. The
+# place name became the German name of the fabric.
+# =============================================================
+
+wdr:word-damast a drift:Word ;
+    drift:writtenForm "Damast"@de ;
+    drift:language "de" ;
+    rdfs:label "Damast"@de ;
+    ontolex:sense wdr:sense-damast-ort , wdr:sense-damast-stoff .
+
+wdr:sense-damast-ort a drift:Sense ;
+    drift:gloss "associated with the Syrian city of Damascus, the source of the figured woven cloth"@en ;
+    drift:gloss "nach der syrischen Stadt Damaskus benannt, Herkunftsort des gemusterten Gewebes"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1400"^^xsd:gYear .
+
+wdr:sense-damast-stoff a drift:Sense ;
+    drift:gloss "a reversible figured fabric woven with a pattern visible on both sides"@en ;
+    drift:gloss "reversibles, gemustertes Gewebe mit beidseitig sichtbarem Muster"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1450"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1450"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-damast-damaskus a drift:TriggerEvent ;
+    rdfs:label "Figured cloth from Damascus"@en ;
+    dct:description "The patterned figured silk traded from Damascus carried the city name. Through Italian Damasco it entered German as Damast from the late medieval period."@en ;
+    drift:eventDate "1400"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-damast-damaskus a drift:DriftEvent ;
+    drift:affectsWord wdr:word-damast ;
+    drift:senseFrom wdr:sense-damast-ort ;
+    drift:senseTo wdr:sense-damast-stoff ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-damast-dwds , wdr:src-damast-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-damast-damaskus a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-damast-damaskus ;
+    drift:proposedTrigger wdr:trigger-damast-damaskus ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-damast-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-damast-dwds a drift:Source ;
+    dct:title "DWDS -- Damast"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Damast"^^xsd:anyURI .
+
+wdr:src-damast-wikt a drift:Source ;
+    dct:title "Wiktionary -- Damast"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Damast"^^xsd:anyURI .

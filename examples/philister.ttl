@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Philister" (de)
+# Pejoration: the Biblical ethnonym for the Philistines becomes,
+# in German university slang from the late 17th c., the students'
+# label for a townsman or non-student, and then for a narrow,
+# unintellectual, materialistic person. German student culture is
+# the identifiable trigger; a 1693 Jena sermon is often cited.
+# =============================================================
+
+wdr:word-philister a drift:Word ;
+    drift:writtenForm "Philister"@de ;
+    drift:language "de" ;
+    rdfs:label "Philister"@de ;
+    ontolex:sense wdr:sense-philister-ethnonym , wdr:sense-philister-narrowminded .
+
+wdr:sense-philister-ethnonym a drift:Sense ;
+    drift:gloss "a member of the Philistines, the Biblical people of the coastal plain who fought the Israelites"@en ;
+    drift:gloss "Angehoeriger der Philister, des biblischen Kuestenvolks, das gegen die Israeliten kaempfte"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1500"^^xsd:gYear .
+
+wdr:sense-philister-narrowminded a drift:Sense ;
+    drift:gloss "in student slang, a townsman or non-student; hence a narrow-minded, unintellectual, complacently materialistic person"@en ;
+    drift:gloss "in der Studentensprache ein Buerger oder Nichtstudent; dann ein engstirniger, ungebildeter, selbstzufrieden materieller Mensch"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1693"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1693"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-philister-studentensprache a drift:TriggerEvent ;
+    rdfs:label "German university student slang, late 17th century"@en ;
+    dct:description "In German university towns students adopted 'Philister' as a label for townsmen and non-students, opposing themselves to the Biblical enemies of the chosen people. A 1693 Jena funeral sermon for a student killed by townsmen is a frequently cited early attestation. The sense broadened to the narrow-minded, unintellectual person."@en ;
+    drift:eventDate "1693"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-philister-studentensprache a drift:DriftEvent ;
+    drift:affectsWord wdr:word-philister ;
+    drift:senseFrom wdr:sense-philister-ethnonym ;
+    drift:senseTo wdr:sense-philister-narrowminded ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1690"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-philister-dwds , wdr:src-philister-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-philister-studentensprache a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-philister-studentensprache ;
+    drift:proposedTrigger wdr:trigger-philister-studentensprache ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-philister-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-philister-dwds a drift:Source ;
+    dct:title "DWDS -- Philister"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Philister"^^xsd:anyURI .
+
+wdr:src-philister-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Philister"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Philister"^^xsd:anyURI .

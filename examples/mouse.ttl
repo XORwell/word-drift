@@ -1,0 +1,85 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "mouse" (en) -- cross-lingual pair with "Maus" (maus-de)
+# Metaphorization:
+#   "a small rodent" (zoological) ->
+#   "computer input device" (named for its shape and tail-like
+#    cable). Coined at SRI by Engelbart's team in 1965; brought
+#    to the mainstream by the personal computing revolution and
+#    the Apple Macintosh in 1984.
+# =============================================================
+
+wdr:word-mouse a drift:Word ;
+    drift:writtenForm "mouse"@en ;
+    drift:language "en" ;
+    rdfs:label "mouse"@en ;
+    ontolex:sense wdr:sense-mouse-animal , wdr:sense-mouse-computer ;
+    drift:crossLingualOf wdr:word-maus .
+
+wdr:sense-mouse-animal a drift:Sense ;
+    drift:gloss "a mouse: the small rodent of genus Mus and related genera"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-mouse-computer a drift:Sense ;
+    drift:gloss "computer mouse: a handheld input device moved across a surface to control a screen pointer"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1965"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1965"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-apple-macintosh a drift:TriggerEvent ;
+    rdfs:label "Apple Macintosh launch and personal computing revolution"@en ;
+    dct:description "Engelbart's team coined the device name in 1965; the launch of the Apple Macintosh in 1984 and the spread of GUI-based personal computers brought the computer 'mouse' metaphor into mainstream English vocabulary."@en ;
+    drift:eventDate "1984"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q1137478 .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-mouse-pc a drift:DriftEvent ;
+    drift:affectsWord wdr:word-mouse ;
+    drift:senseFrom wdr:sense-mouse-animal ;
+    drift:senseTo wdr:sense-mouse-computer ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1965"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1990"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-mouse-etymonline , wdr:src-mouse-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-mouse-macintosh a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-mouse-pc ;
+    drift:proposedTrigger wdr:trigger-apple-macintosh ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-mouse-etymonline , wdr:src-mouse-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-mouse-etymonline a drift:Source ;
+    dct:title "Etymonline - mouse (n.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/mouse"^^xsd:anyURI .
+
+wdr:src-mouse-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - mouse, n."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/mouse_n"^^xsd:anyURI .

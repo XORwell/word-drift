@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "sophisticated" (en)
+# Amelioration: from "sophisticate" (to adulterate, tamper
+# with, corrupt; mix with a foreign substance) -> "adulterated,
+# falsified, no longer pure or naive" -> "refined, cultured,
+# worldly-wise; complex and advanced". A gradual reversal of
+# valuation, no crisp datable event.
+# =============================================================
+
+wdr:word-sophisticated a drift:Word ;
+    drift:writtenForm "sophisticated"@en ;
+    drift:language "en" ;
+    rdfs:label "sophisticated"@en ;
+    ontolex:sense wdr:sense-sophisticated-adulterated , wdr:sense-sophisticated-refined .
+
+wdr:sense-sophisticated-adulterated a drift:Sense ;
+    drift:gloss "adulterated, falsified, tampered with; mixed with a foreign or inferior substance; no longer pure or genuine"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-sophisticated-refined a drift:Sense ;
+    drift:gloss "refined, cultured, worldly-wise; free of naivety; (of a system or device) complex, advanced, highly developed"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1895"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1895"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-sophisticated-revaluation a drift:TriggerEvent ;
+    rdfs:label "Revaluation of worldliness from corruption to refinement"@en ;
+    dct:description "No single datable event. The loss of naive purity, once a defect (adulteration), was gradually reinterpreted as the positive quality of worldly refinement; the favourable 'worldly-wise' sense of persons is attested by 1895 (Etymonline). The anchor year marks the established positive sense, not a cause."@en ;
+    drift:eventDate "1895"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-sophisticated-amelioration a drift:DriftEvent ;
+    drift:affectsWord wdr:word-sophisticated ;
+    drift:senseFrom wdr:sense-sophisticated-adulterated ;
+    drift:senseTo wdr:sense-sophisticated-refined ;
+    drift:driftType drift:Amelioration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-sophisticated-etymonline , wdr:src-sophisticated-oed .
+
+# --- causal hypothesis ---
+wdr:hyp-sophisticated-revaluation a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-sophisticated-amelioration ;
+    drift:proposedTrigger wdr:trigger-sophisticated-revaluation ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-sophisticated-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-sophisticated-etymonline a drift:Source ;
+    dct:title "Etymonline - sophisticated (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/sophisticated"^^xsd:anyURI .
+
+wdr:src-sophisticated-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - sophisticated, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/sophisticated_adj"^^xsd:anyURI .

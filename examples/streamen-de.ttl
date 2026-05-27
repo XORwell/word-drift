@@ -1,0 +1,86 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "streamen" (de) -- cross-lingual pair with "stream" (stream.ttl)
+# Metaphorization (loanword):
+#   English "to stream" entered German as "streamen" directly in
+#   the digital sense: Audio oder Video als kontinuierlichen
+#   Datenstrom ueber das Internet abspielen. Driven by broadband
+#   and services such as YouTube (2005), Netflix and Spotify.
+# =============================================================
+
+wdr:word-streamen a drift:Word ;
+    drift:writtenForm "streamen"@de ;
+    drift:language "de" ;
+    rdfs:label "streamen"@de ;
+    ontolex:sense wdr:sense-streamen-data , wdr:sense-streamen-media ;
+    drift:crossLingualOf wdr:word-stream .
+
+wdr:sense-streamen-data a drift:Sense ;
+    drift:gloss "to transmit data as a continuous flow (technical computing sense)"@en ;
+    drift:gloss "Daten als kontinuierlichen Datenstrom uebertragen (technischer Sinn)"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1998"^^xsd:gYear .
+
+wdr:sense-streamen-media a drift:Sense ;
+    drift:gloss "to stream: to play audio or video as a continuous online flow without prior download"@en ;
+    drift:gloss "Audio oder Video als kontinuierlichen Datenstrom ueber das Internet abspielen, ohne vorher herunterzuladen"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2007"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2007"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-streaming-services a drift:TriggerEvent ;
+    rdfs:label "rise of broadband streaming media services"@en ;
+    dct:description "Broadband internet and services such as YouTube (2005), Netflix streaming (2007) and Spotify (2008) made consuming audio and video as a continuous online flow mainstream; German adopted 'streamen' for the media sense."@en ;
+    drift:eventDate "2005"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q866 .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-streamen-media a drift:DriftEvent ;
+    drift:affectsWord wdr:word-streamen ;
+    drift:senseFrom wdr:sense-streamen-data ;
+    drift:senseTo wdr:sense-streamen-media ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2007"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2014"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-streamen-dwds , wdr:src-streamen-duden .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS and Duden are dictionary/lexicographic sources -> LexicographicNote.
+wdr:hyp-streamen-services a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-streamen-media ;
+    drift:proposedTrigger wdr:trigger-streaming-services ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-streamen-dwds , wdr:src-streamen-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-streamen-dwds a drift:Source ;
+    dct:title "DWDS - streamen"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/streamen"^^xsd:anyURI .
+
+wdr:src-streamen-duden a drift:Source ;
+    dct:title "Duden - streamen"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/streamen"^^xsd:anyURI .

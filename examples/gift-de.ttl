@@ -1,0 +1,64 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORKED EXAMPLE - "Gift" (de)
+# Narrowing + Pejoration:
+#   Old High German / Middle High German "gift" / "gabe" =
+#   "giving, gift, donation" (from geben, to give).
+#   By Early Modern High German, the word narrowed exclusively
+#   to the "dose/poison" sense (via "medicinal dose given" ->
+#   lethal dose), while the positive "gift" sense was replaced
+#   by "Geschenk" / "Gabe".
+#   English "gift" retained the original positive meaning.
+# =============================================================
+
+wdr:word-gift-de a drift:Word ;
+    drift:writtenForm "Gift"@de ;
+    drift:language "de" ;
+    rdfs:label "Gift"@de ;
+    ontolex:sense wdr:sense-gift-donation , wdr:sense-gift-poison .
+
+wdr:sense-gift-donation a drift:Sense ;
+    drift:gloss "a giving; a gift or donation (archaic German sense, cognate with English 'gift')"@en ;
+    drift:gloss "Gabe, Schenkung (althochdeutsch/mittelhochdeutsch)"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "0800"^^xsd:gYear .
+
+wdr:sense-gift-poison a drift:Sense ;
+    drift:gloss "poison; a toxic substance causing harm or death"@en ;
+    drift:gloss "Giftstoff; vergiftende Substanz"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1350"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1350"^^xsd:gYear ]
+    ] .
+
+# --- drift event: narrowing + pejoration (no external trigger; purely language-internal) ---
+wdr:drift-gift-medieval a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gift-de ;
+    drift:senseFrom wdr:sense-gift-donation ;
+    drift:senseTo wdr:sense-gift-poison ;
+    drift:driftType drift:Narrowing , drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1350"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-gift-dwds , wdr:src-gift-kluge .
+
+# --- sources ---
+wdr:src-gift-dwds a drift:Source ;
+    dct:title "DWDS Etymologisches Woerterbuch - Gift"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Gift"^^xsd:anyURI .
+
+wdr:src-gift-kluge a drift:Source ;
+    dct:title "gift -- Online Etymology Dictionary (English cognate retaining the older sense)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/gift"^^xsd:anyURI .

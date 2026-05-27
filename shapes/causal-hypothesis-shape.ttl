@@ -1,0 +1,61 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+
+# A causal hypothesis (ADR 0004) must point at a drift event and a proposed
+# trigger, declare a typed evidence, carry a confidence in [0,1], and cite at
+# least one source for the link. This is the only place causation is asserted,
+# and it is asserted as a graded, evidenced claim.
+drift:CausalHypothesisShape a sh:NodeShape ;
+    sh:targetClass drift:CausalHypothesis ;
+    sh:property [
+        sh:path drift:aboutDrift ;
+        sh:minCount 1 ;
+        sh:class drift:DriftEvent ;
+        sh:message "A causal hypothesis must reference the drift event it is about." ;
+    ] ;
+    sh:property [
+        sh:path drift:proposedTrigger ;
+        sh:minCount 1 ;
+        sh:class drift:TriggerEvent ;
+        sh:message "A causal hypothesis must name a proposed trigger event." ;
+    ] ;
+    sh:property [
+        sh:path drift:evidenceType ;
+        sh:minCount 1 ;
+        sh:class skos:Concept ;
+        sh:message "A causal hypothesis must declare at least one evidence type from drift:EvidenceTypeScheme." ;
+    ] ;
+    sh:property [
+        sh:path drift:confidence ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "A causal hypothesis must carry exactly one confidence value in [0.0, 1.0]." ;
+    ] ;
+    sh:property [
+        sh:path drift:hasSource ;
+        sh:minCount 1 ;
+        sh:message "A causal hypothesis must cite at least one source for the link." ;
+    ] ;
+    # Honesty guard (ADR 0004): a hypothesis resting on Speculative evidence ALONE
+    # must not claim high confidence. Speculative-only is allowed (the ladder needs
+    # a floor), but it caps confidence below the plausibility cut (0.66, the same
+    # threshold the IAA study uses to binarise curator confidence). A speculative
+    # claim with a stronger competing evidence type is unaffected.
+    sh:sparql [
+        sh:message "A hypothesis whose only evidence type is Speculative must have confidence < 0.66." ;
+        sh:select """
+            PREFIX drift: <https://w3id.org/word-drift/ontology#>
+            SELECT $this WHERE {
+                $this drift:evidenceType drift:Speculative ;
+                      drift:confidence ?c .
+                FILTER (?c >= 0.66)
+                FILTER NOT EXISTS {
+                    $this drift:evidenceType ?other .
+                    FILTER (?other != drift:Speculative)
+                }
+            }
+        """ ;
+    ] .

@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Kaiser" (de)
+# Metonymization: the family name Caesar (of Julius Caesar) became,
+# through his heir Augustus and his successors, a title for the
+# Roman emperor, then the German word "Kaiser" for emperor. The
+# establishment of the imperial title under Augustus is the trigger.
+# Augustus took the title in 27 BC; anchored here to 0027 (see prose).
+# =============================================================
+
+wdr:word-kaiser a drift:Word ;
+    drift:writtenForm "Kaiser"@de ;
+    drift:language "de" ;
+    rdfs:label "Kaiser"@de ;
+    ontolex:sense wdr:sense-kaiser-name , wdr:sense-kaiser-title .
+
+wdr:sense-kaiser-name a drift:Sense ;
+    drift:gloss "the Roman cognomen Caesar, the family name of Gaius Julius Caesar"@en ;
+    drift:gloss "der roemische Beiname Caesar, Familienname des Gaius Julius Caesar"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0100"^^xsd:gYear .
+
+wdr:sense-kaiser-title a drift:Sense ;
+    drift:gloss "emperor; the supreme monarchic ruler, originally of the Roman empire and later of the Holy Roman and German empires"@en ;
+    drift:gloss "Herrschertitel, Kaiser; oberster monarchischer Herrscher, zuerst des roemischen, spaeter des heiligen roemischen und deutschen Reiches"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0027"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "0027"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-kaiser-augustus a drift:TriggerEvent ;
+    rdfs:label "Establishment of the Roman imperial title under Augustus"@en ;
+    dct:description "From 27 BC onward Octavian, the adopted heir of Julius Caesar, carried Caesar as part of his name and ruled as the first Roman emperor. His successors adopted Caesar as a standing element of the imperial titulature, converting the family name into a title of office; Germanic peoples borrowed it early as Kaisar/Kaiser."@en ;
+    drift:eventDate "0027"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-kaiser-augustus a drift:DriftEvent ;
+    drift:affectsWord wdr:word-kaiser ;
+    drift:senseFrom wdr:sense-kaiser-name ;
+    drift:senseTo wdr:sense-kaiser-title ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "0027"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "0100"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-kaiser-dwds , wdr:src-kaiser-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-kaiser-augustus a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-kaiser-augustus ;
+    drift:proposedTrigger wdr:trigger-kaiser-augustus ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-kaiser-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-kaiser-dwds a drift:Source ;
+    dct:title "DWDS -- Kaiser"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Kaiser"^^xsd:anyURI .
+
+wdr:src-kaiser-wikt a drift:Source ;
+    dct:title "Kaiser -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/Kaiser"^^xsd:anyURI .

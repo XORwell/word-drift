@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "procrustean" (en)
+# Metaphorization: from Procrustes, the robber of Attic Greek
+# myth who stretched or cut travellers to fit his iron bed. The
+# name yielded an adjective for forcing conformity to an
+# arbitrary standard regardless of fit.
+# =============================================================
+
+wdr:word-procrustean a drift:Word ;
+    drift:writtenForm "procrustean"@en ;
+    drift:language "en" ;
+    rdfs:label "procrustean"@en ;
+    ontolex:sense wdr:sense-procrustean-myth , wdr:sense-procrustean-conform .
+
+wdr:sense-procrustean-myth a drift:Sense ;
+    drift:gloss "of or relating to Procrustes, who tied travellers to a bed and stretched or amputated them to fit it"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1822"^^xsd:gYear .
+
+wdr:sense-procrustean-conform a drift:Sense ;
+    drift:gloss "tending to produce conformity by violent or arbitrary means; forcing things to fit a rigid, uniform standard regardless of their nature"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1822"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1822"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-procrustean-procrustes a drift:TriggerEvent ;
+    rdfs:label "Procrustes, the bed-stretcher of Greek myth"@en ;
+    dct:description "Procrustes, the mythical robber of Attica, forced victims to fit his bed by stretching or maiming them. The figure (known from classical sources and revived in English use of the 1580s, with the adjective recorded from 1822) became a byword for enforced, arbitrary conformity."@en ;
+    drift:eventDate "1822"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q271949 .
+
+# --- drift event ---
+wdr:drift-procrustean-procrustes a drift:DriftEvent ;
+    drift:affectsWord wdr:word-procrustean ;
+    drift:senseFrom wdr:sense-procrustean-myth ;
+    drift:senseTo wdr:sense-procrustean-conform ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-procrustean-etym , wdr:src-procrustean-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-procrustean-procrustes a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-procrustean-procrustes ;
+    drift:proposedTrigger wdr:trigger-procrustean-procrustes ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-procrustean-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-procrustean-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Procrustean"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/procrustean"^^xsd:anyURI .
+
+wdr:src-procrustean-wikt a drift:Source ;
+    dct:title "Wiktionary -- Procrustean"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/Procrustean"^^xsd:anyURI .

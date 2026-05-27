@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "lesbian" (en)
+# Metonymization: from Lesbos, the Greek island home of the poet
+# Sappho. Via her reputation the island name came to denote
+# female same-sex desire.
+# =============================================================
+
+wdr:word-lesbian a drift:Word ;
+    drift:writtenForm "lesbian"@en ;
+    drift:language "en" ;
+    rdfs:label "lesbian"@en ;
+    ontolex:sense wdr:sense-lesbian-place , wdr:sense-lesbian-sexual .
+
+wdr:sense-lesbian-place a drift:Sense ;
+    drift:gloss "of or relating to the Greek island of Lesbos and its inhabitants"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-lesbian-sexual a drift:Sense ;
+    drift:gloss "of a woman, homosexual; relating to female same-sex desire"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1870"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1870"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-lesbian-sappho a drift:TriggerEvent ;
+    rdfs:label "Sappho of Lesbos and her reception"@en ;
+    dct:description "The poet Sappho of Lesbos wrote of love between women. Nineteenth-century reception of her verse turned the island adjective 'Lesbian' into a term for female same-sex desire."@en ;
+    drift:eventDate "1870"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q17892 .
+
+# --- drift event ---
+wdr:drift-lesbian-sappho a drift:DriftEvent ;
+    drift:affectsWord wdr:word-lesbian ;
+    drift:senseFrom wdr:sense-lesbian-place ;
+    drift:senseTo wdr:sense-lesbian-sexual ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1870"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1920"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-lesbian-etym , wdr:src-lesbian-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-lesbian-sappho a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-lesbian-sappho ;
+    drift:proposedTrigger wdr:trigger-lesbian-sappho ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-lesbian-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-lesbian-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- lesbian"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/lesbian"^^xsd:anyURI .
+
+wdr:src-lesbian-wikt a drift:Source ;
+    dct:title "Wiktionary -- lesbian"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/lesbian"^^xsd:anyURI .

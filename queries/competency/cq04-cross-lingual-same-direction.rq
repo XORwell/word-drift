@@ -1,0 +1,25 @@
+# CQ04 — Same-direction drift across DE and EN.
+# Pairs words in different languages that underwent the SAME drift type
+# (e.g. both pejorated, both broadened). Lexicographic guard on the word IRIs
+# avoids reporting both (A,B) and (B,A). Foundation for cross-lingual claims.
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?driftTypeLabel
+       ?word1 ?lang1 ?year1
+       ?word2 ?lang2 ?year2
+WHERE {
+  ?e1 a drift:DriftEvent ; drift:affectsWord ?w1 ; drift:driftType ?t .
+  ?w1 drift:writtenForm ?word1 ; drift:language ?lang1 .
+  OPTIONAL { ?e1 drift:driftYear ?year1 . }
+
+  ?e2 a drift:DriftEvent ; drift:affectsWord ?w2 ; drift:driftType ?t .
+  ?w2 drift:writtenForm ?word2 ; drift:language ?lang2 .
+  OPTIONAL { ?e2 drift:driftYear ?year2 . }
+
+  FILTER(?lang1 != ?lang2)
+  FILTER(STR(?w1) < STR(?w2))
+
+  OPTIONAL { ?t skos:prefLabel ?driftTypeLabel . FILTER(lang(?driftTypeLabel) = "en") }
+}
+ORDER BY ?driftTypeLabel ?lang1 ?word1

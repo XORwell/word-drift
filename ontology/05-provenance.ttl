@@ -1,0 +1,37 @@
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 05: Provenance
+# Every drift event and attestation must trace to a source:
+# a corpus, a dictionary entry, a dataset, or a citation.
+# PROV-O based, mandatory (enforced in shapes/).
+# =============================================================
+
+drift:Source a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "source"@en ;
+    rdfs:comment "A citable origin for an assertion: a corpus query, dictionary entry, dataset record, or publication."@en .
+
+drift:Corpus a owl:Class ;
+    rdfs:subClassOf drift:Source ;
+    rdfs:label "corpus"@en ;
+    rdfs:comment "A named diachronic corpus or dataset (e.g. DWUG German, DWDS, Google Books Ngrams, SemEval-2020 Task 1)."@en .
+
+drift:hasSource a owl:ObjectProperty ;
+    rdfs:subPropertyOf prov:wasDerivedFrom ;
+    rdfs:label "has source"@en ;
+    rdfs:range drift:Source ;
+    rdfs:comment "Links any drift event or attestation to the source that supports it."@en .
+
+drift:sourceURL a owl:DatatypeProperty ;
+    rdfs:label "source URL"@en ;
+    rdfs:domain drift:Source ;
+    rdfs:range xsd:anyURI .
+
+# dct:title, dct:bibliographicCitation and dct:license are reused
+# on drift:Source instances without redefinition.

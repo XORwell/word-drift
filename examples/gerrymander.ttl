@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "gerrymander" (en)
+# Metonymization: a blend of Governor Elbridge Gerry's surname
+# and "salamander" (the shape of a redrawn district) -> generic
+# verb/noun for manipulating electoral boundaries. The 1812
+# Massachusetts redistricting is the identifiable trigger.
+# =============================================================
+
+wdr:word-gerrymander a drift:Word ;
+    drift:writtenForm "gerrymander"@en ;
+    drift:language "en" ;
+    rdfs:label "gerrymander"@en ;
+    ontolex:sense wdr:sense-gerrymander-coinage , wdr:sense-gerrymander-generic .
+
+wdr:sense-gerrymander-coinage a drift:Sense ;
+    drift:gloss "satirical 1812 coinage from Governor Elbridge Gerry plus 'salamander', naming a contorted Massachusetts electoral district"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1812"^^xsd:gYear .
+
+wdr:sense-gerrymander-generic a drift:Sense ;
+    drift:gloss "to manipulate the boundaries of an electoral district so as to favour one party or group; the practice of doing so"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1812"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1812"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-gerrymander-redistricting a drift:TriggerEvent ;
+    rdfs:label "Massachusetts redistricting under Governor Gerry"@en ;
+    dct:description "In 1812 Massachusetts redrew its senatorial districts to favour Governor Elbridge Gerry's party. A press cartoon likened one contorted district to a salamander, and the blend 'Gerry-mander' entered the language as a generic term for partisan map manipulation."@en ;
+    drift:eventDate "1812"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-gerrymander-redistricting a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gerrymander ;
+    drift:senseFrom wdr:sense-gerrymander-coinage ;
+    drift:senseTo wdr:sense-gerrymander-generic ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1812"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-gerrymander-etym , wdr:src-gerrymander-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-gerrymander-redistricting a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-gerrymander-redistricting ;
+    drift:proposedTrigger wdr:trigger-gerrymander-redistricting ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-gerrymander-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-gerrymander-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- gerrymander"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/gerrymander"^^xsd:anyURI .
+
+wdr:src-gerrymander-wiki a drift:Source ;
+    dct:title "Gerrymandering -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Gerrymandering"^^xsd:anyURI .

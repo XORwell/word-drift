@@ -1,0 +1,406 @@
+/* WORD-DRIFT Visualization — style.css */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #252836;
+  --border: #2e3245;
+  --text: #e2e6f3;
+  --text-muted: #7b82a0;
+  --accent: #5b7cf8;
+  --accent-hover: #7b97ff;
+
+  --positive: #34c97e;
+  --positive-bg: rgba(52, 201, 126, 0.12);
+  --neutral: #8a94b0;
+  --neutral-bg: rgba(138, 148, 176, 0.12);
+  --negative: #f05252;
+  --negative-bg: rgba(240, 82, 82, 0.12);
+
+  --trigger-color: #f5a623;
+  --trigger-bg: rgba(245, 166, 35, 0.12);
+
+  --font: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Mono", "Consolas", monospace;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────── */
+
+header {
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--surface);
+}
+
+header h1 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+header h1 span {
+  color: var(--accent);
+}
+
+.word-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: auto;
+}
+
+.word-selector-wrap label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+select#word-select {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 2rem 0.35rem 0.7rem;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237b82a0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  min-width: 160px;
+}
+
+select#word-select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ── Tabs ────────────────────────────────────────────── */
+
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  background: var(--surface);
+}
+
+.tab-btn {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.88rem;
+  font-family: var(--font);
+  font-weight: 500;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ── Panels ──────────────────────────────────────────── */
+
+.panel {
+  display: none;
+  padding: 1.5rem 2rem 2rem;
+}
+
+.panel.active {
+  display: block;
+}
+
+/* ── Timeline panel ──────────────────────────────────── */
+
+#panel-timeline h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+#timeline-svg-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+#timeline-svg-wrap svg {
+  display: block;
+  width: 100%;
+}
+
+/* Timeline SVG elements */
+.tl-axis line, .tl-axis path {
+  stroke: var(--border);
+}
+
+.tl-axis text {
+  fill: var(--text-muted);
+  font-size: 11px;
+  font-family: var(--font);
+}
+
+.tl-sense-band {
+  rx: 4;
+  ry: 4;
+}
+
+.tl-sense-label {
+  font-size: 11px;
+  font-family: var(--font);
+  fill: var(--text);
+}
+
+.tl-gloss {
+  font-size: 10px;
+  font-family: var(--font);
+  fill: var(--text-muted);
+}
+
+.tl-drift-arrow {
+  stroke-width: 1.5;
+  fill: none;
+  marker-end: url(#arrowhead);
+}
+
+.tl-trigger-mark line {
+  stroke: var(--trigger-color);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.tl-trigger-label {
+  font-size: 10px;
+  fill: var(--trigger-color);
+  font-family: var(--font);
+}
+
+.tl-spark-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  opacity: 0.8;
+}
+
+/* ── Force graph panel ───────────────────────────────── */
+
+#panel-graph h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+#graph-svg-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+#graph-svg-wrap svg {
+  display: block;
+  width: 100%;
+}
+
+/* Graph nodes */
+.g-sense-node {
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.g-sense-node:hover {
+  opacity: 0.85;
+}
+
+.g-trigger-node {
+  cursor: pointer;
+}
+
+.g-node-label {
+  font-size: 11px;
+  font-family: var(--font);
+  fill: var(--text);
+  pointer-events: none;
+}
+
+/* Graph edges */
+.g-drift-edge {
+  stroke-width: 1.8;
+  fill: none;
+  opacity: 0.7;
+  marker-end: url(#g-arrowhead);
+}
+
+.g-trigger-edge {
+  stroke: var(--trigger-color);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+  fill: none;
+  opacity: 0.5;
+}
+
+.g-drift-label {
+  font-size: 10px;
+  font-family: var(--font);
+  fill: var(--text-muted);
+  pointer-events: none;
+}
+
+/* ── Tooltip ─────────────────────────────────────────── */
+
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.82rem;
+  max-width: 300px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  z-index: 1000;
+  display: none;
+}
+
+#tooltip strong {
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+#tooltip p {
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+#tooltip .tt-meta {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+#tooltip .tt-tag {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+
+.tt-tag.positive { background: var(--positive-bg); color: var(--positive); }
+.tt-tag.neutral  { background: var(--neutral-bg);  color: var(--neutral);  }
+.tt-tag.negative { background: var(--negative-bg); color: var(--negative); }
+.tt-tag.trigger  { background: var(--trigger-bg);  color: var(--trigger-color); }
+
+/* ── Legend ──────────────────────────────────────────── */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-top: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.legend-swatch.circle {
+  border-radius: 50%;
+}
+
+.legend-swatch.diamond {
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+.legend-line {
+  width: 24px;
+  height: 2px;
+  flex-shrink: 0;
+}
+
+.legend-line.dashed {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--trigger-color) 0,
+    var(--trigger-color) 4px,
+    transparent 4px,
+    transparent 7px
+  );
+}
+
+/* ── Empty / loading states ──────────────────────────── */
+
+.empty-msg {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+/* ── Responsive adjustments ──────────────────────────── */
+
+@media (max-width: 640px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .word-selector-wrap {
+    margin-left: 0;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+}

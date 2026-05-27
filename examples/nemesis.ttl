@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "nemesis" (en)
+# Metaphorization: Nemesis, Greek goddess of retribution against
+# hubris -> an agent of downfall, an unbeatable rival or bane.
+# The goddess is the identifiable trigger.
+# =============================================================
+
+wdr:word-nemesis a drift:Word ;
+    drift:writtenForm "nemesis"@en ;
+    drift:language "en" ;
+    rdfs:label "nemesis"@en ;
+    ontolex:sense wdr:sense-nemesis-goddess , wdr:sense-nemesis-rival .
+
+wdr:sense-nemesis-goddess a drift:Sense ;
+    drift:gloss "Nemesis, the Greek goddess who dispensed retribution against those guilty of hubris or undeserved good fortune; divine vengeance"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1590"^^xsd:gYear .
+
+wdr:sense-nemesis-rival a drift:Sense ;
+    drift:gloss "an inescapable agent of one's downfall; a persistent and formidable rival or opponent who cannot be overcome"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1930"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1930"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-nemesis-goddess a drift:TriggerEvent ;
+    rdfs:label "Greek goddess Nemesis"@en ;
+    dct:description "Nemesis personified divine retribution in Greek religion, punishing arrogance and the disturbance of due proportion. Adopted into English as the name of the goddess, the word generalized to mean an instrument of inescapable downfall and then an unbeatable adversary."@en ;
+    drift:eventDate "1590"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-nemesis-goddess a drift:DriftEvent ;
+    drift:affectsWord wdr:word-nemesis ;
+    drift:senseFrom wdr:sense-nemesis-goddess ;
+    drift:senseTo wdr:sense-nemesis-rival ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1590"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1930"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-nemesis-etym , wdr:src-nemesis-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-nemesis-goddess a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-nemesis-goddess ;
+    drift:proposedTrigger wdr:trigger-nemesis-goddess ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-nemesis-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-nemesis-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- nemesis"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/nemesis"^^xsd:anyURI .
+
+wdr:src-nemesis-wiki a drift:Source ;
+    dct:title "Nemesis -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Nemesis"^^xsd:anyURI .

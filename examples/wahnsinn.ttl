@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Wahnsinn" (de)
+# Amelioration (exclamatory): "Geisteskrankheit, Irrsinn"
+# (madness, insanity; negative) -> umgangssprachlicher
+# Ausruf "Wahnsinn!" = grossartig, unglaublich beeindruckend.
+# A gradual colloquial bleaching of an exclamation, no crisp
+# datable event.
+# =============================================================
+
+wdr:word-wahnsinn a drift:Word ;
+    drift:writtenForm "Wahnsinn"@de ;
+    drift:language "de" ;
+    rdfs:label "Wahnsinn"@de ;
+    ontolex:sense wdr:sense-wahnsinn-irrsinn , wdr:sense-wahnsinn-ausruf .
+
+wdr:sense-wahnsinn-irrsinn a drift:Sense ;
+    drift:gloss "madness, insanity; a serious mental derangement"@en ;
+    drift:gloss "Geisteskrankheit, Irrsinn; schwere geistige Stoerung"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1700"^^xsd:gYear .
+
+wdr:sense-wahnsinn-ausruf a drift:Sense ;
+    drift:gloss "(colloquial exclamation) amazing, incredible, fantastic; an expression of admiration or astonishment"@en ;
+    drift:gloss "(umgangssprachlicher Ausruf) grossartig, unglaublich, beeindruckend; Ausdruck von Bewunderung oder Erstaunen"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1960"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1960"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-wahnsinn-ausruf a drift:TriggerEvent ;
+    rdfs:label "Umgangssprachliche Aufwertung eines Negativworts zum Ausruf"@en ;
+    dct:description "Kein einzelnes datierbares Ereignis. 'Wahnsinn' verblasste umgangssprachlich von 'Irrsinn' zum positiven Ausruf der Bewunderung, aehnlich wie 'irre' oder 'verrueckt'. Das Ankerjahr ist eine repraesentative Belegstelle, keine Ursache."@de ;
+    drift:eventDate "1960"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-wahnsinn-ausruf a drift:DriftEvent ;
+    drift:affectsWord wdr:word-wahnsinn ;
+    drift:senseFrom wdr:sense-wahnsinn-irrsinn ;
+    drift:senseTo wdr:sense-wahnsinn-ausruf ;
+    drift:driftType drift:Amelioration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2000"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-wahnsinn-dwds , wdr:src-wahnsinn-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-wahnsinn-ausruf a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-wahnsinn-ausruf ;
+    drift:proposedTrigger wdr:trigger-wahnsinn-ausruf ;
+    drift:evidenceType drift:Speculative ;
+    drift:confidence 0.55 ;
+    drift:hasSource wdr:src-wahnsinn-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-wahnsinn-dwds a drift:Source ;
+    dct:title "DWDS -- Wahnsinn"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Wahnsinn"^^xsd:anyURI .
+
+wdr:src-wahnsinn-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Wahnsinn"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Wahnsinn"^^xsd:anyURI .

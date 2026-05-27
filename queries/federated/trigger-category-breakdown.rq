@@ -1,0 +1,27 @@
+# Trigger category breakdown: count drift events by the category of their
+# triggering event (Political, Pandemic, Technology, Cultural, Media, Commercial).
+# Gives a high-level picture of which classes of real-world events drive the
+# most lexical change in the current graph.
+#
+# LOCAL query - no SERVICE block; runs against the loaded word-drift graph only.
+# Drift events with no causal hypothesis are excluded (they have no category).
+# Causation is reified (ADR 0004): the drift event is reached from the trigger
+# through drift:CausalHypothesis (aboutDrift / proposedTrigger), not the removed
+# drift:triggeredBy shortcut.
+
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?category ?categoryIRI (COUNT(DISTINCT ?driftEvent) AS ?driftEventCount)
+WHERE {
+  ?hyp a drift:CausalHypothesis ;
+       drift:aboutDrift ?driftEvent ;
+       drift:proposedTrigger ?trigger .
+  ?trigger drift:triggerCategory ?categoryIRI .
+  OPTIONAL {
+    ?categoryIRI skos:prefLabel ?category .
+    FILTER(lang(?category) = "en")
+  }
+}
+GROUP BY ?category ?categoryIRI
+ORDER BY DESC(?driftEventCount) ?category

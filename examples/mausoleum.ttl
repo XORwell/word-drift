@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "mausoleum" (en)
+# Broadening: the proper name of the tomb of King Mausolus at
+# Halicarnassus (one of the Seven Wonders) generalised into a
+# common noun for any large, stately tomb. The construction of
+# the tomb of Mausolus is the trigger. Built c. 353-351 BC;
+# anchored here to 0353 as a 4-digit gYear (see prose).
+# =============================================================
+
+wdr:word-mausoleum a drift:Word ;
+    drift:writtenForm "mausoleum"@en ;
+    drift:language "en" ;
+    rdfs:label "mausoleum"@en ;
+    ontolex:sense wdr:sense-mausoleum-tomb , wdr:sense-mausoleum-generic .
+
+wdr:sense-mausoleum-tomb a drift:Sense ;
+    drift:gloss "the monumental tomb of Mausolus, satrap of Caria, at Halicarnassus, one of the Seven Wonders of the ancient world"@en ;
+    drift:gloss "das monumentale Grabmal des Mausolos, Satrap von Karien, in Halikarnassos, eines der sieben Weltwunder"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0353"^^xsd:gYear .
+
+wdr:sense-mausoleum-generic a drift:Sense ;
+    drift:gloss "any large, stately, free-standing tomb or building housing tombs"@en ;
+    drift:gloss "jedes grosse, prunkvolle, freistehende Grabmal oder Grabgebaeude"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-mausoleum-halicarnassus a drift:TriggerEvent ;
+    rdfs:label "Construction of the tomb of Mausolus at Halicarnassus"@en ;
+    dct:description "Around 353 to 351 BC a monumental tomb was built at Halicarnassus for Mausolus, satrap of Caria, and his sister-wife Artemisia. Its fame as one of the Seven Wonders made the ruler's name (Greek Mausoleion) the generic word for any grand tomb."@en ;
+    drift:eventDate "0353"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-mausoleum-halicarnassus a drift:DriftEvent ;
+    drift:affectsWord wdr:word-mausoleum ;
+    drift:senseFrom wdr:sense-mausoleum-tomb ;
+    drift:senseTo wdr:sense-mausoleum-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-mausoleum-etym , wdr:src-mausoleum-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-mausoleum-halicarnassus a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-mausoleum-halicarnassus ;
+    drift:proposedTrigger wdr:trigger-mausoleum-halicarnassus ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-mausoleum-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-mausoleum-etym a drift:Source ;
+    dct:title "mausoleum -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/mausoleum"^^xsd:anyURI .
+
+wdr:src-mausoleum-wiki a drift:Source ;
+    dct:title "Mausoleum at Halicarnassus -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Mausoleum_at_Halicarnassus"^^xsd:anyURI .

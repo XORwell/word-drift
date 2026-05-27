@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "cloud" (en)
+# Metaphorization:
+#   Atmospheric phenomenon -> computing infrastructure metaphor.
+#   "The cloud" as network/internet appeared in telecom diagrams
+#   from the 1990s (undifferentiated network was drawn as a cloud
+#   shape), then solidified as "cloud computing" from ~2006.
+# =============================================================
+
+wdr:word-cloud a drift:Word ;
+    drift:writtenForm "cloud"@en ;
+    drift:language "en" ;
+    rdfs:label "cloud"@en ;
+    ontolex:sense wdr:sense-cloud-weather , wdr:sense-cloud-computing ;
+    drift:crossLingualOf wdr:word-wolke .
+
+wdr:sense-cloud-weather a drift:Sense ;
+    drift:gloss "a visible mass of condensed water vapour floating in the atmosphere"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-cloud-computing a drift:Sense ;
+    drift:gloss "cloud computing: remote networked computing resources (servers, storage, software) accessed via the internet, often depicted as a cloud in diagrams"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2006"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2006"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-aws-launch a drift:TriggerEvent ;
+    rdfs:label "Amazon Web Services launch and popularisation of cloud computing (2006)"@en ;
+    dct:description "Amazon's launch of AWS EC2 and S3 in 2006, followed by Eric Schmidt's use of 'cloud computing' at the 2006 Search Engine Strategies conference, anchored the term in mainstream technology discourse."@en ;
+    drift:eventDate "2006"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q456157 .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-cloud-2006 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-cloud ;
+    drift:senseFrom wdr:sense-cloud-weather ;
+    drift:senseTo wdr:sense-cloud-computing ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1996"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2010"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-cloud-etymonline , wdr:src-cloud-wikipedia .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline provides a lexicographic note; Wikipedia is general/encyclopedic (Speculative).
+wdr:hyp-cloud-aws a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-cloud-2006 ;
+    drift:proposedTrigger wdr:trigger-aws-launch ;
+    drift:evidenceType drift:LexicographicNote , drift:Speculative ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-cloud-etymonline , wdr:src-cloud-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-cloud-etymonline a drift:Source ;
+    dct:title "Etymonline - cloud (n.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/cloud"^^xsd:anyURI .
+
+wdr:src-cloud-wikipedia a drift:Source ;
+    dct:title "Cloud computing - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Cloud_computing"^^xsd:anyURI .

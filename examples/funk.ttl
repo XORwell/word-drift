@@ -1,0 +1,77 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "funk / funky" (en)
+# Amelioration: "strong (bad) smell" -> "stylish, soulful;
+# the funk music genre", triggered by the rise of funk as an
+# African-American music genre in the 1960s.
+# =============================================================
+
+wdr:word-funk a drift:Word ;
+    drift:writtenForm "funk"@en ;
+    drift:language "en" ;
+    rdfs:label "funk"@en ;
+    ontolex:sense wdr:sense-funk-smell , wdr:sense-funk-music .
+
+wdr:sense-funk-smell a drift:Sense ;
+    drift:gloss "a strong, musty, unpleasant smell; body odour"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1620"^^xsd:gYear .
+
+wdr:sense-funk-music a drift:Sense ;
+    drift:gloss "earthy, soulful, danceable quality; the funk music genre; (adj. funky) stylish, excellent"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1959"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1959"^^xsd:gYear ]
+    ] .
+
+# --- trigger ---
+wdr:trigger-funk-genre a drift:TriggerEvent ;
+    rdfs:label "emergence of funk music"@en ;
+    dct:description "The rise of funk as an African-American music genre (James Brown et al.) carried the word from 'bad smell' to a marker of style and soul."@en ;
+    drift:eventDate "1965"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q164444 .
+
+# --- drift event (causation lives in the hypothesis below) ---
+wdr:drift-funk-1960s a drift:DriftEvent ;
+    drift:affectsWord wdr:word-funk ;
+    drift:senseFrom wdr:sense-funk-smell ;
+    drift:senseTo wdr:sense-funk-music ;
+    drift:driftType drift:Amelioration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1959"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1975"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-funk-oed .
+
+# --- causal hypothesis (ADR 0004): backed by a dictionary etymology note ---
+wdr:hyp-funk-genre a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-funk-1960s ;
+    drift:proposedTrigger wdr:trigger-funk-genre ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-funk-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- source ---
+wdr:src-funk-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - funk, n."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/funk_n"^^xsd:anyURI .

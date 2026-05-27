@@ -1,0 +1,98 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "spam" (en)
+# Metonymization (brand -> phenomenon):
+#   1. Hormel "SPAM" canned luncheon meat (1937) [brand proper noun]
+#   2. Monty Python "Spam" sketch (1970): relentless repetition
+#      as comedy -> the word becomes associated with unwanted
+#      repetitive content in UK geek culture
+#   3. 1990s Usenet/email: "spam" = unsolicited bulk email
+#      (metonym: the thing that floods your inbox like the
+#      sketch floods the menu)
+# =============================================================
+
+wdr:word-spam a drift:Word ;
+    drift:writtenForm "spam"@en ;
+    drift:language "en" ;
+    rdfs:label "spam"@en ;
+    ontolex:sense wdr:sense-spam-meat , wdr:sense-spam-digital .
+
+wdr:sense-spam-meat a drift:Sense ;
+    drift:gloss "SPAM: Hormel Foods brand name for a canned cooked pork product"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1937"^^xsd:gYear .
+
+wdr:sense-spam-digital a drift:Sense ;
+    drift:gloss "unsolicited bulk messages, especially commercial email; unwanted repetitive online content"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1993"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1993"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-monty-python-spam a drift:TriggerEvent ;
+    rdfs:label "Monty Python's Flying Circus 'Spam' sketch (1970)"@en ;
+    dct:description "The 1970 Monty Python sketch featuring 'Spam' repeated ad nauseam embedded the word's association with unwanted repetitive content in English geek culture, which internet users later applied to bulk email."@en ;
+    drift:eventDate "1970"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q1777591 .
+
+wdr:trigger-usenet-spam a drift:TriggerEvent ;
+    rdfs:label "Usenet bulk posting incidents (early 1990s)"@en ;
+    dct:description "Early Usenet flooding incidents (notably Canter and Siegel's 1994 bulk posting) were labelled 'spamming' by analogy with the Monty Python sketch, cementing the digital sense."@en ;
+    drift:eventDate "1993"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metonymization (causation lives in the hypotheses below) ---
+wdr:drift-spam-1993 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-spam ;
+    drift:senseFrom wdr:sense-spam-meat ;
+    drift:senseTo wdr:sense-spam-digital ;
+    drift:driftType drift:Metonymization ;
+    drift:driftYear "1993"^^xsd:gYear ;
+    drift:hasSource wdr:src-spam-etymonline , wdr:src-spam-wikipedia .
+
+# --- causal hypotheses (ADR 0004): two competing proposals ---
+# Monty Python sketch: proximate cultural mediator; Etymonline (lexicographic) attests the link.
+wdr:hyp-spam-montypython a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-spam-1993 ;
+    drift:proposedTrigger wdr:trigger-monty-python-spam ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.92 ;
+    drift:hasSource wdr:src-spam-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+# Usenet incidents: proximate technological trigger; general web source only -> Speculative.
+wdr:hyp-spam-usenet a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-spam-1993 ;
+    drift:proposedTrigger wdr:trigger-usenet-spam ;
+    drift:evidenceType drift:Speculative ;
+    drift:confidence 0.5 ;
+    drift:hasSource wdr:src-spam-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-spam-etymonline a drift:Source ;
+    dct:title "Etymonline - spam (n.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/spam"^^xsd:anyURI .
+
+wdr:src-spam-wikipedia a drift:Source ;
+    dct:title "History of email spam - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/History_of_email_spam"^^xsd:anyURI .

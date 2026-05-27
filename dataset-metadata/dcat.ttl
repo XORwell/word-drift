@@ -1,0 +1,81 @@
+# WORD-DRIFT — DCAT (Data Catalog Vocabulary) description
+#
+# A dcat:Dataset with three dcat:Distributions:
+#   1. the Turtle RDF dump (the ontology + curated examples + ETL data),
+#   2. the git repository (source, versioned),
+#   3. the static browse/visualization site.
+#
+# Persistent namespace base: https://w3id.org/word-drift/
+# License (data): CC-BY-4.0
+
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wdc:     <https://w3id.org/word-drift/dcat#> .
+
+wdc:catalog a dcat:Catalog ;
+    dcterms:title "WORD-DRIFT data catalog"@en ;
+    dcterms:publisher [ a foaf:Agent ; foaf:name "nennemann.de" ] ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:dataset wdc:dataset .
+
+wdc:dataset a dcat:Dataset ;
+    dcterms:title "WORD-DRIFT — An Open Knowledge Graph for Lexical Semantic Change"@en ;
+    dcterms:description """An open RDF/SHACL knowledge graph for lexical semantic change (Bedeutungswandel) in German and English. It models word senses with diachronic attestation intervals and connotation values, typed drift events (pejoration, amelioration, broadening, narrowing, metaphorization, metonymization, reversal, reappropriation), and a causal trigger layer that links real-world events to the drift they plausibly caused. Each causal claim is a confidence-graded hypothesis with a source citation, never an asserted fact (ADR-0004). Built on OntoLex-Lemon, OWL-Time, PROV-O and SKOS."""@en ;
+    dcterms:creator [ a foaf:Person ; foaf:name "Christian Nennemann" ; foaf:mbox <mailto:research@nennemann.de> ] ;
+    dcterms:publisher [ a foaf:Agent ; foaf:name "nennemann.de" ] ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:issued "2026-05-23"^^xsd:date ;
+    dcterms:modified "2026-05-24"^^xsd:date ;
+    dcterms:accrualPeriodicity <http://purl.org/cld/freq/irregular> ;
+    dcterms:language "en" , "de" ;
+    dcat:landingPage <https://github.com/XORwell/word-drift> ;
+    dcterms:identifier "https://w3id.org/word-drift/" ;
+
+    dcat:keyword
+        "lexical semantic change" ,
+        "Bedeutungswandel" ,
+        "knowledge graph" ,
+        "OntoLex-Lemon" ,
+        "semantic shift" ,
+        "diachronic linguistics" ,
+        "RDF" , "SHACL" , "SPARQL" ,
+        "causation" , "word sense" ;
+
+    dcat:theme <http://eurovoc.europa.eu/100154> ;   # linguistics
+
+    dcat:contactPoint [
+        a vcard:Individual ;
+        vcard:fn "Christian Nennemann" ;
+        vcard:hasEmail <mailto:research@nennemann.de>
+    ] ;
+
+    dcat:distribution wdc:dist-turtle , wdc:dist-repo , wdc:dist-site .
+
+# --- Distribution 1: Turtle RDF dump --------------------------------------
+wdc:dist-turtle a dcat:Distribution ;
+    dcterms:title "WORD-DRIFT RDF dump (Turtle)"@en ;
+    dcterms:description "The ontology modules, SHACL shapes, curated example RDF and ETL-generated data, serialized as Turtle."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/turtle> ;
+    dcterms:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> ;
+    dcat:downloadURL <https://github.com/XORwell/word-drift/archive/main.tar.gz> ;
+    dcat:accessURL <https://github.com/XORwell/word-drift> .
+
+# --- Distribution 2: git repository ---------------------------------------
+wdc:dist-repo a dcat:Distribution ;
+    dcterms:title "WORD-DRIFT source repository (Gitea)"@en ;
+    dcterms:description "The full versioned source: ontology, shapes, SPARQL queries, ETL adapters, tests, visualization and paper scaffold."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/application/zip> ;
+    dcat:accessURL <https://github.com/XORwell/word-drift> .
+
+# --- Distribution 3: static site ------------------------------------------
+wdc:dist-site a dcat:Distribution ;
+    dcterms:title "WORD-DRIFT browse & visualization site"@en ;
+    dcterms:description "Static D3 visualization: per-word sense timeline (connotation colour-coded) and a sense/trigger force-directed graph. No build step."@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/html> ;
+    dcat:accessURL <https://w3id.org/word-drift/> .

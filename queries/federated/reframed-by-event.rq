@@ -1,0 +1,30 @@
+# Cross-word analysis: which trigger event reframed the most words?
+# Groups causal hypotheses (ADR 0004) by their proposed trigger, counts the
+# distinct words affected, and lists the word forms as a convenience.
+# Answers "which historical event had the widest lexical impact in this graph".
+#
+# LOCAL query — no SERVICE block; runs against the loaded word-drift graph only.
+
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?trigger ?triggerLabel ?category ?eventYear
+       (COUNT(DISTINCT ?word) AS ?wordCount)
+       (GROUP_CONCAT(DISTINCT ?writtenForm; SEPARATOR=", ") AS ?words)
+WHERE {
+  ?hyp a drift:CausalHypothesis ;
+       drift:aboutDrift ?driftEvent ;
+       drift:proposedTrigger ?trigger .
+  ?driftEvent drift:affectsWord ?word .
+  ?word drift:writtenForm ?writtenForm .
+  OPTIONAL { ?trigger rdfs:label ?triggerLabel . FILTER(lang(?triggerLabel) = "en") }
+  OPTIONAL { ?trigger drift:eventDate ?eventYear . }
+  OPTIONAL {
+    ?trigger drift:triggerCategory ?cat .
+    ?cat skos:prefLabel ?category .
+    FILTER(lang(?category) = "en")
+  }
+}
+GROUP BY ?trigger ?triggerLabel ?category ?eventYear
+ORDER BY DESC(?wordCount) ?eventYear

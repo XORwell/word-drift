@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "linoleum" (en)
+# Broadening: Frederick Walton's 1864 trademark for his
+# solidified-linseed-oil floor covering -> generic term for the
+# material. The 1864 brand launch is the commercial trigger;
+# ruled generic in an English court in 1878.
+# =============================================================
+
+wdr:word-linoleum a drift:Word ;
+    drift:writtenForm "linoleum"@en ;
+    drift:language "en" ;
+    rdfs:label "linoleum"@en ;
+    ontolex:sense wdr:sense-linoleum-brand , wdr:sense-linoleum-generic .
+
+wdr:sense-linoleum-brand a drift:Sense ;
+    drift:gloss "Frederick Walton's trademarked floor covering made from oxidised linseed oil"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1864"^^xsd:gYear .
+
+wdr:sense-linoleum-generic a drift:Sense ;
+    drift:gloss "any smooth floor covering of this general type, regardless of maker"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1878"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1878"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-linoleum-walton a drift:TriggerEvent ;
+    rdfs:label "Walton markets Linoleum floor covering"@en ;
+    dct:description "Frederick Walton coined and registered Linoleum around 1864 for his linseed-oil floor covering. Because he did not police the term, it was held to have become generic in an 1878 English court ruling, one of the earliest recorded cases of trademark genericide."@en ;
+    drift:eventDate "1864"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-linoleum-walton a drift:DriftEvent ;
+    drift:affectsWord wdr:word-linoleum ;
+    drift:senseFrom wdr:sense-linoleum-brand ;
+    drift:senseTo wdr:sense-linoleum-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1864"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1878"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-linoleum-wikt , wdr:src-linoleum-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-linoleum-walton a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-linoleum-walton ;
+    drift:proposedTrigger wdr:trigger-linoleum-walton ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-linoleum-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-linoleum-wikt a drift:Source ;
+    dct:title "linoleum -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/linoleum"^^xsd:anyURI .
+
+wdr:src-linoleum-wiki a drift:Source ;
+    dct:title "Linoleum -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Linoleum"^^xsd:anyURI .

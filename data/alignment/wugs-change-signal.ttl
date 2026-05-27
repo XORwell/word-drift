@@ -1,0 +1,36 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:hyp-attack-polysemy drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-wugs-changesignal .
+
+wdr:hyp-ball-polysemy drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-wugs-changesignal .
+
+wdr:hyp-billig-price drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-wugs-changesignal .
+
+wdr:hyp-bit-binarydigit drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-wugs-changesignal .
+
+wdr:hyp-circle-polysemy drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-wugs-changesignal .
+
+wdr:hyp-edge-polysemy drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-wugs-changesignal .
+
+wdr:hyp-face-polysemy drift:evidenceType drift:ChangeSignalAlignment ;
+    drift:hasSource wdr:src-wugs-changesignal .
+
+wdr:wugs-alignment-curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT WUG ChangeSignalAlignment curator (full-benchmark ingest)"@en .
+
+wdr:src-wugs-changesignal a drift:Corpus ;
+    dct:title "IMS Stuttgart WUG benchmarks -- gold graded-change signal (DWUG/DURel/SURel)"@en ;
+    rdfs:comment "Per-word gold graded-change scores from the WUG benchmark datasets (data/wugs/*.ttl). The benchmark's own change measure is the field's accepted reproducible change signal; used here as ChangeSignalAlignment evidence for an existing curated hypothesis whose trigger date aligns with the measured shift. Cites the gold score, never asserts a cause."@en ;
+    drift:sourceURL "https://www.ims.uni-stuttgart.de/en/research/resources/experiment-data/wugs/"^^xsd:anyURI .
+

@@ -1,0 +1,54 @@
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 04: Causation (the novel layer)
+# Most semantic-change resources stop at detection. WORD-DRIFT
+# links a drift event to the historical / cultural / political
+# event that plausibly triggered it. Causation is a CLAIM, not
+# a fact: it carries evidence and a confidence value.
+# =============================================================
+
+drift:TriggerEvent a owl:Class ;
+    rdfs:subClassOf prov:Activity ;
+    rdfs:label "trigger event"@en , "Auslöser-Ereignis"@de ;
+    rdfs:comment "A datable real-world event proposed as the cause of a semantic shift (e.g. the COVID-19 pandemic, the rise of funk music). Linkable to Wikidata via owl:sameAs."@en .
+
+drift:eventDate a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "event date"@en ;
+    rdfs:domain drift:TriggerEvent ;
+    rdfs:range xsd:gYear ;
+    rdfs:comment "Year (or onset year) of the trigger event. Functional: a convenience single-year anchor cross-checked against the external source (P585/P571, ADR 0004)."@en .
+
+# --- Trigger categories ----------------------------------------------------
+
+drift:TriggerCategoryScheme a skos:ConceptScheme ;
+    skos:prefLabel "Trigger category"@en .
+
+drift:Political   a skos:Concept ; skos:inScheme drift:TriggerCategoryScheme ; skos:prefLabel "political"@en .
+drift:Pandemic    a skos:Concept ; skos:inScheme drift:TriggerCategoryScheme ; skos:prefLabel "pandemic / health"@en .
+drift:Technology  a skos:Concept ; skos:inScheme drift:TriggerCategoryScheme ; skos:prefLabel "technological"@en .
+drift:Cultural    a skos:Concept ; skos:inScheme drift:TriggerCategoryScheme ; skos:prefLabel "cultural / artistic"@en .
+drift:Media       a skos:Concept ; skos:inScheme drift:TriggerCategoryScheme ; skos:prefLabel "media / internet"@en .
+drift:Commercial  a skos:Concept ; skos:inScheme drift:TriggerCategoryScheme ; skos:prefLabel "commercial / brand"@en .
+
+drift:triggerCategory a owl:ObjectProperty ;
+    rdfs:label "trigger category"@en ;
+    rdfs:domain drift:TriggerEvent ;
+    rdfs:range skos:Concept .
+
+# --- Confidence on the causal claim ----------------------------------------
+# There is no drift:triggeredBy shortcut. Causation is expressed ONLY through
+# drift:CausalHypothesis (module 06, ADR 0004), which links a drift event to a
+# proposed trigger with a typed evidence and this confidence value.
+
+drift:confidence a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "confidence"@en ;
+    rdfs:domain drift:CausalHypothesis ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Confidence (0.0 to 1.0) that the proposed trigger is associated with the shift. A graded claim, never a proof. Functional: exactly one confidence per hypothesis (SHACL maxCount 1); competing assessments are separate drift:CausalHypothesis nodes."@en .

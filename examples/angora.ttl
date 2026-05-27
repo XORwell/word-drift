@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "angora" (en)
+# Metonymization: Angora, the old name of the central Turkish
+# city Ancyra (modern Ankara), gave its name to the long-haired
+# goat and its soft wool. The city is the trigger.
+# =============================================================
+
+wdr:word-angora a drift:Word ;
+    drift:writtenForm "angora"@en ;
+    drift:language "en" ;
+    rdfs:label "angora"@en ;
+    ontolex:sense wdr:sense-angora-city , wdr:sense-angora-wool .
+
+wdr:sense-angora-city a drift:Sense ;
+    drift:gloss "of or from Angora, the old name of Ancyra (modern Ankara) in central Turkey"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1745"^^xsd:gYear .
+
+wdr:sense-angora-wool a drift:Sense ;
+    drift:gloss "the soft wool of the Angora goat (later also the Angora rabbit); the long-haired animals themselves"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1810"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1810"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-angora-city a drift:TriggerEvent ;
+    rdfs:label "Angora (Ancyra / Ankara), Turkey"@en ;
+    dct:description "The long-haired goat and its wool took the name of Angora, the old form of Ancyra (modern Ankara); 'Angora goat' is attested 1745 and the wool sense by 1810, the city name standing for the material."@en ;
+    drift:eventDate "1745"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial ;
+    owl:sameAs wd:Q3640 .
+
+# --- drift event ---
+wdr:drift-angora-city a drift:DriftEvent ;
+    drift:affectsWord wdr:word-angora ;
+    drift:senseFrom wdr:sense-angora-city ;
+    drift:senseTo wdr:sense-angora-wool ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1745"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1810"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-angora-etym , wdr:src-angora-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-angora-city a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-angora-city ;
+    drift:proposedTrigger wdr:trigger-angora-city ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-angora-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-angora-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- angora"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/angora"^^xsd:anyURI .
+
+wdr:src-angora-wikt a drift:Source ;
+    dct:title "Wiktionary -- angora"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/angora"^^xsd:anyURI .

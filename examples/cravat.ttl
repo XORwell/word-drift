@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "cravat" (en)
+# Metonymization: French "cravate" literally "Croatian", from
+# the linen scarves worn by Croat light cavalry in the Thirty
+# Years War. The ethnonym became the name of the neckwear.
+# =============================================================
+
+wdr:word-cravat a drift:Word ;
+    drift:writtenForm "cravat"@en ;
+    drift:language "en" ;
+    rdfs:label "cravat"@en ;
+    ontolex:sense wdr:sense-cravat-croat , wdr:sense-cravat-neckwear .
+
+wdr:sense-cravat-croat a drift:Sense ;
+    drift:gloss "a Croat; specifically the 17th-century light cavalry who wore distinctive linen neck scarves"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1650"^^xsd:gYear .
+
+wdr:sense-cravat-neckwear a drift:Sense ;
+    drift:gloss "a band or scarf of cloth worn around the neck, an early form of the necktie"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1650"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1650"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-cravat-croats a drift:TriggerEvent ;
+    rdfs:label "Croat cavalry in the Thirty Years War"@en ;
+    dct:description "Croat (Crabat) light cavalry fighting for the Catholic League wore linen neck scarves. The fashion was imitated in France from the 1650s, and the ethnonym 'cravate' became the name of the garment."@en ;
+    drift:eventDate "1650"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-cravat-croats a drift:DriftEvent ;
+    drift:affectsWord wdr:word-cravat ;
+    drift:senseFrom wdr:sense-cravat-croat ;
+    drift:senseTo wdr:sense-cravat-neckwear ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1650"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-cravat-etym , wdr:src-cravat-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-cravat-croats a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-cravat-croats ;
+    drift:proposedTrigger wdr:trigger-cravat-croats ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-cravat-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-cravat-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- cravat"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/cravat"^^xsd:anyURI .
+
+wdr:src-cravat-wikt a drift:Source ;
+    dct:title "Wiktionary -- cravat"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/cravat"^^xsd:anyURI .

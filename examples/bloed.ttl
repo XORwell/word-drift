@@ -1,0 +1,63 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "bloed" (de)
+# Pejoration: OHG blodi "physically weak, timid, fearful" ->
+# MHG "infirm, delicate, shy" -> NHG "stupid, foolish, annoying"
+# A textbook case of pejoration via metonymization:
+# from physical weakness to mental / moral deficiency.
+# =============================================================
+
+wdr:word-bloed a drift:Word ;
+    drift:writtenForm "bloed"@de ;
+    drift:language "de" ;
+    rdfs:label "bloed"@de ;
+    ontolex:sense wdr:sense-bloed-weak , wdr:sense-bloed-stupid .
+
+wdr:sense-bloed-weak a drift:Sense ;
+    drift:gloss "physically weak, timid, fearful, frail; lacking courage or bodily strength"@en ;
+    drift:gloss "koerperlich schwach, zaghaft, furchtsam, gebrechlich"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "0850"^^xsd:gYear .
+
+wdr:sense-bloed-stupid a drift:Sense ;
+    drift:gloss "stupid, foolish, dull-witted; (colloquial) annoying, idiotic"@en ;
+    drift:gloss "dumm, toericht, schwachsinnig; (umgangssprachlich) aergerlich, idiotisch"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1500"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ]
+    ] .
+
+# --- drift event ---
+wdr:drift-bloed-pejoration a drift:DriftEvent ;
+    drift:affectsWord wdr:word-bloed ;
+    drift:senseFrom wdr:sense-bloed-weak ;
+    drift:senseTo wdr:sense-bloed-stupid ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-bloed-dwds .
+
+# --- no datable discrete trigger; gradual shift ---
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-bloed-dwds a drift:Source ;
+    dct:title "DWDS -- bloed"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/bl%C3%B6d"^^xsd:anyURI .

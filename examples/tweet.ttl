@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "tweet" (en)
+# Metonymization + Metaphorization:
+#   "the short high sound of a small bird" ->
+#   "a post on the Twitter social media platform".
+#   Twitter deliberately chose the bird metaphor;
+#   "tweet" as a verb and noun for platform posts
+#   was adopted from user slang (not Twitter's official term
+#   initially) from 2006-2007.
+# =============================================================
+
+wdr:word-tweet a drift:Word ;
+    drift:writtenForm "tweet"@en ;
+    drift:language "en" ;
+    rdfs:label "tweet"@en ;
+    ontolex:sense wdr:sense-tweet-bird , wdr:sense-tweet-social .
+
+wdr:sense-tweet-bird a drift:Sense ;
+    drift:gloss "a short, high-pitched sound made by a small bird; to make such a sound"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1845"^^xsd:gYear .
+
+wdr:sense-tweet-social a drift:Sense ;
+    drift:gloss "a post or message published on the Twitter / X social media platform; to post such a message"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2007"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2007"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-twitter-launch a drift:TriggerEvent ;
+    rdfs:label "Launch of Twitter social media platform (2006)"@en ;
+    dct:description "Twitter launched in 2006 with a deliberate bird metaphor; users organically adopted 'tweet' for a post by 2007, which Twitter later formalised in its UI."@en ;
+    drift:eventDate "2006"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q918 .
+
+# --- drift event: metonymization + metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-tweet-2007 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-tweet ;
+    drift:senseFrom wdr:sense-tweet-bird ;
+    drift:senseTo wdr:sense-tweet-social ;
+    drift:driftType drift:Metonymization , drift:Metaphorization ;
+    drift:driftYear "2007"^^xsd:gYear ;
+    drift:hasSource wdr:src-tweet-etymonline , wdr:src-tweet-wikipedia .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline is a lexicographic source -> LexicographicNote; Wikipedia is general -> Speculative.
+wdr:hyp-tweet-twitter a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-tweet-2007 ;
+    drift:proposedTrigger wdr:trigger-twitter-launch ;
+    drift:evidenceType drift:LexicographicNote , drift:Speculative ;
+    drift:confidence 0.92 ;
+    drift:hasSource wdr:src-tweet-etymonline , wdr:src-tweet-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-tweet-etymonline a drift:Source ;
+    dct:title "Etymonline - tweet (n., v.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/tweet"^^xsd:anyURI .
+
+wdr:src-tweet-wikipedia a drift:Source ;
+    dct:title "Tweet (Twitter) - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Tweet_(Twitter)"^^xsd:anyURI .

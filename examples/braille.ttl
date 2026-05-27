@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "braille" (en)
+# Metonymization: the surname Braille (Louis Braille, who devised
+# the raised-dot tactile writing system in 1824) becomes the
+# common name of the system itself. His tactile alphabet is the
+# identifiable trigger.
+# =============================================================
+
+wdr:word-braille a drift:Word ;
+    drift:writtenForm "braille"@en ;
+    drift:language "en" ;
+    rdfs:label "braille"@en ;
+    ontolex:sense wdr:sense-braille-name , wdr:sense-braille-system .
+
+wdr:sense-braille-name a drift:Sense ;
+    drift:gloss "the surname of the French educator Louis Braille, who was himself blind"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1809"^^xsd:gYear .
+
+wdr:sense-braille-system a drift:Sense ;
+    drift:gloss "a tactile writing system of raised dots read by touch; the everyday word for reading and writing used by blind people"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1853"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1853"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-braille-system a drift:TriggerEvent ;
+    rdfs:label "Braille devises the raised-dot system"@en ;
+    dct:description "In 1824 the fifteen-year-old Louis Braille devised a six-dot tactile code for reading and writing, published in 1829. The system spread internationally and took his name."@en ;
+    drift:eventDate "1824"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-braille-system a drift:DriftEvent ;
+    drift:affectsWord wdr:word-braille ;
+    drift:senseFrom wdr:sense-braille-name ;
+    drift:senseTo wdr:sense-braille-system ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1824"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1853"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-braille-etym , wdr:src-braille-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-braille-system a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-braille-system ;
+    drift:proposedTrigger wdr:trigger-braille-system ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-braille-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-braille-etym a drift:Source ;
+    dct:title "braille -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/braille"^^xsd:anyURI .
+
+wdr:src-braille-wiki a drift:Source ;
+    dct:title "Louis Braille -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Louis_Braille"^^xsd:anyURI .

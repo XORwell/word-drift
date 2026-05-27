@@ -1,0 +1,104 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "gay" (en)
+# 1. Middle English: "joyful, carefree" (positive, broad)
+# 2. Early 20c slang: homosexual (narrowing, then reappropriation)
+# 3. 1990s-2000s: casual pejorative "lame/bad" among youth (pejoration)
+# =============================================================
+
+wdr:word-gay a drift:Word ;
+    drift:writtenForm "gay"@en ;
+    drift:language "en" ;
+    rdfs:label "gay"@en ;
+    ontolex:sense wdr:sense-gay-joyful , wdr:sense-gay-homosexual , wdr:sense-gay-lame ;
+    drift:crossLingualOf wdr:word-schwul .
+
+wdr:sense-gay-joyful a drift:Sense ;
+    drift:gloss "joyful, carefree, light-hearted; bright and showy (of colour or dress)"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1300"^^xsd:gYear .
+
+wdr:sense-gay-homosexual a drift:Sense ;
+    drift:gloss "homosexual; relating to gay people or gay culture (neutral to positive after reappropriation)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1922"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1922"^^xsd:gYear ]
+    ] .
+
+wdr:sense-gay-lame a drift:Sense ;
+    drift:gloss "informal pejorative: lame, uncool, bad (detached from sexual orientation)"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1978"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1978"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-stonewall a drift:TriggerEvent ;
+    rdfs:label "Stonewall Riots and gay liberation movement"@en ;
+    dct:description "The 1969 Stonewall Riots and subsequent gay liberation movement accelerated the reappropriation of 'gay' as a neutral/positive self-identifier."@en ;
+    drift:eventDate "1969"^^xsd:gYear ;
+    drift:triggerCategory drift:Political ;
+    owl:sameAs wd:Q51402 .
+
+# --- drift event 1: narrowing + reappropriation (causation in hypothesis below) ---
+wdr:drift-gay-1950s a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gay ;
+    drift:senseFrom wdr:sense-gay-joyful ;
+    drift:senseTo wdr:sense-gay-homosexual ;
+    drift:driftType drift:Narrowing , drift:Reappropriation ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1922"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1970"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-gay-etymonline , wdr:src-gay-oed .
+
+# --- drift event 2: pejoration (youth slang; no external trigger) ---
+wdr:drift-gay-1990s a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gay ;
+    drift:senseFrom wdr:sense-gay-homosexual ;
+    drift:senseTo wdr:sense-gay-lame ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1978"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2000"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-gay-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# OED and Etymonline are dictionary sources -> LexicographicNote.
+wdr:hyp-gay-stonewall a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-gay-1950s ;
+    drift:proposedTrigger wdr:trigger-stonewall ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-gay-etymonline , wdr:src-gay-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-gay-etymonline a drift:Source ;
+    dct:title "Etymonline - gay (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/gay"^^xsd:anyURI .
+
+wdr:src-gay-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - gay, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/gay_adj"^^xsd:anyURI .

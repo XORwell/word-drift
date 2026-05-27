@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "fascism" (en)
+# Broadening: from the specific name of Mussolini's Italian
+# movement (from "fascio", bundle/league) to a general term for
+# any authoritarian, ultranationalist far-right ideology. The
+# 1919-1922 rise of the Fasci is the datable trigger.
+# =============================================================
+
+wdr:word-fascism a drift:Word ;
+    drift:writtenForm "fascism"@en ;
+    drift:language "en" ;
+    rdfs:label "fascism"@en ;
+    ontolex:sense wdr:sense-fascism-italian , wdr:sense-fascism-general .
+
+wdr:sense-fascism-italian a drift:Sense ;
+    drift:gloss "the political movement and regime founded by Benito Mussolini in Italy, from Italian 'fascio' (bundle, league)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1919"^^xsd:gYear .
+
+wdr:sense-fascism-general a drift:Sense ;
+    drift:gloss "any authoritarian, ultranationalist, anti-democratic ideology or regime of the far right"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1930"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1930"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-fascism-mussolini a drift:TriggerEvent ;
+    rdfs:label "Rise of Mussolini's Fasci and the March on Rome"@en ;
+    dct:description "Mussolini founded the Fasci Italiani di Combattimento in 1919; the 1922 March on Rome brought the movement to power. English borrowed 'fascism' as its proper name, then broadened it to far-right authoritarianism generally."@en ;
+    drift:eventDate "1922"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-fascism-mussolini a drift:DriftEvent ;
+    drift:affectsWord wdr:word-fascism ;
+    drift:senseFrom wdr:sense-fascism-italian ;
+    drift:senseTo wdr:sense-fascism-general ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1922"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1940"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-fascism-etym , wdr:src-fascism-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-fascism-mussolini a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-fascism-mussolini ;
+    drift:proposedTrigger wdr:trigger-fascism-mussolini ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-fascism-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-fascism-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- fascism"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/fascism"^^xsd:anyURI .
+
+wdr:src-fascism-wiki a drift:Source ;
+    dct:title "Fascism -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Fascism"^^xsd:anyURI .

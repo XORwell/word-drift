@@ -1,0 +1,1464 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:drift-dwugde-abbauen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-abbauen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.7874 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-abbauen-t1 ;
+    drift:senseTo wdr:sense-dwugde-abbauen-t2 .
+
+wdr:drift-dwugde-abdecken a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-abdecken ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.6275 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-abdecken-t1 ;
+    drift:senseTo wdr:sense-dwugde-abdecken-t2 .
+
+wdr:drift-dwugde-abgebruht a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-abgebruht ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.835 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-abgebruht-t1 ;
+    drift:senseTo wdr:sense-dwugde-abgebruht-t2 .
+
+wdr:drift-dwugde-abgesang a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-abgesang ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.8003 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-abgesang-t1 ;
+    drift:senseTo wdr:sense-dwugde-abgesang-t2 .
+
+wdr:drift-dwugde-ackergerat a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-ackergerat ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-ackergerat-t1 ;
+    drift:senseTo wdr:sense-dwugde-ackergerat-t2 .
+
+wdr:drift-dwugde-armenhaus a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-armenhaus ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.7155 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-armenhaus-t1 ;
+    drift:senseTo wdr:sense-dwugde-armenhaus-t2 .
+
+wdr:drift-dwugde-artikulieren a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-artikulieren ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.7087 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-artikulieren-t1 ;
+    drift:senseTo wdr:sense-dwugde-artikulieren-t2 .
+
+wdr:drift-dwugde-aufrechterhalten a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-aufrechterhalten ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1881 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-aufrechterhalten-t1 ;
+    drift:senseTo wdr:sense-dwugde-aufrechterhalten-t2 .
+
+wdr:drift-dwugde-ausnahmegesetz a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-ausnahmegesetz ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.0931 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-ausnahmegesetz-t1 ;
+    drift:senseTo wdr:sense-dwugde-ausnahmegesetz-t2 .
+
+wdr:drift-dwugde-ausspannen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-ausspannen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.7302 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-ausspannen-t1 ;
+    drift:senseTo wdr:sense-dwugde-ausspannen-t2 .
+
+wdr:drift-dwugde-behandlung a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-behandlung ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.3381 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-behandlung-t1 ;
+    drift:senseTo wdr:sense-dwugde-behandlung-t2 .
+
+wdr:drift-dwugde-beimischen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-beimischen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.182 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-beimischen-t1 ;
+    drift:senseTo wdr:sense-dwugde-beimischen-t2 .
+
+wdr:drift-dwugde-dynamik a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-dynamik ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.6046 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-dynamik-t1 ;
+    drift:senseTo wdr:sense-dwugde-dynamik-t2 .
+
+wdr:drift-dwugde-einreichung a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-einreichung ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.0716 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-einreichung-t1 ;
+    drift:senseTo wdr:sense-dwugde-einreichung-t2 .
+
+wdr:drift-dwugde-eintagsfliege a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-eintagsfliege ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.6911 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-eintagsfliege-t1 ;
+    drift:senseTo wdr:sense-dwugde-eintagsfliege-t2 .
+
+wdr:drift-dwugde-engpa a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-engpa ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.9268 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-engpa-t1 ;
+    drift:senseTo wdr:sense-dwugde-engpa-t2 .
+
+wdr:drift-dwugde-entscheidung a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-entscheidung ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.2868 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-entscheidung-t1 ;
+    drift:senseTo wdr:sense-dwugde-entscheidung-t2 .
+
+wdr:drift-dwugde-festspiel a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-festspiel ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.2412 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-festspiel-t1 ;
+    drift:senseTo wdr:sense-dwugde-festspiel-t2 .
+
+wdr:drift-dwugde-frechheit a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-frechheit ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1004 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-frechheit-t1 ;
+    drift:senseTo wdr:sense-dwugde-frechheit-t2 .
+
+wdr:drift-dwugde-fu a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-fu ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.6057 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-fu-t1 ;
+    drift:senseTo wdr:sense-dwugde-fu-t2 .
+
+wdr:drift-dwugde-gesichtsausdruck a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-gesichtsausdruck ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1514 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-gesichtsausdruck-t1 ;
+    drift:senseTo wdr:sense-dwugde-gesichtsausdruck-t2 .
+
+wdr:drift-dwugde-knotenpunkt a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-knotenpunkt ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.6998 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-knotenpunkt-t1 ;
+    drift:senseTo wdr:sense-dwugde-knotenpunkt-t2 .
+
+wdr:drift-dwugde-kubikmeter a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-kubikmeter ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-kubikmeter-t1 ;
+    drift:senseTo wdr:sense-dwugde-kubikmeter-t2 .
+
+wdr:drift-dwugde-lyzeum a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-lyzeum ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1439 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-lyzeum-t1 ;
+    drift:senseTo wdr:sense-dwugde-lyzeum-t2 .
+
+wdr:drift-dwugde-manschette a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-manschette ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.3592 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-manschette-t1 ;
+    drift:senseTo wdr:sense-dwugde-manschette-t2 .
+
+wdr:drift-dwugde-mi-klang a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-mi-klang ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.4728 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-mi-klang-t1 ;
+    drift:senseTo wdr:sense-dwugde-mi-klang-t2 .
+
+wdr:drift-dwugde-mulatte a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-mulatte ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1432 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-mulatte-t1 ;
+    drift:senseTo wdr:sense-dwugde-mulatte-t2 .
+
+wdr:drift-dwugde-mut a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-mut ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.2113 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-mut-t1 ;
+    drift:senseTo wdr:sense-dwugde-mut-t2 .
+
+wdr:drift-dwugde-naturschonheit a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-naturschonheit ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1591 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-naturschonheit-t1 ;
+    drift:senseTo wdr:sense-dwugde-naturschonheit-t2 .
+
+wdr:drift-dwugde-ohrwurm a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-ohrwurm ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.8868 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-ohrwurm-t1 ;
+    drift:senseTo wdr:sense-dwugde-ohrwurm-t2 .
+
+wdr:drift-dwugde-pachtzins a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-pachtzins ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-pachtzins-t1 ;
+    drift:senseTo wdr:sense-dwugde-pachtzins-t2 .
+
+wdr:drift-dwugde-packen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-packen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.4803 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-packen-t1 ;
+    drift:senseTo wdr:sense-dwugde-packen-t2 .
+
+wdr:drift-dwugde-rezeption a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-rezeption ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.513 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-rezeption-t1 ;
+    drift:senseTo wdr:sense-dwugde-rezeption-t2 .
+
+wdr:drift-dwugde-schmiere a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-schmiere ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.4146 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-schmiere-t1 ;
+    drift:senseTo wdr:sense-dwugde-schmiere-t2 .
+
+wdr:drift-dwugde-seminar a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-seminar ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.2655 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-seminar-t1 ;
+    drift:senseTo wdr:sense-dwugde-seminar-t2 .
+
+wdr:drift-dwugde-sensation a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-sensation ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.4681 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-sensation-t1 ;
+    drift:senseTo wdr:sense-dwugde-sensation-t2 .
+
+wdr:drift-dwugde-spielball a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-spielball ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.2708 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-spielball-t1 ;
+    drift:senseTo wdr:sense-dwugde-spielball-t2 .
+
+wdr:drift-dwugde-tier a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-tier ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1494 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-tier-t1 ;
+    drift:senseTo wdr:sense-dwugde-tier-t2 .
+
+wdr:drift-dwugde-titel a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-titel ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.3603 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-titel-t1 ;
+    drift:senseTo wdr:sense-dwugde-titel-t2 .
+
+wdr:drift-dwugde-tragfahigkeit a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-tragfahigkeit ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1781 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-tragfahigkeit-t1 ;
+    drift:senseTo wdr:sense-dwugde-tragfahigkeit-t2 .
+
+wdr:drift-dwugde-truppenteil a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-truppenteil ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1417 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-truppenteil-t1 ;
+    drift:senseTo wdr:sense-dwugde-truppenteil-t2 .
+
+wdr:drift-dwugde-uberspannen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-uberspannen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.3568 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-uberspannen-t1 ;
+    drift:senseTo wdr:sense-dwugde-uberspannen-t2 .
+
+wdr:drift-dwugde-unentschlossenheit a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-unentschlossenheit ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-unentschlossenheit-t1 ;
+    drift:senseTo wdr:sense-dwugde-unentschlossenheit-t2 .
+
+wdr:drift-dwugde-verbauen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-verbauen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.5768 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-verbauen-t1 ;
+    drift:senseTo wdr:sense-dwugde-verbauen-t2 .
+
+wdr:drift-dwugde-vergonnen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-vergonnen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.124 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-vergonnen-t1 ;
+    drift:senseTo wdr:sense-dwugde-vergonnen-t2 .
+
+wdr:drift-dwugde-voranstellen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-voranstellen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.2261 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-voranstellen-t1 ;
+    drift:senseTo wdr:sense-dwugde-voranstellen-t2 .
+
+wdr:drift-dwugde-vorliegen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-vorliegen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1745 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-vorliegen-t1 ;
+    drift:senseTo wdr:sense-dwugde-vorliegen-t2 .
+
+wdr:drift-dwugde-vorweisen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-vorweisen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.1119 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-vorweisen-t1 ;
+    drift:senseTo wdr:sense-dwugde-vorweisen-t2 .
+
+wdr:drift-dwugde-weitgreifend a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-weitgreifend ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-weitgreifend-t1 ;
+    drift:senseTo wdr:sense-dwugde-weitgreifend-t2 .
+
+wdr:drift-dwugde-zersetzen a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dwugde-zersetzen ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1912"^^xsd:gYear ;
+    drift:gradedChange 0.5022 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:senseFrom wdr:sense-dwugde-zersetzen-t1 ;
+    drift:senseTo wdr:sense-dwugde-zersetzen-t2 .
+
+wdr:word-dwugde-abbauen a drift:Word ;
+    rdfs:label "abbauen"@de ;
+    ontolex:sense wdr:sense-dwugde-abbauen-t1,
+        wdr:sense-dwugde-abbauen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "abbauen"@de .
+
+wdr:word-dwugde-abdecken a drift:Word ;
+    rdfs:label "abdecken"@de ;
+    ontolex:sense wdr:sense-dwugde-abdecken-t1,
+        wdr:sense-dwugde-abdecken-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "abdecken"@de .
+
+wdr:word-dwugde-abgebruht a drift:Word ;
+    rdfs:label "abgebrüht"@de ;
+    ontolex:sense wdr:sense-dwugde-abgebruht-t1,
+        wdr:sense-dwugde-abgebruht-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "abgebrüht"@de .
+
+wdr:word-dwugde-abgesang a drift:Word ;
+    rdfs:label "Abgesang"@de ;
+    ontolex:sense wdr:sense-dwugde-abgesang-t1,
+        wdr:sense-dwugde-abgesang-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Abgesang"@de .
+
+wdr:word-dwugde-ackergerat a drift:Word ;
+    rdfs:label "Ackergerät"@de ;
+    ontolex:sense wdr:sense-dwugde-ackergerat-t1,
+        wdr:sense-dwugde-ackergerat-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Ackergerät"@de .
+
+wdr:word-dwugde-armenhaus a drift:Word ;
+    rdfs:label "Armenhaus"@de ;
+    ontolex:sense wdr:sense-dwugde-armenhaus-t1,
+        wdr:sense-dwugde-armenhaus-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Armenhaus"@de .
+
+wdr:word-dwugde-artikulieren a drift:Word ;
+    rdfs:label "artikulieren"@de ;
+    ontolex:sense wdr:sense-dwugde-artikulieren-t1,
+        wdr:sense-dwugde-artikulieren-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "artikulieren"@de .
+
+wdr:word-dwugde-aufrechterhalten a drift:Word ;
+    rdfs:label "aufrechterhalten"@de ;
+    ontolex:sense wdr:sense-dwugde-aufrechterhalten-t1,
+        wdr:sense-dwugde-aufrechterhalten-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "aufrechterhalten"@de .
+
+wdr:word-dwugde-ausnahmegesetz a drift:Word ;
+    rdfs:label "Ausnahmegesetz"@de ;
+    ontolex:sense wdr:sense-dwugde-ausnahmegesetz-t1,
+        wdr:sense-dwugde-ausnahmegesetz-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Ausnahmegesetz"@de .
+
+wdr:word-dwugde-ausspannen a drift:Word ;
+    rdfs:label "ausspannen"@de ;
+    ontolex:sense wdr:sense-dwugde-ausspannen-t1,
+        wdr:sense-dwugde-ausspannen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "ausspannen"@de .
+
+wdr:word-dwugde-behandlung a drift:Word ;
+    rdfs:label "Behandlung"@de ;
+    ontolex:sense wdr:sense-dwugde-behandlung-t1,
+        wdr:sense-dwugde-behandlung-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Behandlung"@de .
+
+wdr:word-dwugde-beimischen a drift:Word ;
+    rdfs:label "beimischen"@de ;
+    ontolex:sense wdr:sense-dwugde-beimischen-t1,
+        wdr:sense-dwugde-beimischen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "beimischen"@de .
+
+wdr:word-dwugde-dynamik a drift:Word ;
+    rdfs:label "Dynamik"@de ;
+    ontolex:sense wdr:sense-dwugde-dynamik-t1,
+        wdr:sense-dwugde-dynamik-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Dynamik"@de .
+
+wdr:word-dwugde-einreichung a drift:Word ;
+    rdfs:label "Einreichung"@de ;
+    ontolex:sense wdr:sense-dwugde-einreichung-t1,
+        wdr:sense-dwugde-einreichung-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Einreichung"@de .
+
+wdr:word-dwugde-eintagsfliege a drift:Word ;
+    rdfs:label "Eintagsfliege"@de ;
+    ontolex:sense wdr:sense-dwugde-eintagsfliege-t1,
+        wdr:sense-dwugde-eintagsfliege-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Eintagsfliege"@de .
+
+wdr:word-dwugde-engpa a drift:Word ;
+    rdfs:label "Engpaß"@de ;
+    ontolex:sense wdr:sense-dwugde-engpa-t1,
+        wdr:sense-dwugde-engpa-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Engpaß"@de .
+
+wdr:word-dwugde-entscheidung a drift:Word ;
+    rdfs:label "Entscheidung"@de ;
+    ontolex:sense wdr:sense-dwugde-entscheidung-t1,
+        wdr:sense-dwugde-entscheidung-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Entscheidung"@de .
+
+wdr:word-dwugde-festspiel a drift:Word ;
+    rdfs:label "Festspiel"@de ;
+    ontolex:sense wdr:sense-dwugde-festspiel-t1,
+        wdr:sense-dwugde-festspiel-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Festspiel"@de .
+
+wdr:word-dwugde-frechheit a drift:Word ;
+    rdfs:label "Frechheit"@de ;
+    ontolex:sense wdr:sense-dwugde-frechheit-t1,
+        wdr:sense-dwugde-frechheit-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Frechheit"@de .
+
+wdr:word-dwugde-fu a drift:Word ;
+    rdfs:label "Fuß"@de ;
+    ontolex:sense wdr:sense-dwugde-fu-t1,
+        wdr:sense-dwugde-fu-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Fuß"@de .
+
+wdr:word-dwugde-gesichtsausdruck a drift:Word ;
+    rdfs:label "Gesichtsausdruck"@de ;
+    ontolex:sense wdr:sense-dwugde-gesichtsausdruck-t1,
+        wdr:sense-dwugde-gesichtsausdruck-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Gesichtsausdruck"@de .
+
+wdr:word-dwugde-knotenpunkt a drift:Word ;
+    rdfs:label "Knotenpunkt"@de ;
+    ontolex:sense wdr:sense-dwugde-knotenpunkt-t1,
+        wdr:sense-dwugde-knotenpunkt-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Knotenpunkt"@de .
+
+wdr:word-dwugde-kubikmeter a drift:Word ;
+    rdfs:label "Kubikmeter"@de ;
+    ontolex:sense wdr:sense-dwugde-kubikmeter-t1,
+        wdr:sense-dwugde-kubikmeter-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Kubikmeter"@de .
+
+wdr:word-dwugde-lyzeum a drift:Word ;
+    rdfs:label "Lyzeum"@de ;
+    ontolex:sense wdr:sense-dwugde-lyzeum-t1,
+        wdr:sense-dwugde-lyzeum-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Lyzeum"@de .
+
+wdr:word-dwugde-manschette a drift:Word ;
+    rdfs:label "Manschette"@de ;
+    ontolex:sense wdr:sense-dwugde-manschette-t1,
+        wdr:sense-dwugde-manschette-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Manschette"@de .
+
+wdr:word-dwugde-mi-klang a drift:Word ;
+    rdfs:label "Mißklang"@de ;
+    ontolex:sense wdr:sense-dwugde-mi-klang-t1,
+        wdr:sense-dwugde-mi-klang-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Mißklang"@de .
+
+wdr:word-dwugde-mulatte a drift:Word ;
+    rdfs:label "Mulatte"@de ;
+    ontolex:sense wdr:sense-dwugde-mulatte-t1,
+        wdr:sense-dwugde-mulatte-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Mulatte"@de .
+
+wdr:word-dwugde-mut a drift:Word ;
+    rdfs:label "Mut"@de ;
+    ontolex:sense wdr:sense-dwugde-mut-t1,
+        wdr:sense-dwugde-mut-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Mut"@de .
+
+wdr:word-dwugde-naturschonheit a drift:Word ;
+    rdfs:label "Naturschönheit"@de ;
+    ontolex:sense wdr:sense-dwugde-naturschonheit-t1,
+        wdr:sense-dwugde-naturschonheit-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Naturschönheit"@de .
+
+wdr:word-dwugde-ohrwurm a drift:Word ;
+    rdfs:label "Ohrwurm"@de ;
+    ontolex:sense wdr:sense-dwugde-ohrwurm-t1,
+        wdr:sense-dwugde-ohrwurm-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Ohrwurm"@de .
+
+wdr:word-dwugde-pachtzins a drift:Word ;
+    rdfs:label "Pachtzins"@de ;
+    ontolex:sense wdr:sense-dwugde-pachtzins-t1,
+        wdr:sense-dwugde-pachtzins-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Pachtzins"@de .
+
+wdr:word-dwugde-packen a drift:Word ;
+    rdfs:label "packen"@de ;
+    ontolex:sense wdr:sense-dwugde-packen-t1,
+        wdr:sense-dwugde-packen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "packen"@de .
+
+wdr:word-dwugde-rezeption a drift:Word ;
+    rdfs:label "Rezeption"@de ;
+    ontolex:sense wdr:sense-dwugde-rezeption-t1,
+        wdr:sense-dwugde-rezeption-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Rezeption"@de .
+
+wdr:word-dwugde-schmiere a drift:Word ;
+    rdfs:label "Schmiere"@de ;
+    ontolex:sense wdr:sense-dwugde-schmiere-t1,
+        wdr:sense-dwugde-schmiere-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Schmiere"@de .
+
+wdr:word-dwugde-seminar a drift:Word ;
+    rdfs:label "Seminar"@de ;
+    ontolex:sense wdr:sense-dwugde-seminar-t1,
+        wdr:sense-dwugde-seminar-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Seminar"@de .
+
+wdr:word-dwugde-sensation a drift:Word ;
+    rdfs:label "Sensation"@de ;
+    ontolex:sense wdr:sense-dwugde-sensation-t1,
+        wdr:sense-dwugde-sensation-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Sensation"@de .
+
+wdr:word-dwugde-spielball a drift:Word ;
+    rdfs:label "Spielball"@de ;
+    ontolex:sense wdr:sense-dwugde-spielball-t1,
+        wdr:sense-dwugde-spielball-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Spielball"@de .
+
+wdr:word-dwugde-tier a drift:Word ;
+    rdfs:label "Tier"@de ;
+    ontolex:sense wdr:sense-dwugde-tier-t1,
+        wdr:sense-dwugde-tier-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Tier"@de .
+
+wdr:word-dwugde-titel a drift:Word ;
+    rdfs:label "Titel"@de ;
+    ontolex:sense wdr:sense-dwugde-titel-t1,
+        wdr:sense-dwugde-titel-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Titel"@de .
+
+wdr:word-dwugde-tragfahigkeit a drift:Word ;
+    rdfs:label "Tragfähigkeit"@de ;
+    ontolex:sense wdr:sense-dwugde-tragfahigkeit-t1,
+        wdr:sense-dwugde-tragfahigkeit-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Tragfähigkeit"@de .
+
+wdr:word-dwugde-truppenteil a drift:Word ;
+    rdfs:label "Truppenteil"@de ;
+    ontolex:sense wdr:sense-dwugde-truppenteil-t1,
+        wdr:sense-dwugde-truppenteil-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Truppenteil"@de .
+
+wdr:word-dwugde-uberspannen a drift:Word ;
+    rdfs:label "überspannen"@de ;
+    ontolex:sense wdr:sense-dwugde-uberspannen-t1,
+        wdr:sense-dwugde-uberspannen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "überspannen"@de .
+
+wdr:word-dwugde-unentschlossenheit a drift:Word ;
+    rdfs:label "Unentschlossenheit"@de ;
+    ontolex:sense wdr:sense-dwugde-unentschlossenheit-t1,
+        wdr:sense-dwugde-unentschlossenheit-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Unentschlossenheit"@de .
+
+wdr:word-dwugde-verbauen a drift:Word ;
+    rdfs:label "verbauen"@de ;
+    ontolex:sense wdr:sense-dwugde-verbauen-t1,
+        wdr:sense-dwugde-verbauen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "verbauen"@de .
+
+wdr:word-dwugde-vergonnen a drift:Word ;
+    rdfs:label "vergönnen"@de ;
+    ontolex:sense wdr:sense-dwugde-vergonnen-t1,
+        wdr:sense-dwugde-vergonnen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "vergönnen"@de .
+
+wdr:word-dwugde-voranstellen a drift:Word ;
+    rdfs:label "voranstellen"@de ;
+    ontolex:sense wdr:sense-dwugde-voranstellen-t1,
+        wdr:sense-dwugde-voranstellen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "voranstellen"@de .
+
+wdr:word-dwugde-vorliegen a drift:Word ;
+    rdfs:label "vorliegen"@de ;
+    ontolex:sense wdr:sense-dwugde-vorliegen-t1,
+        wdr:sense-dwugde-vorliegen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "vorliegen"@de .
+
+wdr:word-dwugde-vorweisen a drift:Word ;
+    rdfs:label "vorweisen"@de ;
+    ontolex:sense wdr:sense-dwugde-vorweisen-t1,
+        wdr:sense-dwugde-vorweisen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "vorweisen"@de .
+
+wdr:word-dwugde-weitgreifend a drift:Word ;
+    rdfs:label "weitgreifend"@de ;
+    ontolex:sense wdr:sense-dwugde-weitgreifend-t1,
+        wdr:sense-dwugde-weitgreifend-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "weitgreifend"@de .
+
+wdr:word-dwugde-zersetzen a drift:Word ;
+    rdfs:label "zersetzen"@de ;
+    ontolex:sense wdr:sense-dwugde-zersetzen-t1,
+        wdr:sense-dwugde-zersetzen-t2 ;
+    drift:hasSource wdr:src-wugs-dwug-de ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "zersetzen"@de .
+
+wdr:sense-dwugde-abbauen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abbauen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-abbauen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abbauen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-abdecken-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abdecken' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-abdecken-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abdecken' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-abgebruht-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abgebrüht' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-abgebruht-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'abgebrüht' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-abgesang-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Abgesang' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-abgesang-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Abgesang' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ackergerat-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Ackergerät' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ackergerat-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Ackergerät' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-armenhaus-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Armenhaus' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-armenhaus-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Armenhaus' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-artikulieren-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'artikulieren' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-artikulieren-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'artikulieren' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-aufrechterhalten-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'aufrechterhalten' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-aufrechterhalten-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'aufrechterhalten' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ausnahmegesetz-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Ausnahmegesetz' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ausnahmegesetz-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Ausnahmegesetz' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ausspannen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'ausspannen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ausspannen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'ausspannen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-behandlung-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Behandlung' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-behandlung-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Behandlung' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-beimischen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'beimischen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-beimischen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'beimischen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-dynamik-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Dynamik' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-dynamik-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Dynamik' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-einreichung-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Einreichung' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-einreichung-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Einreichung' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-eintagsfliege-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Eintagsfliege' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-eintagsfliege-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Eintagsfliege' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-engpa-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Engpaß' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-engpa-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Engpaß' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-entscheidung-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Entscheidung' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-entscheidung-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Entscheidung' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-festspiel-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Festspiel' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-festspiel-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Festspiel' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-frechheit-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Frechheit' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-frechheit-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Frechheit' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-fu-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Fuß' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-fu-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Fuß' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-gesichtsausdruck-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Gesichtsausdruck' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-gesichtsausdruck-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Gesichtsausdruck' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-knotenpunkt-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Knotenpunkt' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-knotenpunkt-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Knotenpunkt' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-kubikmeter-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Kubikmeter' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-kubikmeter-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Kubikmeter' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-lyzeum-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Lyzeum' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-lyzeum-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Lyzeum' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-manschette-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Manschette' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-manschette-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Manschette' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-mi-klang-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mißklang' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-mi-klang-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mißklang' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-mulatte-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mulatte' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-mulatte-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mulatte' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-mut-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mut' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-mut-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Mut' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-naturschonheit-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Naturschönheit' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-naturschonheit-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Naturschönheit' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ohrwurm-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Ohrwurm' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-ohrwurm-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Ohrwurm' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-pachtzins-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Pachtzins' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-pachtzins-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Pachtzins' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-packen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'packen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-packen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'packen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-rezeption-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Rezeption' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-rezeption-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Rezeption' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-schmiere-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schmiere' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-schmiere-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Schmiere' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-seminar-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Seminar' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-seminar-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Seminar' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-sensation-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Sensation' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-sensation-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Sensation' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-spielball-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Spielball' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-spielball-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Spielball' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-tier-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Tier' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-tier-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Tier' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-titel-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Titel' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-titel-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Titel' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-tragfahigkeit-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Tragfähigkeit' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-tragfahigkeit-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Tragfähigkeit' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-truppenteil-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Truppenteil' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-truppenteil-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Truppenteil' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-uberspannen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'überspannen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-uberspannen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'überspannen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-unentschlossenheit-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Unentschlossenheit' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-unentschlossenheit-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Unentschlossenheit' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-verbauen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'verbauen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-verbauen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'verbauen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-vergonnen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'vergönnen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-vergonnen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'vergönnen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-voranstellen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'voranstellen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-voranstellen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'voranstellen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-vorliegen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'vorliegen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-vorliegen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'vorliegen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-vorweisen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'vorweisen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-vorweisen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'vorweisen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-weitgreifend-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'weitgreifend' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-weitgreifend-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'weitgreifend' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-zersetzen-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1835"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'zersetzen' in the earlier period (~1835) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:sense-dwugde-zersetzen-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'zersetzen' in the later period (~1990) of DWUG"@en ;
+    drift:hasSource wdr:src-wugs-dwug-de .
+
+wdr:src-wugs-dwug-de a drift:Corpus ;
+    rdfs:label "DWUG"@en ;
+    dct:identifier "doi:10.5281/zenodo.5543723" ;
+    dct:title "DWUG German (Diachronic Word Usage Graphs, Schlechtweg et al.)"@en ;
+    rdfs:comment "Benchmark (gold human-annotated lexical semantic change). Ingested as detection-grade backbone: derived target-word + gold graded-change only, no raw usage graphs, no causal claim (ADR 0004)."@en ;
+    drift:sourceURL "https://zenodo.org/records/14028509"^^xsd:anyURI .
+

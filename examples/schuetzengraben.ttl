@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Schuetzengraben" (de)
+# Broadening/Metaphorization: a technical fortification term for a
+# defensive firing trench becomes, through the mass trench warfare
+# of WWI, the emblem of that war, and later a figurative term for
+# entrenched, irreconcilable positions. WWI is the trigger.
+# =============================================================
+
+wdr:word-schuetzengraben a drift:Word ;
+    drift:writtenForm "Schuetzengraben"@de ;
+    drift:language "de" ;
+    rdfs:label "Schuetzengraben"@de ;
+    ontolex:sense wdr:sense-schuetzengraben-technical , wdr:sense-schuetzengraben-figurative .
+
+wdr:sense-schuetzengraben-technical a drift:Sense ;
+    drift:gloss "a defensive trench dug to shelter and conceal riflemen; a fieldwork fortification term"@en ;
+    drift:gloss "Verteidigungsgraben zum Schutz und zur Deckung von Schuetzen; Begriff des Feldbefestigungswesens"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1800"^^xsd:gYear .
+
+wdr:sense-schuetzengraben-figurative a drift:Sense ;
+    drift:gloss "the emblematic trench of the First World War; figuratively, an entrenched and irreconcilable position in a conflict"@en ;
+    drift:gloss "der sinnbildliche Graben des Ersten Weltkriegs; uebertragen eine verhaertete, unversoehnliche Position im Streit"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1915"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1915"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-schuetzengraben-wwi a drift:TriggerEvent ;
+    rdfs:label "First World War trench warfare on the Western Front 1914-1918"@en ;
+    dct:description "After the front stalemated in late 1914, the war became a war of trenches. 'Schuetzengraben' became the emblematic word of the First World War (1914-1918) and later a figure for entrenched, irreconcilable positions."@en ;
+    drift:eventDate "1914"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-schuetzengraben-wwi a drift:DriftEvent ;
+    drift:affectsWord wdr:word-schuetzengraben ;
+    drift:senseFrom wdr:sense-schuetzengraben-technical ;
+    drift:senseTo wdr:sense-schuetzengraben-figurative ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1914"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1925"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-schuetzengraben-dwds , wdr:src-schuetzengraben-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-schuetzengraben-wwi a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-schuetzengraben-wwi ;
+    drift:proposedTrigger wdr:trigger-schuetzengraben-wwi ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-schuetzengraben-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-schuetzengraben-dwds a drift:Source ;
+    dct:title "DWDS -- Schuetzengraben"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Schützengraben"^^xsd:anyURI .
+
+wdr:src-schuetzengraben-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Schuetzengraben"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Schützengraben"^^xsd:anyURI .

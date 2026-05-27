@@ -1,0 +1,85 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "stream" (en) -- cross-lingual pair with "streamen" (streamen-de)
+# Metaphorization:
+#   "a flowing body of water; a continuous flow" ->
+#   "to deliver or consume audio/video as a continuous flow over
+#    the internet without prior download". Broadband and services
+#    such as YouTube (2005), Spotify (2008) and Netflix streaming
+#    (2007) fixed the digital sense.
+# =============================================================
+
+wdr:word-stream a drift:Word ;
+    drift:writtenForm "stream"@en ;
+    drift:language "en" ;
+    rdfs:label "stream"@en ;
+    ontolex:sense wdr:sense-stream-water , wdr:sense-stream-media ;
+    drift:crossLingualOf wdr:word-streamen .
+
+wdr:sense-stream-water a drift:Sense ;
+    drift:gloss "a small flowing body of water; a continuous flow of liquid, air, or people"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-stream-media a drift:Sense ;
+    drift:gloss "to transmit or receive audio or video as a continuous flow over the internet for real-time playback without prior download"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2005"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2005"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-streaming-services a drift:TriggerEvent ;
+    rdfs:label "rise of broadband streaming media services"@en ;
+    dct:description "Broadband internet and services such as YouTube (2005), Netflix streaming (2007) and Spotify (2008) made consuming audio and video as a continuous online flow mainstream, fixing the verb 'to stream' in the media sense."@en ;
+    drift:eventDate "2005"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q866 .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-stream-media a drift:DriftEvent ;
+    drift:affectsWord wdr:word-stream ;
+    drift:senseFrom wdr:sense-stream-water ;
+    drift:senseTo wdr:sense-stream-media ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2005"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2012"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-stream-etymonline , wdr:src-stream-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-stream-services a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-stream-media ;
+    drift:proposedTrigger wdr:trigger-streaming-services ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-stream-etymonline , wdr:src-stream-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-stream-etymonline a drift:Source ;
+    dct:title "Etymonline - stream (v.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/stream"^^xsd:anyURI .
+
+wdr:src-stream-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - stream, v."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/stream_v"^^xsd:anyURI .

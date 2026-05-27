@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "guillotine" (en)
+# Metonymization: eponym from Joseph-Ignace Guillotin, who in
+# 1789 proposed a uniform beheading machine; it was adopted in
+# 1792 during the French Revolution and bore his name. The
+# proposal and adoption are the identifiable triggers.
+# =============================================================
+
+wdr:word-guillotine a drift:Word ;
+    drift:writtenForm "guillotine"@en ;
+    drift:language "en" ;
+    rdfs:label "guillotine"@en ;
+    ontolex:sense wdr:sense-guillotine-eponym , wdr:sense-guillotine-machine .
+
+wdr:sense-guillotine-eponym a drift:Sense ;
+    drift:gloss "the surname of Joseph-Ignace Guillotin, French physician and deputy"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1789"^^xsd:gYear .
+
+wdr:sense-guillotine-machine a drift:Sense ;
+    drift:gloss "a machine for beheading by a heavy weighted blade sliding in vertical grooves; by extension any device with a descending blade"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1792"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1792"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-guillotine-revolution a drift:TriggerEvent ;
+    rdfs:label "Proposal and adoption of the beheading machine in the French Revolution"@en ;
+    dct:description "In 1789 deputy Joseph-Ignace Guillotin proposed that capital punishment use a uniform mechanical device. The machine was adopted in 1792 during the French Revolution and was named after him by metonymy, despite his opposition to the eponym."@en ;
+    drift:eventDate "1792"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-guillotine-revolution a drift:DriftEvent ;
+    drift:affectsWord wdr:word-guillotine ;
+    drift:senseFrom wdr:sense-guillotine-eponym ;
+    drift:senseTo wdr:sense-guillotine-machine ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1789"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1793"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-guillotine-etym , wdr:src-guillotine-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-guillotine-revolution a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-guillotine-revolution ;
+    drift:proposedTrigger wdr:trigger-guillotine-revolution ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-guillotine-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-guillotine-etym a drift:Source ;
+    dct:title "etymonline -- guillotine"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/guillotine"^^xsd:anyURI .
+
+wdr:src-guillotine-wiki a drift:Source ;
+    dct:title "Joseph-Ignace Guillotin -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Joseph-Ignace_Guillotin"^^xsd:anyURI .

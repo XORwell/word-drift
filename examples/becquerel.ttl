@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "becquerel" (en)
+# Metonymization: the surname Becquerel (Antoine Henri Becquerel,
+# 1852-1908, discoverer of radioactivity) becomes the common name
+# of the SI unit of radioactivity, adopted 1975. His discovery of
+# radioactivity is the identifiable trigger.
+# =============================================================
+
+wdr:word-becquerel a drift:Word ;
+    drift:writtenForm "becquerel"@en ;
+    drift:language "en" ;
+    rdfs:label "becquerel"@en ;
+    ontolex:sense wdr:sense-becquerel-name , wdr:sense-becquerel-unit .
+
+wdr:sense-becquerel-name a drift:Sense ;
+    drift:gloss "the surname of the French physicist Antoine Henri Becquerel, discoverer of radioactivity"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1852"^^xsd:gYear .
+
+wdr:sense-becquerel-unit a drift:Sense ;
+    drift:gloss "the SI unit of radioactivity, equal to one nuclear decay per second"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1975"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1975"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-becquerel-radioactivity a drift:TriggerEvent ;
+    rdfs:label "Becquerel's discovery of radioactivity"@en ;
+    dct:description "Henri Becquerel discovered natural radioactivity in 1896, sharing the 1903 Nobel Prize in Physics with the Curies. His name was adopted for the SI unit of radioactivity in 1975 at the 15th General Conference on Weights and Measures."@en ;
+    drift:eventDate "1896"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q41269 .
+
+# --- drift event ---
+wdr:drift-becquerel-radioactivity a drift:DriftEvent ;
+    drift:affectsWord wdr:word-becquerel ;
+    drift:senseFrom wdr:sense-becquerel-name ;
+    drift:senseTo wdr:sense-becquerel-unit ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1896"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1975"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-becquerel-wiki , wdr:src-becquerel-wiki-person .
+
+# --- causal hypothesis ---
+wdr:hyp-becquerel-radioactivity a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-becquerel-radioactivity ;
+    drift:proposedTrigger wdr:trigger-becquerel-radioactivity ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-becquerel-wiki ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-becquerel-wiki a drift:Source ;
+    dct:title "Becquerel -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Becquerel"^^xsd:anyURI .
+
+wdr:src-becquerel-wiki-person a drift:Source ;
+    dct:title "Henri Becquerel -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Henri_Becquerel"^^xsd:anyURI .

@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "surf" (en) -- cross-lingual pair with "surfen" (surfen-de)
+# Metaphorization:
+#   "to ride ocean waves on a board" (sport) ->
+#   "to browse the World Wide Web". Jean Armour Polly coined
+#   "surfing the internet" in 1992; the web boom of the mid-1990s
+#   fixed the sense.
+# =============================================================
+
+wdr:word-surf a drift:Word ;
+    drift:writtenForm "surf"@en ;
+    drift:language "en" ;
+    rdfs:label "surf"@en ;
+    ontolex:sense wdr:sense-surf-sport , wdr:sense-surf-internet ;
+    drift:crossLingualOf wdr:word-surfen .
+
+wdr:sense-surf-sport a drift:Sense ;
+    drift:gloss "to surf: to ride ocean waves on a surfboard (sporting activity)"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1917"^^xsd:gYear .
+
+wdr:sense-surf-internet a drift:Sense ;
+    drift:gloss "to surf (the internet / the web): to browse the World Wide Web, navigating from page to page"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1992"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1992"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-www-mosaic a drift:TriggerEvent ;
+    rdfs:label "World Wide Web and Mosaic browser launch"@en ;
+    dct:description "The public launch of the WWW and graphical browsers (Mosaic 1993, Netscape 1994) popularised 'surfing the web'; Jean Armour Polly's 1992 article coined the phrase 'surfing the internet'."@en ;
+    drift:eventDate "1993"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-surf-web a drift:DriftEvent ;
+    drift:affectsWord wdr:word-surf ;
+    drift:senseFrom wdr:sense-surf-sport ;
+    drift:senseTo wdr:sense-surf-internet ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1992"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1998"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-surf-etymonline , wdr:src-surf-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-surf-www a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-surf-web ;
+    drift:proposedTrigger wdr:trigger-www-mosaic ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-surf-etymonline , wdr:src-surf-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-surf-etymonline a drift:Source ;
+    dct:title "Etymonline - surf (v.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/surf"^^xsd:anyURI .
+
+wdr:src-surf-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - surf, v."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/surf_v"^^xsd:anyURI .

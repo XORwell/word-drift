@@ -1,0 +1,77 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORKED EXAMPLE - "nice" (en)
+# Amelioration (one of the most dramatic in English):
+#   Latin "nescius" (ignorant) -> Old French "nice" (foolish,
+#   wanton) -> Middle English: "foolish, stupid" (negative) ->
+#   14c-17c: "wanton, lascivious, precise" (varied) ->
+#   18c+: "pleasant, agreeable, kind" (positive)
+# =============================================================
+
+wdr:word-nice a drift:Word ;
+    drift:writtenForm "nice"@en ;
+    drift:language "en" ;
+    rdfs:label "nice"@en ;
+    ontolex:sense wdr:sense-nice-foolish , wdr:sense-nice-precise , wdr:sense-nice-pleasant .
+
+wdr:sense-nice-foolish a drift:Sense ;
+    drift:gloss "foolish, stupid, simple; ignorant (from Old French 'nice', ultimately Latin 'nescius')"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1290"^^xsd:gYear .
+
+wdr:sense-nice-precise a drift:Sense ;
+    drift:gloss "fastidious, precise, careful about details; discriminating in taste"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1510"^^xsd:gYear .
+
+wdr:sense-nice-pleasant a drift:Sense ;
+    drift:gloss "pleasant, agreeable, kind; giving pleasure or satisfaction"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1769"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1769"^^xsd:gYear ]
+    ] .
+
+# --- drift event 1: amelioration (foolish -> precise; no external trigger) ---
+wdr:drift-nice-1510 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-nice ;
+    drift:senseFrom wdr:sense-nice-foolish ;
+    drift:senseTo wdr:sense-nice-precise ;
+    drift:driftType drift:Amelioration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-nice-etymonline .
+
+# --- drift event 2: amelioration (precise -> pleasant; no external trigger) ---
+wdr:drift-nice-1769 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-nice ;
+    drift:senseFrom wdr:sense-nice-precise ;
+    drift:senseTo wdr:sense-nice-pleasant ;
+    drift:driftType drift:Amelioration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-nice-etymonline , wdr:src-nice-oed .
+
+# --- sources ---
+wdr:src-nice-etymonline a drift:Source ;
+    dct:title "Etymonline - nice (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/nice"^^xsd:anyURI .
+
+wdr:src-nice-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - nice, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/nice_adj"^^xsd:anyURI .

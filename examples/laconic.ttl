@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "laconic" (en)
+# Metonymization: from Laconia, the region of Sparta, whose
+# inhabitants were famed for terse speech. The place name became
+# an adjective for brevity of expression.
+# =============================================================
+
+wdr:word-laconic a drift:Word ;
+    drift:writtenForm "laconic"@en ;
+    drift:language "en" ;
+    rdfs:label "laconic"@en ;
+    ontolex:sense wdr:sense-laconic-place , wdr:sense-laconic-terse .
+
+wdr:sense-laconic-place a drift:Sense ;
+    drift:gloss "of or relating to Laconia or Lakedaimon, the region of Sparta in the Peloponnese"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1580"^^xsd:gYear .
+
+wdr:sense-laconic-terse a drift:Sense ;
+    drift:gloss "using few words; terse and concise in speech or writing"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1580"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1580"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-laconic-sparta a drift:TriggerEvent ;
+    rdfs:label "Reputation of Laconian (Spartan) terseness"@en ;
+    dct:description "Classical writers recorded the Laconians of Sparta as famously curt of speech. Renaissance humanists revived the adjective 'laconic' from the region name to mean terse expression."@en ;
+    drift:eventDate "1580"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-laconic-sparta a drift:DriftEvent ;
+    drift:affectsWord wdr:word-laconic ;
+    drift:senseFrom wdr:sense-laconic-place ;
+    drift:senseTo wdr:sense-laconic-terse ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1580"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1650"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-laconic-etym , wdr:src-laconic-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-laconic-sparta a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-laconic-sparta ;
+    drift:proposedTrigger wdr:trigger-laconic-sparta ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-laconic-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-laconic-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- laconic"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/laconic"^^xsd:anyURI .
+
+wdr:src-laconic-wikt a drift:Source ;
+    dct:title "Wiktionary -- laconic"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/laconic"^^xsd:anyURI .

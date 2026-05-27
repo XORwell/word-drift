@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "cellophane" (en)
+# Broadening: Jacques Brandenberger's trademarked transparent
+# cellulose film (commercialised from 1912) -> generic term for
+# such film. The brand launch is the commercial trigger; ruled
+# generic in a US court in 1936.
+# =============================================================
+
+wdr:word-cellophane a drift:Word ;
+    drift:writtenForm "cellophane"@en ;
+    drift:language "en" ;
+    rdfs:label "cellophane"@en ;
+    ontolex:sense wdr:sense-cellophane-brand , wdr:sense-cellophane-generic .
+
+wdr:sense-cellophane-brand a drift:Sense ;
+    drift:gloss "the trademarked transparent regenerated-cellulose film commercialised by Brandenberger"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1912"^^xsd:gYear .
+
+wdr:sense-cellophane-generic a drift:Sense ;
+    drift:gloss "any thin transparent cellulose wrapping film"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1920"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1920"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-cellophane-brand a drift:TriggerEvent ;
+    rdfs:label "Cellophane brand film commercialised"@en ;
+    dct:description "Jacques Brandenberger patented Cellophane and began commercial production of the transparent cellulose film around 1912 (perfected from his 1908 work). The brand became the ordinary word for the film; Wiktionary lists it among genericized trademarks."@en ;
+    drift:eventDate "1912"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-cellophane-brand a drift:DriftEvent ;
+    drift:affectsWord wdr:word-cellophane ;
+    drift:senseFrom wdr:sense-cellophane-brand ;
+    drift:senseTo wdr:sense-cellophane-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1912"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1940"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-cellophane-wikt , wdr:src-cellophane-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-cellophane-brand a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-cellophane-brand ;
+    drift:proposedTrigger wdr:trigger-cellophane-brand ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-cellophane-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-cellophane-wikt a drift:Source ;
+    dct:title "cellophane -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/cellophane"^^xsd:anyURI .
+
+wdr:src-cellophane-wiki a drift:Source ;
+    dct:title "Cellophane -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Cellophane"^^xsd:anyURI .

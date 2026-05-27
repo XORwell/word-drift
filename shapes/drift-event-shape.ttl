@@ -1,0 +1,54 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+
+# A drift event must name the word, a result sense, a typed classification,
+# a time anchor (year or interval), and at least one source. Causation
+# (triggeredBy) is optional, but if present must carry a confidence value.
+drift:DriftEventShape a sh:NodeShape ;
+    sh:targetClass drift:DriftEvent ;
+    sh:property [
+        sh:path drift:affectsWord ;
+        sh:minCount 1 ;
+        sh:class drift:Word ;
+        sh:message "A drift event must reference the affected word." ;
+    ] ;
+    sh:property [
+        sh:path drift:senseTo ;
+        sh:minCount 1 ;
+        sh:class drift:Sense ;
+        sh:message "A drift event must reference the resulting sense." ;
+    ] ;
+    sh:property [
+        sh:path drift:driftType ;
+        sh:minCount 1 ;
+        sh:class skos:Concept ;
+        sh:message "A drift event must be classified by a drift:driftType from the taxonomy." ;
+    ] ;
+    sh:property [
+        sh:path drift:hasSource ;
+        sh:minCount 1 ;
+        sh:message "A drift event must cite at least one source." ;
+    ] ;
+    # time anchor: a year or an interval, at least one of them
+    sh:or (
+        [ sh:path drift:driftYear ; sh:minCount 1 ]
+        [ sh:path drift:driftInterval ; sh:minCount 1 ]
+    ) .
+    # Causation is NOT on the drift event. It lives on drift:CausalHypothesis
+    # (see causal-hypothesis-shape.ttl, ADR 0004).
+
+# A trigger event must be labelled, dated, and categorised.
+drift:TriggerEventShape a sh:NodeShape ;
+    sh:targetClass drift:TriggerEvent ;
+    sh:property [
+        sh:path drift:eventDate ;
+        sh:minCount 1 ;
+        sh:message "A trigger event must have a drift:eventDate." ;
+    ] ;
+    sh:property [
+        sh:path drift:triggerCategory ;
+        sh:minCount 1 ;
+        sh:class skos:Concept ;
+        sh:message "A trigger event must have a drift:triggerCategory." ;
+    ] .

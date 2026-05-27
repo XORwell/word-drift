@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "hooligan" (en)
+# Pejoration: a name (probably the comic-Irish surname Houlihan)
+# that surfaced in 1898 London police-court reports -> generic
+# term for a violent young troublemaker. The 1898 London press
+# reports are the identifiable trigger.
+# =============================================================
+
+wdr:word-hooligan a drift:Word ;
+    drift:writtenForm "hooligan"@en ;
+    drift:language "en" ;
+    rdfs:label "hooligan"@en ;
+    ontolex:sense wdr:sense-hooligan-name , wdr:sense-hooligan-generic .
+
+wdr:sense-hooligan-name a drift:Sense ;
+    drift:gloss "a name, probably from the comic-Irish surname Houlihan, attached to rowdy London street youths in 1898 newspaper reports"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1898"^^xsd:gYear .
+
+wdr:sense-hooligan-generic a drift:Sense ;
+    drift:gloss "a violent, lawless young person; a member of a rowdy gang or troublemaker"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1898"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1898"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-hooligan-press a drift:TriggerEvent ;
+    rdfs:label "London press police-court reports of summer 1898"@en ;
+    dct:description "In the summer of 1898 London newspaper police-court reports popularized 'Hooligan', probably from the comic-Irish surname Houlihan, as the label for unruly street youths. The proper-name origin generalized rapidly into a common noun for any violent young troublemaker."@en ;
+    drift:eventDate "1898"^^xsd:gYear ;
+    drift:triggerCategory drift:Media .
+
+# --- drift event ---
+wdr:drift-hooligan-press a drift:DriftEvent ;
+    drift:affectsWord wdr:word-hooligan ;
+    drift:senseFrom wdr:sense-hooligan-name ;
+    drift:senseTo wdr:sense-hooligan-generic ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1898"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-hooligan-etym , wdr:src-hooligan-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-hooligan-press a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-hooligan-press ;
+    drift:proposedTrigger wdr:trigger-hooligan-press ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-hooligan-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-hooligan-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- hooligan"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/hooligan"^^xsd:anyURI .
+
+wdr:src-hooligan-wiki a drift:Source ;
+    dct:title "Hooligan -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Hooligan"^^xsd:anyURI .

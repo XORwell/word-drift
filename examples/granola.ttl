@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "granola" (en)
+# Broadening: a trademarked breakfast-cereal brand (registered
+# 1886) -> generic term for baked oat-and-honey cereal. The 1886
+# brand registration is the commercial trigger.
+# =============================================================
+
+wdr:word-granola a drift:Word ;
+    drift:writtenForm "granola"@en ;
+    drift:language "en" ;
+    rdfs:label "granola"@en ;
+    ontolex:sense wdr:sense-granola-brand , wdr:sense-granola-generic .
+
+wdr:sense-granola-brand a drift:Sense ;
+    drift:gloss "a trademarked brand of baked whole-grain breakfast cereal"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1886"^^xsd:gYear .
+
+wdr:sense-granola-generic a drift:Sense ;
+    drift:gloss "any breakfast food of baked rolled oats with nuts, honey, and dried fruit"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-granola-brand a drift:TriggerEvent ;
+    rdfs:label "Granola registered as a cereal brand"@en ;
+    dct:description "The name Granola was registered as a breakfast-cereal trademark around 1886 (a respelling of the earlier Granula). After the trademark lapsed the word passed into general use for any oat-based baked cereal."@en ;
+    drift:eventDate "1886"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-granola-brand a drift:DriftEvent ;
+    drift:affectsWord wdr:word-granola ;
+    drift:senseFrom wdr:sense-granola-brand ;
+    drift:senseTo wdr:sense-granola-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1886"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1910"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-granola-wikt , wdr:src-granola-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-granola-brand a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-granola-brand ;
+    drift:proposedTrigger wdr:trigger-granola-brand ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-granola-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-granola-wikt a drift:Source ;
+    dct:title "granola -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/granola"^^xsd:anyURI .
+
+wdr:src-granola-wiki a drift:Source ;
+    dct:title "Granola -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Granola"^^xsd:anyURI .

@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "panic" (en)
+# Metaphorization: Greek "panikos", the sudden groundless fear
+# attributed to the god Pan in lonely places -> any sudden
+# overpowering fright. The myth of Pan is the identifiable trigger.
+# =============================================================
+
+wdr:word-panic a drift:Word ;
+    drift:writtenForm "panic"@en ;
+    drift:language "en" ;
+    rdfs:label "panic"@en ;
+    ontolex:sense wdr:sense-panic-pan , wdr:sense-panic-fear .
+
+wdr:sense-panic-pan a drift:Sense ;
+    drift:gloss "of or pertaining to the god Pan; the sudden, contagious fear that Pan was held to cause in flocks, herds, and people in wild or lonely places"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-panic-fear a drift:Sense ;
+    drift:gloss "a sudden overpowering fright, often without clear cause and spreading through a crowd; an extreme uncontrolled anxiety"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1708"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1708"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-panic-pan a drift:TriggerEvent ;
+    rdfs:label "Greek myth of the god Pan and 'panic' fear"@en ;
+    dct:description "In Greek myth the god Pan inhabited wild and lonely places and was held to inspire a sudden, irrational, contagious terror, the 'panikon deima'. Through Greek and Latin the adjective passed into English as 'panic', and the standalone noun for sudden fright emerged by the early eighteenth century."@en ;
+    drift:eventDate "1600"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-panic-pan a drift:DriftEvent ;
+    drift:affectsWord wdr:word-panic ;
+    drift:senseFrom wdr:sense-panic-pan ;
+    drift:senseTo wdr:sense-panic-fear ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1708"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-panic-etym , wdr:src-panic-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-panic-pan a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-panic-pan ;
+    drift:proposedTrigger wdr:trigger-panic-pan ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-panic-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-panic-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- panic"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/panic"^^xsd:anyURI .
+
+wdr:src-panic-wiki a drift:Source ;
+    dct:title "Pan (god) -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Pan_(god)"^^xsd:anyURI .

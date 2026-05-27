@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "marathon" (en)
+# Metonymization then Broadening: Marathon, the Greek plain of
+# the 490 BC battle and the legendary run to Athens. The 1896
+# Olympic race fixed the place name as the name of a long-
+# distance footrace and then of any prolonged effort.
+# =============================================================
+
+wdr:word-marathon a drift:Word ;
+    drift:writtenForm "marathon"@en ;
+    drift:language "en" ;
+    rdfs:label "marathon"@en ;
+    ontolex:sense wdr:sense-marathon-place , wdr:sense-marathon-race .
+
+wdr:sense-marathon-place a drift:Sense ;
+    drift:gloss "the plain of Marathon in Attica, site of the Athenian victory over Persia and of the legendary long-distance run to Athens"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1500"^^xsd:gYear .
+
+wdr:sense-marathon-race a drift:Sense ;
+    drift:gloss "a long-distance footrace of about 42 kilometres; by extension any prolonged or testing effort"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1896"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1896"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-marathon-olympics a drift:TriggerEvent ;
+    rdfs:label "Marathon race at the 1896 Athens Olympics"@en ;
+    dct:description "The first modern Olympics of 1896 staged a long-distance race commemorating the legendary run from the plain of Marathon to Athens after the 490 BC battle. The event fixed the ancient place name as the name of the race."@en ;
+    drift:eventDate "1896"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-marathon-olympics a drift:DriftEvent ;
+    drift:affectsWord wdr:word-marathon ;
+    drift:senseFrom wdr:sense-marathon-place ;
+    drift:senseTo wdr:sense-marathon-race ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1896"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1920"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-marathon-etym , wdr:src-marathon-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-marathon-olympics a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-marathon-olympics ;
+    drift:proposedTrigger wdr:trigger-marathon-olympics ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-marathon-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-marathon-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- marathon"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/marathon"^^xsd:anyURI .
+
+wdr:src-marathon-wikt a drift:Source ;
+    dct:title "Wiktionary -- marathon"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/marathon"^^xsd:anyURI .

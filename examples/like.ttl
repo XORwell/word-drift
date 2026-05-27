@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "like" (en) -- cross-lingual pair with "liken" (liken-de)
+# Metonymization:
+#   "to find agreeable; to be fond of" (general verb) ->
+#   "to mark a social-media post with the Like button". Facebook
+#   shipped its Like button in 2009, fixing the new sense.
+# =============================================================
+
+wdr:word-like a drift:Word ;
+    drift:writtenForm "like"@en ;
+    drift:language "en" ;
+    rdfs:label "like"@en ;
+    ontolex:sense wdr:sense-like-fond , wdr:sense-like-social ;
+    drift:crossLingualOf wdr:word-liken .
+
+wdr:sense-like-fond a drift:Sense ;
+    drift:gloss "to find agreeable, pleasant, or satisfactory; to be fond of"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-like-social a drift:Sense ;
+    drift:gloss "to register approval of a social-media post by clicking a Like button; the resulting endorsement"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "2009"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2009"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-facebook-like a drift:TriggerEvent ;
+    rdfs:label "Facebook Like button launch (2009)"@en ;
+    dct:description "Facebook launched its 'Like' button in February 2009; the feature spread across the web and social platforms, turning the everyday verb into a one-click social endorsement and a countable noun ('likes')."@en ;
+    drift:eventDate "2009"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q355 .
+
+# --- drift event: metonymization (causation lives in the hypothesis below) ---
+wdr:drift-like-social a drift:DriftEvent ;
+    drift:affectsWord wdr:word-like ;
+    drift:senseFrom wdr:sense-like-fond ;
+    drift:senseTo wdr:sense-like-social ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2009"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2014"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-like-etymonline , wdr:src-like-wikipedia .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline is a lexicographic source -> LexicographicNote; Wikipedia is general -> Speculative.
+wdr:hyp-like-facebook a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-like-social ;
+    drift:proposedTrigger wdr:trigger-facebook-like ;
+    drift:evidenceType drift:LexicographicNote , drift:Speculative ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-like-etymonline , wdr:src-like-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-like-etymonline a drift:Source ;
+    dct:title "Etymonline - like (v.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/like"^^xsd:anyURI .
+
+wdr:src-like-wikipedia a drift:Source ;
+    dct:title "Like button - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Like_button"^^xsd:anyURI .

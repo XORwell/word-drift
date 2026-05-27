@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "machiavellian" (en)
+# Metaphorization: Niccolo Machiavelli, whose "Il Principe" (1532)
+# advised rulers on the amoral use of power -> cunning, scheming,
+# unscrupulous. The treatise is the identifiable trigger.
+# =============================================================
+
+wdr:word-machiavellian a drift:Word ;
+    drift:writtenForm "Machiavellian"@en ;
+    drift:language "en" ;
+    rdfs:label "Machiavellian"@en ;
+    ontolex:sense wdr:sense-machiavellian-author , wdr:sense-machiavellian-scheming .
+
+wdr:sense-machiavellian-author a drift:Sense ;
+    drift:gloss "of or pertaining to Niccolo Machiavelli or to the political doctrines set out in his treatise 'Il Principe'"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1570"^^xsd:gYear .
+
+wdr:sense-machiavellian-scheming a drift:Sense ;
+    drift:gloss "cunning, scheming, and unscrupulous, especially in the pursuit and exercise of power; using deceit and expediency without regard to morality"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1600"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-machiavellian-principe a drift:TriggerEvent ;
+    rdfs:label "Machiavelli's 'Il Principe' (1532)"@en ;
+    dct:description "Niccolo Machiavelli's treatise 'Il Principe', written 1513 and printed posthumously in 1532, advised rulers that the ends of holding power could justify deceit and cruelty. Its reception, often as a byword for amoral statecraft, made 'Machiavellian' a synonym for cunning and unscrupulous scheming in English from around 1600."@en ;
+    drift:eventDate "1532"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-machiavellian-principe a drift:DriftEvent ;
+    drift:affectsWord wdr:word-machiavellian ;
+    drift:senseFrom wdr:sense-machiavellian-author ;
+    drift:senseTo wdr:sense-machiavellian-scheming ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1570"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1650"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-machiavellian-etym , wdr:src-machiavellian-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-machiavellian-principe a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-machiavellian-principe ;
+    drift:proposedTrigger wdr:trigger-machiavellian-principe ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-machiavellian-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-machiavellian-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Machiavellian"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/Machiavellian"^^xsd:anyURI .
+
+wdr:src-machiavellian-wiki a drift:Source ;
+    dct:title "The Prince -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/The_Prince"^^xsd:anyURI .

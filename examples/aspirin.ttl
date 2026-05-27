@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "aspirin" (en)
+# Broadening: Bayer's proprietary brand name for acetylsalicylic
+# acid (1899) -> generic term for the drug and any analgesic.
+# The 1899 Bayer brand launch is the commercial trigger.
+# =============================================================
+
+wdr:word-aspirin a drift:Word ;
+    drift:writtenForm "aspirin"@en ;
+    drift:language "en" ;
+    rdfs:label "aspirin"@en ;
+    ontolex:sense wdr:sense-aspirin-brand , wdr:sense-aspirin-generic .
+
+wdr:sense-aspirin-brand a drift:Sense ;
+    drift:gloss "Bayer's proprietary brand name for acetylsalicylic acid as a pharmaceutical product"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1899"^^xsd:gYear .
+
+wdr:sense-aspirin-generic a drift:Sense ;
+    drift:gloss "acetylsalicylic acid as a generic drug; loosely any common analgesic tablet"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1921"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1921"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-aspirin-bayer a drift:TriggerEvent ;
+    rdfs:label "Bayer launches Aspirin brand"@en ;
+    dct:description "In 1899 Bayer registered and marketed acetylsalicylic acid under the brand Aspirin. In several countries the trademark lapsed (in the United States it was ruled generic in 1921), and the brand name passed into common use as the name of the substance itself."@en ;
+    drift:eventDate "1899"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial .
+
+# --- drift event ---
+wdr:drift-aspirin-bayer a drift:DriftEvent ;
+    drift:affectsWord wdr:word-aspirin ;
+    drift:senseFrom wdr:sense-aspirin-brand ;
+    drift:senseTo wdr:sense-aspirin-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1899"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1921"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-aspirin-wikt , wdr:src-aspirin-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-aspirin-bayer a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-aspirin-bayer ;
+    drift:proposedTrigger wdr:trigger-aspirin-bayer ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-aspirin-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-aspirin-wikt a drift:Source ;
+    dct:title "aspirin -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/aspirin"^^xsd:anyURI .
+
+wdr:src-aspirin-wiki a drift:Source ;
+    dct:title "Aspirin -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Aspirin"^^xsd:anyURI .

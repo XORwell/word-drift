@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Frau" (de)
+# Broadening / Pejoration of rank: MHG "frouwe" (noble lady,
+# mistress; honorific) -> generalised to any adult female
+# person ("woman"), losing its exclusively high-status sense.
+# The complementary term "Weib" sank as "Frau" generalised. A
+# gradual social-semantic levelling, no crisp datable event.
+# =============================================================
+
+wdr:word-frau a drift:Word ;
+    drift:writtenForm "Frau"@de ;
+    drift:language "de" ;
+    rdfs:label "Frau"@de ;
+    ontolex:sense wdr:sense-frau-herrin , wdr:sense-frau-woman .
+
+wdr:sense-frau-herrin a drift:Sense ;
+    drift:gloss "noble lady, mistress of a house; a woman of high rank; an honorific title (MHG frouwe)"@en ;
+    drift:gloss "edle Herrin, Gebieterin; vornehme, hochgestellte Frau; Ehrentitel (mhd. frouwe)"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1200"^^xsd:gYear .
+
+wdr:sense-frau-woman a drift:Sense ;
+    drift:gloss "any adult female person; a woman, regardless of rank; (also) wife"@en ;
+    drift:gloss "erwachsene weibliche Person; Frau ohne Standesbezug; auch Ehefrau"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1700"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-frau-leveling a drift:TriggerEvent ;
+    rdfs:label "Soziale Generalisierung eines Standestitels"@en ;
+    dct:description "Kein einzelnes datierbares Ereignis. 'Frau' verlor ueber Jahrhunderte den exklusiven Adelsbezug und wurde zur allgemeinen Bezeichnung jeder erwachsenen Frau, waehrend 'Weib' absank. Das Ankerjahr markiert die etablierte allgemeine Bedeutung, keine Ursache."@de ;
+    drift:eventDate "1700"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-frau-broadening a drift:DriftEvent ;
+    drift:affectsWord wdr:word-frau ;
+    drift:senseFrom wdr:sense-frau-herrin ;
+    drift:senseTo wdr:sense-frau-woman ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-frau-dwds , wdr:src-frau-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-frau-leveling a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-frau-broadening ;
+    drift:proposedTrigger wdr:trigger-frau-leveling ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-frau-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-frau-dwds a drift:Source ;
+    dct:title "DWDS -- Frau"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Frau"^^xsd:anyURI .
+
+wdr:src-frau-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Frau"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Frau"^^xsd:anyURI .

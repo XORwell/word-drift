@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "mentor" (en)
+# Metaphorization: Mentor, the guardian-adviser of Telemachus in
+# Homer's Odyssey, hugely expanded in Fenelon's "Telemaque" (1699)
+# -> any trusted counsellor. The romance is the identifiable trigger.
+# =============================================================
+
+wdr:word-mentor a drift:Word ;
+    drift:writtenForm "mentor"@en ;
+    drift:language "en" ;
+    rdfs:label "mentor"@en ;
+    ontolex:sense wdr:sense-mentor-character , wdr:sense-mentor-adviser .
+
+wdr:sense-mentor-character a drift:Sense ;
+    drift:gloss "Mentor, the friend of Odysseus whose form Athena assumed to guide and advise the young Telemachus in Homer's Odyssey"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1699"^^xsd:gYear .
+
+wdr:sense-mentor-adviser a drift:Sense ;
+    drift:gloss "a wise and trusted counsellor or teacher; an experienced person who guides and supports someone less experienced"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1750"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-mentor-telemaque a drift:TriggerEvent ;
+    rdfs:label "Fenelon's 'Les Aventures de Telemaque' (1699)"@en ;
+    dct:description "Mentor is a minor figure in Homer's Odyssey, but Francois Fenelon's enormously popular didactic romance 'Les Aventures de Telemaque' (1699) made Mentor the central wise counsellor to the young prince. The book's pan-European success turned the proper name into a common noun for a trusted adviser, attested in English from the mid eighteenth century."@en ;
+    drift:eventDate "1699"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-mentor-telemaque a drift:DriftEvent ;
+    drift:affectsWord wdr:word-mentor ;
+    drift:senseFrom wdr:sense-mentor-character ;
+    drift:senseTo wdr:sense-mentor-adviser ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1699"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1750"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-mentor-etym , wdr:src-mentor-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-mentor-telemaque a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-mentor-telemaque ;
+    drift:proposedTrigger wdr:trigger-mentor-telemaque ;
+    drift:evidenceType drift:ScholarlyAttestation ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-mentor-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-mentor-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- mentor"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/mentor"^^xsd:anyURI .
+
+wdr:src-mentor-wiki a drift:Source ;
+    dct:title "Mentor (Odyssey) -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Mentor_(Odyssey)"^^xsd:anyURI .

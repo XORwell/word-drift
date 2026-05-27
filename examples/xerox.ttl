@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "xerox" (en)
+# Broadening: the Xerox brand of photocopier (Haloid/Xerox,
+# Model 914 launched 1959) -> generic verb/noun for photocopying.
+# The 1959 product launch is the commercial trigger.
+# =============================================================
+
+wdr:word-xerox a drift:Word ;
+    drift:writtenForm "xerox"@en ;
+    drift:language "en" ;
+    rdfs:label "xerox"@en ;
+    ontolex:sense wdr:sense-xerox-brand , wdr:sense-xerox-generic .
+
+wdr:sense-xerox-brand a drift:Sense ;
+    drift:gloss "the Xerox brand of xerographic photocopying machine made by the Haloid Xerox company"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1959"^^xsd:gYear .
+
+wdr:sense-xerox-generic a drift:Sense ;
+    drift:gloss "to photocopy; a photocopy made on any machine, regardless of manufacturer"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1965"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1965"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-xerox-914 a drift:TriggerEvent ;
+    rdfs:label "Xerox launches the 914 copier"@en ;
+    dct:description "In 1959 Haloid Xerox launched the Xerox 914, the first successful plain-paper office copier. The brand became so identified with photocopying that 'xerox' entered general use as a verb and noun, a usage the company actively discouraged."@en ;
+    drift:eventDate "1959"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial ;
+    owl:sameAs wd:Q3570933 .
+
+# --- drift event ---
+wdr:drift-xerox-914 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-xerox ;
+    drift:senseFrom wdr:sense-xerox-brand ;
+    drift:senseTo wdr:sense-xerox-generic ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1959"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1970"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-xerox-wikt , wdr:src-xerox-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-xerox-914 a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-xerox-914 ;
+    drift:proposedTrigger wdr:trigger-xerox-914 ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-xerox-wikt ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-xerox-wikt a drift:Source ;
+    dct:title "xerox -- Wiktionary"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/xerox"^^xsd:anyURI .
+
+wdr:src-xerox-wiki a drift:Source ;
+    dct:title "Xerox -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Xerox"^^xsd:anyURI .

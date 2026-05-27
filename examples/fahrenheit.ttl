@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "fahrenheit" (en)
+# Metonymization: the surname Fahrenheit (Daniel Gabriel
+# Fahrenheit, 1686-1736) becomes the common name of a temperature
+# scale, first attested 1753. His mercury thermometer and scale
+# of 1714 are the identifiable trigger.
+# =============================================================
+
+wdr:word-fahrenheit a drift:Word ;
+    drift:writtenForm "fahrenheit"@en ;
+    drift:language "en" ;
+    rdfs:label "fahrenheit"@en ;
+    ontolex:sense wdr:sense-fahrenheit-name , wdr:sense-fahrenheit-scale .
+
+wdr:sense-fahrenheit-name a drift:Sense ;
+    drift:gloss "the surname of the Prussian-Dutch physicist Daniel Gabriel Fahrenheit"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1686"^^xsd:gYear .
+
+wdr:sense-fahrenheit-scale a drift:Sense ;
+    drift:gloss "a temperature scale on which water freezes at 32 degrees and boils at 212 degrees"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1753"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1753"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-fahrenheit-scale a drift:TriggerEvent ;
+    rdfs:label "Fahrenheit invents the mercury thermometer and scale"@en ;
+    dct:description "Daniel Gabriel Fahrenheit invented the mercury-in-glass thermometer and proposed his temperature scale in 1714. The scale came to be named after him, first attested as the word 'fahrenheit' in 1753."@en ;
+    drift:eventDate "1714"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q57073 .
+
+# --- drift event ---
+wdr:drift-fahrenheit-scale a drift:DriftEvent ;
+    drift:affectsWord wdr:word-fahrenheit ;
+    drift:senseFrom wdr:sense-fahrenheit-name ;
+    drift:senseTo wdr:sense-fahrenheit-scale ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1714"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1753"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-fahrenheit-etym , wdr:src-fahrenheit-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-fahrenheit-scale a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-fahrenheit-scale ;
+    drift:proposedTrigger wdr:trigger-fahrenheit-scale ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-fahrenheit-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-fahrenheit-etym a drift:Source ;
+    dct:title "fahrenheit -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/fahrenheit"^^xsd:anyURI .
+
+wdr:src-fahrenheit-wiki a drift:Source ;
+    dct:title "Daniel Gabriel Fahrenheit -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Daniel_Gabriel_Fahrenheit"^^xsd:anyURI .

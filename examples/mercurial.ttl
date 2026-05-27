@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "mercurial" (en)
+# Metaphorization: from the Roman god and planet Mercury. The
+# astrological sense "under the planet Mercury" yielded an
+# adjective for a sprightly, volatile, changeable temperament.
+# =============================================================
+
+wdr:word-mercurial a drift:Word ;
+    drift:writtenForm "mercurial"@en ;
+    drift:language "en" ;
+    rdfs:label "mercurial"@en ;
+    ontolex:sense wdr:sense-mercurial-planet , wdr:sense-mercurial-volatile .
+
+wdr:sense-mercurial-planet a drift:Sense ;
+    drift:gloss "pertaining to or under the influence of the planet Mercury"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1390"^^xsd:gYear .
+
+wdr:sense-mercurial-volatile a drift:Sense ;
+    drift:gloss "light-hearted, sprightly, lively; subject to sudden and unpredictable changes of mood; volatile, changeable"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1640"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1640"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-mercurial-mercury a drift:TriggerEvent ;
+    rdfs:label "Astrological temperament of those born under Mercury"@en ;
+    dct:description "Renaissance astrology held that people born under the planet Mercury were quick, lively, and changeable. The planetary adjective (attested late 14c.) acquired the temperament sense by the 1640s, reinforced by association with the fluid, ever-moving qualities of quicksilver (also called mercury)."@en ;
+    drift:eventDate "1640"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-mercurial-mercury a drift:DriftEvent ;
+    drift:affectsWord wdr:word-mercurial ;
+    drift:senseFrom wdr:sense-mercurial-planet ;
+    drift:senseTo wdr:sense-mercurial-volatile ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1590"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1660"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-mercurial-etym , wdr:src-mercurial-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-mercurial-mercury a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-mercurial-mercury ;
+    drift:proposedTrigger wdr:trigger-mercurial-mercury ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-mercurial-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-mercurial-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- mercurial"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/mercurial"^^xsd:anyURI .
+
+wdr:src-mercurial-wikt a drift:Source ;
+    dct:title "Wiktionary -- mercurial"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/mercurial"^^xsd:anyURI .

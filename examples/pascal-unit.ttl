@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "pascal" (en, unit)
+# Metonymization: the surname Pascal (Blaise Pascal, 1623-1662,
+# who studied hydrostatics and pressure) becomes the common name
+# of the SI unit of pressure, adopted 1971. His work on pressure
+# is the identifiable trigger.
+# =============================================================
+
+wdr:word-pascal-unit a drift:Word ;
+    drift:writtenForm "pascal"@en ;
+    drift:language "en" ;
+    rdfs:label "pascal (unit)"@en ;
+    ontolex:sense wdr:sense-pascal-unit-name , wdr:sense-pascal-unit-unit .
+
+wdr:sense-pascal-unit-name a drift:Sense ;
+    drift:gloss "the surname of the French mathematician and physicist Blaise Pascal"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1623"^^xsd:gYear .
+
+wdr:sense-pascal-unit-unit a drift:Sense ;
+    drift:gloss "the SI unit of pressure, equal to one newton per square metre"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1971"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1971"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-pascal-unit-pressure a drift:TriggerEvent ;
+    rdfs:label "Pascal's work on hydrostatics and pressure"@en ;
+    dct:description "Blaise Pascal's experiments on hydrostatics, the barometer and the transmission of fluid pressure made his name a fitting honour for the unit of pressure, adopted in 1971 at the 14th General Conference on Weights and Measures."@en ;
+    drift:eventDate "1648"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q1290 .
+
+# --- drift event ---
+wdr:drift-pascal-unit-pressure a drift:DriftEvent ;
+    drift:affectsWord wdr:word-pascal-unit ;
+    drift:senseFrom wdr:sense-pascal-unit-name ;
+    drift:senseTo wdr:sense-pascal-unit-unit ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1648"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1971"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-pascal-unit-wiki , wdr:src-pascal-unit-wiki-person .
+
+# --- causal hypothesis ---
+wdr:hyp-pascal-unit-pressure a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-pascal-unit-pressure ;
+    drift:proposedTrigger wdr:trigger-pascal-unit-pressure ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-pascal-unit-wiki ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-pascal-unit-wiki a drift:Source ;
+    dct:title "Pascal (unit) -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Pascal_(unit)"^^xsd:anyURI .
+
+wdr:src-pascal-unit-wiki-person a drift:Source ;
+    dct:title "Blaise Pascal -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Blaise_Pascal"^^xsd:anyURI .

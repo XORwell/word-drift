@@ -1,0 +1,173 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:freq-dwds-geil-1990 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "1990"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-geil ;
+    drift:relativeFrequency 1.45 .
+
+wdr:freq-dwds-geil-1995 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "1995"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-geil ;
+    drift:relativeFrequency 1.9 .
+
+wdr:freq-dwds-geil-2000 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2000"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-geil ;
+    drift:relativeFrequency 2.6 .
+
+wdr:freq-dwds-geil-2005 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2005"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-geil ;
+    drift:relativeFrequency 3.1 .
+
+wdr:freq-dwds-geil-2010 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2010"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-geil ;
+    drift:relativeFrequency 3.5 .
+
+wdr:freq-dwds-geil-2015 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2015"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-geil ;
+    drift:relativeFrequency 3.8 .
+
+wdr:freq-dwds-geil-2020 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2020"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-geil ;
+    drift:relativeFrequency 4.1 .
+
+wdr:freq-dwds-querdenker-2015 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2015"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 0.12 .
+
+wdr:freq-dwds-querdenker-2016 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2016"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 0.15 .
+
+wdr:freq-dwds-querdenker-2017 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2017"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 0.18 .
+
+wdr:freq-dwds-querdenker-2018 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2018"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 0.22 .
+
+wdr:freq-dwds-querdenker-2019 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2019"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 0.4 .
+
+wdr:freq-dwds-querdenker-2020 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2020"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 3.8 .
+
+wdr:freq-dwds-querdenker-2021 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2021"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 5.1 .
+
+wdr:freq-dwds-querdenker-2022 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2022"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-querdenker ;
+    drift:relativeFrequency 3.2 .
+
+wdr:freq-dwds-wende-1988 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "1988"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-wende ;
+    drift:relativeFrequency 0.8 .
+
+wdr:freq-dwds-wende-1989 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "1989"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-wende ;
+    drift:relativeFrequency 4.5 .
+
+wdr:freq-dwds-wende-1990 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "1990"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-wende ;
+    drift:relativeFrequency 6.2 .
+
+wdr:freq-dwds-wende-1991 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "1991"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-wende ;
+    drift:relativeFrequency 5.8 .
+
+wdr:freq-dwds-wende-2000 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2000"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-wende ;
+    drift:relativeFrequency 2.1 .
+
+wdr:freq-dwds-wende-2010 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2010"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-wende ;
+    drift:relativeFrequency 1.8 .
+
+wdr:freq-dwds-wende-2020 a drift:FrequencyObservation ;
+    drift:fromCorpus wdr:corpus-dwds ;
+    drift:observedYear "2020"^^xsd:gYear ;
+    drift:ofWord wdr:word-dwds-wende ;
+    drift:relativeFrequency 1.6 .
+
+wdr:sense-dwds-geil-default a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "Default sense placeholder for 'geil' (DWDS frequency data)"@en .
+
+wdr:sense-dwds-querdenker-default a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "Default sense placeholder for 'Querdenker' (DWDS frequency data)"@en .
+
+wdr:sense-dwds-wende-default a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:gloss "Default sense placeholder for 'Wende' (DWDS frequency data)"@en .
+
+wdr:word-dwds-geil a drift:Word ;
+    rdfs:label "geil"@de ;
+    ontolex:sense wdr:sense-dwds-geil-default ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "geil"@de .
+
+wdr:word-dwds-wende a drift:Word ;
+    rdfs:label "Wende"@de ;
+    ontolex:sense wdr:sense-dwds-wende-default ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Wende"@de .
+
+wdr:word-dwds-querdenker a drift:Word ;
+    rdfs:label "Querdenker"@de ;
+    ontolex:sense wdr:sense-dwds-querdenker-default ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Querdenker"@de .
+
+wdr:corpus-dwds a drift:Corpus ;
+    dct:title "DWDS Wortverlaufskurve (BBAW)"@de ;
+    drift:sourceURL "https://www.dwds.de/r/plot"^^xsd:anyURI .
+

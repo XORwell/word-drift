@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Akademie" (de)
+# Metonymization: a place name, the grove Akademeia near Athens
+# (named after the hero Akademos), became the name of the school
+# Plato taught there, then of learned institutions in general.
+# Plato's founding of his school in the grove is the trigger.
+# The grove sense is anchored here to 0400 as a 4-digit gYear;
+# Plato founded the school c. 387 BC (see prose).
+# =============================================================
+
+wdr:word-akademie a drift:Word ;
+    drift:writtenForm "Akademie"@de ;
+    drift:language "de" ;
+    rdfs:label "Akademie"@de ;
+    ontolex:sense wdr:sense-akademie-grove , wdr:sense-akademie-institution .
+
+wdr:sense-akademie-grove a drift:Sense ;
+    drift:gloss "the grove and gymnasium Akademeia northwest of Athens, sacred to Athena and named after the hero Akademos"@en ;
+    drift:gloss "der Hain und das Gymnasion Akademeia noerdlich von Athen, dem Heros Akademos geweiht"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0400"^^xsd:gYear .
+
+wdr:sense-akademie-institution a drift:Sense ;
+    drift:gloss "an institution of higher learning or scholarship; a society of scholars, scientists, or artists"@en ;
+    drift:gloss "Einrichtung der Wissenschaft oder Kunst; gelehrte Gesellschaft, Hochschule"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0387"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "0387"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-akademie-plato a drift:TriggerEvent ;
+    rdfs:label "Plato founds his school in the grove Akademeia"@en ;
+    dct:description "Around 387 BC Plato established his philosophical school in the grove Akademeia outside Athens. The school took the name of the place, and the place name thereby came to denote an institution of learning, the meaning carried into Latin academia and the modern languages."@en ;
+    drift:eventDate "0387"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-akademie-plato a drift:DriftEvent ;
+    drift:affectsWord wdr:word-akademie ;
+    drift:senseFrom wdr:sense-akademie-grove ;
+    drift:senseTo wdr:sense-akademie-institution ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "0387"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "0300"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-akademie-dwds , wdr:src-akademie-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-akademie-plato a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-akademie-plato ;
+    drift:proposedTrigger wdr:trigger-akademie-plato ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-akademie-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-akademie-dwds a drift:Source ;
+    dct:title "DWDS -- Akademie"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Akademie"^^xsd:anyURI .
+
+wdr:src-akademie-wiki a drift:Source ;
+    dct:title "Platonic Academy -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Platonic_Academy"^^xsd:anyURI .

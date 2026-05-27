@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "magenta" (en)
+# Metonymization: a new aniline dye of 1860 was named in honour
+# of the Battle of Magenta (1859, Italian town), giving English
+# the colour name "magenta". The battle/town is the trigger.
+# =============================================================
+
+wdr:word-magenta a drift:Word ;
+    drift:writtenForm "magenta"@en ;
+    drift:language "en" ;
+    rdfs:label "magenta"@en ;
+    ontolex:sense wdr:sense-magenta-battle , wdr:sense-magenta-color .
+
+wdr:sense-magenta-battle a drift:Sense ;
+    drift:gloss "of or commemorating the Battle of Magenta (1859), fought near the Italian town of Magenta"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1860"^^xsd:gYear .
+
+wdr:sense-magenta-color a drift:Sense ;
+    drift:gloss "a brilliant crimson-purple colour; originally an aniline dye of that hue"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1860"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1860"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-magenta-battle a drift:TriggerEvent ;
+    rdfs:label "Battle of Magenta (1859)"@en ;
+    dct:description "A brilliant crimson aniline dye introduced in 1860 was named in honour of the Battle of Magenta (1859), where French and Sardinian forces defeated the Austrians; the dye and colour took the battle's name."@en ;
+    drift:eventDate "1859"^^xsd:gYear ;
+    drift:triggerCategory drift:Political ;
+    owl:sameAs wd:Q681430 .
+
+# --- drift event ---
+wdr:drift-magenta-battle a drift:DriftEvent ;
+    drift:affectsWord wdr:word-magenta ;
+    drift:senseFrom wdr:sense-magenta-battle ;
+    drift:senseTo wdr:sense-magenta-color ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1859"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1860"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-magenta-etym , wdr:src-magenta-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-magenta-battle a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-magenta-battle ;
+    drift:proposedTrigger wdr:trigger-magenta-battle ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-magenta-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-magenta-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- magenta"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/magenta"^^xsd:anyURI .
+
+wdr:src-magenta-wikt a drift:Source ;
+    dct:title "Wiktionary -- magenta"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/magenta"^^xsd:anyURI .

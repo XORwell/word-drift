@@ -1,0 +1,22 @@
+# CQ08 — Strongest evidence tier backing each drift event.
+# For every drift event that carries at least one causal hypothesis, report the
+# highest evidence tier present across its hypotheses, ranked on the ladder
+# Speculative < FrequencyCorrelation < ChangeSignalAlignment < LexicographicNote
+# < ScholarlyAttestation. Answers "how well-grounded is each documented shift?".
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+
+SELECT ?word (MAX(?rank) AS ?strongestTier) WHERE {
+  ?h a drift:CausalHypothesis ;
+     drift:aboutDrift ?e ;
+     drift:evidenceType ?ev .
+  ?e drift:affectsWord ?w .
+  ?w drift:writtenForm ?word .
+  BIND(
+    IF(?ev = drift:ScholarlyAttestation, 5,
+    IF(?ev = drift:LexicographicNote,    4,
+    IF(?ev = drift:ChangeSignalAlignment, 3,
+    IF(?ev = drift:FrequencyCorrelation, 2,
+    IF(?ev = drift:Speculative,          1, 0))))) AS ?rank)
+}
+GROUP BY ?word
+ORDER BY DESC(?strongestTier) ?word

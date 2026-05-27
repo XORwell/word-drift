@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About &mdash; WORD-DRIFT</title>
+  <meta name="description" content="Method, data sources, ontology design, license, and citation for the WORD-DRIFT knowledge graph." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <script src="assets/theme.js"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a class="wordmark" href="index.html">WORD&#8209;<span>DRIFT</span></a>
+    <ul>
+      <li><a href="index.html">Overview</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="downloads.html">Data</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener noreferrer">Repository</a></li>
+    </ul>
+    <button type="button" id="wd-theme-toggle" class="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light or dark theme">
+      <span class="icon-dark" aria-hidden="true">&#9790;</span><span class="icon-light" aria-hidden="true">&#9728;</span>
+    </button>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <section class="hero" style="padding-bottom: 2.5rem;">
+    <p class="hero-eyebrow">About the project</p>
+    <h1 style="font-size: clamp(1.6rem, 4vw, 2.6rem);">
+      Method, data, and<br /><span class="drift-word">how to cite</span>
+    </h1>
+    <p class="hero-sub">
+      WORD-DRIFT is an open research resource. This page covers the ontology
+      design, the source datasets, license terms, and citation information.
+    </p>
+  </section>
+
+  <!-- ONTOLOGY -->
+  <section class="section" id="method">
+    <p class="section-label">Ontology</p>
+    <h2 class="section-title">Five-module RDF/OWL design</h2>
+    <div class="section-body">
+      <p>
+        The schema uses the namespace
+        <code style="font-size:0.82rem; color: var(--accent);">drift: = https://w3id.org/word-drift/ontology#</code>
+        and is split across five Turtle modules that are loaded together by
+        <code style="font-size:0.82rem; color: var(--accent);">validate.py</code>.
+      </p>
+    </div>
+
+    <div class="feature-grid" style="margin-top: 1.75rem;">
+      <div class="feature-card">
+        <div class="feature-card-icon" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); width: auto; height: auto; background: none; padding: 0; margin-bottom: 0.75rem;">01</div>
+        <h3>Lexical</h3>
+        <p>
+          <code>drift:Word</code> and <code>drift:Sense</code>, aligned to
+          OntoLex-Lemon. Words carry <code>drift:writtenForm</code> and
+          <code>drift:language</code>; senses carry glosses and connotation.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); width: auto; height: auto; background: none; padding: 0; margin-bottom: 0.75rem;">02</div>
+        <h3>Sense over time</h3>
+        <p>
+          Attestation intervals (<code>OWL-Time</code>), connotation labels
+          (Positive / Neutral / Negative), and relative frequency observations
+          that drive the sparkline in the timeline view.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); width: auto; height: auto; background: none; padding: 0; margin-bottom: 0.75rem;">03</div>
+        <h3>Drift event</h3>
+        <p>
+          Reified change event (<code>drift:DriftEvent</code>) with typed edges
+          <code>drift:senseFrom</code> / <code>drift:senseTo</code>, a
+          SKOS drift-type taxonomy, year / interval, and confidence (0.0&ndash;1.0).
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); width: auto; height: auto; background: none; padding: 0; margin-bottom: 0.75rem;">04</div>
+        <h3>Causation</h3>
+        <p>
+          A <code>drift:TriggerEvent</code> (dateable, Wikidata-linkable via
+          <code>owl:sameAs</code>) is connected to a drift event through a reified
+          <code>drift:CausalHypothesis</code> (<code>drift:aboutDrift</code> +
+          <code>drift:proposedTrigger</code>, under <code>prov:wasInfluencedBy</code>).
+          Each hypothesis carries a confidence and typed evidence on a five-rung ladder:
+          Speculative &lt; FrequencyCorrelation &lt; ChangeSignalAlignment &lt;
+          LexicographicNote &lt; ScholarlyAttestation.
+          <a href="explore.html#triggers">Browse the live trigger timeline &rarr;</a>
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); width: auto; height: auto; background: none; padding: 0; margin-bottom: 0.75rem;">05</div>
+        <h3>Provenance</h3>
+        <p>
+          PROV-O-based. Every drift claim requires at least one
+          <code>drift:Source</code> with a URL. This is enforced structurally
+          by the SHACL shapes file, not just by convention.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA SOURCES -->
+  <div class="section-full" id="data">
+    <div class="section-full-inner">
+      <p class="section-label">Data sources</p>
+      <h2 class="section-title">What the KG is built on</h2>
+      <div class="section-body">
+        <p>
+          WORD-DRIFT layers a curated causal annotation over existing, publicly
+          available lexical change datasets. The backbone datasets are loaded
+          via Trails RML into the ETL pipeline (<code>etl/rml/</code>).
+        </p>
+      </div>
+
+      <div class="about-grid" style="margin-top: 2rem;">
+        <div class="about-block">
+          <h3>DWUG DE + EN</h3>
+          <p>
+            <em>Diachronic Word Usage Graphs</em> (Schlechtweg et al. 2020 &amp; 2021).
+            Usage-graph clusters become <code>drift:Sense</code> nodes; cluster
+            transitions become candidate <code>drift:DriftEvent</code>s.
+            License: CC-BY 4.0.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>SemEval-2020 Task 1</h3>
+          <p>
+            Binary and graded change labels for target word sets in DE and EN.
+            Provides the gold-standard drift binary that anchors the curated
+            sense pairs. License: CC-BY 4.0.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>DWDS (BBAW)</h3>
+          <p>
+            Digitales W&ouml;rterbuch der deutschen Sprache. Word-frequency curves
+            (Wortverlaufskurven) drive the <code>drift:FrequencyObservation</code>
+            nodes for German words. License: CC-BY-NC 3.0 DE.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Wikidata</h3>
+          <p>
+            Real-world trigger events are linked via <code>owl:sameAs</code>
+            to Wikidata entities (e.g. Q115500066 for the Querdenken-711 movement).
+            Dates, geolocation, and related entities federate in by SPARQL.
+            License: CC0 1.0.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Oxford English Dictionary (OED)</h3>
+          <p>
+            Used as a citable source for English etymology and first-attestation
+            dates in the curated showcase set. OED is a licensed resource;
+            only bibliographic references are included in the KG, not content.
+          </p>
+        </div>
+        <div class="about-block">
+          <h3>Wikipedia</h3>
+          <p>
+            Used as a citable source for trigger event descriptions (e.g. the
+            Querdenken movement article). CC-BY-SA 4.0.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <section class="section" id="stack">
+    <p class="section-label">Technical stack</p>
+    <h2 class="section-title">RDF all the way down</h2>
+    <div class="section-body">
+      <p>
+        The project uses a pure Semantic Web stack. No proprietary graph DB required
+        for validation and the showcase queries; a qlever instance adds SPARQL
+        federation with Wikidata for production use.
+      </p>
+    </div>
+
+    <div class="feature-grid" style="margin-top: 1.75rem;">
+      <div class="feature-card">
+        <h3>RDF / OWL / Turtle</h3>
+        <p>All data in Turtle, loaded via rdflib for validation.
+           Namespaces registered at w3id.org for permanence.</p>
+      </div>
+      <div class="feature-card">
+        <h3>SHACL</h3>
+        <p>
+          Two shapes files enforce: every drift event has a source;
+          every sense has a connotation; every trigger event has a date.
+          Validated with pyshacl.
+        </p>
+      </div>
+      <div class="feature-card">
+        <h3>SPARQL / qlever</h3>
+        <p>
+          Query layer via qlever for production federation.
+          The four showcase queries in <code>queries/</code> all validate
+          with rdflib's built-in SPARQL engine for CI.
+        </p>
+      </div>
+      <div class="feature-card">
+        <h3>Trails RML</h3>
+        <p>
+          ETL pipeline (<code>etl/rml/</code>) maps DWUG TSV and SemEval
+          JSON to the drift: ontology via RML rules, keeping ingest
+          reproducible and auditable.
+        </p>
+      </div>
+      <div class="feature-card">
+        <h3>D3.js v7</h3>
+        <p>
+          The interactive visualiser is plain vanilla D3, served as static
+          files. No build step, no framework. Works from a local
+          <code>python -m http.server</code>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENSE -->
+  <div class="section-full" id="license">
+    <div class="section-full-inner">
+      <p class="section-label">License</p>
+      <h2 class="section-title">Open by design</h2>
+
+      <div class="about-grid" style="margin-top: 1.75rem;">
+        <div class="about-block">
+          <h3>Schema and code</h3>
+          <p>
+            The ontology modules (<code>ontology/</code>), SHACL shapes,
+            SPARQL queries, Python scripts, and the D3 visualiser are released
+            under the <strong>MIT License</strong>.
+          </p>
+          <div class="license-badge" style="display: inline-block; margin-top: 0.85rem;">
+            <strong>MIT</strong> &mdash; ontology / shapes / code / viz
+          </div>
+        </div>
+        <div class="about-block">
+          <h3>Curated data</h3>
+          <p>
+            The hand-curated RDF instances in <code>examples/</code> and
+            future <code>data/</code> releases are published under
+            <strong>CC-BY 4.0</strong>. Source datasets retain their
+            own licenses (see Data sources above).
+          </p>
+          <div class="license-badge" style="display: inline-block; margin-top: 0.85rem;">
+            <strong>CC-BY 4.0</strong> &mdash; curated RDF instances
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CITE -->
+  <section class="section" id="cite">
+    <p class="section-label">Citation</p>
+    <h2 class="section-title">How to cite WORD-DRIFT</h2>
+    <div class="section-body">
+      <p>
+        If you use the schema, data, or visualiser in your research, please cite
+        the repository. A companion paper describing the causal ontology layer is
+        in preparation; this entry will be updated when it is published.
+      </p>
+    </div>
+
+    <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--text); margin-top: 2rem; margin-bottom: 0.5rem;">
+      BibTeX
+    </h3>
+    <pre class="cite-block">@misc{worddrift2026,
+  title  = {{WORD-DRIFT}: A Knowledge Graph for Evidenced Causal
+            Hypotheses in Lexical Semantic Change},
+  author = {Nennemann, Christian},
+  year   = {2026},
+  url    = {https://github.com/XORwell/word-drift},
+  note   = {Version 0.4. Data: CC-BY 4.0; Code: MIT.}
+}</pre>
+
+    <h3 style="font-size: 0.85rem; font-weight: 600; color: var(--text); margin-top: 2rem; margin-bottom: 0.5rem;">
+      Plain text
+    </h3>
+    <div class="cite-block">Nennemann, C. (2026). WORD-DRIFT: A Knowledge Graph for Evidenced
+Causal Hypotheses in Lexical Semantic Change (Version 0.4).
+https://github.com/XORwell/word-drift</div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-sub);">
+      Repository:
+      <a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener noreferrer" style="color: var(--accent-hi);">
+        github.com/XORwell/word-drift
+      </a>
+    </p>
+  </section>
+
+  <!-- CONTACT / CONTRIBUTE -->
+  <section class="section" id="contribute" style="padding-top: 0;">
+    <p class="section-label">Contribute</p>
+    <h2 class="section-title">Adding words and triggers</h2>
+    <div class="section-body">
+      <p>
+        New word entries follow the pattern in <code>examples/querdenker.ttl</code>
+        and <code>examples/funk.ttl</code>. Every entry requires at minimum:
+      </p>
+    </div>
+    <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--text-sub); font-size: 0.87rem; line-height: 1.9;">
+      <li>A <code>drift:Word</code> with <code>drift:writtenForm</code> and <code>drift:language</code></li>
+      <li>At least two <code>drift:Sense</code> nodes with gloss (EN), connotation, and <code>drift:firstAttested</code></li>
+      <li>A <code>drift:DriftEvent</code> connecting the senses with a typed drift and at least one <code>drift:Source</code></li>
+      <li>Optional but encouraged: a <code>drift:TriggerEvent</code> with <code>owl:sameAs</code> to Wikidata and a <code>drift:confidence</code></li>
+    </ul>
+    <p style="margin-top: 1rem; font-size: 0.84rem; color: var(--text-sub);">
+      Run <code>python validate.py</code> before submitting a pull request.
+      All examples must pass SHACL validation and the four SPARQL showcase queries.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span>
+      <strong style="color: var(--text-sub);">WORD&#8209;DRIFT</strong>
+      &mdash; RDF/SHACL knowledge graph for lexical semantic change
+    </span>
+    <div class="site-footer-links">
+      <a href="index.html">Overview</a>
+      <a href="explore.html">Explore</a>
+      <a href="#license">License</a>
+      <a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener noreferrer">Repository</a>
+    </div>
+    <span>Schema v0.1 &mdash; 2025</span>
+  </footer>
+
+
+</body>
+</html>

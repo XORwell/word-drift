@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "green" (en) -- cross-lingual pair with "gruen" (gruen-de)
+# Metaphorization:
+#   "the colour of growing foliage" ->
+#   "environmentally friendly; relating to ecological politics".
+#   The environmental movement of the 1970s-80s and the rise of
+#   Green parties fixed the political/ecological sense.
+# =============================================================
+
+wdr:word-green a drift:Word ;
+    drift:writtenForm "green"@en ;
+    drift:language "en" ;
+    rdfs:label "green"@en ;
+    ontolex:sense wdr:sense-green-colour , wdr:sense-green-eco ;
+    drift:crossLingualOf wdr:word-gruen .
+
+wdr:sense-green-colour a drift:Sense ;
+    drift:gloss "the colour between blue and yellow in the spectrum; the colour of growing foliage"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1000"^^xsd:gYear .
+
+wdr:sense-green-eco a drift:Sense ;
+    drift:gloss "environmentally friendly; concerned with or supporting ecological protection and green politics"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1972"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1972"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-ecology-movement a drift:TriggerEvent ;
+    rdfs:label "the modern environmental movement and the rise of Green politics"@en ;
+    dct:description "The environmental movement of the 1970s-80s (Earth Day 1970, Greenpeace 1971, and the founding of Green parties) attached an ecological-political meaning to 'green', making it shorthand for environmentally friendly."@en ;
+    drift:eventDate "1972"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-green-eco a drift:DriftEvent ;
+    drift:affectsWord wdr:word-green ;
+    drift:senseFrom wdr:sense-green-colour ;
+    drift:senseTo wdr:sense-green-eco ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1972"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1990"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-green-etymonline , wdr:src-green-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-green-ecology a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-green-eco ;
+    drift:proposedTrigger wdr:trigger-ecology-movement ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-green-etymonline , wdr:src-green-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-green-etymonline a drift:Source ;
+    dct:title "Etymonline - green (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/green"^^xsd:anyURI .
+
+wdr:src-green-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - green, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/green_adj"^^xsd:anyURI .

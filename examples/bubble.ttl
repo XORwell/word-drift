@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "bubble" (en) -- cross-lingual pair with "Blase" (blase-de)
+# Metaphorization:
+#   "a thin sphere of liquid enclosing air" ->
+#   "an episode of unsustainable speculative asset prices that
+#    eventually bursts". The South Sea Bubble (1720) gave the
+#    financial sense its name and lasting metaphor.
+# =============================================================
+
+wdr:word-bubble a drift:Word ;
+    drift:writtenForm "bubble"@en ;
+    drift:language "en" ;
+    rdfs:label "bubble"@en ;
+    ontolex:sense wdr:sense-bubble-air , wdr:sense-bubble-economic ;
+    drift:crossLingualOf wdr:word-blase .
+
+wdr:sense-bubble-air a drift:Sense ;
+    drift:gloss "a thin sphere of liquid enclosing air or gas; a small body of gas in a liquid"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1400"^^xsd:gYear .
+
+wdr:sense-bubble-economic a drift:Sense ;
+    drift:gloss "a period of trade or speculation in unsound or unsustainable ventures; inflated asset prices destined to collapse"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1720"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1720"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-south-sea-bubble a drift:TriggerEvent ;
+    rdfs:label "the South Sea Bubble financial crisis (1720)"@en ;
+    dct:description "The 1720 collapse of the South Sea Company's inflated share price, named the 'South Sea Bubble', fixed 'bubble' as the standard metaphor for a speculative market boom that bursts."@en ;
+    drift:eventDate "1720"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial ;
+    owl:sameAs wd:Q18643921 .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-bubble-economic a drift:DriftEvent ;
+    drift:affectsWord wdr:word-bubble ;
+    drift:senseFrom wdr:sense-bubble-air ;
+    drift:senseTo wdr:sense-bubble-economic ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1711"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1725"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-bubble-etymonline , wdr:src-bubble-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and OED are lexicographic sources -> LexicographicNote.
+wdr:hyp-bubble-southsea a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-bubble-economic ;
+    drift:proposedTrigger wdr:trigger-south-sea-bubble ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-bubble-etymonline , wdr:src-bubble-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-bubble-etymonline a drift:Source ;
+    dct:title "Etymonline - bubble (n.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/bubble"^^xsd:anyURI .
+
+wdr:src-bubble-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - bubble, n."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/bubble_n"^^xsd:anyURI .

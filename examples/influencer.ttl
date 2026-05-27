@@ -1,0 +1,90 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "influencer" (en)
+# Narrowing / Metonymization: generic "a person or thing that
+# influences" -> a person who has built a large social-media
+# following and is paid to promote products. Driven by the rise
+# of Instagram and the creator economy in the mid-2010s.
+# =============================================================
+
+wdr:word-influencer a drift:Word ;
+    drift:writtenForm "influencer"@en ;
+    drift:language "en" ;
+    rdfs:label "influencer"@en ;
+    ontolex:sense wdr:sense-influencer-generic , wdr:sense-influencer-social .
+
+wdr:sense-influencer-generic a drift:Sense ;
+    drift:gloss "a person or thing that influences another; one who exerts influence"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1662"^^xsd:gYear .
+
+wdr:sense-influencer-social a drift:Sense ;
+    drift:gloss "a person who has gained a large following on social media and is paid to promote products or lifestyles to that audience"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2015"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2015"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-influencer-instagram a drift:TriggerEvent ;
+    rdfs:label "Rise of Instagram and influencer marketing (mid-2010s)"@en ;
+    dct:description "The growth of Instagram (launched 2010) and the surrounding creator economy turned 'influencer' into a job title for paid social-media promoters, narrowing the generic sense to this commercial meaning by the mid-2010s."@en ;
+    drift:eventDate "2015"^^xsd:gYear ;
+    drift:triggerCategory drift:Commercial ;
+    owl:sameAs wd:Q209330 .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-influencer-2015 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-influencer ;
+    drift:senseFrom wdr:sense-influencer-generic ;
+    drift:senseTo wdr:sense-influencer-social ;
+    drift:driftType drift:Narrowing , drift:Metonymization ;
+    drift:driftYear "2015"^^xsd:gYear ;
+    drift:hasSource wdr:src-influencer-mw , wdr:corpus-influencer-ngram .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster documents the social-media sense; the Ngram frequency
+# climb from the mid-2010s makes the link reproducible.
+wdr:hyp-influencer-instagram a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-influencer-2015 ;
+    drift:proposedTrigger wdr:trigger-influencer-instagram ;
+    drift:evidenceType drift:FrequencyCorrelation , drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-influencer-mw , wdr:corpus-influencer-ngram ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations (timeline curve) ---
+wdr:freq-influencer-2012 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-influencer ; drift:observedYear "2012"^^xsd:gYear ;
+    drift:relativeFrequency 0.8 ; drift:fromCorpus wdr:corpus-influencer-ngram .
+wdr:freq-influencer-2015 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-influencer ; drift:observedYear "2015"^^xsd:gYear ;
+    drift:relativeFrequency 1.7 ; drift:fromCorpus wdr:corpus-influencer-ngram .
+wdr:freq-influencer-2019 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-influencer ; drift:observedYear "2019"^^xsd:gYear ;
+    drift:relativeFrequency 4.5 ; drift:fromCorpus wdr:corpus-influencer-ngram .
+
+# --- sources ---
+wdr:corpus-influencer-ngram a drift:Corpus ;
+    dct:title "Google Books Ngram Viewer (influencer)"@en ;
+    drift:sourceURL "https://books.google.com/ngrams/graph?content=influencer"^^xsd:anyURI .
+
+wdr:src-influencer-mw a drift:Source ;
+    dct:title "Merriam-Webster - influencer"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/dictionary/influencer"^^xsd:anyURI .

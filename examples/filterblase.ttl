@@ -1,0 +1,92 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "Filterblase" (de)
+# Loan-translation + Metaphorization: a literal "filter bubble"
+# becomes the standard German term for the state of intellectual
+# isolation caused by algorithmic personalisation, after Eli
+# Pariser's 2011 book "The Filter Bubble".
+# =============================================================
+
+wdr:word-filterblase a drift:Word ;
+    drift:writtenForm "Filterblase"@de ;
+    drift:language "de" ;
+    rdfs:label "Filterblase"@de ;
+    ontolex:sense wdr:sense-filterblase-literal , wdr:sense-filterblase-algorithmic .
+
+wdr:sense-filterblase-literal a drift:Sense ;
+    drift:gloss "literal compound 'filter bubble' (technical/ad hoc), not an established term"@en ;
+    drift:gloss "woertliche Zusammensetzung 'Filterblase' (technisch/Gelegenheitsbildung), kein etablierter Begriff"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1990"^^xsd:gYear .
+
+wdr:sense-filterblase-algorithmic a drift:Sense ;
+    drift:gloss "the state of intellectual isolation that can result from algorithmic personalisation showing users only agreeable content"@en ;
+    drift:gloss "Zustand intellektueller Isolation durch algorithmische Personalisierung, die Nutzern vor allem zustimmende Inhalte zeigt"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2011"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2011"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-filterblase-pariser a drift:TriggerEvent ;
+    rdfs:label "Eli Pariser, 'The Filter Bubble' (2011)"@en ;
+    dct:description "Eli Pariser's 2011 book 'The Filter Bubble' coined the concept; the German loan-translation 'Filterblase' became the standard term for algorithmic information isolation in German media debate."@en ;
+    drift:eventDate "2011"^^xsd:gYear ;
+    drift:triggerCategory drift:Media ;
+    owl:sameAs wd:Q111687183 .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-filterblase-2011 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-filterblase ;
+    drift:senseFrom wdr:sense-filterblase-literal ;
+    drift:senseTo wdr:sense-filterblase-algorithmic ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftYear "2011"^^xsd:gYear ;
+    drift:hasSource wdr:src-filterblase-dwds , wdr:corpus-dwds-filterblase .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS dates the term to Pariser's book; the Wortverlaufskurve shows the
+# word entering German usage only from 2011, a reproducible signal.
+wdr:hyp-filterblase-pariser a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-filterblase-2011 ;
+    drift:proposedTrigger wdr:trigger-filterblase-pariser ;
+    drift:evidenceType drift:FrequencyCorrelation , drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-filterblase-dwds , wdr:corpus-dwds-filterblase ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations (timeline curve) ---
+wdr:freq-filterblase-2010 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-filterblase ; drift:observedYear "2010"^^xsd:gYear ;
+    drift:relativeFrequency 0.1 ; drift:fromCorpus wdr:corpus-dwds-filterblase .
+wdr:freq-filterblase-2012 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-filterblase ; drift:observedYear "2012"^^xsd:gYear ;
+    drift:relativeFrequency 1.5 ; drift:fromCorpus wdr:corpus-dwds-filterblase .
+wdr:freq-filterblase-2017 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-filterblase ; drift:observedYear "2017"^^xsd:gYear ;
+    drift:relativeFrequency 4.0 ; drift:fromCorpus wdr:corpus-dwds-filterblase .
+
+# --- sources ---
+wdr:corpus-dwds-filterblase a drift:Corpus ;
+    dct:title "DWDS Wortverlaufskurve - Filterblase"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Filterblase"^^xsd:anyURI .
+
+wdr:src-filterblase-dwds a drift:Source ;
+    dct:title "DWDS - Filterblase"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Filterblase"^^xsd:anyURI .

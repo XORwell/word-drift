@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Luddite" (en)
+# Broadening: a specific 1811-1816 English machine-breaking
+# movement (named after the legendary Ned Ludd) -> any person
+# opposed to new technology. The textile-machinery uprisings
+# are the identifiable trigger.
+# =============================================================
+
+wdr:word-luddite a drift:Word ;
+    drift:writtenForm "Luddite"@en ;
+    drift:language "en" ;
+    rdfs:label "Luddite"@en ;
+    ontolex:sense wdr:sense-luddite-historical , wdr:sense-luddite-broad .
+
+wdr:sense-luddite-historical a drift:Sense ;
+    drift:gloss "a member of the 1811-1816 English textile-workers' movement that destroyed labour-saving machinery, said to follow the (legendary) Ned Ludd"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1811"^^xsd:gYear .
+
+wdr:sense-luddite-broad a drift:Sense ;
+    drift:gloss "a person opposed to new technology or to technological change in general"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1860"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1860"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-luddite-uprising a drift:TriggerEvent ;
+    rdfs:label "Luddite machine-breaking uprisings"@en ;
+    dct:description "Between 1811 and 1816 textile workers in the English Midlands and north destroyed mechanized looms and frames, fearing loss of livelihood. The movement, invoking the legendary Ned Ludd, gave its name first to the participants and later, by broadening, to any opponent of technology."@en ;
+    drift:eventDate "1811"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-luddite-uprising a drift:DriftEvent ;
+    drift:affectsWord wdr:word-luddite ;
+    drift:senseFrom wdr:sense-luddite-historical ;
+    drift:senseTo wdr:sense-luddite-broad ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1811"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-luddite-etym , wdr:src-luddite-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-luddite-uprising a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-luddite-uprising ;
+    drift:proposedTrigger wdr:trigger-luddite-uprising ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-luddite-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-luddite-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Luddite"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/Luddite"^^xsd:anyURI .
+
+wdr:src-luddite-wiki a drift:Source ;
+    dct:title "Luddite -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Luddite"^^xsd:anyURI .

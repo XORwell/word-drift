@@ -1,0 +1,38 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+
+# Every word needs a written form, a language, and at least one sense.
+drift:WordShape a sh:NodeShape ;
+    sh:targetClass drift:Word ;
+    sh:property [
+        sh:path drift:writtenForm ;
+        sh:minCount 1 ;
+        sh:message "A word must have at least one drift:writtenForm." ;
+    ] ;
+    sh:property [
+        sh:path drift:language ;
+        sh:minCount 1 ;
+        sh:message "A word must declare its language." ;
+    ] ;
+    sh:property [
+        sh:path ontolex:sense ;
+        sh:minCount 1 ;
+        sh:message "A word must link at least one sense via ontolex:sense." ;
+    ] .
+
+# Every sense needs a gloss and an explicit connotation (the valence axis).
+drift:SenseShape a sh:NodeShape ;
+    sh:targetClass drift:Sense ;
+    sh:property [
+        sh:path drift:gloss ;
+        sh:minCount 1 ;
+        sh:message "A sense must have a drift:gloss." ;
+    ] ;
+    sh:property [
+        sh:path drift:connotation ;
+        sh:minCount 1 ;
+        sh:class skos:Concept ;
+        sh:message "A sense must declare its connotation (positive/neutral/negative)." ;
+    ] .

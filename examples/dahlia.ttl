@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "dahlia" (en)
+# Metonymization: the surname Dahl (Anders Dahl, 1751-1789,
+# Swedish botanist) was used by Cavanilles in 1791 to name the
+# genus, in English by 1804. The honorific naming of the genus is
+# the identifiable trigger.
+# =============================================================
+
+wdr:word-dahlia a drift:Word ;
+    drift:writtenForm "dahlia"@en ;
+    drift:language "en" ;
+    rdfs:label "dahlia"@en ;
+    ontolex:sense wdr:sense-dahlia-name , wdr:sense-dahlia-plant .
+
+wdr:sense-dahlia-name a drift:Sense ;
+    drift:gloss "the surname of the Swedish botanist Anders Dahl, a student of Linnaeus"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1751"^^xsd:gYear .
+
+wdr:sense-dahlia-plant a drift:Sense ;
+    drift:gloss "a garden plant of the genus Dahlia, bearing showy composite flowers"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1804"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1804"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-dahlia-cavanilles a drift:TriggerEvent ;
+    rdfs:label "Cavanilles names the genus Dahlia for Anders Dahl"@en ;
+    dct:description "The Spanish botanist Antonio Jose Cavanilles named the genus Dahlia in 1791 in honour of the Swedish botanist Anders Dahl. The English word is attested by 1804."@en ;
+    drift:eventDate "1791"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q496775 .
+
+# --- drift event ---
+wdr:drift-dahlia-cavanilles a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dahlia ;
+    drift:senseFrom wdr:sense-dahlia-name ;
+    drift:senseTo wdr:sense-dahlia-plant ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1791"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1804"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-dahlia-etym , wdr:src-dahlia-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-dahlia-cavanilles a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-dahlia-cavanilles ;
+    drift:proposedTrigger wdr:trigger-dahlia-cavanilles ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-dahlia-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-dahlia-etym a drift:Source ;
+    dct:title "dahlia -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/dahlia"^^xsd:anyURI .
+
+wdr:src-dahlia-wiki a drift:Source ;
+    dct:title "Anders Dahl -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Anders_Dahl"^^xsd:anyURI .

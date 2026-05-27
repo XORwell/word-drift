@@ -1,0 +1,11 @@
+target_word	binary_change	graded_change
+attack	1	0.82
+bag	0	0.14
+ball	1	0.67
+bit	1	0.55
+chairman	0	0.09
+circle	1	0.71
+contemplation	0	0.22
+donkey	0	0.18
+edge	1	0.59
+face	1	0.64

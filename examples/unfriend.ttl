@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "unfriend" (en)
+# Narrowing / revival: a rare archaic verb/noun "to make
+# unfriendly; an enemy" -> the social-media act of removing
+# someone from one's friends list (chiefly Facebook). Named the
+# New Oxford American Dictionary Word of the Year 2009.
+# =============================================================
+
+wdr:word-unfriend a drift:Word ;
+    drift:writtenForm "unfriend"@en ;
+    drift:language "en" ;
+    rdfs:label "unfriend"@en ;
+    ontolex:sense wdr:sense-unfriend-archaic , wdr:sense-unfriend-social .
+
+wdr:sense-unfriend-archaic a drift:Sense ;
+    drift:gloss "(archaic, rare) to make unfriendly or estrange; as a noun, an enemy"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1659"^^xsd:gYear .
+
+wdr:sense-unfriend-social a drift:Sense ;
+    drift:gloss "to remove someone from one's list of friends or contacts on a social-networking site"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2008"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2008"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-unfriend-facebook a drift:TriggerEvent ;
+    rdfs:label "Facebook 'friend' / 'unfriend' interface (mid-2000s)"@en ;
+    dct:description "Facebook's friends model, opened to the general public in 2006, gave 'friend' and 'unfriend' precise platform meanings; 'unfriend' was named New Oxford American Dictionary Word of the Year in 2009."@en ;
+    drift:eventDate "2008"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q355 .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-unfriend-2008 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-unfriend ;
+    drift:senseFrom wdr:sense-unfriend-archaic ;
+    drift:senseTo wdr:sense-unfriend-social ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2008"^^xsd:gYear ;
+    drift:hasSource wdr:src-unfriend-oxford , wdr:src-unfriend-wiktionary .
+
+# --- causal hypothesis (ADR 0004) ---
+# Oxford's 2009 Word of the Year announcement ties the revived sense to
+# social-networking platforms; attributed lexicographic evidence.
+wdr:hyp-unfriend-facebook a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-unfriend-2008 ;
+    drift:proposedTrigger wdr:trigger-unfriend-facebook ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-unfriend-oxford ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-unfriend-oxford a drift:Source ;
+    dct:title "Oxford University Press blog - 2009 Word of the Year: unfriend"@en ;
+    drift:sourceURL "https://blog.oup.com/2009/11/unfriend/?onwardjourney=584162_v1"^^xsd:anyURI .
+
+wdr:src-unfriend-wiktionary a drift:Source ;
+    dct:title "Wiktionary - unfriend"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/unfriend"^^xsd:anyURI .

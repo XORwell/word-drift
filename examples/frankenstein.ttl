@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Frankenstein" (en)
+# Metaphorization: Victor Frankenstein, the scientist of Mary
+# Shelley's 1818 novel, whose creation turns on him -> a creation
+# that destroys its maker. The novel is the identifiable trigger.
+# =============================================================
+
+wdr:word-frankenstein a drift:Word ;
+    drift:writtenForm "Frankenstein"@en ;
+    drift:language "en" ;
+    rdfs:label "Frankenstein"@en ;
+    ontolex:sense wdr:sense-frankenstein-character , wdr:sense-frankenstein-monster .
+
+wdr:sense-frankenstein-character a drift:Sense ;
+    drift:gloss "Victor Frankenstein, the scientist in Mary Shelley's novel who assembles and animates a creature from dead matter"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1818"^^xsd:gYear .
+
+wdr:sense-frankenstein-monster a drift:Sense ;
+    drift:gloss "a creation or agency that escapes the control of and ultimately destroys its maker; loosely (and popularly) the monstrous creature itself"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1838"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1838"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-frankenstein-shelley a drift:TriggerEvent ;
+    rdfs:label "Mary Shelley's 'Frankenstein' (1818)"@en ;
+    dct:description "Mary Shelley's novel 'Frankenstein; or, The Modern Prometheus' (1818) told of a scientist whose animated creature turns against him. The name generalized to mean a creation that overpowers and destroys its creator, and (by popular confusion) the creature itself, attested figuratively from the 1830s."@en ;
+    drift:eventDate "1818"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-frankenstein-shelley a drift:DriftEvent ;
+    drift:affectsWord wdr:word-frankenstein ;
+    drift:senseFrom wdr:sense-frankenstein-character ;
+    drift:senseTo wdr:sense-frankenstein-monster ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1818"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-frankenstein-etym , wdr:src-frankenstein-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-frankenstein-shelley a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-frankenstein-shelley ;
+    drift:proposedTrigger wdr:trigger-frankenstein-shelley ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-frankenstein-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-frankenstein-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Frankenstein"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/Frankenstein"^^xsd:anyURI .
+
+wdr:src-frankenstein-wiki a drift:Source ;
+    dct:title "Frankenstein -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Frankenstein"^^xsd:anyURI .

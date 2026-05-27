@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "odyssey" (en)
+# Metaphorization: from the Odyssey, Homer's epic of Odysseus's
+# ten-year wandering home from Troy. The poem's title yielded a
+# common noun for any long, eventful journey or quest.
+# =============================================================
+
+wdr:word-odyssey a drift:Word ;
+    drift:writtenForm "odyssey"@en ;
+    drift:language "en" ;
+    rdfs:label "odyssey"@en ;
+    ontolex:sense wdr:sense-odyssey-poem , wdr:sense-odyssey-journey .
+
+wdr:sense-odyssey-poem a drift:Sense ;
+    drift:gloss "the Homeric epic recounting the ten-year wanderings of Odysseus, king of Ithaca, returning home after the fall of Troy"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-odyssey-journey a drift:Sense ;
+    drift:gloss "a long, adventurous journey or wandering; an extended, eventful quest or course of experience"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1889"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1889"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-odyssey-homer a drift:TriggerEvent ;
+    rdfs:label "Homer's epic poem the Odyssey"@en ;
+    dct:description "Homer's Odyssey, the eighth-century BC epic of Odysseus's long voyage home from Troy, gave its title to English by 1600. The fame of that protracted, episodic journey produced the figurative common noun 'odyssey' for any long wandering, recorded from 1889."@en ;
+    drift:eventDate "1889"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q35160 .
+
+# --- drift event ---
+wdr:drift-odyssey-homer a drift:DriftEvent ;
+    drift:affectsWord wdr:word-odyssey ;
+    drift:senseFrom wdr:sense-odyssey-poem ;
+    drift:senseTo wdr:sense-odyssey-journey ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-odyssey-etym , wdr:src-odyssey-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-odyssey-homer a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-odyssey-homer ;
+    drift:proposedTrigger wdr:trigger-odyssey-homer ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-odyssey-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-odyssey-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- odyssey"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/odyssey"^^xsd:anyURI .
+
+wdr:src-odyssey-wikt a drift:Source ;
+    dct:title "Wiktionary -- odyssey"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/odyssey"^^xsd:anyURI .

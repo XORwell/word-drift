@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "celsius" (en)
+# Metonymization: the surname Celsius (Anders Celsius, 1701-1744,
+# who proposed a centigrade scale in 1742) becomes the common name
+# of the temperature scale, formally adopted as "degree Celsius"
+# in 1948. His scale is the identifiable trigger.
+# =============================================================
+
+wdr:word-celsius a drift:Word ;
+    drift:writtenForm "celsius"@en ;
+    drift:language "en" ;
+    rdfs:label "celsius"@en ;
+    ontolex:sense wdr:sense-celsius-name , wdr:sense-celsius-scale .
+
+wdr:sense-celsius-name a drift:Sense ;
+    drift:gloss "the surname of the Swedish astronomer Anders Celsius"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1701"^^xsd:gYear .
+
+wdr:sense-celsius-scale a drift:Sense ;
+    drift:gloss "a temperature scale on which water freezes at 0 degrees and boils at 100 degrees"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1948"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1948"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-celsius-scale a drift:TriggerEvent ;
+    rdfs:label "Celsius proposes the centigrade temperature scale"@en ;
+    dct:description "Anders Celsius proposed a centigrade temperature scale in 1742. The unit was formally named 'degree Celsius' in 1948 by the 9th General Conference on Weights and Measures, to honour him and avoid confusion with the centigrade angular measure."@en ;
+    drift:eventDate "1742"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology ;
+    owl:sameAs wd:Q81130 .
+
+# --- drift event ---
+wdr:drift-celsius-scale a drift:DriftEvent ;
+    drift:affectsWord wdr:word-celsius ;
+    drift:senseFrom wdr:sense-celsius-name ;
+    drift:senseTo wdr:sense-celsius-scale ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1742"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1948"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-celsius-wiki , wdr:src-celsius-wiki-person .
+
+# --- causal hypothesis ---
+wdr:hyp-celsius-scale a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-celsius-scale ;
+    drift:proposedTrigger wdr:trigger-celsius-scale ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-celsius-wiki ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-celsius-wiki a drift:Source ;
+    dct:title "Celsius -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Celsius"^^xsd:anyURI .
+
+wdr:src-celsius-wiki-person a drift:Source ;
+    dct:title "Anders Celsius -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Anders_Celsius"^^xsd:anyURI .

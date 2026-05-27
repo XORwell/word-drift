@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "Schwurbler" (de)
+# Pejoration / Narrowing: the base word "geschwurbelt" (verbose,
+# muddled) has medieval roots; "Schwurbler" as a noun existed
+# marginally as a mild pejorative for someone who speaks
+# confusingly. During the COVID-19 pandemic 2020-2021 the term
+# narrowed sharply to mean conspiracy theorist / vaccine
+# opponent, acquiring a specifically political pejorative charge.
+# =============================================================
+
+wdr:word-schwurbler a drift:Word ;
+    drift:writtenForm "Schwurbler"@de ;
+    drift:language "de" ;
+    rdfs:label "Schwurbler"@de ;
+    ontolex:sense wdr:sense-schwurbler-muddled , wdr:sense-schwurbler-conspiracy .
+
+wdr:sense-schwurbler-muddled a drift:Sense ;
+    drift:gloss "someone who speaks or writes in an incoherent, muddled, or verbose manner"@en ;
+    drift:gloss "jemand der unverstaendlich oder wirr redet oder schreibt"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1900"^^xsd:gYear .
+
+wdr:sense-schwurbler-conspiracy a drift:Sense ;
+    drift:gloss "a conspiracy theorist; specifically someone spreading anti-vaccination or COVID-denying pseudoscience; a COVID sceptic or far-right health-freedom activist"@en ;
+    drift:gloss "Verschwoerunstheoretiker; Impfgegner; Corona-Leugner"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2020"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-schwurbler-covid a drift:TriggerEvent ;
+    rdfs:label "COVID-19 pandemic and Querdenken protests in Germany"@en ;
+    dct:description "The COVID-19 pandemic and associated anti-vaccination and lockdown-sceptic movements, including Querdenken, drove the narrowing of Schwurbler to a specifically political pejorative label for conspiracy theorists."@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic ;
+    owl:sameAs wd:Q81068910 .
+
+# --- drift event ---
+wdr:drift-schwurbler-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-schwurbler ;
+    drift:senseFrom wdr:sense-schwurbler-muddled ;
+    drift:senseTo wdr:sense-schwurbler-conspiracy ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-schwurbler-divers , wdr:src-schwurbler-wiktionary .
+
+# --- causal hypothesis ---
+wdr:hyp-schwurbler-covid a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-schwurbler-2020 ;
+    drift:proposedTrigger wdr:trigger-schwurbler-covid ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-schwurbler-wiktionary ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-schwurbler-divers a drift:Source ;
+    dct:title "Divers Magazin -- Schwurbler: Bedeutung, Definition und Erklaerung"@de ;
+    drift:sourceURL "https://diversmagazin.de/glossar/schwurbler-bedeutung/"^^xsd:anyURI .
+
+wdr:src-schwurbler-wiktionary a drift:Source ;
+    dct:title "Wiktionary -- Schwurbler"@de ;
+    drift:sourceURL "https://de.wiktionary.org/wiki/Schwurbler"^^xsd:anyURI .

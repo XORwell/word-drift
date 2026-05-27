@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "sus" (en)
+# Clipping + Broadening: informal clipping of "suspicious /
+# suspect" -> general internet slang "questionable, dubious,
+# untrustworthy". Mass-popularised by the video game Among Us
+# during the 2020 lockdown gaming boom.
+# =============================================================
+
+wdr:word-sus a drift:Word ;
+    drift:writtenForm "sus"@en ;
+    drift:language "en" ;
+    rdfs:label "sus"@en ;
+    ontolex:sense wdr:sense-sus-clipping , wdr:sense-sus-slang .
+
+wdr:sense-sus-clipping a drift:Sense ;
+    drift:gloss "informal clipping of 'suspicious' or 'suspect' (chiefly British/police slang)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1955"^^xsd:gYear .
+
+wdr:sense-sus-slang a drift:Sense ;
+    drift:gloss "(internet slang) questionable, dubious, or untrustworthy; arousing suspicion"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2020"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-sus-amongus a drift:TriggerEvent ;
+    rdfs:label "Among Us popularity surge (2020)"@en ;
+    dct:description "The social-deduction game Among Us, released in 2018, exploded in popularity during the 2020 lockdowns; players accusing each other of being 'sus' (suspicious) propelled the clipped form into mainstream internet slang."@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q96417649 .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-sus-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-sus ;
+    drift:senseFrom wdr:sense-sus-clipping ;
+    drift:senseTo wdr:sense-sus-slang ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-sus-mw , wdr:src-sus-wikipedia .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster dates the clipped 'suspicious' sense to 1955 and does NOT
+# itself attribute the surge to Among Us; the Among Us link is documented on
+# Wikipedia (general source) -> Speculative, modest confidence.
+wdr:hyp-sus-amongus a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-sus-2020 ;
+    drift:proposedTrigger wdr:trigger-sus-amongus ;
+    drift:evidenceType drift:Speculative ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-sus-mw , wdr:src-sus-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-sus-mw a drift:Source ;
+    dct:title "Merriam-Webster - sus"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/dictionary/sus"^^xsd:anyURI .
+
+wdr:src-sus-wikipedia a drift:Source ;
+    dct:title "Among Us - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Among_Us"^^xsd:anyURI .

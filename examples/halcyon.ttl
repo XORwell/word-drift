@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "halcyon" (en)
+# Metaphorization: from Alcyone of Greek myth, who became a
+# kingfisher; the bird was said to calm the winter seas while
+# nesting. The bird-name yielded an adjective for calm, idyllic,
+# prosperous days.
+# =============================================================
+
+wdr:word-halcyon a drift:Word ;
+    drift:writtenForm "halcyon"@en ;
+    drift:language "en" ;
+    rdfs:label "halcyon"@en ;
+    ontolex:sense wdr:sense-halcyon-bird , wdr:sense-halcyon-calm .
+
+wdr:sense-halcyon-bird a drift:Sense ;
+    drift:gloss "a bird, the kingfisher, fabled to nest at sea about the winter solstice and to calm the waves while breeding"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1390"^^xsd:gYear .
+
+wdr:sense-halcyon-calm a drift:Sense ;
+    drift:gloss "calm, peaceful, tranquil; (of a past time) idyllically happy and prosperous"@en ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1540"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1540"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-halcyon-alcyone a drift:TriggerEvent ;
+    rdfs:label "Alcyone and the calm of the halcyon days"@en ;
+    dct:description "In Greek myth Alcyone, daughter of Aeolus, was changed into a kingfisher; the gods stilled the winter seas for fourteen halcyon days while she nested. The legend (transmitted through Ovid and the medieval bestiaries) fixed the bird-name as a figure for calm, fixing the adjective by the 1540s."@en ;
+    drift:eventDate "1540"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q912904 .
+
+# --- drift event ---
+wdr:drift-halcyon-alcyone a drift:DriftEvent ;
+    drift:affectsWord wdr:word-halcyon ;
+    drift:senseFrom wdr:sense-halcyon-bird ;
+    drift:senseTo wdr:sense-halcyon-calm ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1560"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-halcyon-etym , wdr:src-halcyon-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-halcyon-alcyone a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-halcyon-alcyone ;
+    drift:proposedTrigger wdr:trigger-halcyon-alcyone ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-halcyon-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-halcyon-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- halcyon"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/halcyon"^^xsd:anyURI .
+
+wdr:src-halcyon-wikt a drift:Source ;
+    dct:title "Wiktionary -- halcyon"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/halcyon"^^xsd:anyURI .

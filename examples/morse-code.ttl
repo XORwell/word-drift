@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Morse code" (en)
+# Metonymization: the surname Morse (Samuel Morse, co-developer
+# of the electric telegraph and its signalling code from 1838)
+# becomes the common name of the dot-and-dash code. His telegraph
+# code is the identifiable trigger.
+# =============================================================
+
+wdr:word-morse-code a drift:Word ;
+    drift:writtenForm "Morse code"@en ;
+    drift:language "en" ;
+    rdfs:label "Morse code"@en ;
+    ontolex:sense wdr:sense-morse-code-name , wdr:sense-morse-code-system .
+
+wdr:sense-morse-code-name a drift:Sense ;
+    drift:gloss "derived from the surname of the American inventor and painter Samuel F. B. Morse"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1791"^^xsd:gYear .
+
+wdr:sense-morse-code-system a drift:Sense ;
+    drift:gloss "a method of encoding text as standardized sequences of short and long signals (dots and dashes); an everyday term for the dot-dash signalling system"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1867"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1867"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-morse-code-telegraph a drift:TriggerEvent ;
+    rdfs:label "Morse and Vail develop the telegraph code"@en ;
+    dct:description "From 1838 Samuel Morse and Alfred Vail developed the signalling code for the electric telegraph, publicly demonstrated in 1838 and used on the first US telegraph line in 1844. The code became known by Morse's name."@en ;
+    drift:eventDate "1838"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-morse-code-telegraph a drift:DriftEvent ;
+    drift:affectsWord wdr:word-morse-code ;
+    drift:senseFrom wdr:sense-morse-code-name ;
+    drift:senseTo wdr:sense-morse-code-system ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1838"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1867"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-morse-code-wiki , wdr:src-morse-code-etym .
+
+# --- causal hypothesis ---
+wdr:hyp-morse-code-telegraph a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-morse-code-telegraph ;
+    drift:proposedTrigger wdr:trigger-morse-code-telegraph ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-morse-code-wiki ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-morse-code-wiki a drift:Source ;
+    dct:title "Morse code -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Morse_code"^^xsd:anyURI .
+
+wdr:src-morse-code-etym a drift:Source ;
+    dct:title "Morse -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/Morse"^^xsd:anyURI .

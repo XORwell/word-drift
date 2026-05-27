@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "tuxedo" (en)
+# Metonymization: from Tuxedo Park, NY, the resort where the
+# semiformal dinner jacket was first worn around 1886. The place
+# name became the name of the garment.
+# =============================================================
+
+wdr:word-tuxedo a drift:Word ;
+    drift:writtenForm "tuxedo"@en ;
+    drift:language "en" ;
+    rdfs:label "tuxedo"@en ;
+    ontolex:sense wdr:sense-tuxedo-place , wdr:sense-tuxedo-jacket .
+
+wdr:sense-tuxedo-place a drift:Sense ;
+    drift:gloss "Tuxedo Park, the wealthy resort in New York state where the dinner jacket was first worn"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1886"^^xsd:gYear .
+
+wdr:sense-tuxedo-jacket a drift:Sense ;
+    drift:gloss "a man's semiformal evening jacket; by extension the full dinner-dress outfit"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1889"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1889"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-tuxedo-park a drift:TriggerEvent ;
+    rdfs:label "Dinner jacket worn at Tuxedo Park"@en ;
+    dct:description "The semiformal evening jacket was first worn at the Tuxedo Park country club around 1886. The resort name attached to the garment and entered general use by 1889."@en ;
+    drift:eventDate "1886"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-tuxedo-park a drift:DriftEvent ;
+    drift:affectsWord wdr:word-tuxedo ;
+    drift:senseFrom wdr:sense-tuxedo-place ;
+    drift:senseTo wdr:sense-tuxedo-jacket ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1886"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-tuxedo-etym , wdr:src-tuxedo-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-tuxedo-park a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-tuxedo-park ;
+    drift:proposedTrigger wdr:trigger-tuxedo-park ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-tuxedo-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-tuxedo-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- tuxedo"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/tuxedo"^^xsd:anyURI .
+
+wdr:src-tuxedo-wikt a drift:Source ;
+    dct:title "Wiktionary -- tuxedo"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/tuxedo"^^xsd:anyURI .

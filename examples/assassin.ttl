@@ -1,0 +1,83 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "assassin" (en)
+# Narrowing: Arabic hashishin/hashishiyya, a label applied to the
+# Nizari Ismailis, was picked up by Crusaders as the name of that
+# sect, then narrowed in European use to "one who murders by
+# stealth for political or hire reasons". The Crusader-era contact
+# with the Nizaris of Syria/Persia is the trigger.
+# =============================================================
+
+wdr:word-assassin a drift:Word ;
+    drift:writtenForm "assassin"@en ;
+    drift:language "en" ;
+    rdfs:label "assassin"@en ;
+    ontolex:sense wdr:sense-assassin-sect , wdr:sense-assassin-killer .
+
+wdr:sense-assassin-sect a drift:Sense ;
+    drift:gloss "a member of the Nizari Ismaili order of Syria and Persia, known to the Crusaders as the Assassins"@en ;
+    drift:gloss "Angehoeriger des nizaritisch-ismailitischen Ordens in Syrien und Persien, den Kreuzfahrern als Assassinen bekannt"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1100"^^xsd:gYear .
+
+wdr:sense-assassin-killer a drift:Sense ;
+    drift:gloss "one who kills, especially a prominent person, by surprise attack, often for political reasons or for hire"@en ;
+    drift:gloss "Meuchelmoerder; jemand, der eine meist prominente Person hinterruecks toetet, oft aus politischen Gruenden oder fuer Bezahlung"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1300"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1300"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-assassin-crusades a drift:TriggerEvent ;
+    rdfs:label "Crusader contact with the Nizari Ismailis"@en ;
+    dct:description "During the Crusades the Nizari Ismaili order of Syria and Persia (active from c. 1090) became known to European chroniclers under the Arabic pejorative hashishin. Their reputation for targeted killing of political and military figures attached the killing sense to the name; later legend, popularised by Marco Polo, reinforced it."@en ;
+    drift:eventDate "1192"^^xsd:gYear ;
+    drift:triggerCategory drift:Political .
+
+# --- drift event ---
+wdr:drift-assassin-crusades a drift:DriftEvent ;
+    drift:affectsWord wdr:word-assassin ;
+    drift:senseFrom wdr:sense-assassin-sect ;
+    drift:senseTo wdr:sense-assassin-killer ;
+    drift:driftType drift:Narrowing ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1100"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-assassin-etym , wdr:src-assassin-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-assassin-crusades a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-assassin-crusades ;
+    drift:proposedTrigger wdr:trigger-assassin-crusades ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-assassin-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-assassin-etym a drift:Source ;
+    dct:title "assassin -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/assassin"^^xsd:anyURI .
+
+wdr:src-assassin-wiki a drift:Source ;
+    dct:title "Order of Assassins -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Order_of_Assassins"^^xsd:anyURI .

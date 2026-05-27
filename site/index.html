@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WORD-DRIFT: Lexical Semantic Change Knowledge Graph</title>
+  <meta name="description" content="An open knowledge graph that models how words shift meaning over time, with typed drift events and the real-world triggers that cause them." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <script src="assets/theme.js"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a class="wordmark" href="index.html">WORD&#8209;<span>DRIFT</span></a>
+    <ul>
+      <li><a href="index.html" class="active">Overview</a></li>
+      <li><a href="explore.html">Explore</a></li>
+      <li><a href="downloads.html">Data</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener noreferrer">Repository</a></li>
+    </ul>
+    <button type="button" id="wd-theme-toggle" class="theme-toggle" title="Toggle light / dark theme" aria-label="Toggle light or dark theme">
+      <span class="icon-dark" aria-hidden="true">&#9790;</span><span class="icon-light" aria-hidden="true">&#9728;</span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+  <section class="hero">
+    <p class="hero-eyebrow">Lexical Semantic Change &mdash; DE + EN Knowledge Graph</p>
+    <h1>
+      Words change meaning.<br />
+      <span class="drift-word">We track why.</span>
+    </h1>
+    <p class="hero-sub">
+      WORD-DRIFT is an open RDF knowledge graph for lexical semantic change.
+      It models not just <em>that</em> a word shifted, but the typed drift event
+      and the historical trigger behind it. A causal layer no existing dataset provides.
+    </p>
+    <div class="hero-cta">
+      <a href="explore.html" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Explore the graph
+      </a>
+      <a href="#how-it-works" class="btn btn-outline">How it works</a>
+      <a href="about.html#data" class="btn btn-outline">Data &amp; license</a>
+    </div>
+  </section>
+  </div>
+
+  <!-- HERO DRIFT EXAMPLE CARD -->
+  <div class="drift-card">
+    <div class="drift-card-inner">
+      <!-- Sense A -->
+      <div class="drift-sense positive">
+        <div class="drift-sense-tag">Original meaning</div>
+        <div class="drift-sense-year">c. 1980</div>
+        <div class="drift-sense-gloss">
+          "A creative non-conformist; someone who thinks outside conventional lines."
+        </div>
+      </div>
+
+      <!-- Arrow col -->
+      <div class="drift-arrow-col">
+        <div class="drift-arrow-label">Pejoration</div>
+        <svg class="drift-arrow-svg" height="28" viewBox="0 0 80 28" fill="none">
+          <defs>
+            <marker id="hero-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#5b7cf8"/>
+            </marker>
+          </defs>
+          <path d="M 4 14 C 20 4, 60 24, 74 14"
+                stroke="#5b7cf8" stroke-width="2" fill="none"
+                marker-end="url(#hero-arrow)"/>
+        </svg>
+        <a class="drift-trigger-pill" href="explore.html?trigger=trigger-querdenken-711">Querdenken-711</a>
+        <div class="drift-trigger-label">proposed trigger</div>
+        <div class="drift-confidence">confidence 0.9</div>
+      </div>
+
+      <!-- Sense B -->
+      <div class="drift-sense negative">
+        <div class="drift-sense-tag">Shifted meaning</div>
+        <div class="drift-sense-year">2020</div>
+        <div class="drift-sense-gloss">
+          "A participant in anti-lockdown / COVID-conspiracy protests."
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top: 1rem; font-size: 0.78rem; color: var(--text-faint);">
+      <strong style="color: var(--text);">Querdenker</strong> (DE), from compliment to insult in a single pandemic year.
+      Proposed triggers: the Querdenken-711 movement (Wikidata: Q115500066) and COVID-19.
+    </p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how-it-works">
+    <p class="section-label">The project</p>
+    <h2 class="section-title">A knowledge graph for meaning and cause</h2>
+    <div class="section-body">
+      <p>
+        Computational linguistics has mature tools for <em>detecting</em> semantic
+        change: DWUG usage graphs, SemEval benchmarks, diachronic embeddings.
+        Detection tells you <em>that</em> a word shifted between two time periods.
+        It does not tell you why.
+      </p>
+      <p>
+        WORD-DRIFT adds a causal trigger layer on top of existing detection data.
+        Each cause is a reified <code>drift:CausalHypothesis</code> connecting a drift
+        event to a proposed trigger, carrying a Wikidata link, a confidence score, and
+        typed evidence on a five-rung ladder: Speculative &lt; FrequencyCorrelation &lt;
+        ChangeSignalAlignment &lt; LexicographicNote &lt; ScholarlyAttestation. A claim,
+        not a fact; auditable and queryable.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card-icon">&#128279;</div>
+        <h3>Senses as graph nodes</h3>
+        <p>Each word sense is a first-class node. Drift events are typed edges
+           between senses with a direction, year, and confidence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">&#127941;</div>
+        <h3>Causal triggers</h3>
+        <p>Causation is reified as a <code>drift:CausalHypothesis</code>: it links a
+           drift event (<code>drift:aboutDrift</code>) to the real-world event that
+           reframed it (<code>drift:proposedTrigger</code>), with typed evidence and a
+           confidence. One trigger can reframe many words simultaneously.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">&#128195;</div>
+        <h3>SHACL-enforced provenance</h3>
+        <p>Every claim must cite a source. PROV-O + custom SHACL shapes validate
+           this structurally, not just by convention.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-icon">&#127758;</div>
+        <h3>Federated with Wikidata</h3>
+        <p>Trigger events carry <code>owl:sameAs</code> links to Wikidata entities,
+           enabling free federation for dates, places, and related concepts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLES SECTION -->
+  <div class="section-full">
+    <div class="section-full-inner">
+      <p class="section-label">Worked examples</p>
+      <h2 class="section-title">Two directions. Two languages. Two vivid triggers.</h2>
+      <div class="section-body">
+        <p>
+          The seed dataset covers one clear German pejoration and one English
+          amelioration, chosen to anchor opposite ends of the valence axis and
+          stress-test cross-lingual roll-up queries.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2rem;">
+
+        <!-- Querdenker card -->
+        <div class="feature-card" style="border-left: 3px solid var(--negative);">
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.25rem;">
+            Querdenker <span style="font-size: 0.72rem; font-weight: 600; color: var(--text-faint);">DE</span>
+          </div>
+          <div style="display: flex; gap: 0.4rem; margin-bottom: 0.85rem; flex-wrap: wrap;">
+            <span class="word-pill-badge pejoration">Pejoration</span>
+          </div>
+          <p style="font-size: 0.83rem; color: var(--text-sub); line-height: 1.65;">
+            Positive "lateral thinker" (c. 1980) becomes pejorative "COVID protester" (2020).
+            Proposed triggers: the Querdenken-711 movement and the COVID-19 pandemic.
+            Confidence: 0.9. Source: DWDS + Wikipedia.
+          </p>
+          <p style="margin-top: 0.75rem; font-size: 0.78rem;">
+            <a href="explore.html?word=Querdenker&amp;lang=de">Open Querdenker in the explorer &rarr;</a>
+          </p>
+        </div>
+
+        <!-- funk card -->
+        <div class="feature-card" style="border-left: 3px solid var(--positive);">
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.25rem;">
+            funk / funky <span style="font-size: 0.72rem; font-weight: 600; color: var(--text-faint);">EN</span>
+          </div>
+          <div style="display: flex; gap: 0.4rem; margin-bottom: 0.85rem; flex-wrap: wrap;">
+            <span class="word-pill-badge amelioration">Amelioration</span>
+          </div>
+          <p style="font-size: 0.83rem; color: var(--text-sub); line-height: 1.65;">
+            Negative "strong bad smell" (1620) becomes positive "stylish, soulful; the funk
+            music genre" (1959&ndash;1975). Proposed trigger: the rise of funk as an
+            African-American music genre. Confidence: 0.75. Source: OED.
+          </p>
+          <p style="margin-top: 0.75rem; font-size: 0.78rem;">
+            <a href="explore.html?word=funk&amp;lang=en">Open funk in the explorer &rarr;</a>
+          </p>
+        </div>
+      </div>
+
+      <p style="margin-top: 1.75rem; font-size: 0.83rem; color: var(--text-sub);">
+        More words in the pipeline: <em>woke</em> (EN, reversal), <em>gay</em> (EN, pejoration),
+        <em>systemrelevant</em> (DE, broadening), <em>Inzidenz</em> (DE, narrowing), and 20+ more
+        from the DWUG / SemEval target word lists.
+      </p>
+    </div>
+  </div>
+
+  <!-- DRIFT TYPE TAXONOMY -->
+  <section class="section" id="taxonomy">
+    <p class="section-label">Drift taxonomy</p>
+    <h2 class="section-title">Eight typed pathways of meaning change</h2>
+    <div class="section-body">
+      <p>
+        Drift types are organised as a SKOS taxonomy on four axes, so queries can
+        group by axis or drill down to a specific mechanism.
+      </p>
+    </div>
+
+    <div class="taxonomy-grid">
+      <div class="taxonomy-group">
+        <div class="taxonomy-group-label">Valence shift</div>
+        <div class="taxonomy-item">Pejoration</div>
+        <div class="taxonomy-item">Amelioration</div>
+      </div>
+      <div class="taxonomy-group">
+        <div class="taxonomy-group-label">Scope shift</div>
+        <div class="taxonomy-item">Broadening</div>
+        <div class="taxonomy-item">Narrowing</div>
+      </div>
+      <div class="taxonomy-group">
+        <div class="taxonomy-group-label">Mechanism</div>
+        <div class="taxonomy-item">Metaphorization</div>
+        <div class="taxonomy-item">Metonymization</div>
+      </div>
+      <div class="taxonomy-group">
+        <div class="taxonomy-group-label">Social pattern</div>
+        <div class="taxonomy-item">Reversal</div>
+        <div class="taxonomy-item">Reappropriation</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-sub);">
+      A drift event may carry multiple types (e.g. Pejoration + Reversal).
+      The SKOS hierarchy lets you query at the axis level ("all valence shifts")
+      without enumerating subtypes.
+    </p>
+  </section>
+
+  <!-- QUERY SHOWCASE -->
+  <div class="section-full" id="queries">
+    <div class="section-full-inner">
+      <p class="section-label">SPARQL queries</p>
+      <h2 class="section-title">The novel joins causation enables</h2>
+      <div class="section-body">
+        <p>
+          The causal layer unlocks queries that are structurally impossible over
+          pure detection data. Below are the four showcase queries from the repo.
+        </p>
+      </div>
+
+      <!-- triggers.rq -->
+      <div class="query-card">
+        <div class="query-card-header">
+          <span class="query-tag novel">Novel</span>
+          <span class="query-card-title">Causal join: which event triggered which shift?</span>
+        </div>
+        <pre class="query-code"><span class="cmt"># triggers.rq - the causal join</span>
+<span class="kw">PREFIX</span> <span class="pfx">drift:</span> &lt;https://w3id.org/word-drift/ontology#&gt;
+
+<span class="kw">SELECT</span> <span class="var">?word</span> <span class="var">?type</span> <span class="var">?year</span> <span class="var">?trigger</span> <span class="var">?category</span> <span class="var">?confidence</span> <span class="kw">WHERE</span> {
+    <span class="var">?e</span> a drift:DriftEvent ;
+       drift:affectsWord <span class="var">?w</span> ;
+       drift:driftType <span class="var">?t</span> .
+    <span class="cmt"># causation is reified: a CausalHypothesis links the drift to a trigger</span>
+    <span class="var">?h</span> a drift:CausalHypothesis ;
+       drift:aboutDrift <span class="var">?e</span> ;
+       drift:proposedTrigger <span class="var">?tr</span> ;
+       drift:confidence <span class="var">?confidence</span> .
+    <span class="var">?w</span>  drift:writtenForm <span class="var">?word</span> .
+    <span class="var">?t</span>  skos:prefLabel <span class="var">?type</span> . <span class="kw">FILTER</span>(lang(<span class="var">?type</span>) = <span class="str">"en"</span>)
+    <span class="var">?tr</span> rdfs:label <span class="var">?trigger</span> ;
+        drift:triggerCategory <span class="var">?category</span> ;
+        drift:eventDate <span class="var">?year</span> .
+} <span class="kw">ORDER BY</span> <span class="var">?year</span> <span class="var">?word</span></pre>
+      </div>
+
+      <!-- cross-lingual.rq -->
+      <div class="query-card">
+        <div class="query-card-header">
+          <span class="query-tag">Cross-lingual</span>
+          <span class="query-card-title">Drift events grouped by language and type</span>
+        </div>
+        <pre class="query-code"><span class="cmt"># cross-lingual.rq - DE vs EN drift directions</span>
+<span class="kw">SELECT</span> <span class="var">?language</span> <span class="var">?type</span> (COUNT(<span class="var">?e</span>) <span class="kw">AS</span> <span class="var">?n</span>)
+       (GROUP_CONCAT(<span class="var">?word</span>; SEPARATOR=<span class="str">", "</span>) <span class="kw">AS</span> <span class="var">?words</span>) <span class="kw">WHERE</span> {
+    <span class="var">?e</span> a drift:DriftEvent ;
+       drift:affectsWord <span class="var">?w</span> ;
+       drift:driftType <span class="var">?t</span> .
+    <span class="var">?w</span> drift:language <span class="var">?language</span> ;
+       drift:writtenForm <span class="var">?word</span> .
+    <span class="var">?t</span> skos:prefLabel <span class="var">?type</span> . <span class="kw">FILTER</span>(lang(<span class="var">?type</span>) = <span class="str">"en"</span>)
+} <span class="kw">GROUP BY</span> <span class="var">?language</span> <span class="var">?type</span></pre>
+      </div>
+
+      <!-- timeline.rq -->
+      <div class="query-card">
+        <div class="query-card-header">
+          <span class="query-tag">Timeline</span>
+          <span class="query-card-title">Every sense with year and connotation (drives the viz)</span>
+        </div>
+        <pre class="query-code"><span class="cmt"># timeline.rq</span>
+<span class="kw">SELECT</span> <span class="var">?word</span> <span class="var">?year</span> <span class="var">?connotation</span> <span class="var">?gloss</span> <span class="kw">WHERE</span> {
+    <span class="var">?w</span> a drift:Word ;
+       drift:writtenForm <span class="var">?word</span> ;
+       ontolex:sense <span class="var">?sense</span> .
+    <span class="var">?sense</span> drift:gloss <span class="var">?gloss</span> ;
+           drift:connotation <span class="var">?c</span> ;
+           drift:firstAttested <span class="var">?year</span> .
+    <span class="var">?c</span> skos:prefLabel <span class="var">?connotation</span> .
+    <span class="kw">FILTER</span>(lang(<span class="var">?gloss</span>) = <span class="str">"en"</span>)
+} <span class="kw">ORDER BY</span> <span class="var">?word</span> <span class="var">?year</span></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA SECTION -->
+  <section class="section" style="text-align: center; padding: 5rem 2rem;">
+    <p class="section-label" style="text-align: center;">Interactive tool</p>
+    <h2 class="section-title" style="text-align: center; margin: 0 auto 1rem;">
+      Explore the graph yourself
+    </h2>
+    <p style="color: var(--text-sub); font-size: 0.95rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7;">
+      Select any word, browse its sense timeline, and see the force graph of
+      senses connected to their causal trigger events.
+    </p>
+    <a href="explore.html" class="btn btn-primary" style="font-size: 1rem; padding: 0.8rem 2rem;">
+      Open interactive explorer
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span>
+      <strong style="color: var(--text-sub);">WORD&#8209;DRIFT</strong>
+      &mdash; RDF/SHACL knowledge graph for lexical semantic change
+    </span>
+    <div class="site-footer-links">
+      <a href="about.html">About</a>
+      <a href="about.html#license">License</a>
+      <a href="about.html#cite">Cite</a>
+      <a href="https://github.com/XORwell/word-drift" target="_blank" rel="noopener noreferrer">Repository</a>
+    </div>
+    <span>Schema v0.1 &mdash; 2025</span>
+  </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "atlas" (en)
+# Metonymization: the Titan Atlas, condemned to bear the heavens;
+# his figure adorned the frontispiece of Mercator's 1595 collection
+# of maps -> a bound book of maps. Mercator's work is the trigger.
+# =============================================================
+
+wdr:word-atlas a drift:Word ;
+    drift:writtenForm "atlas"@en ;
+    drift:language "en" ;
+    rdfs:label "atlas"@en ;
+    ontolex:sense wdr:sense-atlas-titan , wdr:sense-atlas-maps .
+
+wdr:sense-atlas-titan a drift:Sense ;
+    drift:gloss "Atlas, the Titan of Greek myth condemned to hold up the sky or the heavens on his shoulders"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1580"^^xsd:gYear .
+
+wdr:sense-atlas-maps a drift:Sense ;
+    drift:gloss "a bound collection of maps; by extension a volume of systematic tables, charts, or illustrations on a given subject"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1636"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1636"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-atlas-mercator a drift:TriggerEvent ;
+    rdfs:label "Mercator's 'Atlas' map collection (1595)"@en ;
+    dct:description "Gerardus Mercator titled his posthumously completed 1595 collection of maps 'Atlas', invoking the Titan who bore the heavens, and its frontispiece depicted the figure. The work's fame fixed 'atlas' as the common word for a bound book of maps, an English usage attested from 1636."@en ;
+    drift:eventDate "1595"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-atlas-mercator a drift:DriftEvent ;
+    drift:affectsWord wdr:word-atlas ;
+    drift:senseFrom wdr:sense-atlas-titan ;
+    drift:senseTo wdr:sense-atlas-maps ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1595"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1636"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-atlas-etym , wdr:src-atlas-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-atlas-mercator a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-atlas-mercator ;
+    drift:proposedTrigger wdr:trigger-atlas-mercator ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-atlas-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-atlas-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- atlas"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/atlas"^^xsd:anyURI .
+
+wdr:src-atlas-wiki a drift:Source ;
+    dct:title "Atlas (Mercator) -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Atlas_(Mercator)"^^xsd:anyURI .

@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "gargantuan" (en)
+# Metaphorization: Gargantua, the giant of Rabelais's 1534 novel
+# with a colossal appetite -> enormous, gigantic. The novel is
+# the identifiable trigger.
+# =============================================================
+
+wdr:word-gargantuan a drift:Word ;
+    drift:writtenForm "gargantuan"@en ;
+    drift:language "en" ;
+    rdfs:label "gargantuan"@en ;
+    ontolex:sense wdr:sense-gargantuan-giant , wdr:sense-gargantuan-huge .
+
+wdr:sense-gargantuan-giant a drift:Sense ;
+    drift:gloss "of or pertaining to Gargantua, the voracious giant of Rabelais's satirical romance"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1590"^^xsd:gYear .
+
+wdr:sense-gargantuan-huge a drift:Sense ;
+    drift:gloss "enormous; of tremendous size, volume, or extent, especially of appetite, quantity, or scale"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1596"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1596"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-gargantuan-rabelais a drift:TriggerEvent ;
+    rdfs:label "Rabelais's 'Gargantua' (1534)"@en ;
+    dct:description "Francois Rabelais's comic novel 'La Vie tres horrifique du grand Gargantua' (1534) centred on a giant of prodigious size and appetite. The character's fame made 'gargantuan' an English adjective for the enormous, attested from the 1590s."@en ;
+    drift:eventDate "1534"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-gargantuan-rabelais a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gargantuan ;
+    drift:senseFrom wdr:sense-gargantuan-giant ;
+    drift:senseTo wdr:sense-gargantuan-huge ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1534"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1620"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-gargantuan-etym , wdr:src-gargantuan-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-gargantuan-rabelais a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-gargantuan-rabelais ;
+    drift:proposedTrigger wdr:trigger-gargantuan-rabelais ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-gargantuan-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-gargantuan-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- gargantuan"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/gargantuan"^^xsd:anyURI .
+
+wdr:src-gargantuan-wiki a drift:Source ;
+    dct:title "Gargantua and Pantagruel -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Gargantua_and_Pantagruel"^^xsd:anyURI .

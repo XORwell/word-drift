@@ -1,0 +1,102 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 01: Lexical layer
+# Word and sense structure, aligned to OntoLex-Lemon.
+# A Word carries one or more Senses; a Sense is the unit that
+# drifts. Reuse ontolex:sense to link them.
+# =============================================================
+
+drift: a owl:Ontology ;
+    dct:title "WORD-DRIFT ontology"@en ;
+    rdfs:comment "A knowledge graph vocabulary for lexical semantic change (Bedeutungswandel): senses over time, typed drift events, and the historical events that trigger them."@en ;
+    dct:description "OWL 2 vocabulary aligned to OntoLex-Lemon, OWL-Time, PROV-O and SKOS. Its novel layer reifies causation as an evidenced, graded drift:CausalHypothesis rather than asserting a triggered-by fact (ADR 0004). External vocabularies are referenced by IRI, not physically imported (ADR 0002), so no owl:imports is declared."@en ;
+    dct:creator "Christian Nennemann" ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dct:source <https://github.com/XORwell/word-drift> ;
+    owl:versionIRI <https://w3id.org/word-drift/ontology/0.3.0> ;
+    owl:versionInfo "0.3.0" .
+
+# External vocabularies are aligned by IRI only (ADR 0002); they are listed here
+# as informational rdfs:seeAlso rather than owl:imports to keep validate.py
+# self-contained with RDFS inference and avoid pulling remote graphs.
+drift: rdfs:seeAlso <http://www.w3.org/ns/lemon/ontolex> ,
+                    <http://www.w3.org/2006/time> ,
+                    <http://www.w3.org/ns/prov-o> ,
+                    <http://www.w3.org/2004/02/skos/core> .
+
+# --- Class disjointness (OWL) ------------------------------------------------
+# Word, Sense, DriftEvent, TriggerEvent, CausalHypothesis, Source and
+# FrequencyObservation are individuals of fundamentally different kinds: a
+# lexical form, a meaning, a reified change, a real-world activity, a reified
+# claim, a citable origin and a measurement. No instance is ever two of these
+# at once (verified against all curated + bulk data). owl:AllDisjointClasses
+# states this once. drift:Corpus is intentionally OMITTED here because it is a
+# rdfs:subClassOf drift:Source and would contradict that; it inherits
+# disjointness with the other six through Source. SKOS taxonomy concepts
+# (connotation, drift types, trigger categories, evidence types) are
+# skos:Concept individuals, NOT classes, so no disjointness is asserted among
+# them.
+[] a owl:AllDisjointClasses ;
+    owl:members ( drift:Word
+                  drift:Sense
+                  drift:DriftEvent
+                  drift:TriggerEvent
+                  drift:CausalHypothesis
+                  drift:Source
+                  drift:FrequencyObservation ) .
+
+drift:Word a owl:Class ;
+    rdfs:subClassOf ontolex:LexicalEntry ;
+    rdfs:label "Word"@en , "Wort"@de ;
+    rdfs:comment "A lexical entry under study. Carries a written form and a language tag, and is linked to one or more senses."@en .
+
+drift:Sense a owl:Class ;
+    rdfs:subClassOf ontolex:LexicalSense ;
+    rdfs:label "Sense"@en , "Bedeutung"@de ;
+    rdfs:comment "A distinguishable meaning of a word. The unit that gains, loses, or shifts connotation over time."@en .
+
+# --- Properties on Word ----------------------------------------------------
+
+drift:writtenForm a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "written form"@en ;
+    rdfs:domain drift:Word ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "The orthographic form, language-tagged (e.g. \"Querdenker\"@de). Functional: each word carries exactly one canonical written form (SHACL minCount 1; data maxCount 1)."@en .
+
+drift:language a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf dct:language ;
+    rdfs:label "language"@en ;
+    rdfs:domain drift:Word ;
+    rdfs:range xsd:language ;
+    rdfs:comment "BCP-47 language code of the word (e.g. \"de\", \"en\"). Functional: a word has exactly one language."@en .
+
+# Word -> Sense uses ontolex:sense directly.
+
+# Cross-lingual equivalence between Words. This is an EXPLICIT, curated link:
+# the two Words denote the same concept across languages (e.g. "mouse"@en and
+# "Maus"@de). It is NOT inferred from co-occurrence under a shared trigger:
+# COVID-19 independently reframed "Querdenker"@de and "doomscrolling"@en, but
+# those are not translation equivalents and MUST NOT be paired. Symmetric, so a
+# single assertion holds in both directions; we still assert it on both Words in
+# the data so consumers that ignore owl:SymmetricProperty still see both sides.
+drift:crossLingualOf a owl:ObjectProperty , owl:SymmetricProperty ;
+    rdfs:label "cross-lingual of"@en , "sprachübergreifend gleich"@de ;
+    rdfs:domain drift:Word ;
+    rdfs:range drift:Word ;
+    rdfs:comment "Links two Words that are the same concept across languages (translation equivalents, e.g. \"mouse\"@en and \"Maus\"@de); not mere co-occurrence under a shared trigger. Symmetric: if A drift:crossLingualOf B then B drift:crossLingualOf A."@en .
+
+# --- Properties on Sense ---------------------------------------------------
+
+drift:gloss a owl:DatatypeProperty ;
+    rdfs:subPropertyOf skos:definition ;
+    rdfs:label "gloss"@en ;
+    rdfs:domain drift:Sense ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "Short human-readable definition of the sense."@en .

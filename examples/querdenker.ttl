@@ -1,0 +1,109 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "Querdenker" (de)
+# Pejoration: positive "lateral thinker" -> pejorative
+# "anti-lockdown conspiracy protester", triggered by the
+# Querdenken-711 movement during the COVID-19 pandemic (2020).
+# =============================================================
+
+wdr:word-querdenker a drift:Word ;
+    drift:writtenForm "Querdenker"@de ;
+    drift:language "de" ;
+    rdfs:label "Querdenker"@de ;
+    ontolex:sense wdr:sense-querdenker-lateral , wdr:sense-querdenker-covid .
+
+wdr:sense-querdenker-lateral a drift:Sense ;
+    drift:gloss "a creative non-conformist; someone who thinks outside conventional lines"@en ;
+    drift:gloss "kreativer Vor- und Querdenker; jemand, der unkonventionell denkt"@de ;
+    drift:connotation drift:Positive ;
+    drift:firstAttested "1980"^^xsd:gYear .
+
+wdr:sense-querdenker-covid a drift:Sense ;
+    drift:gloss "a participant in anti-lockdown / COVID-conspiracy protests"@en ;
+    drift:gloss "Teilnehmer an Anti-Lockdown- und Corona-Verschwörungsprotesten"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "2020"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2020"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-querdenken-711 a drift:TriggerEvent ;
+    rdfs:label "Querdenken 711 protest movement"@en , "Querdenken-711-Bewegung"@de ;
+    dct:description "Anti-lockdown protest movement founded in Stuttgart in 2020, which fixed the new pejorative reading of the word."@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Political ;
+    owl:sameAs wd:Q115500066 .
+
+wdr:trigger-covid a drift:TriggerEvent ;
+    rdfs:label "COVID-19 pandemic"@en ;
+    drift:eventDate "2020"^^xsd:gYear ;
+    drift:triggerCategory drift:Pandemic ;
+    owl:sameAs wd:Q81068910 .
+
+# --- the drift event (no causation here; see hypotheses below) ---
+wdr:drift-querdenker-2020 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-querdenker ;
+    drift:senseFrom wdr:sense-querdenker-lateral ;
+    drift:senseTo wdr:sense-querdenker-covid ;
+    drift:driftType drift:Pejoration ;
+    drift:driftYear "2020"^^xsd:gYear ;
+    drift:hasSource wdr:src-querdenker-wikipedia , wdr:corpus-dwds .
+
+# --- causal hypotheses (ADR 0004): two competing proposals ---
+# Strong: the Querdenken-711 movement, backed by a reproducible frequency
+# spike in DWDS and explicit reporting.
+wdr:hyp-querdenker-711 a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-querdenker-2020 ;
+    drift:proposedTrigger wdr:trigger-querdenken-711 ;
+    drift:evidenceType drift:FrequencyCorrelation , drift:ScholarlyAttestation ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-querdenker-wikipedia , wdr:corpus-dwds ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+# Weaker, broader: the pandemic as background condition rather than the
+# proximate cause. Speculative, lower confidence.
+wdr:hyp-querdenker-covid a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-querdenker-2020 ;
+    drift:proposedTrigger wdr:trigger-covid ;
+    drift:evidenceType drift:Speculative ;
+    drift:confidence 0.5 ;
+    drift:hasSource wdr:src-querdenker-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations (timeline curve) ---
+wdr:freq-querdenker-2019 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-querdenker ; drift:observedYear "2019"^^xsd:gYear ;
+    drift:relativeFrequency 0.4 ; drift:fromCorpus wdr:corpus-dwds .
+wdr:freq-querdenker-2020 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-querdenker ; drift:observedYear "2020"^^xsd:gYear ;
+    drift:relativeFrequency 3.8 ; drift:fromCorpus wdr:corpus-dwds .
+wdr:freq-querdenker-2021 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-querdenker ; drift:observedYear "2021"^^xsd:gYear ;
+    drift:relativeFrequency 5.1 ; drift:fromCorpus wdr:corpus-dwds .
+
+# --- sources ---
+wdr:corpus-dwds a drift:Corpus ;
+    dct:title "DWDS Wortverlaufskurve (BBAW)"@de ;
+    drift:sourceURL "https://www.dwds.de/r/plot"^^xsd:anyURI .
+
+wdr:src-querdenker-wikipedia a drift:Source ;
+    dct:title "Querdenken - Wikipedia (Abschnitt 'Querdenker als Bezeichnung')"@de ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Querdenken"^^xsd:anyURI .

@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "troll" (en)
+# Metaphorization: from the fishing technique "trolling" (and
+# folkloric monster) -> a person who posts deliberately
+# inflammatory or off-topic messages online to provoke. Coined
+# on Usenet (late 1980s/early 1990s), then broadened across
+# social media in the 2010s.
+# =============================================================
+
+wdr:word-troll a drift:Word ;
+    drift:writtenForm "troll"@en ;
+    drift:language "en" ;
+    rdfs:label "troll"@en ;
+    ontolex:sense wdr:sense-troll-fishing , wdr:sense-troll-online ;
+    drift:crossLingualOf wdr:word-troll-de .
+
+wdr:sense-troll-fishing a drift:Sense ;
+    drift:gloss "to fish by trailing a baited line; also the folkloric cave-dwelling monster of Norse origin"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1600"^^xsd:gYear .
+
+wdr:sense-troll-online a drift:Sense ;
+    drift:gloss "a person who posts deliberately provocative, inflammatory, or off-topic messages online to upset others or derail discussion"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1992"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1992"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-troll-usenet a drift:TriggerEvent ;
+    rdfs:label "Usenet 'trolling for newbies' coinage (early 1990s)"@en ;
+    dct:description "On Usenet around 1992, 'trolling' (from the fishing sense of trailing bait) named the practice of posting provocative messages to bait responses; the agent noun 'troll' followed and broadened across the social web."@en ;
+    drift:eventDate "1992"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-troll-1992 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-troll ;
+    drift:senseFrom wdr:sense-troll-fishing ;
+    drift:senseTo wdr:sense-troll-online ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftYear "1992"^^xsd:gYear ;
+    drift:hasSource wdr:src-troll-etymonline , wdr:src-troll-oed .
+
+# --- causal hypothesis (ADR 0004) ---
+# Etymonline and the OED both derive the online sense from the fishing
+# metaphor on Usenet; attributed lexicographic evidence.
+wdr:hyp-troll-usenet a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-troll-1992 ;
+    drift:proposedTrigger wdr:trigger-troll-usenet ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-troll-etymonline , wdr:src-troll-oed ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-troll-etymonline a drift:Source ;
+    dct:title "Etymonline - troll (n.2)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/troll"^^xsd:anyURI .
+
+wdr:src-troll-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - troll, n."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/troll_n"^^xsd:anyURI .

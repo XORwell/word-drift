@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "leotard" (en)
+# Metonymization: the surname Leotard (Jules Leotard, 1830-1870,
+# French trapeze artist) becomes the common name of a one-piece
+# stretch garment, attested 1881. His performing in such a garment
+# is the identifiable trigger.
+# =============================================================
+
+wdr:word-leotard a drift:Word ;
+    drift:writtenForm "leotard"@en ;
+    drift:language "en" ;
+    rdfs:label "leotard"@en ;
+    ontolex:sense wdr:sense-leotard-name , wdr:sense-leotard-garment .
+
+wdr:sense-leotard-name a drift:Sense ;
+    drift:gloss "the surname of the French trapeze artist Jules Leotard"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1830"^^xsd:gYear .
+
+wdr:sense-leotard-garment a drift:Sense ;
+    drift:gloss "a close-fitting one-piece stretch garment covering the torso, worn by dancers, gymnasts and acrobats"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1881"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1881"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-leotard-trapeze a drift:TriggerEvent ;
+    rdfs:label "Jules Leotard performs the flying trapeze in a close-fitting garment"@en ;
+    dct:description "Jules Leotard, the popular French trapeze artist, performed in a close-fitting one-piece garment. After his death the garment was named for him, attested as 'leotards' by 1881."@en ;
+    drift:eventDate "1859"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q356388 .
+
+# --- drift event ---
+wdr:drift-leotard-trapeze a drift:DriftEvent ;
+    drift:affectsWord wdr:word-leotard ;
+    drift:senseFrom wdr:sense-leotard-name ;
+    drift:senseTo wdr:sense-leotard-garment ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1859"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1881"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-leotard-etym , wdr:src-leotard-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-leotard-trapeze a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-leotard-trapeze ;
+    drift:proposedTrigger wdr:trigger-leotard-trapeze ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-leotard-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-leotard-etym a drift:Source ;
+    dct:title "leotard -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/leotard"^^xsd:anyURI .
+
+wdr:src-leotard-wiki a drift:Source ;
+    dct:title "Jules Leotard -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Jules_L%C3%A9otard"^^xsd:anyURI .

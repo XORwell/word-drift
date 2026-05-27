@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Propaganda" (de)
+# Pejoration: neutral ecclesiastical term from the Congregatio
+# de Propaganda Fide (founded 1622, Counter-Reformation) ->
+# later a strongly negative term for manipulative mass
+# persuasion. The Roman institution is the identifiable origin.
+# =============================================================
+
+wdr:word-propaganda a drift:Word ;
+    drift:writtenForm "Propaganda"@de ;
+    drift:language "de" ;
+    rdfs:label "Propaganda"@de ;
+    ontolex:sense wdr:sense-propaganda-neutral , wdr:sense-propaganda-negative .
+
+wdr:sense-propaganda-neutral a drift:Sense ;
+    drift:gloss "the propagation of (the Catholic) faith; the spreading of doctrines or beliefs; a neutral term for dissemination"@en ;
+    drift:gloss "Verbreitung des (katholischen) Glaubens; Ausbreitung von Lehren; neutrale Bezeichnung fuer Verbreitung"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1622"^^xsd:gYear .
+
+wdr:sense-propaganda-negative a drift:Sense ;
+    drift:gloss "biased or misleading information used to promote a political cause or point of view; manipulative mass persuasion"@en ;
+    drift:gloss "einseitige, irrefuehrende Beeinflussung der Oeffentlichkeit zu politischen Zwecken; manipulative Massenbeeinflussung"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1914"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1914"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-propaganda-congregatio a drift:TriggerEvent ;
+    rdfs:label "Founding of the Congregatio de Propaganda Fide"@en ;
+    dct:description "In 1622 Pope Gregory XV established the Congregatio de Propaganda Fide to coordinate Catholic missionary activity during the Counter-Reformation. Etymonline records the secular sense 'movement to propagate an ideology' from 1790 and the political sense from the First World War, which was 'originally not pejorative'; the manipulative, negative sense settled in the 20th century. The Roman institution is the lexical origin."@en ;
+    drift:eventDate "1622"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-propaganda-congregatio a drift:DriftEvent ;
+    drift:affectsWord wdr:word-propaganda ;
+    drift:senseFrom wdr:sense-propaganda-neutral ;
+    drift:senseTo wdr:sense-propaganda-negative ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1622"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1930"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-propaganda-etym , wdr:src-propaganda-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-propaganda-congregatio a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-propaganda-congregatio ;
+    drift:proposedTrigger wdr:trigger-propaganda-congregatio ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-propaganda-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-propaganda-etym a drift:Source ;
+    dct:title "etymonline -- propaganda"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/propaganda"^^xsd:anyURI .
+
+wdr:src-propaganda-wiki a drift:Source ;
+    dct:title "Congregation for the Evangelization of Peoples -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Dicastery_for_Evangelization"^^xsd:anyURI .

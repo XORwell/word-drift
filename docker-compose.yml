@@ -1,0 +1,41 @@
+# WORD-DRIFT -- full self-host stack: the static explorer + a queryable SPARQL
+# endpoint over the dataset.
+#
+#   docker compose up --build      # site at :8080, SPARQL at :7019
+#
+# The `site` service is the hardened nginx static site (always works). The
+# `sparql` service loads the RDF dump (site/downloads/word-drift.nt) into a
+# QLever index on first start, then serves SPARQL. The index is cached in a
+# named volume, so only the first run pays the build cost.
+services:
+  site:
+    build: .
+    image: word-drift-site
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+  sparql:
+    image: docker.io/adfreiburg/qlever:latest
+    # Build the index once (idempotent), then serve. Binary names follow the
+    # QLever image; if your image version differs, see docs/SELFHOST.md.
+    command: >
+      bash -lc '
+        set -e;
+        IDX=/index/word-drift;
+        if [ ! -f "$${IDX}.index.metadata" ]; then
+          echo "Building QLever index from /data/word-drift.nt ...";
+          IndexBuilderMain -i "$${IDX}" -f /data/word-drift.nt -F nt;
+        fi;
+        echo "Serving SPARQL on :7019";
+        ServerMain -i "$${IDX}" -p 7019 -j 4
+      '
+    volumes:
+      - ./site/downloads/word-drift.nt:/data/word-drift.nt:ro
+      - qlever-index:/index
+    ports:
+      - "7019:7019"
+    restart: unless-stopped
+
+volumes:
+  qlever-index:

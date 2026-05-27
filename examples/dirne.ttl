@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Dirne" (de)
+# Narrowing + Pejoration: OHG "diorna" (young girl of any class)
+# -> MHG maid/servant -> early modern "prostitute"
+# A classic example of the pejoration of female designations
+# linked to low social status of women (Nubling 2011).
+# =============================================================
+
+wdr:word-dirne a drift:Word ;
+    drift:writtenForm "Dirne"@de ;
+    drift:language "de" ;
+    rdfs:label "Dirne"@de ;
+    ontolex:sense wdr:sense-dirne-girl , wdr:sense-dirne-maid , wdr:sense-dirne-prostitute .
+
+wdr:sense-dirne-girl a drift:Sense ;
+    drift:gloss "a young girl of any social class"@en ;
+    drift:gloss "junges Maedchen jeder sozialen Klasse"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0900"^^xsd:gYear .
+
+wdr:sense-dirne-maid a drift:Sense ;
+    drift:gloss "a female servant; maidservant"@en ;
+    drift:gloss "Hausmaedchen, Magd"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1200"^^xsd:gYear .
+
+wdr:sense-dirne-prostitute a drift:Sense ;
+    drift:gloss "a prostitute (derogatory)"@en ;
+    drift:gloss "Prostituierte (abwertend)"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1500"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1500"^^xsd:gYear ]
+    ] .
+
+# --- drift event (girl -> maid) ---
+wdr:drift-dirne-narrowing a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dirne ;
+    drift:senseFrom wdr:sense-dirne-girl ;
+    drift:senseTo wdr:sense-dirne-maid ;
+    drift:driftType drift:Narrowing ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1200"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1400"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-dirne-dwds .
+
+# --- drift event (maid -> prostitute) ---
+wdr:drift-dirne-pejoration a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dirne ;
+    drift:senseFrom wdr:sense-dirne-maid ;
+    drift:senseTo wdr:sense-dirne-prostitute ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1450"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1600"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-dirne-dwds , wdr:src-dirne-nubling .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-dirne-dwds a drift:Source ;
+    dct:title "DWDS -- Dirne"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Dirne"^^xsd:anyURI .
+
+wdr:src-dirne-nubling a drift:Source ;
+    dct:title "Nuebling, Damaris: Von der Jungfrau zur Magd, vom Maedchen zur Prostituierten (2011)"@de ;
+    drift:sourceURL "https://www.researchgate.net/publication/303475033"^^xsd:anyURI .

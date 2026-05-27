@@ -1,0 +1,79 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "yahoo" (en)
+# Metaphorization: the Yahoos, the brutish human-like creatures
+# of Swift's "Gulliver's Travels" (1726) -> a coarse, loutish
+# person. The satire is the identifiable trigger.
+# =============================================================
+
+wdr:word-yahoo a drift:Word ;
+    drift:writtenForm "yahoo"@en ;
+    drift:language "en" ;
+    rdfs:label "yahoo"@en ;
+    ontolex:sense wdr:sense-yahoo-creature , wdr:sense-yahoo-lout .
+
+wdr:sense-yahoo-creature a drift:Sense ;
+    drift:gloss "one of the filthy, degraded, human-shaped brutes governed by the rational horses (Houyhnhnms) in Swift's 'Gulliver's Travels'"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1726"^^xsd:gYear .
+
+wdr:sense-yahoo-lout a drift:Sense ;
+    drift:gloss "a coarse, rowdy, or uncouth person; a loutish boor"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1760"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1760"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-yahoo-gulliver a drift:TriggerEvent ;
+    rdfs:label "Swift's 'Gulliver's Travels' (1726)"@en ;
+    dct:description "In Jonathan Swift's satire 'Gulliver's Travels' (1726) the Yahoos are vicious, filthy creatures of human form, contrasted with the rational Houyhnhnms. Swift coined the name; it passed into general English as a term of contempt for a brutish or loutish person."@en ;
+    drift:eventDate "1726"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-yahoo-gulliver a drift:DriftEvent ;
+    drift:affectsWord wdr:word-yahoo ;
+    drift:senseFrom wdr:sense-yahoo-creature ;
+    drift:senseTo wdr:sense-yahoo-lout ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1726"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-yahoo-etym , wdr:src-yahoo-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-yahoo-gulliver a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-yahoo-gulliver ;
+    drift:proposedTrigger wdr:trigger-yahoo-gulliver ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-yahoo-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-yahoo-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- yahoo"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/yahoo"^^xsd:anyURI .
+
+wdr:src-yahoo-wiki a drift:Source ;
+    dct:title "Yahoo (Gulliver's Travels) -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Yahoo_(Gulliver%27s_Travels)"^^xsd:anyURI .

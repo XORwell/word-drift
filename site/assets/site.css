@@ -1,0 +1,694 @@
+/* WORD-DRIFT public site (site.css)
+   Design language: light editorial data product. Warm off-white canvas,
+   crisp white cards with soft shadows, dark readable text, and a lively
+   multi-hue accent palette for the data encodings.
+   Light is the default theme; the original dark palette lives under
+   [data-theme="dark"] so nothing is lost.
+   No build step. Vanilla CSS only. */
+
+/* ── Reset & tokens ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── LIGHT palette (default) ──────────────────────────────────── */
+  --bg:          #faf7f2;   /* warm off-white canvas */
+  --bg-panel:    #f2eee6;   /* slightly deeper warm panel */
+  --bg-card:     #ffffff;   /* crisp white card */
+  --bg-card2:    #f4f1fb;   /* faint indigo-tinted inset */
+  --border:      #e4dfd4;   /* warm hairline */
+  --border-soft: #ede9e0;
+
+  --text:        #1b1b2a;   /* near-black slate */
+  --text-sub:    #5a5f72;   /* medium grey */
+  --text-faint:  #73788c;   /* lighter grey (AA on canvas) */
+
+  --accent:      #4338ca;   /* deep indigo — brand / drift arrows */
+  --accent-hi:   #5b4fd6;
+  --gold:        #b26a00;   /* trigger events (AA on white) */
+  --positive:    #15803d;   /* fresh green */
+  --negative:    #dc2626;   /* clear red */
+  --neutral:     #6b7280;   /* warm grey-blue */
+
+  /* soft card shadow + hero gradient (light only) */
+  --shadow-card:  0 1px 2px rgba(27,27,42,0.04), 0 4px 16px rgba(27,27,42,0.06);
+  --shadow-pop:   0 8px 28px rgba(27,27,42,0.14);
+  --hero-gradient: radial-gradient(900px 420px at 12% -10%, rgba(67,56,202,0.10), transparent 60%),
+                   radial-gradient(700px 400px at 95% 0%, rgba(178,106,0,0.08), transparent 55%);
+
+  /* type scale */
+  --font:        "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono:   "JetBrains Mono", "Fira Mono", "Consolas", monospace;
+
+  --radius:      8px;
+  --radius-lg:   14px;
+}
+
+/* ── DARK palette (original, opt-in) ──────────────────────────────── */
+[data-theme="dark"] {
+  --bg:          #0c0d14;
+  --bg-panel:    #13141f;
+  --bg-card:     #181a28;
+  --bg-card2:    #1e2032;
+  --border:      #272a3e;
+  --border-soft: #1d2033;
+
+  --text:        #dde1f0;
+  --text-sub:    #8b93b4;
+  --text-faint:  #4e556d;
+
+  --accent:      #5b7cf8;   /* blue — drift arrows */
+  --accent-hi:   #8aaeff;
+  --gold:        #f5a623;   /* trigger events */
+  --positive:    #2ecc7a;
+  --negative:    #f05252;
+  --neutral:     #8a94b0;
+
+  --shadow-card:  0 1px 2px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.35);
+  --shadow-pop:   0 8px 28px rgba(0,0,0,0.45);
+  --hero-gradient: radial-gradient(900px 420px at 12% -10%, rgba(91,124,248,0.16), transparent 60%),
+                   radial-gradient(700px 400px at 95% 0%, rgba(245,166,35,0.10), transparent 55%);
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-hi); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+img { display: block; max-width: 100%; }
+
+/* ── Site nav ─────────────────────────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 52px;
+}
+
+.site-nav .wordmark {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.site-nav .wordmark span { color: var(--accent); }
+
+.site-nav ul {
+  display: flex;
+  gap: 0;
+  list-style: none;
+  margin-left: auto;
+}
+
+.site-nav ul li a {
+  display: block;
+  padding: 0 1rem;
+  height: 52px;
+  line-height: 52px;
+  font-size: 0.83rem;
+  color: var(--text-sub);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.site-nav ul li a:hover,
+.site-nav ul li a.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/* ── Theme toggle button (sun / moon) ─────────────────────────────── */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-sub);
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1;
+  font-family: var(--font);
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Show the icon matching the action: in light mode show the moon (go dark),
+   in dark mode show the sun (go light). Driven by data-theme on <html>. */
+.theme-toggle .icon-dark { display: inline; }
+.theme-toggle .icon-light { display: none; }
+[data-theme="dark"] .theme-toggle .icon-dark { display: none; }
+[data-theme="dark"] .theme-toggle .icon-light { display: inline; }
+
+/* In the site nav the toggle sits after the link list. */
+.site-nav .theme-toggle { margin-left: 0.75rem; }
+
+/* ── Hero ─────────────────────────────────────────────────────────── */
+.hero {
+  padding: 5rem 2rem 4rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Inviting, colourful hero wash behind the masthead. */
+.hero-wrap {
+  background: var(--hero-gradient);
+}
+
+.hero-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  max-width: 780px;
+}
+
+.hero h1 .drift-word {
+  color: var(--accent);
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-sub);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.35rem;
+  border-radius: var(--radius);
+  font-size: 0.87rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.btn:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+.btn:active { transform: none; }
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-sub); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent-hi); }
+
+/* ── Drift example card (hero showcase) ───────────────────────────── */
+.drift-card {
+  margin: 4rem auto;
+  max-width: 960px;
+  padding: 0 2rem;
+}
+
+.drift-card-inner {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.drift-sense {
+  background: var(--bg-card2);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid currentColor;
+}
+
+.drift-sense.positive { color: var(--positive); }
+.drift-sense.negative { color: var(--negative); }
+
+.drift-sense-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.drift-sense-year {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.4rem;
+}
+
+.drift-sense-gloss {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.drift-arrow-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-faint);
+  min-width: 120px;
+}
+
+.drift-arrow-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+}
+
+.drift-arrow-svg {
+  width: 80px;
+  overflow: visible;
+}
+
+.drift-trigger-pill {
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  border-radius: 999px;
+  padding: 0.25rem 0.85rem;
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-weight: 600;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  transition: border-color 0.12s, background 0.12s;
+}
+
+a.drift-trigger-pill:hover {
+  background: color-mix(in srgb, var(--gold) 20%, transparent);
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+}
+
+.drift-trigger-label {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+.drift-confidence {
+  font-size: 0.68rem;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* ── Section layout ───────────────────────────────────────────────── */
+.section {
+  padding: 4rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border-soft);
+}
+
+.section-full {
+  padding: 4rem 2rem;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.section-full-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.85rem;
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.section-body {
+  color: var(--text-sub);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 640px;
+}
+
+.section-body p + p { margin-top: 0.9rem; }
+
+/* ── Feature grid ─────────────────────────────────────────────────── */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.6rem;
+}
+
+.feature-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.feature-card h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  font-size: 0.82rem;
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+
+/* ── Drift type taxonomy ──────────────────────────────────────────── */
+.taxonomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.taxonomy-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.taxonomy-group-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.taxonomy-item {
+  font-size: 0.84rem;
+  color: var(--text);
+  padding: 0.2rem 0;
+}
+
+.taxonomy-item + .taxonomy-item {
+  margin-top: 0.25rem;
+}
+
+/* ── Query showcase ───────────────────────────────────────────────── */
+.query-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-top: 1.5rem;
+}
+
+.query-card + .query-card { margin-top: 1rem; }
+
+.query-card-header {
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-card2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.query-card-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.query-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+
+.query-tag.novel { background: color-mix(in srgb, var(--gold) 12%, transparent); color: var(--gold); }
+
+pre.query-code {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: var(--text-sub);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* SPARQL syntax colouring (lightweight), tuned for the light canvas */
+pre.query-code .kw  { color: var(--accent); font-weight: 600; }
+pre.query-code .pfx { color: var(--gold); }
+pre.query-code .var { color: var(--positive); }
+pre.query-code .str { color: var(--negative); }
+pre.query-code .cmt { color: var(--text-faint); font-style: italic; }
+
+[data-theme="dark"] pre.query-code .kw  { color: #7b97ff; font-weight: 400; }
+[data-theme="dark"] pre.query-code .pfx { color: #f5a623; }
+[data-theme="dark"] pre.query-code .var { color: #2ecc7a; }
+[data-theme="dark"] pre.query-code .str { color: #e08080; }
+[data-theme="dark"] pre.query-code .cmt { color: #4e556d; }
+
+/* ── Example word strip ───────────────────────────────────────────── */
+.words-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 2rem;
+}
+
+.word-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.word-pill-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.word-pill-badge.pejoration { background: color-mix(in srgb, var(--negative) 13%, transparent); color: var(--negative); }
+.word-pill-badge.amelioration { background: color-mix(in srgb, var(--positive) 13%, transparent); color: var(--positive); }
+.word-pill-badge.broadening { background: color-mix(in srgb, var(--accent) 13%, transparent); color: var(--accent); }
+.word-pill-badge.narrowing { background: color-mix(in srgb, var(--neutral) 16%, transparent); color: var(--neutral); }
+.word-pill-badge.reappropriation { background: color-mix(in srgb, var(--gold) 12%, transparent); color: var(--gold); }
+
+/* ── Page footer ──────────────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-faint);
+  font-size: 0.78rem;
+  max-width: 100%;
+}
+
+.site-footer a { color: var(--text-faint); }
+.site-footer a:hover { color: var(--text-sub); }
+.site-footer-links { display: flex; gap: 1.5rem; }
+
+/* ── About page ───────────────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.about-block h3 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.about-block p, .about-block li {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  line-height: 1.7;
+}
+
+.about-block ul {
+  padding-left: 1.2rem;
+}
+
+.about-block ul li + li { margin-top: 0.3rem; }
+
+.cite-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  line-height: 1.7;
+  margin-top: 1rem;
+  white-space: pre-wrap;
+}
+
+.license-badge {
+  display: inline-block;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-top: 1rem;
+}
+
+.license-badge strong { color: var(--text); }
+
+/* ── Explore page wrapper ─────────────────────────────────────────── */
+.explore-header {
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-panel);
+}
+
+.explore-header .wordmark {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.explore-header .wordmark span { color: var(--accent); }
+
+.explore-back {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+  text-decoration: none;
+}
+
+.explore-back:hover { color: var(--accent-hi); text-decoration: none; }
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .drift-card-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .drift-arrow-col { flex-direction: row; justify-content: center; }
+  .about-grid { grid-template-columns: 1fr; }
+  .site-nav ul li a { padding: 0 0.6rem; font-size: 0.78rem; }
+  .hero h1 { font-size: 1.9rem; }
+}
+
+@media (max-width: 480px) {
+  .site-nav ul { gap: 0; }
+  .site-nav ul li a { font-size: 0.72rem; padding: 0 0.4rem; }
+  .hero { padding: 3rem 1.25rem 2.5rem; }
+  .section, .section-full { padding: 2.5rem 1.25rem; }
+}

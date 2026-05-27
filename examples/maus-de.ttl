@@ -1,0 +1,85 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORKED EXAMPLE - "Maus" (de)
+# Metaphorization:
+#   "a small rodent" (zoological) ->
+#   "computer input device" (technical metaphor based on shape
+#    and the cable resembling a tail), triggered by the
+#    personal computer revolution of the 1980s.
+# =============================================================
+
+wdr:word-maus a drift:Word ;
+    drift:writtenForm "Maus"@de ;
+    drift:language "de" ;
+    rdfs:label "Maus"@de ;
+    ontolex:sense wdr:sense-maus-animal , wdr:sense-maus-computer ;
+    drift:crossLingualOf wdr:word-mouse .
+
+wdr:sense-maus-animal a drift:Sense ;
+    drift:gloss "a mouse: the small rodent of genus Mus and related genera"@en ;
+    drift:gloss "zoologisch: die Maus als kleines Nagetier"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0800"^^xsd:gYear .
+
+wdr:sense-maus-computer a drift:Sense ;
+    drift:gloss "computer mouse: a handheld input device moved across a surface to control a screen pointer"@en ;
+    drift:gloss "Computermaus: Eingabegeraet fuer Personal Computer"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1984"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1984"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-apple-macintosh a drift:TriggerEvent ;
+    rdfs:label "Apple Macintosh launch and personal computing revolution"@en ;
+    dct:description "The launch of the Apple Macintosh in 1984 and the subsequent spread of GUI-based personal computers brought the computer 'mouse' metaphor into mainstream German vocabulary."@en ;
+    drift:eventDate "1984"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-maus-1984 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-maus ;
+    drift:senseFrom wdr:sense-maus-animal ;
+    drift:senseTo wdr:sense-maus-computer ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1984"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1995"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-maus-dwds , wdr:src-maus-duden .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS and Duden are dictionary/lexicographic sources -> LexicographicNote.
+wdr:hyp-maus-macintosh a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-maus-1984 ;
+    drift:proposedTrigger wdr:trigger-apple-macintosh ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-maus-dwds , wdr:src-maus-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-maus-dwds a drift:Source ;
+    dct:title "DWDS - Maus"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Maus"^^xsd:anyURI .
+
+wdr:src-maus-duden a drift:Source ;
+    dct:title "Duden - Maus"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/Maus"^^xsd:anyURI .

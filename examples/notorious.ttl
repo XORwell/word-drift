@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "notorious" (en)
+# Pejoration: from Medieval Latin "notorius" (well-known,
+# publicly known; neutral) -> English "widely known, famous"
+# -> "widely and unfavourably known, infamous". A gradual
+# pejoration of a neutral fame term, no crisp event.
+# =============================================================
+
+wdr:word-notorious a drift:Word ;
+    drift:writtenForm "notorious"@en ;
+    drift:language "en" ;
+    rdfs:label "notorious"@en ;
+    ontolex:sense wdr:sense-notorious-known , wdr:sense-notorious-infamous .
+
+wdr:sense-notorious-known a drift:Sense ;
+    drift:gloss "publicly or generally known; well-known, manifest; a neutral statement of being widely recognised (Medieval Latin notorius)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1548"^^xsd:gYear .
+
+wdr:sense-notorious-infamous a drift:Sense ;
+    drift:gloss "widely and unfavourably known; famous for something bad; infamous, of ill repute"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1593"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1593"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-notorious-collocation a drift:TriggerEvent ;
+    rdfs:label "Pejoration by negative collocation"@en ;
+    dct:description "No single datable event. 'Notorious' was repeatedly applied to bad or scandalous matters (notorious offenders, notorious crimes), and the negative collocations transferred their colour to the word over the late 16th century. The anchor year is a representative attestation, not a cause."@en ;
+    drift:eventDate "1593"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-notorious-pejoration a drift:DriftEvent ;
+    drift:affectsWord wdr:word-notorious ;
+    drift:senseFrom wdr:sense-notorious-known ;
+    drift:senseTo wdr:sense-notorious-infamous ;
+    drift:driftType drift:Pejoration ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1550"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1650"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-notorious-etymonline , wdr:src-notorious-oed .
+
+# --- causal hypothesis ---
+wdr:hyp-notorious-collocation a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-notorious-pejoration ;
+    drift:proposedTrigger wdr:trigger-notorious-collocation ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.62 ;
+    drift:hasSource wdr:src-notorious-etymonline ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-notorious-etymonline a drift:Source ;
+    dct:title "Etymonline - notorious (adj.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/notorious"^^xsd:anyURI .
+
+wdr:src-notorious-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - notorious, adj."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/notorious_adj"^^xsd:anyURI .

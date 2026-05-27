@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "literally" (en)
+# Broadening: "in a literal sense, word for word, actually" ->
+# a non-literal intensifier ("figuratively, to a great degree").
+# No crisp datable event. The shift is a gradual semantic
+# bleaching of an intensifier, attested in literary use from the
+# 18th-19th centuries onward; the proposed driver is the general
+# tendency of strong assertives to weaken into intensifiers.
+# =============================================================
+
+wdr:word-literally a drift:Word ;
+    drift:writtenForm "literally"@en ;
+    drift:language "en" ;
+    rdfs:label "literally"@en ;
+    ontolex:sense wdr:sense-literally-exact , wdr:sense-literally-intensifier .
+
+wdr:sense-literally-exact a drift:Sense ;
+    drift:gloss "in a literal manner; word for word; in the actual or exact sense, without exaggeration or metaphor"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1530"^^xsd:gYear .
+
+wdr:sense-literally-intensifier a drift:Sense ;
+    drift:gloss "used as a non-literal intensifier to add emphasis to a statement that is not literally true; in effect, virtually, to a great degree"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1769"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1769"^^xsd:gYear ]
+    ] .
+
+# --- trigger event (gradual, undetermined driver) ---
+wdr:trigger-literally-bleaching a drift:TriggerEvent ;
+    rdfs:label "Semantic bleaching of an assertive into an intensifier"@en ;
+    dct:description "There is no single datable event. The intensifier use arose gradually in literary English from the 18th century onward, as a strong assertion of truth weakened into a generic emphasiser. The anchor year is a representative attestation point, not a cause."@en ;
+    drift:eventDate "1800"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-literally-intensifier a drift:DriftEvent ;
+    drift:affectsWord wdr:word-literally ;
+    drift:senseFrom wdr:sense-literally-exact ;
+    drift:senseTo wdr:sense-literally-intensifier ;
+    drift:driftType drift:Broadening ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1700"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-literally-etymonline , wdr:src-literally-merriam .
+
+# --- causal hypothesis ---
+wdr:hyp-literally-bleaching a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-literally-intensifier ;
+    drift:proposedTrigger wdr:trigger-literally-bleaching ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.6 ;
+    drift:hasSource wdr:src-literally-merriam ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-literally-etymonline a drift:Source ;
+    dct:title "Etymonline - literally (adv.)"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/literally"^^xsd:anyURI .
+
+wdr:src-literally-merriam a drift:Source ;
+    dct:title "Merriam-Webster - Did we change the definition of literally? (figurative use dated to 1769, Frances Brooke)"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/grammar/misuse-of-literally"^^xsd:anyURI .

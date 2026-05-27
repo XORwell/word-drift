@@ -1,0 +1,196 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": { "@id": "cr:data", "@type": "@json" },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": { "@id": "cr:dataType", "@type": "@vocab" },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "name": "WORD-DRIFT",
+  "description": "An open RDF/SHACL knowledge graph for lexical semantic change (Bedeutungswandel) in German and English. Models word senses with diachronic attestation intervals and connotation, typed drift events (pejoration, amelioration, broadening, narrowing, metaphorization, metonymization, reversal, reappropriation), and a causal trigger layer linking real-world events to the drift they plausibly caused. Each causal claim is a confidence-graded hypothesis with a source citation, never an asserted fact (ADR-0004).",
+  "url": "https://github.com/XORwell/word-drift",
+  "identifier": "https://w3id.org/word-drift/",
+  "sameAs": "https://w3id.org/word-drift/",
+  "version": "0.3.0",
+  "datePublished": "2026-05-23",
+  "dateModified": "2026-05-24",
+  "inLanguage": ["en", "de"],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": {
+    "@type": "Person",
+    "name": "Christian Nennemann",
+    "email": "research@nennemann.de"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "nennemann.de"
+  },
+  "keywords": [
+    "lexical semantic change",
+    "Bedeutungswandel",
+    "knowledge graph",
+    "OntoLex-Lemon",
+    "semantic shift",
+    "diachronic linguistics",
+    "RDF",
+    "SHACL",
+    "SPARQL",
+    "causation",
+    "word sense"
+  ],
+  "citeAs": "WORD-DRIFT, https://github.com/XORwell/word-drift, CC-BY-4.0",
+  "isLiveDataset": true,
+  "dataBiases": "Selection is deliberately skewed toward words with sharp, datable triggers (notably eponyms and toponyms) to maximise causal-layer precision. This is not a representative sample of the lexicon. Quantitative skew figures are reported in docs/data-card.md (filled by the evaluation workstream).",
+  "personalSensitiveInformation": "None. The dataset contains lexicographic and historical-event metadata only; no personal data about living private individuals.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo-archive",
+      "name": "repo-archive",
+      "description": "Gitea archive tarball of the full WORD-DRIFT repository (ontology, shapes, queries, examples, ETL data).",
+      "contentUrl": "https://github.com/XORwell/word-drift/archive/main.tar.gz",
+      "encodingFormat": "application/x-tar",
+      "sha256": "sha256-placeholder-set-on-frozen-release"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "examples-ttl",
+      "name": "examples-ttl",
+      "description": "Curated hand-modelled words as Turtle files (the causal showcase layer).",
+      "containedIn": { "@id": "repo-archive" },
+      "encodingFormat": "text/turtle",
+      "includes": "examples/*.ttl"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "data-ttl",
+      "name": "data-ttl",
+      "description": "ETL-generated Turtle data (benchmark backbone, derived/transformed triples).",
+      "containedIn": { "@id": "repo-archive" },
+      "encodingFormat": "text/turtle",
+      "includes": "data/*.ttl"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "ontology-ttl",
+      "name": "ontology-ttl",
+      "description": "The six ontology modules defining the drift: vocabulary.",
+      "containedIn": { "@id": "repo-archive" },
+      "encodingFormat": "text/turtle",
+      "includes": "ontology/*.ttl"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "words",
+      "name": "words",
+      "description": "Lexical words (drift:Word) with written form and language. Full dataset: 530 words (395 de, 135 en); curated showcase subset: 142 words (54 de, 88 en).",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "words/writtenForm",
+          "name": "writtenForm",
+          "description": "The orthographic form of the word.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": { "@id": "examples-ttl" },
+            "extract": { "column": "drift:writtenForm" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "words/language",
+          "name": "language",
+          "description": "BCP-47 language code (de or en).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": { "@id": "examples-ttl" },
+            "extract": { "column": "drift:language" }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "drift-events",
+      "name": "drift-events",
+      "description": "Typed, reified semantic-change events (drift:DriftEvent) connecting an earlier to a later sense, classified by a SKOS type taxonomy (valence, scope, mechanism, social pattern). Full dataset: 476 events; curated: 148.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "drift-events/driftType",
+          "name": "driftType",
+          "description": "SKOS concept for the drift type (e.g. Pejoration, Amelioration, Broadening, Narrowing, Metaphorization, Metonymization, Reversal, Reappropriation, Neologism).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": { "@id": "examples-ttl" },
+            "extract": { "column": "drift:driftType" }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "causal-hypotheses",
+      "name": "causal-hypotheses",
+      "description": "Confidence-graded causal hypotheses (drift:CausalHypothesis) linking a real-world trigger event to the drift it plausibly caused, each with an evidence type (LexicographicNote, ScholarlyAttestation, FrequencyCorrelation, Speculative) and a mandatory source citation. Never an asserted fact (ADR-0004). Full dataset: 256 hypotheses; curated: 134.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "causal-hypotheses/evidenceType",
+          "name": "evidenceType",
+          "description": "The evidence tier supporting the hypothesis.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": { "@id": "examples-ttl" },
+            "extract": { "column": "drift:evidenceType" }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "causal-hypotheses/confidence",
+          "name": "confidence",
+          "description": "Confidence score in [0,1] for the causal hypothesis.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": { "@id": "examples-ttl" },
+            "extract": { "column": "drift:confidence" }
+          }
+        }
+      ]
+    }
+  ]
+}

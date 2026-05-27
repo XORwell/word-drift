@@ -1,0 +1,29 @@
+# CQ06 — Trigger events in a date range.
+# All trigger events whose drift:eventDate falls within a window (here the long
+# 20th century, 1900-1999; edit the bounds in the FILTER for another era), with
+# their category and the count of words each is associated with.
+#
+# PORTABILITY NOTE: relational comparison directly on xsd:gYear literals
+# (?year >= "1900"^^xsd:gYear) is NOT supported by rdflib's SPARQL engine and
+# silently returns no rows there, though it works on QLever/Jena/GraphDB. We
+# therefore cast to xsd:integer(STR(?year)) so the query runs identically
+# against the offline rdflib loader and a production endpoint.
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:   <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?triggerLabel ?year ?category (COUNT(DISTINCT ?word) AS ?words) WHERE {
+  ?tr a drift:TriggerEvent ;
+      drift:eventDate ?year .
+  BIND(xsd:integer(STR(?year)) AS ?y)
+  FILTER(?y >= 1900 && ?y <= 1999)
+  OPTIONAL { ?tr rdfs:label ?triggerLabel . FILTER(lang(?triggerLabel) = "en") }
+  OPTIONAL { ?tr drift:triggerCategory ?c . ?c skos:prefLabel ?category . FILTER(lang(?category) = "en") }
+  OPTIONAL {
+    ?h drift:proposedTrigger ?tr ; drift:aboutDrift ?e .
+    ?e drift:affectsWord ?word .
+  }
+}
+GROUP BY ?tr ?triggerLabel ?year ?category
+ORDER BY ?year ?triggerLabel

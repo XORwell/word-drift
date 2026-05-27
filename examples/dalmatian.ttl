@@ -1,0 +1,82 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "dalmatian" (en)
+# Metonymization: "Dalmatian dog" (1810), presumably named for
+# Dalmatia, was shortened to "dalmatian" (1893) for the spotted
+# breed. The Adriatic region is the trigger; a Croatian origin
+# of the breed is debated, so confidence is moderate.
+# =============================================================
+
+wdr:word-dalmatian a drift:Word ;
+    drift:writtenForm "dalmatian"@en ;
+    drift:language "en" ;
+    rdfs:label "dalmatian"@en ;
+    ontolex:sense wdr:sense-dalmatian-region , wdr:sense-dalmatian-dog .
+
+wdr:sense-dalmatian-region a drift:Sense ;
+    drift:gloss "of or from Dalmatia, the Adriatic coastal region; short for 'Dalmatian dog'"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1810"^^xsd:gYear .
+
+wdr:sense-dalmatian-dog a drift:Sense ;
+    drift:gloss "a breed of white dog with dark spots, formerly used as a carriage or coach dog"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1893"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1893"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-dalmatian-region a drift:TriggerEvent ;
+    rdfs:label "The Dalmatia region"@en ;
+    dct:description "The spotted carriage dog was called 'Dalmatian dog' (1810), presumably for Dalmatia, and shortened to 'dalmatian' by 1893. Whether the breed truly originates in the region is debated among breeders."@en ;
+    drift:eventDate "1810"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q528042 .
+
+# --- drift event ---
+wdr:drift-dalmatian-region a drift:DriftEvent ;
+    drift:affectsWord wdr:word-dalmatian ;
+    drift:senseFrom wdr:sense-dalmatian-region ;
+    drift:senseTo wdr:sense-dalmatian-dog ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1810"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1893"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-dalmatian-etym , wdr:src-dalmatian-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-dalmatian-region a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-dalmatian-region ;
+    drift:proposedTrigger wdr:trigger-dalmatian-region ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-dalmatian-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-dalmatian-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- dalmatian"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/dalmatian"^^xsd:anyURI .
+
+wdr:src-dalmatian-wikt a drift:Source ;
+    dct:title "Wiktionary -- Dalmatian"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/Dalmatian"^^xsd:anyURI .

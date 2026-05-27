@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "nicotine" (en)
+# Metonymization: the surname Nicot (Jean Nicot, who introduced
+# tobacco to the French court in 1560) became the genus name
+# Nicotiana and then the everyday name of the alkaloid. His
+# introduction of tobacco is the identifiable trigger.
+# =============================================================
+
+wdr:word-nicotine a drift:Word ;
+    drift:writtenForm "nicotine"@en ;
+    drift:language "en" ;
+    rdfs:label "nicotine"@en ;
+    ontolex:sense wdr:sense-nicotine-name , wdr:sense-nicotine-alkaloid .
+
+wdr:sense-nicotine-name a drift:Sense ;
+    drift:gloss "derived from the surname of the French diplomat Jean Nicot, via the tobacco genus Nicotiana named for him"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1570"^^xsd:gYear .
+
+wdr:sense-nicotine-alkaloid a drift:Sense ;
+    drift:gloss "the addictive alkaloid present in tobacco; an everyday word for the active and habit-forming component of cigarettes"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1819"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1819"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-nicotine-tobacco a drift:TriggerEvent ;
+    rdfs:label "Nicot introduces tobacco to the French court"@en ;
+    dct:description "In 1560 Jean Nicot, French ambassador to Portugal, sent tobacco plants and seeds to the court in Paris. The plant genus Nicotiana was named for him, and the alkaloid isolated in 1828 took the name nicotine."@en ;
+    drift:eventDate "1560"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event ---
+wdr:drift-nicotine-tobacco a drift:DriftEvent ;
+    drift:affectsWord wdr:word-nicotine ;
+    drift:senseFrom wdr:sense-nicotine-name ;
+    drift:senseTo wdr:sense-nicotine-alkaloid ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1560"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1828"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-nicotine-etym , wdr:src-nicotine-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-nicotine-tobacco a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-nicotine-tobacco ;
+    drift:proposedTrigger wdr:trigger-nicotine-tobacco ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-nicotine-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-nicotine-etym a drift:Source ;
+    dct:title "nicotine -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/nicotine"^^xsd:anyURI .
+
+wdr:src-nicotine-wiki a drift:Source ;
+    dct:title "Jean Nicot -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Jean_Nicot"^^xsd:anyURI .

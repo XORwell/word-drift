@@ -1,0 +1,594 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wdr: <https://w3id.org/word-drift/resource/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+wdr:drift-durel-abend a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-abend ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-abend-t1 ;
+    drift:senseTo wdr:sense-durel-abend-t2 .
+
+wdr:drift-durel-anstalt a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-anstalt ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0917 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-anstalt-t1 ;
+    drift:senseTo wdr:sense-durel-anstalt-t2 .
+
+wdr:drift-durel-anstellung a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-anstellung ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0101 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-anstellung-t1 ;
+    drift:senseTo wdr:sense-durel-anstellung-t2 .
+
+wdr:drift-durel-bilanz a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-bilanz ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-bilanz-t1 ;
+    drift:senseTo wdr:sense-durel-bilanz-t2 .
+
+wdr:drift-durel-donnerwetter a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-donnerwetter ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.3636 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-donnerwetter-t1 ;
+    drift:senseTo wdr:sense-durel-donnerwetter-t2 .
+
+wdr:drift-durel-englisch a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-englisch ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-englisch-t1 ;
+    drift:senseTo wdr:sense-durel-englisch-t2 .
+
+wdr:drift-durel-feder a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-feder ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.1491 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-feder-t1 ;
+    drift:senseTo wdr:sense-durel-feder-t2 .
+
+wdr:drift-durel-feine a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-feine ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.1396 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-feine-t1 ;
+    drift:senseTo wdr:sense-durel-feine-t2 .
+
+wdr:drift-durel-flott a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-flott ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.1429 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-flott-t1 ;
+    drift:senseTo wdr:sense-durel-flott-t2 .
+
+wdr:drift-durel-geharnischt a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-geharnischt ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0667 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-geharnischt-t1 ;
+    drift:senseTo wdr:sense-durel-geharnischt-t2 .
+
+wdr:drift-durel-kinderstube a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-kinderstube ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0208 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-kinderstube-t1 ;
+    drift:senseTo wdr:sense-durel-kinderstube-t2 .
+
+wdr:drift-durel-locker a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-locker ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0875 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-locker-t1 ;
+    drift:senseTo wdr:sense-durel-locker-t2 .
+
+wdr:drift-durel-motiv a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-motiv ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.2057 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-motiv-t1 ;
+    drift:senseTo wdr:sense-durel-motiv-t2 .
+
+wdr:drift-durel-museum a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-museum ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0417 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-museum-t1 ;
+    drift:senseTo wdr:sense-durel-museum-t2 .
+
+wdr:drift-durel-presse a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-presse ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.3904 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-presse-t1 ;
+    drift:senseTo wdr:sense-durel-presse-t2 .
+
+wdr:drift-durel-reichstag a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-reichstag ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.1333 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-reichstag-t1 ;
+    drift:senseTo wdr:sense-durel-reichstag-t2 .
+
+wdr:drift-durel-steckenpferd a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-steckenpferd ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.037 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-steckenpferd-t1 ;
+    drift:senseTo wdr:sense-durel-steckenpferd-t2 .
+
+wdr:drift-durel-technisch a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-technisch ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0417 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-technisch-t1 ;
+    drift:senseTo wdr:sense-durel-technisch-t2 .
+
+wdr:drift-durel-vorwort a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-vorwort ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.6833 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-vorwort-t1 ;
+    drift:senseTo wdr:sense-durel-vorwort-t2 .
+
+wdr:drift-durel-zufall a drift:DriftEvent ;
+    drift:affectsWord wdr:word-durel-zufall ;
+    drift:driftType drift:UnspecifiedShift ;
+    drift:driftYear "1825"^^xsd:gYear ;
+    drift:gradedChange 0.0 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:senseFrom wdr:sense-durel-zufall-t1 ;
+    drift:senseTo wdr:sense-durel-zufall-t2 .
+
+wdr:word-durel-abend a drift:Word ;
+    rdfs:label "Abend"@de ;
+    ontolex:sense wdr:sense-durel-abend-t1,
+        wdr:sense-durel-abend-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Abend"@de .
+
+wdr:word-durel-anstalt a drift:Word ;
+    rdfs:label "Anstalt"@de ;
+    ontolex:sense wdr:sense-durel-anstalt-t1,
+        wdr:sense-durel-anstalt-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Anstalt"@de .
+
+wdr:word-durel-anstellung a drift:Word ;
+    rdfs:label "Anstellung"@de ;
+    ontolex:sense wdr:sense-durel-anstellung-t1,
+        wdr:sense-durel-anstellung-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Anstellung"@de .
+
+wdr:word-durel-bilanz a drift:Word ;
+    rdfs:label "Bilanz"@de ;
+    ontolex:sense wdr:sense-durel-bilanz-t1,
+        wdr:sense-durel-bilanz-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Bilanz"@de .
+
+wdr:word-durel-donnerwetter a drift:Word ;
+    rdfs:label "Donnerwetter"@de ;
+    ontolex:sense wdr:sense-durel-donnerwetter-t1,
+        wdr:sense-durel-donnerwetter-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Donnerwetter"@de .
+
+wdr:word-durel-englisch a drift:Word ;
+    rdfs:label "englisch"@de ;
+    ontolex:sense wdr:sense-durel-englisch-t1,
+        wdr:sense-durel-englisch-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "englisch"@de .
+
+wdr:word-durel-feder a drift:Word ;
+    rdfs:label "Feder"@de ;
+    ontolex:sense wdr:sense-durel-feder-t1,
+        wdr:sense-durel-feder-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Feder"@de .
+
+wdr:word-durel-feine a drift:Word ;
+    rdfs:label "Feine"@de ;
+    ontolex:sense wdr:sense-durel-feine-t1,
+        wdr:sense-durel-feine-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Feine"@de .
+
+wdr:word-durel-flott a drift:Word ;
+    rdfs:label "flott"@de ;
+    ontolex:sense wdr:sense-durel-flott-t1,
+        wdr:sense-durel-flott-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "flott"@de .
+
+wdr:word-durel-geharnischt a drift:Word ;
+    rdfs:label "geharnischt"@de ;
+    ontolex:sense wdr:sense-durel-geharnischt-t1,
+        wdr:sense-durel-geharnischt-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "geharnischt"@de .
+
+wdr:word-durel-kinderstube a drift:Word ;
+    rdfs:label "Kinderstube"@de ;
+    ontolex:sense wdr:sense-durel-kinderstube-t1,
+        wdr:sense-durel-kinderstube-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Kinderstube"@de .
+
+wdr:word-durel-locker a drift:Word ;
+    rdfs:label "locker"@de ;
+    ontolex:sense wdr:sense-durel-locker-t1,
+        wdr:sense-durel-locker-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "locker"@de .
+
+wdr:word-durel-motiv a drift:Word ;
+    rdfs:label "Motiv"@de ;
+    ontolex:sense wdr:sense-durel-motiv-t1,
+        wdr:sense-durel-motiv-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Motiv"@de .
+
+wdr:word-durel-museum a drift:Word ;
+    rdfs:label "Museum"@de ;
+    ontolex:sense wdr:sense-durel-museum-t1,
+        wdr:sense-durel-museum-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Museum"@de .
+
+wdr:word-durel-presse a drift:Word ;
+    rdfs:label "Presse"@de ;
+    ontolex:sense wdr:sense-durel-presse-t1,
+        wdr:sense-durel-presse-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Presse"@de .
+
+wdr:word-durel-reichstag a drift:Word ;
+    rdfs:label "Reichstag"@de ;
+    ontolex:sense wdr:sense-durel-reichstag-t1,
+        wdr:sense-durel-reichstag-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Reichstag"@de .
+
+wdr:word-durel-steckenpferd a drift:Word ;
+    rdfs:label "Steckenpferd"@de ;
+    ontolex:sense wdr:sense-durel-steckenpferd-t1,
+        wdr:sense-durel-steckenpferd-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Steckenpferd"@de .
+
+wdr:word-durel-technisch a drift:Word ;
+    rdfs:label "technisch"@de ;
+    ontolex:sense wdr:sense-durel-technisch-t1,
+        wdr:sense-durel-technisch-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "technisch"@de .
+
+wdr:word-durel-vorwort a drift:Word ;
+    rdfs:label "Vorwort"@de ;
+    ontolex:sense wdr:sense-durel-vorwort-t1,
+        wdr:sense-durel-vorwort-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Vorwort"@de .
+
+wdr:word-durel-zufall a drift:Word ;
+    rdfs:label "Zufall"@de ;
+    ontolex:sense wdr:sense-durel-zufall-t1,
+        wdr:sense-durel-zufall-t2 ;
+    drift:hasSource wdr:src-wugs-durel ;
+    drift:language "de"^^xsd:language ;
+    drift:writtenForm "Zufall"@de .
+
+wdr:sense-durel-abend-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Abend' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-abend-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Abend' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-anstalt-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Anstalt' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-anstalt-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Anstalt' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-anstellung-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Anstellung' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-anstellung-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Anstellung' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-bilanz-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Bilanz' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-bilanz-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Bilanz' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-donnerwetter-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Donnerwetter' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-donnerwetter-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Donnerwetter' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-englisch-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'englisch' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-englisch-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'englisch' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-feder-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Feder' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-feder-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Feder' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-feine-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Feine' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-feine-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Feine' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-flott-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'flott' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-flott-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'flott' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-geharnischt-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'geharnischt' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-geharnischt-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'geharnischt' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-kinderstube-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Kinderstube' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-kinderstube-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Kinderstube' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-locker-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'locker' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-locker-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'locker' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-motiv-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Motiv' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-motiv-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Motiv' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-museum-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Museum' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-museum-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Museum' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-presse-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Presse' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-presse-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Presse' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-reichstag-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Reichstag' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-reichstag-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Reichstag' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-steckenpferd-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Steckenpferd' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-steckenpferd-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Steckenpferd' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-technisch-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'technisch' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-technisch-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'technisch' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-vorwort-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Vorwort' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-vorwort-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Vorwort' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-zufall-t1 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1750"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Zufall' in the earlier period (~1750) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:sense-durel-zufall-t2 a drift:Sense ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear ;
+    drift:gloss "Usage sense of 'Zufall' in the later period (~1900) of DURel"@en ;
+    drift:hasSource wdr:src-wugs-durel .
+
+wdr:src-wugs-durel a drift:Corpus ;
+    rdfs:label "DURel"@en ;
+    dct:identifier "doi:10.5281/zenodo.5541274" ;
+    dct:title "DURel German (Diachronic Usage Relatedness, Schlechtweg et al.)"@en ;
+    rdfs:comment "Benchmark (gold human-annotated lexical semantic change). Ingested as detection-grade backbone: derived target-word + gold graded-change only, no raw usage graphs, no causal claim (ADR 0004)."@en ;
+    drift:sourceURL "https://zenodo.org/records/5784453"^^xsd:anyURI .
+

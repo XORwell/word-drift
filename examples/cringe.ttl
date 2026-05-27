@@ -1,0 +1,85 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "cringe" (en)
+# Word-class shift / Metaphorization: verb "to cower, recoil in
+# embarrassment" -> adjective/noun internet slang "embarrassing,
+# awkward (content)" (that's so cringe). Spread through social
+# media and meme culture in the mid-2010s.
+# =============================================================
+
+wdr:word-cringe a drift:Word ;
+    drift:writtenForm "cringe"@en ;
+    drift:language "en" ;
+    rdfs:label "cringe"@en ;
+    ontolex:sense wdr:sense-cringe-verb , wdr:sense-cringe-adj .
+
+wdr:sense-cringe-verb a drift:Sense ;
+    drift:gloss "to bend or crouch in fear or servility; to wince or recoil in embarrassment (verb)"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1580"^^xsd:gYear .
+
+wdr:sense-cringe-adj a drift:Sense ;
+    drift:gloss "(slang) so embarrassing or awkward as to cause discomfort; used predicatively as an adjective or noun (that's cringe)"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1983"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1983"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+# Merriam-Webster dates the slang adjective to 1983, well before meme
+# culture. Online meme/reaction culture popularised rather than coined it,
+# so the trigger is framed as a spreader and flagged Speculative below.
+wdr:trigger-cringe-memeculture a drift:TriggerEvent ;
+    rdfs:label "Social-media meme culture (2010s, r/cringe)"@en ;
+    dct:description "Merriam-Webster records the slang adjective from 1983. Online meme and reaction culture, including the r/cringe subreddit (founded 2011) and the 'cringe compilation' video genre, spread the predicative adjective/noun use widely in the 2010s but did not coin it."@en ;
+    drift:eventDate "2011"^^xsd:gYear ;
+    drift:triggerCategory drift:Media .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-cringe-2015 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-cringe ;
+    drift:senseFrom wdr:sense-cringe-verb ;
+    drift:senseTo wdr:sense-cringe-adj ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1983"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "2015"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-cringe-mw , wdr:src-cringe-wiktionary .
+
+# --- causal hypothesis (ADR 0004) ---
+# Merriam-Webster dates the slang adjective to 1983, decades before meme
+# culture, so meme culture is at most a spreader, not the coining trigger.
+# The causal link is therefore only plausible -> Speculative, low confidence.
+wdr:hyp-cringe-memeculture a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-cringe-2015 ;
+    drift:proposedTrigger wdr:trigger-cringe-memeculture ;
+    drift:evidenceType drift:Speculative ;
+    drift:confidence 0.45 ;
+    drift:hasSource wdr:src-cringe-mw ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-cringe-mw a drift:Source ;
+    dct:title "Merriam-Webster - cringe"@en ;
+    drift:sourceURL "https://www.merriam-webster.com/dictionary/cringe"^^xsd:anyURI .
+
+wdr:src-cringe-wiktionary a drift:Source ;
+    dct:title "Wiktionary - cringe"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/cringe"^^xsd:anyURI .

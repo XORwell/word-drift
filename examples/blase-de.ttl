@@ -1,0 +1,86 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "Blase" (de) -- cross-lingual pair with "bubble" (blase-de)
+# Metaphorization:
+#   "mit Luft oder Gas gefuellte Kugel in einer Fluessigkeit" ->
+#   "spekulative Marktblase: nicht nachhaltige Preisentwicklung,
+#    die platzt". The German economic sense (Spekulationsblase)
+#    mirrors the English metaphor whose lasting model is the
+#    South Sea Bubble of 1720.
+# =============================================================
+
+wdr:word-blase a drift:Word ;
+    drift:writtenForm "Blase"@de ;
+    drift:language "de" ;
+    rdfs:label "Blase"@de ;
+    ontolex:sense wdr:sense-blase-air , wdr:sense-blase-economic ;
+    drift:crossLingualOf wdr:word-bubble .
+
+wdr:sense-blase-air a drift:Sense ;
+    drift:gloss "a bubble: a sphere of gas enclosed in a liquid"@en ;
+    drift:gloss "mit Luft oder Gas gefuellte Kugel in einer Fluessigkeit"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "0800"^^xsd:gYear .
+
+wdr:sense-blase-economic a drift:Sense ;
+    drift:gloss "an economic bubble: a period of unsustainable speculative asset prices that eventually bursts"@en ;
+    drift:gloss "Spekulationsblase: nicht nachhaltige Preisentwicklung an den Maerkten, die schliesslich platzt"@de ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1850"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+# Shared with bubble.ttl (en): the South Sea Bubble (1720) trigger node
+# powers the cross-lingual same-trigger query. Defined fully in bubble.ttl.
+# (wdr:trigger-south-sea-bubble, drift:eventDate 1720)
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-blase-economic a drift:DriftEvent ;
+    drift:affectsWord wdr:word-blase ;
+    drift:senseFrom wdr:sense-blase-air ;
+    drift:senseTo wdr:sense-blase-economic ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1850"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1900"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-blase-dwds , wdr:src-blase-duden .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS and Duden are dictionary/lexicographic sources -> LexicographicNote.
+# The link to the South Sea Bubble is the metaphor's origin rather than a
+# directly attested German etymology note, so we also flag it Speculative.
+wdr:hyp-blase-southsea a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-blase-economic ;
+    drift:proposedTrigger wdr:trigger-south-sea-bubble ;
+    drift:evidenceType drift:LexicographicNote , drift:Speculative ;
+    drift:confidence 0.7 ;
+    drift:hasSource wdr:src-blase-dwds , wdr:src-blase-duden ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-blase-dwds a drift:Source ;
+    dct:title "DWDS - Blase"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Blase"^^xsd:anyURI .
+
+wdr:src-blase-duden a drift:Source ;
+    dct:title "Duden - Blase"@de ;
+    drift:sourceURL "https://www.duden.de/rechtschreibung/Blase"^^xsd:anyURI .

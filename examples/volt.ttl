@@ -1,0 +1,80 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "volt" (en)
+# Metonymization: the surname Volta (Alessandro Volta, inventor
+# of the voltaic pile, 1800) becomes the common name of the SI
+# unit of electric potential. The invention of the battery is
+# the identifiable trigger.
+# =============================================================
+
+wdr:word-volt a drift:Word ;
+    drift:writtenForm "volt"@en ;
+    drift:language "en" ;
+    rdfs:label "volt"@en ;
+    ontolex:sense wdr:sense-volt-name , wdr:sense-volt-unit .
+
+wdr:sense-volt-name a drift:Sense ;
+    drift:gloss "the surname of the Italian physicist Alessandro Volta"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1745"^^xsd:gYear .
+
+wdr:sense-volt-unit a drift:Sense ;
+    drift:gloss "the SI unit of electric potential difference and electromotive force; an everyday word for electrical 'pressure'"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1873"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1873"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-volt-pile a drift:TriggerEvent ;
+    rdfs:label "Volta invents the voltaic pile"@en ;
+    dct:description "In 1800 Alessandro Volta announced the voltaic pile, the first continuous source of electric current. His name was later attached to the unit of electric potential, adopted internationally in the 1880s."@en ;
+    drift:eventDate "1800"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event ---
+wdr:drift-volt-pile a drift:DriftEvent ;
+    drift:affectsWord wdr:word-volt ;
+    drift:senseFrom wdr:sense-volt-name ;
+    drift:senseTo wdr:sense-volt-unit ;
+    drift:driftType drift:Metonymization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1800"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1881"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-volt-etym , wdr:src-volt-wiki .
+
+# --- causal hypothesis ---
+wdr:hyp-volt-pile a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-volt-pile ;
+    drift:proposedTrigger wdr:trigger-volt-pile ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.9 ;
+    drift:hasSource wdr:src-volt-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-volt-etym a drift:Source ;
+    dct:title "volt -- Online Etymology Dictionary"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/volt"^^xsd:anyURI .
+
+wdr:src-volt-wiki a drift:Source ;
+    dct:title "Alessandro Volta -- Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Alessandro_Volta"^^xsd:anyURI .

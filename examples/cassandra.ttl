@@ -1,0 +1,81 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Cassandra" (en)
+# Metaphorization: from Cassandra of Troy, the prophetess
+# cursed to foretell truly but never be believed. The name
+# yielded a common noun for an unheeded prophet of disaster.
+# =============================================================
+
+wdr:word-cassandra a drift:Word ;
+    drift:writtenForm "Cassandra"@en ;
+    drift:language "en" ;
+    rdfs:label "Cassandra"@en ;
+    ontolex:sense wdr:sense-cassandra-prophetess , wdr:sense-cassandra-doomsayer .
+
+wdr:sense-cassandra-prophetess a drift:Sense ;
+    drift:gloss "Cassandra, daughter of Priam of Troy, granted prophecy by Apollo but cursed so that her true warnings were never believed"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1660"^^xsd:gYear .
+
+wdr:sense-cassandra-doomsayer a drift:Sense ;
+    drift:gloss "one who prophesies misfortune or disaster, especially a warning of catastrophe that goes unheeded"@en ;
+    drift:connotation drift:Negative ;
+    drift:firstAttested "1660"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1660"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-cassandra-troy a drift:TriggerEvent ;
+    rdfs:label "Cassandra, the unbelieved prophetess of Troy"@en ;
+    dct:description "In Greek myth Apollo gave Cassandra the gift of prophecy, then cursed it so that, though she spoke truth, none would believe her; her warnings about the fall of Troy were ignored. The name has been used figuratively since the 1660s for an unheeded prophet of doom."@en ;
+    drift:eventDate "1660"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural ;
+    owl:sameAs wd:Q170779 .
+
+# --- drift event ---
+wdr:drift-cassandra-troy a drift:DriftEvent ;
+    drift:affectsWord wdr:word-cassandra ;
+    drift:senseFrom wdr:sense-cassandra-prophetess ;
+    drift:senseTo wdr:sense-cassandra-doomsayer ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1660"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1720"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-cassandra-etym , wdr:src-cassandra-wikt .
+
+# --- causal hypothesis ---
+wdr:hyp-cassandra-troy a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-cassandra-troy ;
+    drift:proposedTrigger wdr:trigger-cassandra-troy ;
+    drift:evidenceType drift:LexicographicNote ;
+    drift:confidence 0.85 ;
+    drift:hasSource wdr:src-cassandra-etym ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-cassandra-etym a drift:Source ;
+    dct:title "Online Etymology Dictionary -- Cassandra"@en ;
+    drift:sourceURL "https://www.etymonline.com/word/Cassandra"^^xsd:anyURI .
+
+wdr:src-cassandra-wikt a drift:Source ;
+    dct:title "Wiktionary -- Cassandra"@en ;
+    drift:sourceURL "https://en.wiktionary.org/wiki/Cassandra"^^xsd:anyURI .

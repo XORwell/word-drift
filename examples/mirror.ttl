@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# "mirror" (en) -- cross-lingual pair with "spiegeln" (spiegeln-de)
+# Metaphorization:
+#   "a reflective surface; to reflect" ->
+#   "a server holding an identical copy of files; to maintain
+#    such a copy". Anonymous-FTP archive mirrors spread across the
+#    early internet (FTP mirrors and mirror sites) in the early
+#    1990s as a way to share load and improve access.
+# =============================================================
+
+wdr:word-mirror a drift:Word ;
+    drift:writtenForm "mirror"@en ;
+    drift:language "en" ;
+    rdfs:label "mirror"@en ;
+    ontolex:sense wdr:sense-mirror-glass , wdr:sense-mirror-server ;
+    drift:crossLingualOf wdr:word-spiegeln .
+
+wdr:sense-mirror-glass a drift:Sense ;
+    drift:gloss "a reflective surface, typically of glass; to reflect"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1225"^^xsd:gYear .
+
+wdr:sense-mirror-server a drift:Sense ;
+    drift:gloss "a server or site holding an identical copy of another's files; to maintain such a synchronised copy"@en ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1991"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1991"^^xsd:gYear ]
+    ] .
+
+# --- trigger events ---
+wdr:trigger-ftp-mirroring a drift:TriggerEvent ;
+    rdfs:label "rise of internet FTP mirror sites"@en ;
+    dct:description "As anonymous-FTP archives and software distribution grew across the early internet, popular archives were duplicated onto 'mirror' servers to share load and improve access, fixing the computing sense in the early 1990s."@en ;
+    drift:eventDate "1991"^^xsd:gYear ;
+    drift:triggerCategory drift:Technology .
+
+# --- drift event: metaphorization (causation lives in the hypothesis below) ---
+wdr:drift-mirror-server a drift:DriftEvent ;
+    drift:affectsWord wdr:word-mirror ;
+    drift:senseFrom wdr:sense-mirror-glass ;
+    drift:senseTo wdr:sense-mirror-server ;
+    drift:driftType drift:Metaphorization ;
+    drift:driftInterval [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "1991"^^xsd:gYear ] ;
+        time:hasEnd       [ a time:Instant ; time:inXSDgYear "1998"^^xsd:gYear ]
+    ] ;
+    drift:hasSource wdr:src-mirror-oed , wdr:src-mirror-wikipedia .
+
+# --- causal hypothesis (ADR 0004) ---
+# OED is a lexicographic source -> LexicographicNote; Wikipedia is general -> Speculative.
+wdr:hyp-mirror-ftp a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-mirror-server ;
+    drift:proposedTrigger wdr:trigger-ftp-mirroring ;
+    drift:evidenceType drift:LexicographicNote , drift:Speculative ;
+    drift:confidence 0.75 ;
+    drift:hasSource wdr:src-mirror-oed , wdr:src-mirror-wikipedia ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- sources ---
+wdr:src-mirror-oed a drift:Source ;
+    dct:title "Oxford English Dictionary - mirror, n."@en ;
+    drift:sourceURL "https://www.oed.com/dictionary/mirror_n"^^xsd:anyURI .
+
+wdr:src-mirror-wikipedia a drift:Source ;
+    dct:title "Mirror site - Wikipedia"@en ;
+    drift:sourceURL "https://en.wikipedia.org/wiki/Mirror_site"^^xsd:anyURI .

@@ -1,0 +1,91 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# "Gendersternchen" (de)
+# Narrowing / specialisation: "Sternchen" (a little star, the
+# asterisk symbol, or a young starlet) acquires a specific
+# socio-linguistic sense as the gender-gap asterisk used for
+# gender-inclusive German (Leser*innen), with a frequency surge
+# in the 2010s public debate.
+# =============================================================
+
+wdr:word-gendersternchen a drift:Word ;
+    drift:writtenForm "Gendersternchen"@de ;
+    drift:language "de" ;
+    rdfs:label "Gendersternchen"@de ;
+    ontolex:sense wdr:sense-gendersternchen-symbol , wdr:sense-gendersternchen-inclusive .
+
+wdr:sense-gendersternchen-symbol a drift:Sense ;
+    drift:gloss "'Sternchen': a little star; the asterisk typographic symbol; informally a young female celebrity"@en ;
+    drift:gloss "'Sternchen': kleiner Stern; das Sternchen-Schriftzeichen; umgangssprachlich ein junger weiblicher Star"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "1900"^^xsd:gYear .
+
+wdr:sense-gendersternchen-inclusive a drift:Sense ;
+    drift:gloss "the gender asterisk used in written German to denote all genders inclusively (e.g. Leser*innen)"@en ;
+    drift:gloss "der Gender-Stern, der im Deutschen geschlechterumfassend verwendet wird (z. B. Leser*innen)"@de ;
+    drift:connotation drift:Neutral ;
+    drift:firstAttested "2015"^^xsd:gYear ;
+    drift:attestedDuring [
+        a time:Interval ;
+        time:hasBeginning [ a time:Instant ; time:inXSDgYear "2015"^^xsd:gYear ]
+    ] .
+
+# --- trigger event ---
+wdr:trigger-gendersternchen-debate a drift:TriggerEvent ;
+    rdfs:label "German gender-inclusive language debate (2010s)"@en , "Debatte um geschlechtergerechte Sprache"@de ;
+    dct:description "The 2010s German debate over gender-inclusive language popularised the asterisk form (Leser*innen); DWDS records the inclusive sense and a frequency rise across the decade (corpus examples 2009-2018)."@en ;
+    drift:eventDate "2015"^^xsd:gYear ;
+    drift:triggerCategory drift:Cultural .
+
+# --- drift event (causation in the hypothesis below) ---
+wdr:drift-gendersternchen-2015 a drift:DriftEvent ;
+    drift:affectsWord wdr:word-gendersternchen ;
+    drift:senseFrom wdr:sense-gendersternchen-symbol ;
+    drift:senseTo wdr:sense-gendersternchen-inclusive ;
+    drift:driftType drift:Narrowing ;
+    drift:driftYear "2015"^^xsd:gYear ;
+    drift:hasSource wdr:src-gendersternchen-dwds , wdr:corpus-dwds-gendersternchen .
+
+# --- causal hypothesis (ADR 0004) ---
+# DWDS records the new sense and a frequency rise tracking the public
+# debate; reproducible plus attributed lexicographic evidence.
+wdr:hyp-gendersternchen-debate a drift:CausalHypothesis ;
+    drift:aboutDrift wdr:drift-gendersternchen-2015 ;
+    drift:proposedTrigger wdr:trigger-gendersternchen-debate ;
+    drift:evidenceType drift:FrequencyCorrelation , drift:LexicographicNote ;
+    drift:confidence 0.8 ;
+    drift:hasSource wdr:src-gendersternchen-dwds , wdr:corpus-dwds-gendersternchen ;
+    prov:wasAttributedTo wdr:curator ;
+    dct:date "2026-05-23"^^xsd:date .
+
+wdr:curator a prov:Agent ;
+    rdfs:label "WORD-DRIFT curators"@en .
+
+# --- frequency observations (timeline curve) ---
+wdr:freq-gendersternchen-2014 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-gendersternchen ; drift:observedYear "2014"^^xsd:gYear ;
+    drift:relativeFrequency 0.1 ; drift:fromCorpus wdr:corpus-dwds-gendersternchen .
+wdr:freq-gendersternchen-2018 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-gendersternchen ; drift:observedYear "2018"^^xsd:gYear ;
+    drift:relativeFrequency 2.2 ; drift:fromCorpus wdr:corpus-dwds-gendersternchen .
+wdr:freq-gendersternchen-2021 a drift:FrequencyObservation ;
+    drift:ofWord wdr:word-gendersternchen ; drift:observedYear "2021"^^xsd:gYear ;
+    drift:relativeFrequency 4.8 ; drift:fromCorpus wdr:corpus-dwds-gendersternchen .
+
+# --- sources ---
+wdr:corpus-dwds-gendersternchen a drift:Corpus ;
+    dct:title "DWDS Wortverlaufskurve - Gendersternchen"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Gendersternchen"^^xsd:anyURI .
+
+wdr:src-gendersternchen-dwds a drift:Source ;
+    dct:title "DWDS - Gendersternchen"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Gendersternchen"^^xsd:anyURI .
