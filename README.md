@@ -4,7 +4,7 @@
   <img src="docs/logo.png" alt="WORD-DRIFT Logo" width="300"/>
 </p>
 
-**The [Trails](https://github.com/XORwell/framework.trails) port of [WORD-DRIFT](https://github.com/XORwell/word-drift) — a live knowledge-graph API for lexical semantic change, served from an Oxigraph triple store with SPARQL, provenance, and SHACL validation built in.**
+**The [Trails](https://github.com/XORwell/trails) port of [WORD-DRIFT](https://github.com/XORwell/word-drift) — a live knowledge-graph API for lexical semantic change, served from an Oxigraph triple store with SPARQL, provenance, and SHACL validation built in.**
 
 ---
 
@@ -12,7 +12,7 @@
 
 WORD-DRIFT is an open knowledge graph modelling how words shift meaning over time — *Querdenker* from praise to slur, *funk* from bad smell to musical style. It documents typed drift events (pejoration, amelioration, broadening, narrowing, reappropriation …) and, uniquely, the **real-world trigger events** that caused each shift. These shifts are not mere lexicographic curiosities: if the words available in a language actively shape what speakers can think and perceive, then each drift event is a datable moment at which the shared cognitive scaffold of a community changes. The Tower of Babel is the mythological limit case — a shared vocabulary fractures and coordination collapses. Drift events are the small, localised Babel-moments that accumulate in living languages.
 
-The original repo pre-generates static JSON files for the browser explorer and validates the RDF offline. **word-drift-on-trails** replaces that pipeline with a single [Trails](https://github.com/XORwell/framework.trails) application that:
+The original repo pre-generates static JSON files for the browser explorer and validates the RDF offline. **word-drift-on-trails** replaces that pipeline with a single [Trails](https://github.com/XORwell/trails) application that:
 
 - Loads all TTL data into a **persistent Oxigraph** store on startup
 - Exposes the same graph JSON the frontend expects via **live SPARQL queries**
@@ -143,7 +143,7 @@ word-drift-on-trails is developed alongside a research paper demonstrating how t
 
 Original WORD-DRIFT paper and data: <https://github.com/XORwell/word-drift>
 
-Trails framework: <https://github.com/XORwell/framework.trails>
+Trails framework: <https://github.com/XORwell/trails>
 
 ---
 

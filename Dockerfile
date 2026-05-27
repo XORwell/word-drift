@@ -23,12 +23,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 #
 # Without the secret it falls back to TRAILS_REF (works only if the repo is
 # public). No silent `|| echo` fallback — a missing Trails fails the build.
-ARG TRAILS_REF=git+https://github.com/XORwell/framework.trails.git#subdirectory=python
+ARG TRAILS_REF=git+https://github.com/XORwell/trails.git#subdirectory=python
 RUN --mount=type=secret,id=git_token \
     TOKEN="$(cat /run/secrets/git_token 2>/dev/null || true)"; \
     if [ -n "$TOKEN" ]; then \
         pip install --no-cache-dir \
-            "trails[http] @ git+https://oauth2:${TOKEN}@github.com/XORwell/framework.trails.git#subdirectory=python"; \
+            "trails[http] @ git+https://oauth2:${TOKEN}@github.com/XORwell/trails.git#subdirectory=python"; \
     else \
         pip install --no-cache-dir "trails[http] @ ${TRAILS_REF}"; \
     fi
