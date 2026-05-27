@@ -11,8 +11,6 @@ wd-store/
 
 # Generated graph JSON — served live by the app, not stored in git
 site/graph.json
-site/graph-core.json
-site/graph-detail.json
 
 # Large binary downloads directory
 site/downloads/
