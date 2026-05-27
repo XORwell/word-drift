@@ -23,6 +23,14 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # The Datenschutz page's Hosting section is host-specific. This deploy
+      # path is GitHub Pages, so force the GitHub disclosure regardless of what
+      # is committed -- no manual flag, nothing to forget. (stdlib only.)
+      - name: Set Datenschutz hosting disclosure to GitHub Pages
+        run: python scripts/set-hosting.py --target github
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
