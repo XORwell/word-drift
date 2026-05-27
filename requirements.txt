@@ -1,5 +1,5 @@
 # Trails framework (install from local checkout for development)
-# trails[http,llm] @ git+https://github.com/XORwell/framework.trails.git
+# trails[http,llm] @ git+https://github.com/XORwell/trails.git
 # For development: pip install -e ../framework.trails/python
 
 # Core Trails
