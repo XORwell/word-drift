@@ -1,27 +1,45 @@
-# WORD-DRIFT static site -- production image.
-# Serves the prebuilt site/ (HTML/CSS/JS + JSON data + downloads) via nginx with
-# the security headers + CSP from docs/security-review.md baked in. The site is
-# fully static and self-contained (D3 is vendored under site/assets/vendor/), so
-# there is no build step and no runtime CDN dependency.
+# syntax=docker/dockerfile:1
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# System deps: git to fetch Trails from source, curl for the healthcheck,
+# ca-certificates + libssl for pyoxigraph's TLS.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git curl libssl-dev ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install Trails from the framework repo. The `trails` package lives in the
+# `python/` subdirectory; the build backend is setuptools (pure Python — the
+# kernel falls back to the pyoxigraph `_pybackend` store, so no Rust toolchain
+# is needed). If framework.trails is hosted in a private repo, the build needs a
+# read token, passed as a BuildKit secret (never written to an image layer):
 #
-#   docker build -t word-drift-site .
-#   docker run --rm -p 8080:80 word-drift-site   # -> http://localhost:8080
+#   DOCKER_BUILDKIT=1 docker build \
+#       --secret id=git_token,src=<(printf %s "$GIT_TOKEN") -t word-drift-on-trails .
 #
-# For the full stack (site + a queryable SPARQL endpoint) use docker-compose.yml.
+# Without the secret it falls back to TRAILS_REF (works only if the repo is
+# public). No silent `|| echo` fallback — a missing Trails fails the build.
+ARG TRAILS_REF=git+https://github.com/XORwell/framework.trails.git#subdirectory=python
+RUN --mount=type=secret,id=git_token \
+    TOKEN="$(cat /run/secrets/git_token 2>/dev/null || true)"; \
+    if [ -n "$TOKEN" ]; then \
+        pip install --no-cache-dir \
+            "trails[http] @ git+https://oauth2:${TOKEN}@github.com/XORwell/framework.trails.git#subdirectory=python"; \
+    else \
+        pip install --no-cache-dir "trails[http] @ ${TRAILS_REF}"; \
+    fi
 
-FROM nginx:1.27-alpine
+COPY . .
 
-# Hardened server config (CSP, security headers, RDF MIME types, no autoindex).
-COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+ENV PORT=8080
+ENV WORD_DRIFT_STORE=/data/wd-store
+ENV TRAILS_ENV=production
 
-# The prebuilt static site.
-COPY site/ /usr/share/nginx/html/
+VOLUME ["/data"]
+EXPOSE 8080
 
-# Drop the heavyweight full-graph export from the served root if present; it is a
-# download artifact, not loaded by the running app (the app uses graph-core.json
-# + graph-detail.json). It remains available under downloads/.
-RUN rm -f /usr/share/nginx/html/graph.json || true
-
-EXPOSE 80
-HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
-  CMD wget -q -O /dev/null http://localhost/ || exit 1
+CMD ["python", "app.py"]

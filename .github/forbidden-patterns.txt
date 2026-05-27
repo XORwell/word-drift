@@ -1,0 +1,12 @@
+git\.xorwell\.de
+codeberg\.org
+\bpsyresearch\b
+\bairesearch\b
+\bCannaData\b
+\bArcheFlow\b
+\bnewshub\b
+\bEvidentia\b
+\bKARO\b
+89\.167\.109\.237
+/home/(c|dev)/
+-----BEGIN [A-Z ]*PRIVATE KEY-----

@@ -1,0 +1,9 @@
+name: Content guard
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  guard:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan for forbidden content
+        run: GUARD_PATTERNS=.github/forbidden-patterns.txt bash .github/guard.sh . --all

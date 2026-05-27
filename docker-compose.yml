@@ -1,41 +1,27 @@
-# WORD-DRIFT -- full self-host stack: the static explorer + a queryable SPARQL
-# endpoint over the dataset.
-#
-#   docker compose up --build      # site at :8080, SPARQL at :7019
-#
-# The `site` service is the hardened nginx static site (always works). The
-# `sparql` service loads the RDF dump (site/downloads/word-drift.nt) into a
-# QLever index on first start, then serves SPARQL. The index is cached in a
-# named volume, so only the first run pays the build cost.
-services:
-  site:
-    build: .
-    image: word-drift-site
-    ports:
-      - "8080:80"
-    restart: unless-stopped
+version: "3.9"
 
-  sparql:
-    image: docker.io/adfreiburg/qlever:latest
-    # Build the index once (idempotent), then serve. Binary names follow the
-    # QLever image; if your image version differs, see docs/SELFHOST.md.
-    command: >
-      bash -lc '
-        set -e;
-        IDX=/index/word-drift;
-        if [ ! -f "$${IDX}.index.metadata" ]; then
-          echo "Building QLever index from /data/word-drift.nt ...";
-          IndexBuilderMain -i "$${IDX}" -f /data/word-drift.nt -F nt;
-        fi;
-        echo "Serving SPARQL on :7019";
-        ServerMain -i "$${IDX}" -p 7019 -j 4
-      '
-    volumes:
-      - ./site/downloads/word-drift.nt:/data/word-drift.nt:ro
-      - qlever-index:/index
+services:
+  word-drift:
+    build: .
     ports:
-      - "7019:7019"
+      - "8080:8080"
+    volumes:
+      - wd_data:/data
+      - ./ontology:/app/ontology:ro
+      - ./examples:/app/examples:ro
+      - ./data:/app/data:ro
+      - ./site:/app/site:ro
+    environment:
+      PORT: "8080"
+      WORD_DRIFT_STORE: "/data/wd-store"
+      TRAILS_ENV: "production"
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s  # data loading takes ~10-30s
 
 volumes:
-  qlever-index:
+  wd_data:

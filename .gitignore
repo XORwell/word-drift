@@ -1,14 +1,18 @@
 __pycache__/
 *.pyc
-.pytest_cache/
+*.pyo
 .venv/
 venv/
-etl/.cache/
-*.log
-.DS_Store
+*.egg-info/
+.pytest_cache/
+wd-store/
+*.db
+.env
 
-# IAA local-LLM annotation cache (resumable, not source)
-eval/iaa/.cache/
+# Generated graph JSON — served live by the app, not stored in git
+site/graph.json
+site/graph-core.json
+site/graph-detail.json
 
-# Wikidata lookup cache for scripts/resolve-trigger-qids.py (resumable, not source)
-.cache/
+# Large binary downloads directory
+site/downloads/

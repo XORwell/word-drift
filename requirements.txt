@@ -1,2 +1,19 @@
+# Trails framework (install from local checkout for development)
+# trails[http,llm] @ git+https://github.com/XORwell/framework.trails.git
+# For development: pip install -e ../framework.trails/python
+
+# Core Trails
+pyoxigraph>=0.3
 rdflib>=7.0
+
+# HTTP serving
+fastapi>=0.110
+uvicorn[standard]>=0.29
+starlette>=0.36
+
+# Data quality
 pyshacl>=0.25
+
+# (Optional) LLM features
+# anthropic>=0.30
+# openai>=1.0

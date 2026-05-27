@@ -1,0 +1,21 @@
+[project]
+name = "word-drift"
+version = "0.1.0"
+env = "development"
+
+[graph]
+backend = "oxigraph"
+path = "./wd-store"
+
+[llm]
+provider = "mock"
+
+[http]
+port = 8080
+
+[http.endpoints]
+landing = true
+invoke = true
+health = true
+caps = true
+debug = true

@@ -1,162 +1,158 @@
-# WORD-DRIFT
+# word-drift-on-trails
 
-**An open knowledge graph for lexical semantic change -- words over time, typed drift events, and the historical events that trigger them.**
+<p align="center">
+  <img src="docs/logo.png" alt="WORD-DRIFT Logo" width="300"/>
+</p>
 
-Repository: `word-drift` (Arbeitsname; deutscher Fachbegriff: *Bedeutungswandel*, englisch *Lexical Semantic Change, LSC*).
-
----
-
-## Was ist WORD-DRIFT
-
-Wörter verschieben ihre Bedeutung. *Querdenker* war jahrzehntelang ein Lob (kreativer Vordenker) und wurde 2020 zum Schimpfwort. *funk* hieß im Englischen "übler Geruch" und wurde über die Funk-Musik zu "stilvoll, cool" (*funky*). WORD-DRIFT modelliert solche Verschiebungen als **Wissensgraph**: pro Wort die einzelnen Bedeutungen mit Zeit und Konnotation, dazwischen **typisierte Drift-Ereignisse** (Pejoration, Amelioration, Bedeutungserweiterung/-verengung, Umkehr, Reappropriation ...), und -- das ist der neue Beitrag -- die **realweltlichen Ereignisse, die das Reframing ausgelöst haben**.
-
-Die NLP-Forschung zu Bedeutungswandel ist fast vollständig auf *Detektion* fokussiert ("hat sich Wort X zwischen Periode A und B verschoben?"). Die **Ursache** wird kaum modelliert. Genau dort setzt WORD-DRIFT an: ein kausaler Event-Layer über bestehenden Drift-Daten, als überprüfbare Behauptung mit Quelle und Konfidenz.
-
-Sechs Ontologie-Module (`ontology/`):
-
-1. **Lexical** (`01`) -- Word / Sense, an OntoLex-Lemon angelehnt
-2. **Sense over time** (`02`) -- Attestierungs-Intervalle, Konnotation (positiv/neutral/negativ), Frequenz-Beobachtungen für die Timeline
-3. **Drift event** (`03`) -- reifiziertes Wandel-Ereignis + SKOS-Typtaxonomie (Achsen: Valenz, Skopus, Mechanismus, soziales Muster) + `drift:gradedChange` (Detektions-Magnitude)
-4. **Causation** (`04`) -- `drift:TriggerEvent` (datierbar, Wikidata-verlinkbar)
-5. **Provenance** (`05`) -- PROV-O-basiert, Quellenpflicht (per SHACL erzwungen)
-6. **Causal evidence** (`06`) -- `drift:CausalHypothesis`: Kausalität als belegte, gradierte Hypothese mit Evidenz-Leiter, nicht als Faktum (ADR 0004)
-
-Vollständige Architektur in [`concept.md`](concept.md). Datensatz-Katalog in [`docs/datasets.md`](docs/datasets.md). Paper-Plan in [`docs/paper-plan.md`](docs/paper-plan.md).
+**The [Trails](https://github.com/XORwell/framework.trails) port of [WORD-DRIFT](https://github.com/XORwell/word-drift) — a live knowledge-graph API for lexical semantic change, served from an Oxigraph triple store with SPARQL, provenance, and SHACL validation built in.**
 
 ---
 
-## What's in the repo
+## What is word-drift-on-trails?
+
+WORD-DRIFT is an open knowledge graph modelling how words shift meaning over time — *Querdenker* from praise to slur, *funk* from bad smell to musical style. It documents typed drift events (pejoration, amelioration, broadening, narrowing, reappropriation …) and, uniquely, the **real-world trigger events** that caused each shift. These shifts are not mere lexicographic curiosities: if the words available in a language actively shape what speakers can think and perceive, then each drift event is a datable moment at which the shared cognitive scaffold of a community changes. The Tower of Babel is the mythological limit case — a shared vocabulary fractures and coordination collapses. Drift events are the small, localised Babel-moments that accumulate in living languages.
+
+The original repo pre-generates static JSON files for the browser explorer and validates the RDF offline. **word-drift-on-trails** replaces that pipeline with a single [Trails](https://github.com/XORwell/framework.trails) application that:
+
+- Loads all TTL data into a **persistent Oxigraph** store on startup
+- Exposes the same graph JSON the frontend expects via **live SPARQL queries**
+- Adds a full `/api/sparql` SPARQL endpoint, health check, and provenance tracking
+- Applies SHACL validation on every write — not just as a one-off CLI script
+
+The static site (`site/`) is served unchanged. The three JSON endpoints (`/graph.json`, `/graph-core.json`, `/graph-detail.json`) are overridden by live routes registered before the static file mount, so the bundled JSON files act only as an offline fallback.
+
+---
+
+## Key differences vs the original
+
+| Feature | word-drift (original) | word-drift-on-trails |
+|---------|----------------------|---------------------|
+| Storage | rdflib in-memory | Oxigraph persistent |
+| Server | `python -m http.server` | Trails HTTP adapter (FastAPI) |
+| Data format | Pre-generated JSON files | Live SPARQL queries |
+| Authentication | None | Bearer token (configurable) |
+| Rate limiting | None | Built-in (60 req/min) |
+| Health check | None | `/api/health` endpoint |
+| SPARQL endpoint | None | `/api/sparql` live endpoint |
+| Provenance | None | Trails provenance tracking |
+| SHACL validation | One-off CLI script | Live on write |
+| Versioning | Git-only | KG time-travel |
+| Lines of code | ~800 (export.py + serve.sh) | ~400 (Trails handles the rest) |
+
+---
+
+## Architecture
 
 ```
-ontology/          5 Turtle modules -- the drift: vocabulary
-shapes/            2 SHACL shape files (enforce source-citation invariant)
-queries/           5 SPARQL queries (timeline, drift-by-type, triggers, cross-lingual, causal-evidence)
-queries/federated/ 4 federated queries (Wikidata SERVICE enrichment + cross-word)
-examples/          34 curated hand-modelled words (21 DE + 13 EN, all drift types)
-etl/               4 ETL adapters (DWUG, SemEval, DWDS, Wikidata) + RML mappings
-data/              ETL output Turtle (452 triples, generated from fixtures)
-tests/             57-test pytest suite (parse, SHACL, queries, taxonomy, provenance)
-viz/               Static D3 visualization -- timeline + force graph, no build step
-paper/             LaTeX paper scaffold (LLNCS class)
-scripts/           qlever load script + federation smoke doc
-docs/              Roadmap, datasets, paper plan, ADRs
-adr/               Architecture Decision Records (0001-0003)
-validate.py        End-to-end gate: SHACL + all SPARQL queries; exit 0 = green
-Makefile           make validate / make test / make all
+app.py                  Trails application — routes + startup
+loader.py               Loads all TTL files into Oxigraph
+graph_builder.py        Runs SPARQL → builds graph JSON for the frontend
+site/                   Static frontend (D3 explorer, unchanged from original)
+  index.html            Landing page / timeline view
+  explore.html          Force-directed graph explorer
+  about.html            Project info
+  graph.json            Bundled fallback (overridden by live /graph.json route)
+  graph-core.json       Bundled fallback (overridden by live /graph-core.json route)
+  graph-detail.json     Bundled fallback (overridden by live /graph-detail.json route)
+ontology/               Six Turtle modules (drift: vocabulary)
+shapes/                 SHACL shape files
+examples/               ~200 curated words with drift events and causal hypotheses
+data/                   ETL output (real, wugs, gfds, alignment, freq, semeval …)
 ```
 
 ---
 
-## Run it yourself (self-host)
+## Quick start
+
+### Development (local)
 
 ```bash
-git clone https://github.com/XORwell/word-drift && cd word-drift
-docker compose up --build      # explorer at :8080, SPARQL endpoint at :7019
+git clone https://github.com/XORwell/word-drift
+cd word-drift
+
+# Install Trails + deps
+make install
+
+# Run the dev server (auto-reloads, loads data on startup)
+make dev
+# → http://localhost:8080
 ```
 
-The static explorer ships prebuilt and self-contained (vendored D3, no CDN); the
-`sparql` service indexes the RDF dump into QLever on first start. Site-only:
-`docker compose up site` (or any static server over `site/`). Full guide,
-HTTPS/reverse-proxy, and GDPR notes: [`docs/SELFHOST.md`](docs/SELFHOST.md).
-
-## Quickstart (validate / contribute)
+### Docker
 
 ```bash
-pip install rdflib pyshacl
-
-# Loads ontology/ + shapes/ + examples/, checks SHACL, runs all
-# SPARQL queries from queries/ and prints pass/fail. Exit 0 = green.
-python validate.py
+docker compose up --build
+# → http://localhost:8080
+# The persistent Oxigraph store lives in the wd_data Docker volume.
 ```
 
-Expected output (v0.3 seed):
+The first startup loads all TTL files into Oxigraph — expect 10–30 seconds.
+Subsequent starts reuse the persisted store (fast).
 
-```
-ontology:  6 modules
-shapes:    3 SHACL shape files
-examples:  34 words (21 DE, 13 EN), 74 senses, 40 drift events,
-           26 causal hypotheses, 26 trigger events
-SHACL:     all examples conform
-SPARQL:    triggers        -> causal hypotheses joined to their triggers
-           causal-evidence -> every hypothesis with its evidence type + confidence
-           timeline / drift-by-type / cross-lingual
-All checks passed.
+---
+
+## API endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/` | Static frontend (index.html) |
+| GET | `/graph.json` | Full graph for D3 explorer (live SPARQL) |
+| GET | `/graph-core.json` | Core nodes only — fast first paint |
+| GET | `/graph-detail.json` | Full detail including causal hypotheses |
+| GET | `/api/health` | Health check — returns `{"status":"ok","triples":N}` |
+| GET | `/api/sparql?query=…` | Live SPARQL 1.1 SELECT/CONSTRUCT endpoint |
+| POST | `/api/sparql` | SPARQL endpoint (application/sparql-query body) |
+| GET | `/api/words` | List all words in the KG |
+| GET | `/api/word/{lemma}` | Full detail for one word |
+
+### Example SPARQL query
+
+```bash
+curl 'http://localhost:8080/api/sparql?query=SELECT+%3Fw+WHERE+%7B+%3Fw+a+drift%3AWord+%7D+LIMIT+10'
 ```
 
 ---
 
-## Tests
+## Ontology modules
 
-```bash
-make test       # runs the full pytest suite
-# or: pytest
-```
+The `drift:` vocabulary (in `ontology/`) covers:
 
-57 tests covering: Turtle parse, SHACL conformance, query shape, SKOS taxonomy
-integrity, provenance coverage, causal-hypothesis well-formedness, no-orphan-senses.
-
----
-
-## Visualization
-
-```bash
-# Export the graph to JSON, then open in a browser:
-python viz/export.py          # writes viz/data/graph.json
-open viz/index.html           # or python -m http.server inside viz/
-```
-
-The static D3 tool in `viz/` needs no build step. It renders a per-word sense
-timeline (connotation colour-coded) and a sense/trigger force-directed graph
-(29 words, 21 triggers in the exported dataset).
+1. **Lexical** — Word / Sense, aligned with OntoLex-Lemon
+2. **Sense over time** — attestation intervals, connotation, frequency observations
+3. **Drift event** — reified change event + SKOS type taxonomy (valence, scope, mechanism, social pattern)
+4. **Causation** — `drift:TriggerEvent` (dateable, Wikidata-linkable)
+5. **Provenance** — PROV-O based, source citation enforced by SHACL
+6. **Causal evidence** — `drift:CausalHypothesis`: causality as a graded, evidenced hypothesis (not asserted fact)
 
 ---
 
-## Stack
+## Environment variables
 
-RDF/OWL + SHACL + SPARQL. Query layer via **qlever** (SPARQL, federation with
-Wikidata via `owl:sameAs`). Ingest via **Trails RML** (`etl/rml/`). Two
-parallel deliverables: a public browse/viz tool and a research paper (see
-`docs/paper-plan.md`).
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PORT` | `8080` | HTTP listen port |
+| `WORD_DRIFT_STORE` | `./wd-store` | Oxigraph persistent store path (`:memory:` for ephemeral) |
+| `TRAILS_ENV` | `development` | `development` or `production` |
+| `TRAILS_TOKEN` | _(unset)_ | Bearer token for write endpoints (optional) |
+
+---
+
+## Paper context
+
+word-drift-on-trails is developed alongside a research paper demonstrating how the **Trails** framework reduces the infrastructure burden for knowledge-graph applications. The comparison table above is the central empirical claim: the same functionality (persistent store, live SPARQL, SHACL, provenance, HTTP API) requires roughly half the code when built on Trails instead of bespoke glue scripts.
+
+Original WORD-DRIFT paper and data: <https://github.com/XORwell/word-drift>
+
+Trails framework: <https://github.com/XORwell/framework.trails>
 
 ---
 
 ## License
 
-WORD-DRIFT uses a dual license:
-
-- **Code** (Python, JavaScript, HTML/CSS, shell, Makefile): MIT License -- see `LICENSE`
-- **Ontology, SHACL shapes, SPARQL queries, and RDF data**: CC-BY-4.0 -- see `LICENSE-DATA`
-
-Attribution for the data/ontology:
-`WORD-DRIFT, https://github.com/XORwell/word-drift, CC-BY-4.0`
-
-Upstream source datasets (DWUG, SemEval, DWDS, Wikidata) retain their own
-licenses. See `docs/datasets.md`.
-
-For citation metadata see `CITATION.cff`.
+Code: MIT. Data: see `LICENSE-DATA` (Creative Commons BY 4.0 for curated examples; corpus-derived data may carry additional restrictions — see `data/` subdirectory READMEs).
 
 ---
 
-## Sustainability & maintenance
+## Acknowledgements
 
-WORD-DRIFT is designed to outlive any single sprint:
-
-- **Persistent identifiers.** Resources live under the `w3id.org/word-drift/`
-  namespace (redirect config in `w3id/`); a Zenodo DOI is prepared (`.zenodo.json`)
-  and minted per frozen release.
-- **Quality gates, not vigilance.** Correctness is enforced mechanically:
-  `validate.py` (SHACL + SPARQL), `pytest` (one test per example), and
-  `scripts/lint-data.py` (gYear width, em-dashes, hypothesis-source, trigger-date,
-  duplicate slugs). `make release` runs all of them. New data cannot regress the
-  invariants without failing the gate.
-- **Single source of truth.** All counts come from `scripts/stats.py`
-  (`data/reports/stats.json` + `paper/stats-auto.tex`); nothing is hand-typed.
-- **Low-cost upkeep.** The graph is plain Turtle in git; the site is static; the
-  ETL adapters are idempotent and run offline against committed fixtures. There is
-  no always-on service to maintain (a SPARQL endpoint is optional, not required).
-- **Contributions.** New words are single self-contained `examples/*.ttl` files
-  following `examples/pfaffe.ttl`; `CONTRIBUTING.md` documents the workflow and the
-  ADR-0004 causal-claim discipline (no asserted causes; every hypothesis typed,
-  graded, and sourced).
-- **Releases.** Versioned, signed git tags; FAIR metadata
-  (`dataset-metadata/void.ttl`, `dcat.ttl`, `croissant.jsonld`) updated per release.
+The core idea for WORD-DRIFT — modelling not just *that* words shift but *why*, with causal triggers as first-class entities — was inspired by Lera Boroditsky's TED talk [*How Language Shapes the Way We Think*](https://www.youtube.com/watch?v=RKK7wGAYP6k), which vividly illustrates how deeply language and thought co-evolve over time and across cultures. The talk makes a second point equally central to this project: the words a language makes *available* actively shape what speakers can think and perceive. Tracking when a word enters or leaves a lexicon, gains or loses a sense, or shifts connotation is therefore not just lexicography — it is a record of changing cognitive possibility.
