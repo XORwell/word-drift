@@ -41,6 +41,15 @@ def _bootstrap():
         return
     t0 = time.monotonic()
 
+    # SPARQL trace (env-gated by WD_SPARQL_TRACE). Installed before any
+    # query fires so the very first query lands in the log too. No-op if
+    # the env var is unset.
+    try:
+        from sparql_trace import install as _install_sparql_trace
+        _install_sparql_trace()
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("sparql_trace install skipped: %s", exc)
+
     from loader import load_all_ttl
     from graph_builder import build_graph_document, split_document
     from trails.context import Context
@@ -415,6 +424,67 @@ def create_app():
         # Word-drift specific API endpoints
         # ------------------------------------------------------------------
 
+        # 3.0 version metadata — single source of truth for the site footers
+        # and citation blocks. Read once at startup; ontology version comes from
+        # the owl:versionInfo declaration in ontology/01-lexical.ttl; release
+        # tag + commit come from git when available.
+        import subprocess
+        _version_cache: dict | None = None
+
+        def _read_version_meta() -> dict:
+            nonlocal _version_cache
+            if _version_cache is not None:
+                return _version_cache
+            ontology_version = ""
+            try:
+                rows = _kernel_store().query(
+                    "SELECT ?v WHERE { "
+                    "<https://w3id.org/word-drift/ontology#> "
+                    "<http://www.w3.org/2002/07/owl#versionInfo> ?v }"
+                )
+                for r in rows:
+                    v = r.get("v") if isinstance(r, dict) else None
+                    if v:
+                        ontology_version = str(v)
+                        break
+            except Exception:
+                pass
+            release_tag = ""
+            git_commit = ""
+            repo_root = Path(__file__).parent
+            try:
+                release_tag = subprocess.check_output(
+                    ["git", "describe", "--tags", "--abbrev=0", "--always"],
+                    cwd=repo_root, text=True, stderr=subprocess.DEVNULL,
+                ).strip()
+            except Exception:
+                pass
+            try:
+                git_commit = subprocess.check_output(
+                    ["git", "rev-parse", "--short", "HEAD"],
+                    cwd=repo_root, text=True, stderr=subprocess.DEVNULL,
+                ).strip()
+            except Exception:
+                pass
+            _version_cache = {
+                "ontology": ontology_version,
+                "release": release_tag,
+                "commit": git_commit,
+                "schemaLabel": (
+                    "Schema v" + ontology_version if ontology_version else "Schema"
+                ),
+                "releaseLabel": release_tag or "unreleased",
+                "citationVersion": release_tag or (
+                    "ontology " + ontology_version if ontology_version else "untagged"
+                ),
+            }
+            return _version_cache
+
+        @http_app.get("/api/version", response_model=None)
+        async def api_version():
+            """Single source of truth for the site's version strings."""
+            return JSONResponse(_read_version_meta())
+
         @http_app.get("/api/health", response_model=None)
         async def api_health():
             """Word-drift specific health check."""
@@ -434,15 +504,59 @@ def create_app():
                 "load_time_s": round(_load_time_s, 2),
             })
 
+        # SPARQL pass-through: read-only allow-list + row cap. The endpoint
+        # is unauthenticated by design (it is a developer convenience), so
+        # any mutation surface or unbounded read must be blocked here.
+        # See security findings W2 in docs/plans/word-drift-3.0/security-fixes-w1-w4.md.
+        _SPARQL_READ_RE = __import__("re").compile(
+            r"^\s*(?:#[^\n]*\n|PREFIX\s+\S+\s*:\s*<[^>]+>\s*|BASE\s+<[^>]+>\s*)*\s*"
+            r"(SELECT|ASK|DESCRIBE|CONSTRUCT)\b",
+            __import__("re").IGNORECASE,
+        )
+        _SPARQL_DENY_RE = __import__("re").compile(
+            r"\b(INSERT|DELETE|LOAD|CLEAR|DROP|CREATE|COPY|MOVE|ADD)\s+"
+            r"(?:DATA|WHERE|GRAPH|SILENT|INTO|FROM)\b",
+            __import__("re").IGNORECASE,
+        )
+        _SPARQL_ROW_CAP = int(os.environ.get("WD_SPARQL_MAX_ROWS", "5000"))
+
         @http_app.get("/api/sparql", response_model=None)
         async def api_sparql(query: str):
-            """Execute an ad-hoc SPARQL SELECT query."""
+            """Execute a read-only SPARQL query (SELECT / ASK / DESCRIBE /
+            CONSTRUCT). Mutation verbs are rejected with HTTP 403. Results
+            are capped at ``WD_SPARQL_MAX_ROWS`` (default 5000). The body
+            limit is enforced by FastAPI; consider adding a reverse proxy
+            limit on the query length in deployments."""
+            q = query or ""
+            if len(q) > 8192:
+                return JSONResponse(
+                    {"error": "query too long (max 8192 chars)"}, status_code=413
+                )
+            if not _SPARQL_READ_RE.match(q):
+                return JSONResponse(
+                    {"error": "only SELECT/ASK/DESCRIBE/CONSTRUCT queries are allowed"},
+                    status_code=403,
+                )
+            if _SPARQL_DENY_RE.search(q):
+                return JSONResponse(
+                    {"error": "mutation keywords are not permitted on this endpoint"},
+                    status_code=403,
+                )
             _ctx = Context(trace_id="sparql", principal="system", store=_kernel_store())
             try:
-                rows = _ctx.kg.query(query)
+                rows = _ctx.kg.query(q)
             except Exception as exc:
-                return JSONResponse({"error": str(exc)}, status_code=400)
-            return JSONResponse(rows)
+                return JSONResponse({"error": str(exc)[:400]}, status_code=400)
+            # Cap the row count even on legitimate but enormous SELECTs.
+            # Backward-compat: still return a bare list; signal truncation
+            # via the X-Total-Rows / X-Truncated headers.
+            headers: dict[str, str] = {}
+            if isinstance(rows, list):
+                headers["X-Total-Rows"] = str(len(rows))
+                if len(rows) > _SPARQL_ROW_CAP:
+                    rows = rows[:_SPARQL_ROW_CAP]
+                    headers["X-Truncated"] = "true"
+            return JSONResponse(rows, headers=headers)
 
         # ------------------------------------------------------------------
         # Competency question REST endpoints

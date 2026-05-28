@@ -49,27 +49,31 @@
     return _docPromise;
   }
 
-  // ---- Current word: prefer URL param, then localStorage, then first word --
+  // ---- Resolve current word from URL / localStorage. NEVER silently
+  // ---- substitute another word for a missing one — surface the gap.
 
-  function currentWordIri(doc) {
+  function resolveCurrentWord(doc) {
     var qs = new URLSearchParams(window.location.search);
-    var fromUrl = qs.get("word");
-    if (fromUrl) {
-      // Treat ?word=Querdenker or ?word=https://w3id.org/word-drift/... both.
+    var requested = qs.get("word") || "";
+    if (requested) {
       for (var iri in doc.words) {
-        if (iri === fromUrl || doc.words[iri].writtenForm === fromUrl) {
-          return iri;
+        if (iri === requested || doc.words[iri].writtenForm === requested) {
+          return { iri: iri, requested: requested, status: "ok" };
         }
       }
+      // Asked for a word the 3.0 doc doesn't carry. Do NOT pick another.
+      return { iri: null, requested: requested, status: "not_in_3_0" };
     }
-    // Try localStorage (same key the main app uses).
     try {
       var ls = window.localStorage.getItem("wd:explore:word");
-      if (ls && doc.words[ls]) return ls;
+      if (ls && doc.words[ls]) return { iri: ls, requested: "", status: "ok" };
     } catch (_) { /* ignore */ }
-    // Fall back to the first word with any attribution (typically Querdenker).
+    // No word in URL or storage — landing page. Pick the first attested
+    // word for the picker default and mark the choice explicitly.
     var keys = Object.keys(doc.words);
-    return keys.length ? keys[0] : null;
+    return keys.length
+      ? { iri: keys[0], requested: "", status: "default_pick" }
+      : { iri: null, requested: "", status: "empty_doc" };
   }
 
   // ---- Visual palette: archival, calm ---------------------------------------
@@ -97,12 +101,19 @@
   function el(tag, attrs, children) {
     var n = document.createElement(tag);
     if (attrs) Object.keys(attrs).forEach(function (k) {
+      // SECURITY: we deliberately do NOT support an `html:` key. All text
+      // content must go through textContent (`text:`); all attributes
+      // through setAttribute. Adding an innerHTML branch here would create
+      // a dormant XSS surface (W3 from the 2026-05-28 security review).
       if (k === "style" && typeof attrs[k] === "object") {
         Object.assign(n.style, attrs[k]);
-      } else if (k === "html") {
-        n.innerHTML = attrs[k];
       } else if (k === "text") {
         n.textContent = attrs[k];
+      } else if (k === "href") {
+        // Reject javascript:/data: URLs even if the data is curator-controlled.
+        var v = String(attrs[k] || "");
+        if (/^\s*(javascript|data|vbscript):/i.test(v)) v = "#";
+        n.setAttribute("href", v);
       } else {
         n.setAttribute(k, attrs[k]);
       }
@@ -371,7 +382,7 @@
 
   // ---- Main render ----------------------------------------------------------
 
-  function render(panelEl, doc, currentIri) {
+  function render(panelEl, doc, resolved) {
     panelEl.innerHTML = "";
     if (!doc || !doc.words || !Object.keys(doc.words).length) {
       panelEl.appendChild(el("p", {
@@ -382,11 +393,56 @@
       return;
     }
 
+    var attestedNames = Object.keys(doc.words)
+      .map(function (k) { return doc.words[k].writtenForm; })
+      .sort();
+
+    // Honest empty state when the requested word has no 3.0 data. Do not
+    // silently render another word as if it were the requested one.
+    if (resolved.status === "not_in_3_0") {
+      panelEl.appendChild(el("div", { class: "wd-dist-head" }, [
+        el("div", { class: "wd-dist-head-title" }, [
+          el("strong", { text: "Meaning distribution" }),
+          el("span", {
+            class: "wd-dist-head-sub",
+            text: " — multi-group view (Word Drift 3.0).",
+          }),
+        ]),
+      ]));
+      var notice = el("div", { class: "wd-dist-empty-card" });
+      notice.appendChild(el("p", {}, [
+        el("strong", { text: '"' + resolved.requested + '"' }),
+        document.createTextNode(" is in the 2.x knowledge graph but has no 3.0 "
+          + "MeaningAttribution records yet, so there is no group / region / "
+          + "platform / framing distribution to show here."),
+      ]));
+      notice.appendChild(el("p", {}, [
+        document.createTextNode("Other tabs (Word Detail, Triggers, …) still "
+          + "render its 2.x data normally. The Distribution view is wired to "),
+        el("code", { text: "drift:MeaningAttribution" }),
+        document.createTextNode(" only."),
+      ]));
+      notice.appendChild(el("p", {}, [
+        document.createTextNode("Words that DO carry 3.0 data: "),
+      ].concat(attestedNames.map(function (name, i) {
+        var a = el("a", {
+          href: window.location.pathname + "?word=" + encodeURIComponent(name),
+          class: "wd-dist-empty-link",
+          text: name,
+        });
+        return i === 0 ? a : el("span", {}, [
+          document.createTextNode(", "), a,
+        ]);
+      }))));
+      panelEl.appendChild(notice);
+      return;
+    }
+
+    var currentIri = resolved.iri;
     var word = doc.words[currentIri];
     if (!word) {
-      // Fallback to first available
-      currentIri = Object.keys(doc.words)[0];
-      word = doc.words[currentIri];
+      panelEl.appendChild(el("p", { class: "empty-msg", text: "No data." }));
+      return;
     }
 
     // Header strip: picker + small intro line
@@ -400,12 +456,19 @@
     ]));
     var picker = buildWordPicker(doc, currentIri, function (iri) {
       var qs = new URLSearchParams(window.location.search);
-      qs.set("word", word ? doc.words[iri].writtenForm : iri);
+      qs.set("word", doc.words[iri].writtenForm);
       var newUrl = window.location.pathname + "?" + qs.toString();
       window.history.replaceState({}, "", newUrl);
-      render(panelEl, doc, iri);
+      render(panelEl, doc, { iri: iri, requested: doc.words[iri].writtenForm, status: "ok" });
     });
     head.appendChild(picker);
+    // Subtle disclosure when we landed on a default pick (no ?word param).
+    if (resolved.status === "default_pick") {
+      head.appendChild(el("div", {
+        class: "wd-dist-head-note",
+        text: "No word requested — showing " + word.writtenForm + " (first attested).",
+      }));
+    }
     panelEl.appendChild(head);
 
     // Layout: two-column. Left = summary + sparklines. Right = small multiples.
@@ -461,11 +524,12 @@
     // cemetery candidates. Designed as a finding-aid, not an obituary.
     if ((doc.cemetery || []).length > 0) {
       panelEl.appendChild(renderCemeteryPanel(doc.cemetery, function (iri) {
+        var target = doc.words[iri];
         var qs = new URLSearchParams(window.location.search);
-        qs.set("word", iri);
+        qs.set("word", target ? target.writtenForm : iri);
         var newUrl = window.location.pathname + "?" + qs.toString();
         window.history.replaceState({}, "", newUrl);
-        render(panelEl, doc, iri);
+        render(panelEl, doc, { iri: iri, requested: target ? target.writtenForm : iri, status: "ok" });
       }));
     }
   }
@@ -1054,7 +1118,7 @@
             + 'This endpoint is served only by the live Trails app, not the static fallback.</p>';
           return;
         }
-        render(panelEl, doc, currentWordIri(doc));
+        render(panelEl, doc, resolveCurrentWord(doc));
       });
     },
   });

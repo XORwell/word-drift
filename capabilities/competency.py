@@ -76,12 +76,15 @@ def cq02_hypotheses_for_word(
     -------
     list of dicts with keys: word, trigger, evidence, confidence
     """
-    sparql = f"""
+    # SPARQL parameter binding: $word_param is typed-literal-replaced by
+    # Trails' _bind_params (see trails.sparql), preventing injection via
+    # the user-supplied word value. Do NOT splice ?word into the f-string.
+    sparql = """
 PREFIX drift: <https://w3id.org/word-drift/ontology#>
 PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
 PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?word ?trigger ?evidence ?confidence WHERE {{
+SELECT ?word ?trigger ?evidence ?confidence WHERE {
   ?h a drift:CausalHypothesis ;
      drift:aboutDrift ?e ;
      drift:proposedTrigger ?tr ;
@@ -89,15 +92,15 @@ SELECT ?word ?trigger ?evidence ?confidence WHERE {{
      drift:confidence ?confidence .
   ?e drift:affectsWord ?w .
   ?w drift:writtenForm ?word .
-  FILTER(STR(?word) = "{word}")
+  FILTER(STR(?word) = STR($word_param))
   ?tr rdfs:label ?trigger .
   FILTER(lang(?trigger) = "en")
   ?ev skos:prefLabel ?evidence .
   FILTER(lang(?evidence) = "en")
-}}
+}
 ORDER BY DESC(?confidence) ?evidence
 """
-    return kg.query(sparql)
+    return kg.query(sparql, word_param=word)
 
 
 # ---------------------------------------------------------------------------
@@ -514,6 +517,8 @@ def cq13_groups_attributing_word(
     """
     # gYear is a typed literal; compare on the lexical form so the query is
     # agnostic to xsd:gYear vs xsd:integer encoding in the source data.
+    # int(year) cast guards the year branch; word goes through Trails'
+    # $word_param binding (typed literal) to prevent SPARQL injection.
     year_filter = f'FILTER(STR(?atYear) = "{int(year)}")' if year is not None else ""
     sparql = f"""
 PREFIX drift: <https://w3id.org/word-drift/ontology#>
@@ -528,11 +533,13 @@ WHERE {{
       drift:attributesSense ?senseIri ;
       drift:byGroup ?groupIri .
   ?wordIri drift:writtenForm ?word .
-  FILTER(STR(?word) = "{word}")
+  FILTER(STR(?word) = STR($word_param))
   ?groupIri rdfs:label ?groupLabel .
+  FILTER(LANG(?groupLabel) = "en" || LANG(?groupLabel) = "")
   OPTIONAL {{
     ?groupIri drift:groupKind ?gk .
     ?gk <http://www.w3.org/2004/02/skos/core#prefLabel> ?groupKindLabel .
+    FILTER(LANG(?groupKindLabel) = "en" || LANG(?groupKindLabel) = "")
   }}
   OPTIONAL {{
     ?senseIri drift:gloss ?senseGloss .
@@ -545,7 +552,7 @@ WHERE {{
 GROUP BY ?word ?groupLabel ?groupKindLabel ?senseGloss ?atYear
 ORDER BY ?atYear ?groupLabel
 """
-    return kg.query(sparql)
+    return kg.query(sparql, word_param=word)
 
 
 # ---------------------------------------------------------------------------
@@ -583,7 +590,7 @@ WHERE {{
       drift:attributesSense ?senseIri ;
       drift:inRegion ?regionIri .
   ?wordIri drift:writtenForm ?word .
-  FILTER(STR(?word) = "{word}")
+  FILTER(STR(?word) = STR($word_param))
   OPTIONAL {{
     ?regionIri rdfs:label ?regionLabel .
     FILTER(LANG(?regionLabel) = "en" || LANG(?regionLabel) = "")
@@ -599,7 +606,7 @@ WHERE {{
 GROUP BY ?word ?regionLabel ?senseGloss ?atYear
 ORDER BY ?atYear ?regionLabel
 """
-    return kg.query(sparql)
+    return kg.query(sparql, word_param=word)
 
 
 # ---------------------------------------------------------------------------

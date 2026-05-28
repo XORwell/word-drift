@@ -42,7 +42,12 @@ _MIN_EVIDENCE = 0.5  # Minimum total attribution weight before a metric is repor
 def _attribution_rows(
     kg: Any, *, word: str, year: int | None = None,
 ) -> list[dict[str, Any]]:
-    """Return rows: {senseIri, groupIri, platformIri, atYear, weight} for one word."""
+    """Return rows: {senseIri, groupIri, platformIri, atYear, weight} for one word.
+
+    The ``word`` argument is bound through Trails' ``$word_param`` typed-literal
+    substitution to prevent SPARQL injection; ``year`` is range-cast through
+    ``int()`` which would raise on a non-numeric attacker input.
+    """
     year_filter = f'FILTER(STR(?atYear) = "{int(year)}")' if year is not None else ""
     sparql = f"""
 PREFIX drift: <https://w3id.org/word-drift/ontology#>
@@ -54,14 +59,14 @@ WHERE {{
       drift:attributesSense ?senseIri ;
       drift:byGroup ?groupIri .
   ?wordIri drift:writtenForm ?word .
-  FILTER(STR(?word) = "{word}")
+  FILTER(STR(?word) = STR($word_param))
   OPTIONAL {{ ?ma drift:onPlatform ?platformIri . }}
   OPTIONAL {{ ?ma drift:atYear ?atYear . }}
   OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
   {year_filter}
 }}
 """
-    return kg.query(sparql)
+    return kg.query(sparql, word_param=word)
 
 
 def _weight(row: dict[str, Any]) -> float:
@@ -439,7 +444,7 @@ WHERE {{
   ?ma drift:attributesWord ?wordIri ;
       drift:byGroup ?groupIri .
   ?wordIri drift:writtenForm ?word .
-  FILTER(STR(?word) = "{word}")
+  FILTER(STR(?word) = STR($word_param))
   OPTIONAL {{
     ?groupIri rdfs:label ?groupLabel .
     FILTER(LANG(?groupLabel) = "en" || LANG(?groupLabel) = "")
@@ -448,7 +453,7 @@ WHERE {{
   OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
 }}
 """
-    rows = kg.query(sparql)
+    rows = kg.query(sparql, word_param=word)
 
     # Aggregate per (group, year): weighted-mean valence + mean loading.
     # Weight = attribution weight × framing loading (default 1 each).

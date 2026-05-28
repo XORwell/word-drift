@@ -20,8 +20,8 @@ drift: a owl:Ontology ;
     dct:creator "Christian Nennemann" ;
     dct:license <https://creativecommons.org/licenses/by/4.0/> ;
     dct:source <https://github.com/XORwell/word-drift> ;
-    owl:versionIRI <https://w3id.org/word-drift/ontology/0.3.0> ;
-    owl:versionInfo "0.3.0" .
+    owl:versionIRI <https://w3id.org/word-drift/ontology/0.4.0> ;
+    owl:versionInfo "0.4.0" .
 
 # External vocabularies are aligned by IRI only (ADR 0002); they are listed here
 # as informational rdfs:seeAlso rather than owl:imports to keep validate.py
