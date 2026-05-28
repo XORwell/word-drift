@@ -14,3 +14,20 @@ site/graph.json
 
 # Large binary downloads directory
 site/downloads/
+
+# Cache dirs (LLM responses, Wikidata, dataset downloads)
+.cache/
+**/.cache/
+
+# LaTeX build artifacts (paper sources live elsewhere; only build trash lands here)
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.abs
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xmpdata
