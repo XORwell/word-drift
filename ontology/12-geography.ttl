@@ -1,0 +1,78 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 12: Geography (STUB, M0)
+# Status: pre-ADR, classes only, no SHACL shapes yet.
+# Heavily deferred. The choice of external geographic vocabulary
+# (Wikidata QIDs vs GeoNames vs OpenStreetMap relations) is
+# open: see ADR 0007 (pending). For M0 we declare only the
+# minimum needed to let a MeaningAttribution carry an OPTIONAL
+# region reference, plus a label property for human display.
+# Sub-national granularity and polygon geometry are explicitly
+# out of scope until M5; for now a Region is an opaque IRI.
+# =============================================================
+
+drift:Region a owl:Class ;
+    rdfs:label "Region"@en , "Region"@de ;
+    rdfs:comment "A geographic area for which language attributions are recorded. Granularity is intentionally undeclared at M0: a Region MAY be a country, a state, a metropolitan area, or a dialect region. The choice of external vocabulary for identifying Regions is the subject of ADR 0007 (pending) — likely Wikidata QIDs as the canonical pivot, with optional owl:sameAs to GeoNames or OSM relations. Implementations MUST NOT bake in a fixed gazetteer before that decision."@en .
+
+drift:regionLabel a owl:DatatypeProperty ;
+    rdfs:label "region label"@en ;
+    rdfs:domain drift:Region ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "Language-tagged human-readable label for the Region (e.g. \"Bayern\"@de, \"Bavaria\"@en). Multi-valued for multilingual labelling. Do not use as a join key; join on the Region IRI."@en .
+
+drift:regionGranularity a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "region granularity"@en ;
+    rdfs:domain drift:Region ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Functional: coarse granularity tag from drift:RegionGranularityScheme. Lets queries filter to a granularity level without parsing labels."@en .
+
+# Optional, on drift:MeaningAttribution (module 08) and drift:DriftEvent.
+# A 2.x DriftEvent without drift:inRegion stays valid; SHACL must not require
+# region presence.
+drift:inRegion a owl:ObjectProperty ;
+    rdfs:label "in region"@en ;
+    rdfs:range drift:Region ;
+    rdfs:comment "Optional. Localises a MeaningAttribution or DriftEvent to a Region. Absence means region-agnostic or region-unknown; treat the two differently in metrics (NULL vs \"global\")."@en .
+
+# --- SKOS granularity scheme ----------------------------------------------
+
+drift:RegionGranularityScheme a skos:ConceptScheme ;
+    skos:prefLabel "Region granularity"@en ;
+    rdfs:comment "Coarse granularity tags; not a complete administrative typology. Choose the smallest tag that fits the evidence, not the most flattering."@en .
+
+drift:Country a skos:Concept ; skos:inScheme drift:RegionGranularityScheme ;
+    skos:prefLabel "country"@en .
+
+drift:SubnationalUnit a skos:Concept ; skos:inScheme drift:RegionGranularityScheme ;
+    skos:prefLabel "subnational unit"@en ;
+    skos:definition "First-order subdivision of a country (Bundesland, state, province, canton)."@en .
+
+drift:MetropolitanArea a skos:Concept ; skos:inScheme drift:RegionGranularityScheme ;
+    skos:prefLabel "metropolitan area"@en .
+
+drift:DialectRegion a skos:Concept ; skos:inScheme drift:RegionGranularityScheme ;
+    skos:prefLabel "dialect region"@en ;
+    skos:definition "A region defined by dialect boundaries rather than administrative ones. Boundaries are fuzzy; use only where dialect is the load-bearing axis."@en .
+
+drift:GlobalRegion a skos:Concept ; skos:inScheme drift:RegionGranularityScheme ;
+    skos:prefLabel "global"@en ;
+    skos:definition "Explicitly global scope. Distinct from absence-of-region (unknown). Use sparingly: most claims are not actually global."@en .
+
+# --- Open questions for ADR 0007 -------------------------------------------
+# 1. Identity vocabulary: Wikidata QIDs vs GeoNames IDs vs OSM relations as
+#    canonical. Strong default: Wikidata QIDs as the pivot, with optional
+#    owl:sameAs to others. Resolves at M5.
+# 2. Geometry: store geometry inline (geo:wktLiteral on Region) or only as
+#    references to external sources? Default for M5: references only.
+# 3. Polysemous places: a "Berlin" attribution may mean West Berlin pre-1990
+#    or unified Berlin post-1990. The temporal-validity hookup is left to M5.
+# 4. Diaspora populations: a German-speaking community in São Paulo is not
+#    "Germany". Membership in a Community (module 08) should be primary;
+#    region is an attribute of the attribution, not of the Group.

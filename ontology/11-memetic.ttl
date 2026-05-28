@@ -1,0 +1,87 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+
+# =============================================================
+# WORD-DRIFT — Module 11: Memetic mutation (STUB, M0)
+# Status: pre-ADR, classes only, no SHACL shapes yet.
+# Internet-era language transforms words at a rate and via
+# mechanisms that traditional historical linguistics did not
+# need to model: ironic appropriation, copypasta crystallisation,
+# in-group signalling collapse, algorithmic amplification. Each
+# is a kind of drift event, not a separate phenomenon. This
+# module declares them as drift:DriftEvent SUBCLASSES so all 2.x
+# machinery (CausalHypothesis, driftYear, sense-from/to) keeps
+# working unchanged.
+#
+# Design choice (see docs/plans/word-drift-3.0/adr/0006, drafted M1):
+#   Memetic patterns are not a parallel taxonomy. They are typed
+#   drift events that additionally carry memetic-specific
+#   properties (propagationPath, amplificationSignal, sourceArtefact).
+#   Distinct from the 2.x SKOS concept drift:Reappropriation in
+#   module 03: Reappropriation is in-group reclaim of a slur;
+#   drift:IronicAppropriation is out-group mocking re-use.
+# =============================================================
+
+drift:MemeticMutation a owl:Class ;
+    rdfs:subClassOf drift:DriftEvent ;
+    rdfs:label "memetic mutation"@en , "memetische Mutation"@de ;
+    rdfs:comment "A drift event whose mechanism is platform-mediated cultural transmission rather than gradual semantic shift in everyday speech. Subclass of drift:DriftEvent; inherits driftYear, sense-from/to, and CausalHypothesis hookups. Memetic-specific properties are declared below."@en .
+
+drift:IronicAppropriation a owl:Class ;
+    rdfs:subClassOf drift:MemeticMutation ;
+    rdfs:label "ironic appropriation"@en , "ironische Aneignung"@de ;
+    rdfs:comment "Out-group mocking re-use of a term, often hollowing its denotation while loading it with hostile or derisive framing. Distinct from drift:Reappropriation (2.x SKOS concept: in-group reclaim of a slur). Both can apply to the same word at different times by different groups; that is informative."@en .
+
+drift:CopypastaCrystallisation a owl:Class ;
+    rdfs:subClassOf drift:MemeticMutation ;
+    rdfs:label "copypasta crystallisation"@en ;
+    rdfs:comment "A word or phrase becomes locked into a fixed template-form whose reuse is the meaning. The lexical entry is increasingly indistinguishable from quoting the template; non-template usage feels off-register."@en .
+
+drift:SignallingCollapse a owl:Class ;
+    rdfs:subClassOf drift:MemeticMutation ;
+    rdfs:label "signalling collapse"@en ;
+    rdfs:comment "An in-group signal escapes its origin community, gets adopted by adjacent or hostile groups, and loses the discriminative function it once served. The denotation may stay; the social meaning collapses."@en .
+
+drift:AlgorithmicAmplification a owl:Class ;
+    rdfs:subClassOf drift:MemeticMutation ;
+    rdfs:label "algorithmic amplification"@en ;
+    rdfs:comment "A drift event whose tempo and group-reach are attributable to algorithmic distribution rather than organic propagation (recommender boosts, viral threads, search-driven discovery). Evidence is needed; not every fast drift is algorithmically amplified."@en .
+
+# --- Memetic-specific properties (on drift:MemeticMutation) ----------------
+
+drift:propagationPath a owl:ObjectProperty ;
+    rdfs:label "propagation path"@en ;
+    rdfs:domain drift:MemeticMutation ;
+    rdfs:range drift:Group ;
+    rdfs:comment "Ordered sequence of Groups through which the mutation propagated. Multi-valued; consumers reconstruct order from dct:date on each step's evidence. Optional: a curator may know origin and destination but not the path."@en .
+
+drift:originPlatform a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "origin platform"@en ;
+    rdfs:domain drift:MemeticMutation ;
+    rdfs:range drift:Platform ;
+    rdfs:comment "Functional: the Platform on which the mutation was first observed. Optional; missing where the question is unsettled."@en .
+
+drift:sourceArtefact a owl:DatatypeProperty ;
+    rdfs:label "source artefact"@en ;
+    rdfs:domain drift:MemeticMutation ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "URL or identifier of the originating artefact (post, video, image, comment) where this is attestable. Provenance link, not a viral-marketing claim; absence is fine and often correct."@en .
+
+drift:amplificationSignal a owl:DatatypeProperty ;
+    rdfs:label "amplification signal"@en ;
+    rdfs:domain drift:AlgorithmicAmplification ;
+    rdfs:range rdfs:Literal ;
+    rdfs:comment "Evidence for the algorithmic-amplification claim: ranking-feature anomaly, view-count spike vs prior baseline, platform-reported boost. Free text plus a hasEvidence link; we do not pretend to internal platform data we do not have."@en .
+
+# --- The Semantic Cemetery view (not a class) ------------------------------
+# A "semantic cemetery" word is NOT a new class. It is defined as a SPARQL
+# view: words whose historically-dominant Sense now carries an
+# attributionWeight share below a threshold (default 5%) in the most recent
+# time window. M8 implements the view and the rendered page; this comment
+# documents the intent so curators do not invent a drift:CemeteryWord class.
+# Romanticising meaning-loss as decline is an explicit anti-pattern; the
+# cemetery is an instrument for studying high-information-value drift, not
+# an elegy.

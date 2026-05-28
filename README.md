@@ -8,6 +8,19 @@
 
 ---
 
+> ### Word Drift 3.0 — work in progress on `feat/word-drift-3.0`
+>
+> This branch is the design and scaffolding for the next major version, which extends the model from
+> **Time → Drift** to **Time × Group × Geography × Platform × Emotion × Context → Meaning Distribution**.
+>
+> Read the plan tree first: [`docs/plans/word-drift-3.0/`](docs/plans/word-drift-3.0/README.md).
+>
+> The 2.x architecture (Trails, Oxigraph, SHACL, FastAPI, the static `site/`) is unchanged on this branch.
+> New ontology modules are additive (`08-group`, `09-platform-context`, `10-emotion`, `11-memetic`,
+> `12-geography`). `main` continues to ship as `v2.1.0`; nothing on this branch is released until M4.
+
+---
+
 ## What is word-drift-on-trails?
 
 WORD-DRIFT is an open knowledge graph modelling how words shift meaning over time — *Querdenker* from praise to slur, *funk* from bad smell to musical style. It documents typed drift events (pejoration, amelioration, broadening, narrowing, reappropriation …) and, uniquely, the **real-world trigger events** that caused each shift. These shifts are not mere lexicographic curiosities: if the words available in a language actively shape what speakers can think and perceive, then each drift event is a datable moment at which the shared cognitive scaffold of a community changes. The Tower of Babel is the mythological limit case — a shared vocabulary fractures and coordination collapses. Drift events are the small, localised Babel-moments that accumulate in living languages.

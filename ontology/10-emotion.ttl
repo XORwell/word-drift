@@ -1,0 +1,128 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 10: Emotional framing (STUB, M0)
+# Status: pre-ADR, classes only, no SHACL shapes yet.
+# Emotion is NEVER an asserted property of a sense. The 2.x
+# ontology has drift:connotation on Sense as a coarse signal
+# (positive / negative / neutral), and that stays. 3.0 adds
+# per-attribution EmotionalFraming: the framing under which a
+# specific Group deployed a specific Sense in context.
+#
+# Design choice (see docs/plans/word-drift-3.0/adr/0004):
+#   The same sense can be deployed neutrally or hostilely; the
+#   same word can flip emotional valence while its denotation
+#   stays put ("woke", "Querdenker", "Boomer"). Framing is a
+#   USAGE-LEVEL phenomenon; it belongs on MeaningAttribution,
+#   not on Sense.
+#
+# Representation: valence + arousal scalars (continuous, [-1,1])
+# AND a categorical framingType (ironic / hostile / admiring /
+# clinical / euphemistic / dysphemistic / neutral). Scalar lets
+# us track drift over time; categorical lets us explain it.
+# Both are EVIDENCED: each framing carries hasEvidence linking
+# to a corpus span and the annotator (human or model+version).
+# =============================================================
+
+drift:EmotionalFraming a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "emotional framing"@en , "emotionale Rahmung"@de ;
+    rdfs:comment "A reified, evidenced annotation of the affective loading under which a specific MeaningAttribution was made. NEVER attached directly to a Sense (ADR 0004). Multiple framings per attribution are possible when annotators disagree; the disagreement is itself data."@en .
+
+# --- Scalar dimensions -----------------------------------------------------
+
+drift:valence a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "valence"@en ;
+    rdfs:domain drift:EmotionalFraming ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Affective polarity in [-1, +1]. -1 = maximally negative (hostility, disgust), 0 = neutral, +1 = maximally positive (admiration, warmth). Functional: each framing records exactly one valence; disagreeing annotations are separate framings, not multi-valued."@en .
+
+drift:arousal a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "arousal"@en ;
+    rdfs:domain drift:EmotionalFraming ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Affective intensity in [0, 1]. 0 = neutral / calm, 1 = maximally activated. Independent of valence: rage and rapture both score high here."@en .
+
+drift:loading a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "loading"@en ;
+    rdfs:domain drift:EmotionalFraming ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Confidence-weighted magnitude in [0, 1]: how strongly the annotator commits to the valence judgement, separate from arousal. Low loading = framing is hedged or ambiguous; high loading = framing is unambiguous in context."@en .
+
+# --- Categorical framing type ----------------------------------------------
+
+drift:framingType a owl:ObjectProperty ;
+    rdfs:label "framing type"@en ;
+    rdfs:domain drift:EmotionalFraming ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Categorical kind from drift:FramingTypeScheme. Multi-valued: a usage can be ironic AND hostile at once. Categorical labels co-exist with scalar valence/arousal; they explain, not replace."@en .
+
+drift:framesAttribution a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "frames attribution"@en ;
+    rdfs:domain drift:EmotionalFraming ;
+    rdfs:range drift:MeaningAttribution ;
+    rdfs:comment "Functional: each framing annotates exactly one MeaningAttribution. Same attribution may receive several framings from different annotators."@en .
+
+# drift:hasEvidence (module 06) and prov:wasAttributedTo (module 05) are
+# REQUIRED on EmotionalFraming: every framing names the corpus span it was
+# read from AND the annotator that made the call. Enforced by SHACL in M7.
+
+# --- FramingType SKOS scheme ----------------------------------------------
+
+drift:FramingTypeScheme a skos:ConceptScheme ;
+    skos:prefLabel "Framing type"@en ;
+    rdfs:comment "Categorical kinds of emotional framing. Starter list; M7 may extend it from annotation experience."@en .
+
+drift:Neutral a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "neutral"@en ;
+    skos:definition "No discernible affective loading."@en .
+
+drift:Hostile a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "hostile"@en ;
+    skos:definition "Deployment aimed at delegitimising the referent or out-group."@en .
+
+drift:Admiring a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "admiring"@en ;
+    skos:definition "Deployment carrying esteem or approval of the referent."@en .
+
+drift:Ironic a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "ironic"@en ;
+    skos:definition "Surface meaning is inverted by context. Often co-occurs with hostile or in-group-coded."@en .
+
+drift:Clinical a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "clinical"@en ;
+    skos:definition "Deliberately affect-flattened, often institutional or academic register."@en .
+
+drift:Euphemistic a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "euphemistic"@en ;
+    skos:definition "Softens a harsher referent; valence is shifted toward neutral or positive while denotation stays."@en .
+
+drift:Dysphemistic a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "dysphemistic"@en ;
+    skos:definition "Harshens a more neutral referent; valence is shifted toward negative while denotation stays."@en .
+
+drift:InGroupCoded a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "in-group coded"@en ;
+    skos:definition "Carries a meaning legible only to a specific community; out-group readers will misread the framing."@en .
+
+drift:Fearful a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "fearful"@en .
+
+drift:Mocking a skos:Concept ; skos:inScheme drift:FramingTypeScheme ;
+    skos:prefLabel "mocking"@en .
+
+# --- Anti-patterns (explicit, not enforceable but documented) --------------
+# 1. Do NOT attach drift:valence directly to drift:Sense. The 2.x
+#    drift:connotation property on Sense is a COARSE signal; it is not an
+#    emotional measurement and must not be aggregated as if it were.
+# 2. Do NOT treat the scalar valence as ground truth across annotators.
+#    The valence on one framing is one annotator's reading; aggregate at
+#    query time (mean, median, dispersion), do not collapse on ingest.
+# 3. Do NOT introduce a "correctness" property on EmotionalFraming.
+#    Inter-annotator disagreement is informative, not a defect.

@@ -1,0 +1,145 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT — Module 09: Platform / CorpusContext / Register (STUB, M0)
+# Status: pre-ADR, classes only, no SHACL shapes yet.
+# A word on Reddit is not the same word in Die Zeit. The 2.x
+# ontology can carry a Source link (module 05), but Source is a
+# bibliographic citation; it does not distinguish platform from
+# corpus from register. These three are different abstractions
+# and 3.0 makes that explicit.
+#
+# Design choice (see docs/plans/word-drift-3.0/adr/0003):
+#   - Platform: the ambient socio-technical system (Reddit, X,
+#     YouTube, Wikipedia, broadsheet press as a class).
+#   - CorpusContext: a bounded, addressable slice OF a Platform
+#     (r/de, @SPDde, a specific newspaper, a specific subforum).
+#   - Register: the speech register independent of platform
+#     (casual / formal / academic / ironic / official).
+#   One Platform hosts many CorpusContexts; one Register exists
+#   across many Platforms.
+# =============================================================
+
+drift:Platform a owl:Class ;
+    rdfs:label "Platform"@en , "Plattform"@de ;
+    rdfs:comment "A socio-technical system that hosts language production: Reddit, X/Twitter, YouTube, TikTok, Wikipedia, the broadsheet press, the academic literature, parliamentary debate. Distinguished from drift:CorpusContext (a slice OF a Platform) and from drift:Register (a speech mode independent of Platform)."@en .
+
+drift:CorpusContext a owl:Class ;
+    rdfs:label "corpus context"@en , "Korpuskontext"@de ;
+    rdfs:comment "A bounded, addressable slice of a Platform: a subreddit, a single news outlet, a YouTube channel, a parliamentary party group, a specific subforum. Always belongs to exactly one Platform; carries the data that is actually ingested."@en .
+
+drift:Register a owl:Class ;
+    rdfs:label "Register"@en , "Sprachregister"@de ;
+    rdfs:comment "The mode of speech independent of Platform: casual, formal, academic, ironic, official, in-group-coded. Cross-Platform: \"academic\" exists on both Wikipedia and in journals. A MeaningAttribution may declare a Register where the framing is non-obvious from the CorpusContext alone."@en .
+
+# --- Platform properties ---------------------------------------------------
+
+drift:platformKind a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "platform kind"@en ;
+    rdfs:domain drift:Platform ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Coarse kind from drift:PlatformKindScheme (forum, microblog, video, encyclopedic, press, broadcast, parliamentary, academic). Editorial gates, audience model, and norms differ by kind."@en .
+
+drift:platformLanguageScope a owl:DatatypeProperty ;
+    rdfs:label "platform language scope"@en ;
+    rdfs:domain drift:Platform ;
+    rdfs:range xsd:language ;
+    rdfs:comment "BCP-47 language codes the Platform predominantly hosts. Multi-valued: a Platform may host several languages (TikTok globally, Wikipedia by language edition)."@en .
+
+# --- CorpusContext properties ----------------------------------------------
+
+drift:onPlatform a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "on platform"@en ;
+    rdfs:domain drift:CorpusContext ;
+    rdfs:range drift:Platform ;
+    rdfs:comment "Functional: a CorpusContext belongs to exactly one Platform. If the same content appears on multiple Platforms (e.g. cross-posted), record one CorpusContext per Platform-hosted slice."@en .
+
+drift:corpusHandle a owl:DatatypeProperty ;
+    rdfs:label "corpus handle"@en ;
+    rdfs:domain drift:CorpusContext ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Canonical addressable handle within its Platform (e.g. \"r/de\", \"@SPDde\", \"faz.net\", \"bundestag.afd\"). Combined with drift:onPlatform, this is the data-level identity of a corpus slice."@en .
+
+drift:corpusAudienceScale a owl:ObjectProperty ;
+    rdfs:label "corpus audience scale"@en ;
+    rdfs:domain drift:CorpusContext ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Coarse audience scale (niche / community / mainstream / mass) from drift:AudienceScaleScheme. Approximate by intent; consumers should not over-interpret it as a metric."@en .
+
+# --- Register properties ---------------------------------------------------
+
+drift:registerLabel a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "register label"@en ;
+    rdfs:domain drift:Register ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Canonical label of the register (e.g. \"casual\", \"formal\", \"academic\", \"ironic\", \"official\"). The Register class exists so registers are referenced by IRI, not free-text strings."@en .
+
+# --- Hookups onto existing 2.x classes (declared here, enforced in M6) -----
+# These properties are OPTIONAL when introduced. A 2.x DriftEvent without a
+# platformContext stays valid.
+
+drift:occurredOnPlatform a owl:ObjectProperty ;
+    rdfs:label "occurred on platform"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range drift:Platform ;
+    rdfs:comment "Optional. Records that a DriftEvent was first observable on a specific Platform. Absence means platform-agnostic or platform-unknown."@en .
+
+drift:inCorpusContext a owl:ObjectProperty ;
+    rdfs:label "in corpus context"@en ;
+    rdfs:range drift:CorpusContext ;
+    rdfs:comment "Optional, on drift:MeaningAttribution (module 08) and drift:DriftEvent. Localises a claim to one corpus slice. When set, the MeaningAttribution's drift:hasEvidence MUST be drawn from this CorpusContext (SHACL rule, M6)."@en .
+
+drift:inRegister a owl:ObjectProperty ;
+    rdfs:label "in register"@en ;
+    rdfs:range drift:Register ;
+    rdfs:comment "Optional, on drift:MeaningAttribution. Declares the speech register of the observed usage where it is not obvious from the CorpusContext."@en .
+
+# --- SKOS schemes ----------------------------------------------------------
+
+drift:PlatformKindScheme a skos:ConceptScheme ;
+    skos:prefLabel "Platform kind"@en ;
+    rdfs:comment "Kinds of platform; closed-list starter, may grow."@en .
+
+drift:Forum a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "forum"@en .
+
+drift:Microblog a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "microblog"@en .
+
+drift:VideoPlatform a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "video platform"@en .
+
+drift:Encyclopedic a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "encyclopedic"@en .
+
+drift:Press a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "press"@en .
+
+drift:Broadcast a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "broadcast"@en .
+
+drift:Parliamentary a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "parliamentary"@en .
+
+drift:Academic a skos:Concept ; skos:inScheme drift:PlatformKindScheme ;
+    skos:prefLabel "academic"@en .
+
+drift:AudienceScaleScheme a skos:ConceptScheme ;
+    skos:prefLabel "Audience scale"@en .
+
+drift:NicheAudience a skos:Concept ; skos:inScheme drift:AudienceScaleScheme ;
+    skos:prefLabel "niche"@en .
+
+drift:CommunityAudience a skos:Concept ; skos:inScheme drift:AudienceScaleScheme ;
+    skos:prefLabel "community"@en .
+
+drift:MainstreamAudience a skos:Concept ; skos:inScheme drift:AudienceScaleScheme ;
+    skos:prefLabel "mainstream"@en .
+
+drift:MassAudience a skos:Concept ; skos:inScheme drift:AudienceScaleScheme ;
+    skos:prefLabel "mass"@en .

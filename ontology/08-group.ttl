@@ -1,0 +1,128 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+
+# =============================================================
+# WORD-DRIFT — Module 08: Group + MeaningAttribution (STUB, M0)
+# Status: pre-ADR, classes only, no SHACL shapes yet.
+# The 2.x ontology models drift as one trajectory through time.
+# 3.0 lets multiple groups attribute the same sense to the same
+# word at the same time with different evidence. This module
+# introduces the join entity (MeaningAttribution) and the actors
+# whose readings it records (Group, Community).
+#
+# Design choices (see docs/plans/word-drift-3.0/adr/0001 and 0002):
+#   - Group is the abstract attributor; Community is a concrete
+#     identifiable population of speakers (subreddit, party,
+#     subculture). Every Community is a Group; not every Group is
+#     a Community (e.g. "mainstream media" is a Group label).
+#   - MeaningAttribution is reified, not a multi-valued property
+#     on Sense, because each attribution carries its own time,
+#     evidence, and provenance.
+#   - Existing 2.x classes are untouched. drift:DriftEvent will
+#     gain an OPTIONAL drift:occurredInGroup in M2; absence keeps
+#     2.x records valid.
+# =============================================================
+
+drift:Group a owl:Class ;
+    rdfs:label "Group"@en , "Gruppe"@de ;
+    rdfs:comment "An attributor of meaning. Abstract: covers identifiable communities (drift:Community) as well as broader labels (e.g. \"mainstream media\", \"academic linguistics\") used in curated attributions. A Group is descriptive, not evaluative; no moral valence is implied by membership."@en .
+
+drift:Community a owl:Class ;
+    rdfs:subClassOf drift:Group ;
+    rdfs:label "Community"@en , "Sprachgemeinschaft"@de ;
+    rdfs:comment "A concretely identifiable population of speakers, typically with a platform handle (subreddit, party, forum, subculture). Distinct from drift:Group in that a Community has bounded, addressable membership; a Group may be a sociolinguistic abstraction."@en .
+
+drift:MeaningAttribution a owl:Class ;
+    rdfs:subClassOf prov:Entity ;
+    rdfs:label "meaning attribution"@en , "Bedeutungszuschreibung"@de ;
+    rdfs:comment "A reified claim that a specific Group reads a specific Word in a specific Sense at a specific time, with declared evidence. The unit that makes the 3.0 meaning-distribution queryable. Multiple competing attributions for the same word at the same time are EXPECTED, not contradictions."@en .
+
+# --- Properties on Group / Community ---------------------------------------
+
+drift:groupKind a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "group kind"@en ;
+    rdfs:domain drift:Group ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Coarse-grained kind from drift:GroupKindScheme (e.g. political, professional, generational, platform-native, subcultural, geographic, institutional). Descriptive label only."@en .
+
+drift:communityHandle a owl:DatatypeProperty ;
+    rdfs:label "community handle"@en ;
+    rdfs:domain drift:Community ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Canonical handle by which the community is addressable (e.g. \"r/de\", \"@SPDde\", \"bundestag.afd\"). Multiple handles allowed across platforms; pair each with drift:onPlatform from module 09."@en .
+
+# --- Properties on MeaningAttribution --------------------------------------
+
+drift:attributesWord a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "attributes word"@en ;
+    rdfs:domain drift:MeaningAttribution ;
+    rdfs:range drift:Word ;
+    rdfs:comment "Functional: an attribution is about exactly one Word."@en .
+
+drift:attributesSense a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "attributes sense"@en ;
+    rdfs:domain drift:MeaningAttribution ;
+    rdfs:range drift:Sense ;
+    rdfs:comment "Functional: an attribution proposes exactly one Sense as the reading of the Word for this Group at this time. Competing senses are competing attributions."@en .
+
+drift:byGroup a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "by group"@en ;
+    rdfs:domain drift:MeaningAttribution ;
+    rdfs:range drift:Group ;
+    rdfs:comment "Functional: which Group holds this reading."@en .
+
+drift:atTime a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:label "at time"@en ;
+    rdfs:domain drift:MeaningAttribution ;
+    rdfs:range time:TemporalEntity ;
+    rdfs:comment "When this reading is attested. Re-uses OWL-Time for compatibility with module 02 (sense-period)."@en .
+
+drift:attributionWeight a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "attribution weight"@en ;
+    rdfs:domain drift:MeaningAttribution ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Evidence-derived weight for this attribution in [0,1]. NOT a probability that this sense is \"correct\"; a relative weight for distribution-level metrics (entropy, fragmentation). Computed at ingest from the underlying evidence; recomputed when evidence changes."@en .
+
+# drift:hasEvidence (link to corpus span, annotation run, or model output) and
+# prov:wasAttributedTo (who recorded this attribution) are inherited from the
+# provenance and causal-evidence layers (modules 05, 06). Their SHACL
+# requirements on MeaningAttribution will be defined in M1 (shapes/).
+
+# --- GroupKind SKOS scheme (initial, expand in M1) -------------------------
+
+drift:GroupKindScheme a skos:ConceptScheme ;
+    skos:prefLabel "Group kind"@en ;
+    rdfs:comment "Descriptive kinds of attributor groups. Expanded in M1 from real annotation needs; the M0 list below is a starter set, not a closed taxonomy."@en .
+
+drift:Political a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "political"@en .
+
+drift:Professional a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "professional"@en .
+
+drift:Generational a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "generational"@en .
+
+drift:PlatformNative a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "platform-native"@en ;
+    skos:definition "A group whose identity is constituted by membership on a platform (e.g. an active subreddit, a Discord server)."@en .
+
+drift:Subcultural a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "subcultural"@en .
+
+drift:Geographic a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "geographic"@en .
+
+drift:Institutional a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "institutional"@en .
+
+drift:MediaEcosystem a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
+    skos:prefLabel "media ecosystem"@en ;
+    skos:definition "A bounded portion of the public media sphere whose authors share editorial conventions (e.g. broadsheet press, tabloid press, niche academic press)."@en .
