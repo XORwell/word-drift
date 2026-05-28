@@ -1,0 +1,53 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT 3.0 — M8: "based" memetic mutation overlay
+# Composes with examples/based.ttl. Reclassifies the existing
+# drift event as a drift:MemeticMutation subtype
+# (drift:IronicAppropriation) and adds platform-origin metadata.
+#
+# Picture: "based" moved from drug-related pejorative (1980s) to a
+# memetic in-group approval marker via Lil B's self-styling in
+# the late 2000s; the new sense crystallised on 4chan and
+# adjacent platforms before crossing over into general meme
+# discourse around 2018.
+# =============================================================
+
+wdr:src-based-memetic-2026 a drift:Source ;
+    rdfs:label "Curated memetic-mutation annotation for 'based' (2026)"@en .
+
+# Mint a memetic-mutation event that COMPLEMENTS (does not replace)
+# the existing 2.x drift event wdr:drift-based-2010. Use a distinct
+# IRI so 2.x consumers see the original event unchanged.
+
+wdr:memetic-based-2010 a drift:IronicAppropriation ;
+    drift:affectsWord wdr:word-based ;
+    drift:senseFrom wdr:sense-based-slur ;
+    drift:senseTo wdr:sense-based-approval ;
+    drift:driftType drift:Reappropriation ;
+    drift:driftYear "2010"^^xsd:gYear ;
+    drift:originPlatform wdr:platform-4chan ;
+    drift:sourceArtefact "https://en.wikipedia.org/wiki/Lil_B"^^xsd:anyURI ;
+    drift:hasSource wdr:src-based-memetic-2026 .
+
+wdr:platform-4chan a drift:Platform ;
+    rdfs:label "4chan"@en ;
+    drift:platformKind drift:Forum .
+
+# Make the 2018 propagation step explicit as an algorithmic-amplification
+# event. ALGORITHMIC AMPLIFICATION needs evidence; the amplification
+# signal field is a sentence, not a number we can verify, so it is honest
+# about its evidence basis.
+
+wdr:memetic-based-2018-amplification a drift:AlgorithmicAmplification ;
+    drift:affectsWord wdr:word-based ;
+    drift:senseTo wdr:sense-based-approval ;
+    drift:driftType drift:Broadening ;
+    drift:driftYear "2018"^^xsd:gYear ;
+    drift:amplificationSignal "Increased cross-posting from forum subcultures to mainstream meme accounts on Twitter/X observed in 2018; quantitative confirmation requires platform-internal ranking data we do not have."@en ;
+    drift:hasSource wdr:src-based-memetic-2026 .

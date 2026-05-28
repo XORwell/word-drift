@@ -451,6 +451,214 @@
     if (emo && (emo.timeline || []).length > 0) {
       panelEl.appendChild(renderEmotionalPanel(word, emo));
     }
+
+    // M8: memetic event timeline (per-word) — renders only if events exist.
+    if ((word.memetic_events || []).length > 0) {
+      panelEl.appendChild(renderMemeticPanel(word));
+    }
+
+    // M8: semantic cemetery view — always rendered when the doc has any
+    // cemetery candidates. Designed as a finding-aid, not an obituary.
+    if ((doc.cemetery || []).length > 0) {
+      panelEl.appendChild(renderCemeteryPanel(doc.cemetery, function (iri) {
+        var qs = new URLSearchParams(window.location.search);
+        qs.set("word", iri);
+        var newUrl = window.location.pathname + "?" + qs.toString();
+        window.history.replaceState({}, "", newUrl);
+        render(panelEl, doc, iri);
+      }));
+    }
+  }
+
+  // ---- Memetic event timeline (M8) -----------------------------------------
+  // A horizontal chronicle strip: each event is a labelled marker at its
+  // year, the marker glyph encodes the event subtype, and the connector to
+  // the originPlatform appears as a subtitle. Editorial. Reads as a museum
+  // wall-label, not a chart.
+
+  function renderMemeticPanel(word) {
+    var container = el("div", { class: "wd-dist-memetic-panel" });
+    container.appendChild(el("div", {
+      class: "wd-dist-right-title",
+      text: "Memetic events (M8)",
+    }));
+
+    var events = (word.memetic_events || []).filter(function (e) { return e.year != null; });
+    if (!events.length) {
+      container.appendChild(el("p", {
+        class: "empty-msg",
+        text: "No memetic events recorded for this word.",
+      }));
+      return container;
+    }
+
+    var years = events.map(function (e) { return e.year; });
+    var yMin = Math.min.apply(null, years) - 1;
+    var yMax = Math.max.apply(null, years) + 1;
+    var w = 720, h = 140, pad = 24;
+    var svgNS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    svg.setAttribute("class", "wd-dist-memetic-svg");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Memetic event timeline for " + word.writtenForm);
+
+    function px(y) { return pad + ((y - yMin) / (yMax - yMin)) * (w - 2 * pad); }
+    var baselineY = h - 40;
+
+    // Baseline
+    var base = document.createElementNS(svgNS, "line");
+    base.setAttribute("x1", pad); base.setAttribute("x2", w - pad);
+    base.setAttribute("y1", baselineY); base.setAttribute("y2", baselineY);
+    base.setAttribute("stroke", "#7d7568"); base.setAttribute("stroke-width", "1");
+    svg.appendChild(base);
+
+    // Year ticks
+    [yMin + 1, Math.round((yMin + yMax) / 2), yMax - 1].forEach(function (y) {
+      var t = document.createElementNS(svgNS, "text");
+      t.setAttribute("x", px(y).toFixed(1));
+      t.setAttribute("y", h - 12);
+      t.setAttribute("text-anchor", "middle");
+      t.setAttribute("class", "wd-dist-memetic-tick");
+      t.textContent = String(y);
+      svg.appendChild(t);
+    });
+
+    // Event markers
+    var labelOffset = -28;
+    events.forEach(function (ev, i) {
+      var x = px(ev.year);
+      // Glyph per subtype
+      var glyph;
+      var stroke = "#3a3530";
+      if (ev.type === "IronicAppropriation") {
+        glyph = document.createElementNS(svgNS, "circle");
+        glyph.setAttribute("cx", x); glyph.setAttribute("cy", baselineY);
+        glyph.setAttribute("r", "6"); glyph.setAttribute("fill", "#a86c4d");
+        glyph.setAttribute("stroke", stroke);
+      } else if (ev.type === "CopypastaCrystallisation") {
+        glyph = document.createElementNS(svgNS, "rect");
+        glyph.setAttribute("x", (x - 6)); glyph.setAttribute("y", (baselineY - 6));
+        glyph.setAttribute("width", "12"); glyph.setAttribute("height", "12");
+        glyph.setAttribute("fill", "#5b6c87"); glyph.setAttribute("stroke", stroke);
+      } else if (ev.type === "AlgorithmicAmplification") {
+        glyph = document.createElementNS(svgNS, "polygon");
+        glyph.setAttribute("points",
+          (x).toFixed(1) + "," + (baselineY - 8).toFixed(1) + " " +
+          (x + 7).toFixed(1) + "," + (baselineY + 5).toFixed(1) + " " +
+          (x - 7).toFixed(1) + "," + (baselineY + 5).toFixed(1));
+        glyph.setAttribute("fill", "#b9985a"); glyph.setAttribute("stroke", stroke);
+      } else if (ev.type === "SignallingCollapse") {
+        glyph = document.createElementNS(svgNS, "polygon");
+        glyph.setAttribute("points",
+          (x).toFixed(1) + "," + (baselineY - 8).toFixed(1) + " " +
+          (x + 6).toFixed(1) + "," + (baselineY).toFixed(1) + " " +
+          (x).toFixed(1) + "," + (baselineY + 8).toFixed(1) + " " +
+          (x - 6).toFixed(1) + "," + (baselineY).toFixed(1));
+        glyph.setAttribute("fill", "#88787b"); glyph.setAttribute("stroke", stroke);
+      } else {
+        glyph = document.createElementNS(svgNS, "circle");
+        glyph.setAttribute("cx", x); glyph.setAttribute("cy", baselineY);
+        glyph.setAttribute("r", "5"); glyph.setAttribute("fill", "#6f5b8c");
+        glyph.setAttribute("stroke", stroke);
+      }
+      svg.appendChild(glyph);
+
+      // Label
+      var labelY = baselineY + labelOffset - (i % 2) * 14;
+      var label = document.createElementNS(svgNS, "text");
+      label.setAttribute("x", x);
+      label.setAttribute("y", labelY);
+      label.setAttribute("text-anchor", "middle");
+      label.setAttribute("class", "wd-dist-memetic-label");
+      label.textContent = ev.type;
+      svg.appendChild(label);
+
+      var sub = document.createElementNS(svgNS, "text");
+      sub.setAttribute("x", x);
+      sub.setAttribute("y", labelY + 12);
+      sub.setAttribute("text-anchor", "middle");
+      sub.setAttribute("class", "wd-dist-memetic-sub");
+      sub.textContent = ev.originPlatformLabel
+        ? "origin: " + ev.originPlatformLabel
+        : (ev.amplificationSignal ? "amplification noted" : "");
+      svg.appendChild(sub);
+
+      var connector = document.createElementNS(svgNS, "line");
+      connector.setAttribute("x1", x); connector.setAttribute("x2", x);
+      connector.setAttribute("y1", labelY + 4); connector.setAttribute("y2", baselineY - 8);
+      connector.setAttribute("stroke", "#7d7568");
+      connector.setAttribute("stroke-width", "0.8");
+      connector.setAttribute("stroke-dasharray", "2 2");
+      svg.insertBefore(connector, glyph);
+
+      var title = document.createElementNS(svgNS, "title");
+      title.textContent = ev.type + " @ " + ev.year
+        + (ev.sourceArtefact ? " (artefact: " + ev.sourceArtefact + ")" : "");
+      glyph.appendChild(title);
+    });
+
+    container.appendChild(svg);
+    container.appendChild(el("p", {
+      class: "wd-dist-region-caption",
+      text: "Memetic events as drift:DriftEvent subtypes. Circle = ironic "
+            + "appropriation; square = copypasta crystallisation; triangle "
+            + "= algorithmic amplification; diamond = signalling collapse. "
+            + "Subtype glyph + origin label, not a confidence claim.",
+    }));
+    return container;
+  }
+
+  // ---- Semantic cemetery panel (M8) ----------------------------------------
+  // A finding-aid-styled list of words whose historically-attested primary
+  // sense is now below the cemetery threshold. Not an obituary; an
+  // instrument for finding high-information-value drift candidates.
+
+  function renderCemeteryPanel(cemetery, onClickWord) {
+    var container = el("div", { class: "wd-dist-cemetery-panel" });
+    container.appendChild(el("div", {
+      class: "wd-dist-right-title",
+      text: "Semantic cemetery view (M8) — historical primary sense now marginal",
+    }));
+
+    var table = el("table", { class: "wd-dist-cemetery-table" });
+    var thead = el("thead", {}, [el("tr", {}, [
+      el("th", { text: "Word" }),
+      el("th", { text: "Primary sense (earliest attested)" }),
+      el("th", { text: "Latest year" }),
+      el("th", { text: "Primary share" }),
+      el("th", { text: "n total attribs" }),
+    ])]);
+    var tbody = el("tbody");
+    cemetery.forEach(function (row) {
+      var tr = el("tr", { class: "wd-dist-cemetery-row" });
+      var tdWord = el("td", {});
+      var wordBtn = el("button", {
+        type: "button",
+        class: "wd-dist-cemetery-wordbtn",
+        text: row.word,
+      });
+      wordBtn.addEventListener("click", function () { onClickWord(row.wordIri); });
+      tdWord.appendChild(wordBtn);
+      tr.appendChild(tdWord);
+      tr.appendChild(el("td", { text: row.primarySense || "(no gloss)" }));
+      tr.appendChild(el("td", { text: String(row.latestYear) }));
+      tr.appendChild(el("td", { text: (row.primaryShare * 100).toFixed(1) + "%" }));
+      tr.appendChild(el("td", { text: String(row.totalAttributions) }));
+      tbody.appendChild(tr);
+    });
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    container.appendChild(table);
+
+    container.appendChild(el("p", {
+      class: "wd-dist-region-caption",
+      text: "Threshold for inclusion is 30% (small-fixture default). Production "
+            + "runs against corpus-derived weights typically use 5%. Cemetery "
+            + "candidates are NOT failure cases of the lexicon — they are the "
+            + "most informative drift records for studying long-arc shift.",
+    }));
+    return container;
   }
 
   // ---- Emotional framing sub-panel (M7) ------------------------------------

@@ -600,3 +600,110 @@ GROUP BY ?word ?regionLabel ?senseGloss ?atYear
 ORDER BY ?atYear ?regionLabel
 """
     return kg.query(sparql)
+
+
+# ---------------------------------------------------------------------------
+# CQ15 — Semantic Cemetery view (M8).
+# Words whose earliest-attested sense now holds less than `threshold` of the
+# most-recent total attribution weight. NOT a class: a SPARQL-derived view.
+# ---------------------------------------------------------------------------
+
+def cq15_semantic_cemetery(
+    kg: Any,
+    *,
+    threshold: float = 0.30,
+) -> list[dict[str, Any]]:
+    """CQ15 (3.0/M8): Words whose historically-dominant sense is now marginal.
+
+    For each word with multi-group MeaningAttribution records:
+      1. find the earliest attested sense (the historical "primary" sense),
+      2. compute that sense's share of the most-recent year's total
+         attribution weight,
+      3. return words where the share is below ``threshold``.
+
+    ``threshold`` defaults to 0.30 (small-fixture friendly). Production use
+    would typically set 0.05 once corpus-derived weights are loaded.
+
+    Returns
+    -------
+    list of dicts with keys: word, primarySense, latestYear, primaryShare,
+                              totalAttributions
+    """
+    sparql = """
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+
+SELECT ?wordIri ?word ?senseIri ?senseGloss ?atYear ?weight
+WHERE {
+  ?ma a drift:MeaningAttribution ;
+      drift:attributesWord ?wordIri ;
+      drift:attributesSense ?senseIri .
+  ?wordIri drift:writtenForm ?word .
+  OPTIONAL {
+    ?senseIri drift:gloss ?senseGloss .
+    FILTER(LANG(?senseGloss) = "en" || LANG(?senseGloss) = "")
+  }
+  OPTIONAL { ?ma drift:atYear ?atYear . }
+  OPTIONAL { ?ma drift:attributionWeight ?weight . }
+}
+"""
+    rows = kg.query(sparql)
+
+    # Aggregate per word -> {sense -> earliest_year, year -> total_weight, ...}
+    from collections import defaultdict
+    by_word: dict[str, dict[str, Any]] = defaultdict(lambda: {
+        "label": "",
+        "sense_first_year": {},
+        "sense_gloss": {},
+        "year_total": defaultdict(float),
+        "year_sense_total": defaultdict(lambda: defaultdict(float)),
+    })
+
+    for r in rows:
+        w_iri = r.get("wordIri")
+        word = str(r.get("word") or "")
+        s = r.get("senseIri")
+        y_raw = r.get("atYear")
+        try:
+            year = int(str(y_raw)[:4]) if y_raw else None
+        except (TypeError, ValueError):
+            year = None
+        try:
+            weight = float(r.get("weight")) if r.get("weight") not in (None, "") else 1.0
+        except (TypeError, ValueError):
+            weight = 1.0
+        if not w_iri or not s or year is None:
+            continue
+        rec = by_word[w_iri]
+        rec["label"] = word
+        prev = rec["sense_first_year"].get(s)
+        if prev is None or year < prev:
+            rec["sense_first_year"][s] = year
+        rec["sense_gloss"][s] = r.get("senseGloss") or ""
+        rec["year_total"][year] += weight
+        rec["year_sense_total"][year][s] += weight
+
+    out: list[dict[str, Any]] = []
+    for w_iri, rec in by_word.items():
+        if not rec["sense_first_year"]:
+            continue
+        # Earliest-attested sense overall.
+        primary_sense = min(
+            rec["sense_first_year"], key=lambda s: rec["sense_first_year"][s]
+        )
+        latest_year = max(rec["year_total"].keys())
+        latest_total = rec["year_total"][latest_year]
+        if latest_total <= 0:
+            continue
+        primary_share = rec["year_sense_total"][latest_year].get(primary_sense, 0.0) / latest_total
+        if primary_share < threshold:
+            out.append({
+                "word": rec["label"],
+                "wordIri": w_iri,
+                "primarySense": rec["sense_gloss"].get(primary_sense, ""),
+                "latestYear": latest_year,
+                "primaryShare": primary_share,
+                "totalAttributions": int(sum(rec["year_total"].values())),
+            })
+
+    out.sort(key=lambda r: r["primaryShare"])
+    return out

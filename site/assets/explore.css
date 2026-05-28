@@ -1879,3 +1879,68 @@ a.source-badge:hover { border-color: var(--accent); }
   border: 1px solid var(--border);
 }
 .wd-dist-emotion-legend-num { color: var(--text-sub); font-family: var(--font-mono); }
+
+/* M8 — Memetic timeline + Semantic cemetery */
+.wd-dist-memetic-panel,
+.wd-dist-cemetery-panel {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  margin: 0 0.8rem 1rem;
+  padding: 0.8rem;
+}
+.wd-dist-memetic-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+}
+.wd-dist-memetic-label {
+  font-size: 11px;
+  fill: var(--text-main);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+.wd-dist-memetic-sub {
+  font-size: 9px;
+  fill: var(--text-sub);
+  font-family: var(--font-mono);
+  font-style: italic;
+}
+.wd-dist-memetic-tick {
+  font-size: 9px;
+  fill: var(--text-sub);
+  font-family: var(--font-mono);
+}
+
+.wd-dist-cemetery-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin: 0.4rem 0;
+}
+.wd-dist-cemetery-table th,
+.wd-dist-cemetery-table td {
+  text-align: left;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.wd-dist-cemetery-table th {
+  color: var(--text-sub);
+  font-weight: 600;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--bg-card2);
+}
+.wd-dist-cemetery-row:hover { background: color-mix(in srgb, var(--text-sub) 4%, transparent); }
+.wd-dist-cemetery-wordbtn {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--accent-hi, var(--text-main));
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline dotted;
+}
+.wd-dist-cemetery-wordbtn:hover { color: var(--text-main); }

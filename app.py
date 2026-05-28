@@ -328,6 +328,14 @@ def metric_emotional_drift(ctx: Context, word: str = "Querdenker") -> dict:
     return emotional_drift(ctx.kg, word=word)
 
 
+@capability("cq_semantic_cemetery")
+def cq_semantic_cemetery(ctx: Context, threshold: float = 0.30) -> list[dict]:
+    """CQ15 (3.0/M8): Words whose historical primary sense is now marginal."""
+    from capabilities.competency import cq15_semantic_cemetery
+    _bootstrap()
+    return cq15_semantic_cemetery(ctx.kg, threshold=threshold)
+
+
 @capability("metric_timeline")
 def metric_timeline(
     ctx: Context, word: str = "Querdenker",
@@ -532,6 +540,14 @@ def create_app():
                 _cq.cq14_region_distribution(_ctx.kg, word=word, year=year)
             )
 
+        @http_app.get("/api/cq/15", response_model=None)
+        async def api_cq15(threshold: float = 0.30):
+            """CQ15 (3.0/M8): Semantic Cemetery view."""
+            _ctx = Context(trace_id="cq15", principal="system", store=_kernel_store())
+            return JSONResponse(
+                _cq.cq15_semantic_cemetery(_ctx.kg, threshold=threshold)
+            )
+
         # 3.0 multi-group metrics ------------------------------------------------
         from capabilities import metrics_multi_group as _m3
 
@@ -585,18 +601,35 @@ def create_app():
             from capabilities import metrics_multi_group as _m3
             _ctx = Context(trace_id="dist", principal="system", store=_kernel_store())
 
-            # Discover all words that have any attribution.
+            # Discover all words that have any attribution OR any memetic event.
+            # Memetic events (M8) attach drift:affectsWord; without this fork,
+            # words like 'based' would carry an event but never surface here.
             word_rows = _ctx.kg.query("""
 PREFIX drift: <https://w3id.org/word-drift/ontology#>
 SELECT DISTINCT ?wordIri ?writtenForm
 WHERE {
-  ?ma a drift:MeaningAttribution ;
-      drift:attributesWord ?wordIri .
   ?wordIri drift:writtenForm ?writtenForm .
+  {
+    ?ma a drift:MeaningAttribution ;
+        drift:attributesWord ?wordIri .
+  } UNION {
+    VALUES ?evType {
+      drift:MemeticMutation drift:IronicAppropriation
+      drift:CopypastaCrystallisation drift:SignallingCollapse
+      drift:AlgorithmicAmplification
+    }
+    ?ev a ?evType ;
+        drift:affectsWord ?wordIri .
+  }
 }
 """)
 
-            doc: dict = {"words": {}, "meta": {"version": "3.0-M4"}}
+            from capabilities.competency import cq15_semantic_cemetery
+            doc: dict = {
+                "words": {},
+                "meta": {"version": "3.0-M8"},
+                "cemetery": cq15_semantic_cemetery(_ctx.kg, threshold=0.30),
+            }
             for w_row in word_rows:
                 word_iri = w_row.get("wordIri")
                 written = str(w_row.get("writtenForm") or "")
@@ -719,6 +752,58 @@ WHERE {{
                         "weight": weight,
                     })
 
+                # Memetic events for this word (M8): query MemeticMutation
+                # subclasses by sub-type so 2.x DriftEvent consumers still see
+                # the parent.
+                memetic_rows = _ctx.kg.query(f"""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?ev ?evType ?year ?platformIri ?platformLabel ?artefact ?signal
+WHERE {{
+  VALUES ?evType {{
+    drift:MemeticMutation drift:IronicAppropriation
+    drift:CopypastaCrystallisation drift:SignallingCollapse
+    drift:AlgorithmicAmplification
+  }}
+  ?ev a ?evType ;
+      drift:affectsWord <{word_iri}> .
+  OPTIONAL {{ ?ev drift:driftYear ?year . }}
+  OPTIONAL {{
+    ?ev drift:originPlatform ?platformIri .
+    OPTIONAL {{
+      ?platformIri rdfs:label ?platformLabel .
+      FILTER(LANG(?platformLabel) = "en" || LANG(?platformLabel) = "")
+    }}
+  }}
+  OPTIONAL {{ ?ev drift:sourceArtefact ?artefact . }}
+  OPTIONAL {{ ?ev drift:amplificationSignal ?signal . }}
+}}
+""")
+                memetic_events = []
+                seen_events: set = set()
+                for mr in memetic_rows:
+                    ev_id = mr.get("ev")
+                    if not ev_id or ev_id in seen_events:
+                        continue
+                    seen_events.add(ev_id)
+                    y_raw = mr.get("year")
+                    try:
+                        ev_year = int(str(y_raw)[:4]) if y_raw else None
+                    except (TypeError, ValueError):
+                        ev_year = None
+                    ev_type = (mr.get("evType") or "").split("#")[-1]
+                    memetic_events.append({
+                        "id": ev_id,
+                        "type": ev_type,
+                        "year": ev_year,
+                        "originPlatform": mr.get("platformIri") or None,
+                        "originPlatformLabel": mr.get("platformLabel") or "",
+                        "sourceArtefact": mr.get("artefact") or None,
+                        "amplificationSignal": mr.get("signal") or None,
+                    })
+                memetic_events.sort(key=lambda e: (e["year"] is None, e["year"]))
+
                 doc["words"][word_iri] = {
                     "id": word_iri,
                     "writtenForm": written,
@@ -729,6 +814,7 @@ WHERE {{
                     "attributions": attributions,
                     "metrics": _m3.metric_timeline(_ctx.kg, word=written),
                     "emotional_drift": _m3.emotional_drift(_ctx.kg, word=written),
+                    "memetic_events": memetic_events,
                 }
 
             return JSONResponse(doc)

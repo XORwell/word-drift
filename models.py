@@ -699,3 +699,76 @@ class EmotionalFramingShape:
         min_value=0.0,
         max_value=1.0,
     )
+
+
+# ---------------------------------------------------------------------------
+# 3.0 — Memetic mutation hierarchy (ontology/11-memetic.ttl, M8)
+# Subclasses of drift:DriftEvent so all 2.x machinery keeps working.
+# ---------------------------------------------------------------------------
+
+@node_type(
+    "MemeticMutation",
+    fields={
+        "affects_word": str,
+        "sense_from_id": str | None,
+        "sense_to_id": str | None,
+        "drift_type_label": str | None,
+        "drift_type_ids": list[str],
+        "year": int | None,
+        "year_end": int | None,
+        "origin_platform": str | None,
+        "source_artefact": str | None,
+        "amplification_signal": str | None,
+    },
+    extends=[f"{_DRIFT}DriftEvent"],
+)
+class MemeticMutation:
+    """A drift event whose mechanism is platform-mediated cultural
+    transmission rather than gradual semantic shift.
+    """
+
+
+@node_type(
+    "IronicAppropriation",
+    fields={
+        "affects_word": str,
+        "sense_from_id": str | None,
+        "sense_to_id": str | None,
+        "year": int | None,
+        "origin_platform": str | None,
+    },
+    extends=[f"{_DRIFT}MemeticMutation"],
+)
+class IronicAppropriation:
+    """Out-group mocking re-use of a term."""
+
+
+@node_type(
+    "CopypastaCrystallisation",
+    fields={
+        "affects_word": str,
+        "sense_to_id": str | None,
+        "year": int | None,
+        "source_artefact": str | None,
+    },
+    extends=[f"{_DRIFT}MemeticMutation"],
+)
+class CopypastaCrystallisation:
+    """A word or phrase locks into a fixed template-form whose reuse IS
+    the meaning.
+    """
+
+
+@node_type(
+    "SignallingCollapse",
+    fields={
+        "affects_word": str,
+        "year": int | None,
+        "propagation_path": list[str],
+    },
+    extends=[f"{_DRIFT}MemeticMutation"],
+)
+class SignallingCollapse:
+    """An in-group signal escapes its origin community and loses its
+    discriminative function.
+    """

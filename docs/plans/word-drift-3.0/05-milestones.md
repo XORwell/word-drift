@@ -140,12 +140,17 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 **Load-bearing artefact:** `ontology/11-memetic.ttl` accepted, memetic timeline + cemetery views.
 
 **Done when:**
-- [ ] `drift:MemeticMutation`, `drift:IronicAppropriation`, `drift:CopypastaCrystallisation` modelled as `drift:DriftEvent` subtypes.
-- [ ] `drift:SemanticCemetery` *view* (not a class) — SPARQL query returning words whose historically-dominant meaning is now < 5% of attributions.
-- [ ] Memetic timeline viz for one well-documented case (likely `Aluhut`, `Boomer`, or `cringe`).
-- [ ] Cemetery view rendered as a dedicated page with archival aesthetic.
+- [x] `drift:MemeticMutation`, `drift:IronicAppropriation`, `drift:CopypastaCrystallisation`, `drift:SignallingCollapse` Python `@node_type` as `drift:DriftEvent` subtypes.
+- [x] CQ15 — Semantic Cemetery SPARQL view (default threshold 30%, parameterised down to 5% for production runs); served at `/api/cq/15` and embedded in `/graph-distribution.json`.
+- [x] Memetic timeline viz for `based` — `examples/based-memetic.ttl` adds an `IronicAppropriation` (Lil B, 4chan, ~2010) and an `AlgorithmicAmplification` (cross-platform 2018). Renders as a chronicle strip with glyph-by-subtype.
+- [x] Semantic Cemetery sub-panel with archival-finding-aid aesthetic (table, no melodrama, each row links back to that word).
 
 **Out of scope:** automated memetic event detection; this milestone is curation-driven.
+
+**Shipped:** total suite 42 tests passing.
+
+**Cemetery output on the current fixture:**
+- `Querdenker` — original "lateral thinker" sense (1980) is at 22.8% of 2023 attribution mass; the COVID-pejorative now dominates.
 
 ---
 
