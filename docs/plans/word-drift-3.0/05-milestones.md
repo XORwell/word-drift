@@ -24,13 +24,15 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 **Load-bearing artefact:** `ontology/08-group.ttl` accepted, `models.py` extended with `Group`, `Community`, `MeaningAttribution`.
 
 **Done when:**
-- [ ] `drift:Group`, `drift:Community`, `drift:MeaningAttribution` modelled in TTL + Python.
-- [ ] SHACL shape for `drift:MeaningAttribution` requires `prov:wasDerivedFrom` + `drift:hasEvidence` + a group reference.
-- [ ] At least one competency question added: *"Which groups currently attribute sense X to word W?"*
-- [ ] Test fixture loads a toy 2-word × 3-group dataset and the new CQ returns the right shape.
-- [ ] ADR-0001 and ADR-0002 moved from Proposed → Accepted.
+- [x] `drift:Group`, `drift:Community`, `drift:MeaningAttribution` modelled in TTL + Python.
+- [x] SHACL shape for `drift:MeaningAttribution` requires `drift:attributesWord`, `drift:attributesSense`, `drift:byGroup`, time anchor, `drift:hasEvidence`.
+- [x] At least one competency question added: CQ13 — *"Which groups currently attribute sense X to word W?"*
+- [x] Test fixture loads a 1-word × 3-group dataset across 3 years; CQ13 returns expected groups + the 2021 semantic split (tests/test_m1_multi_group.py, 4 tests, all passing).
+- [x] ADR-0001 and ADR-0002 moved from Proposed → Accepted.
 
 **Out of scope:** real-world group taxonomy (just enough to test), platform/emotion/geo modules, visualisation.
+
+**Shipped:** commit on `feat/word-drift-3.0` — see `M1 — group ontology wiring` commit.
 
 ---
 

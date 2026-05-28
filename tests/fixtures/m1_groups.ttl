@@ -1,0 +1,84 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# Minimal M1 fixture: three groups attributing the two existing
+# Querdenker senses across three years. Uses the existing
+# wdr:word-querdenker and wdr:sense-querdenker-* IRIs from
+# examples/querdenker.ttl so this fixture composes with real data.
+
+# --- Groups -----------------------------------------------------------------
+
+wdr:group-mainstream-press a drift:Group ;
+    rdfs:label "Mainstream press (DE)"@en ;
+    drift:groupKind drift:MediaEcosystem .
+
+wdr:group-creativity-community a drift:Group ;
+    rdfs:label "Creativity / innovation community"@en ;
+    drift:groupKind drift:Professional .
+
+wdr:group-querdenken-supporters a drift:Community ;
+    rdfs:label "Querdenken-movement supporters"@en ;
+    drift:groupKind drift:Political ;
+    drift:communityHandle "querdenken-711" .
+
+# --- A minimal source for hasEvidence linkage -------------------------------
+
+wdr:src-m1-fixture a drift:Source ;
+    rdfs:label "M1 test fixture (synthetic)"@en .
+
+# --- Attributions: 6 records (3 groups x 2 senses across time) -------------
+# Encoded as a 3.0 distribution: same sense can be held by multiple groups
+# at the same time with different weights.
+
+wdr:attrib-q-mp-2019-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-mainstream-press ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.9 ;
+    drift:hasEvidence wdr:src-m1-fixture .
+
+wdr:attrib-q-cc-2019-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-creativity-community ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-m1-fixture .
+
+wdr:attrib-q-mp-2021-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-mainstream-press ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.95 ;
+    drift:hasEvidence wdr:src-m1-fixture .
+
+wdr:attrib-q-cc-2021-mixed a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-creativity-community ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.6 ;
+    drift:hasEvidence wdr:src-m1-fixture .
+
+wdr:attrib-q-qs-2021-positive a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-querdenken-supporters ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-m1-fixture .
+
+wdr:attrib-q-mp-2023-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-mainstream-press ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-m1-fixture .

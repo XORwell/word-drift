@@ -474,3 +474,75 @@ GROUP BY ?e ?word
 ORDER BY DESC(?nSources) ?word
 """
     return kg.query(sparql)
+
+
+# ===========================================================================
+# 3.0 — Multi-group competency questions (CQ13+)
+# ===========================================================================
+
+
+# ---------------------------------------------------------------------------
+# CQ13 — Which groups currently attribute sense X to word W?
+# ---------------------------------------------------------------------------
+
+def cq13_groups_attributing_word(
+    kg: Any,
+    *,
+    word: str = "Querdenker",
+    year: int | None = None,
+) -> list[dict[str, Any]]:
+    """CQ13 (3.0): Per-group sense attributions for a given word.
+
+    Returns one row per (group, sense) pair with the attribution weight
+    summed across the matching time window. Implements ADR-0002: the
+    "dominant meaning" is not stored; the caller aggregates from rows.
+
+    Parameters
+    ----------
+    kg:
+        Trails KG object (ctx.kg).
+    word:
+        The written form of the target Word (case-sensitive).
+    year:
+        Optional snapshot year. If given, restricts attributions to
+        ``atYear == year``; otherwise returns the full history.
+
+    Returns
+    -------
+    list of dicts with keys:
+        word, groupLabel, groupKind, senseGloss, atYear, weightSum, nAttribs
+    """
+    # gYear is a typed literal; compare on the lexical form so the query is
+    # agnostic to xsd:gYear vs xsd:integer encoding in the source data.
+    year_filter = f'FILTER(STR(?atYear) = "{int(year)}")' if year is not None else ""
+    sparql = f"""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?word ?groupLabel ?groupKindLabel ?senseGloss ?atYear
+       (SUM(COALESCE(?w, 1.0)) AS ?weightSum)
+       (COUNT(?ma) AS ?nAttribs)
+WHERE {{
+  ?ma a drift:MeaningAttribution ;
+      drift:attributesWord ?wordIri ;
+      drift:attributesSense ?senseIri ;
+      drift:byGroup ?groupIri .
+  ?wordIri drift:writtenForm ?word .
+  FILTER(STR(?word) = "{word}")
+  ?groupIri rdfs:label ?groupLabel .
+  OPTIONAL {{
+    ?groupIri drift:groupKind ?gk .
+    ?gk <http://www.w3.org/2004/02/skos/core#prefLabel> ?groupKindLabel .
+  }}
+  OPTIONAL {{
+    ?senseIri drift:gloss ?senseGloss .
+    FILTER(LANG(?senseGloss) = "en" || LANG(?senseGloss) = "")
+  }}
+  OPTIONAL {{ ?ma drift:atYear ?atYear . }}
+  OPTIONAL {{ ?ma drift:attributionWeight ?w . }}
+  {year_filter}
+}}
+GROUP BY ?word ?groupLabel ?groupKindLabel ?senseGloss ?atYear
+ORDER BY ?atYear ?groupLabel
+"""
+    return kg.query(sparql)

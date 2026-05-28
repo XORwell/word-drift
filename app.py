@@ -17,7 +17,10 @@ import time
 from pathlib import Path
 from typing import Any
 
-from models import Word, TriggerEvent, DriftEvent, Sense, CausalHypothesis
+from models import (
+    Word, TriggerEvent, DriftEvent, Sense, CausalHypothesis,
+    Group, Community, MeaningAttribution,
+)
 
 logger = logging.getLogger("word_drift_trails")
 
@@ -250,6 +253,20 @@ def cq_provenance_completeness(ctx: Context) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
+# 3.0 — Multi-group competency capabilities
+# ---------------------------------------------------------------------------
+
+@capability("cq_groups_attributing_word")
+def cq_groups_attributing_word(
+    ctx: Context, word: str = "Querdenker", year: int | None = None,
+) -> list[dict]:
+    """CQ13 (3.0): Per-group sense attributions for a word."""
+    from capabilities.competency import cq13_groups_attributing_word
+    _bootstrap()
+    return cq13_groups_attributing_word(ctx.kg, word=word, year=year)
+
+
+# ---------------------------------------------------------------------------
 # HTTP application factory
 # ---------------------------------------------------------------------------
 
@@ -426,6 +443,14 @@ def create_app():
             """CQ12: Drift events with source provenance."""
             _ctx = Context(trace_id="cq12", principal="system", store=_kernel_store())
             return JSONResponse(_cq.cq12_provenance_completeness(_ctx.kg))
+
+        @http_app.get("/api/cq/13", response_model=None)
+        async def api_cq13(word: str = "Querdenker", year: int | None = None):
+            """CQ13 (3.0): Per-group sense attributions for a word."""
+            _ctx = Context(trace_id="cq13", principal="system", store=_kernel_store())
+            return JSONResponse(
+                _cq.cq13_groups_attributing_word(_ctx.kg, word=word, year=year)
+            )
 
         # ------------------------------------------------------------------
         # Static site — mounted LAST so API routes take precedence

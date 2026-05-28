@@ -364,3 +364,167 @@ class FrequencyObservationShape:
         many=False,
         min_value=0.0,
     )
+
+
+# ===========================================================================
+# 3.0 — Multi-group semantics (modules 08-12 in ontology/)
+# All classes below are ADDITIVE; 2.x records stay valid.
+# ===========================================================================
+
+
+# ---------------------------------------------------------------------------
+# drift:Group  (ontology/08-group.ttl)
+# An attributor of meaning (descriptive, not evaluative).
+# ---------------------------------------------------------------------------
+
+@node_type(
+    "Group",
+    fields={
+        "label": str,
+        "group_kind": str | None,
+        "group_kind_id": str | None,
+    },
+)
+class Group:
+    """An attributor of meaning. Abstract; see drift:Community for the
+    concretely-addressable subclass.
+
+    ``label`` is the human-readable name.
+    ``group_kind`` is the prefLabel of the GroupKindScheme concept
+        (political / professional / generational / platform-native /
+        subcultural / geographic / institutional / media ecosystem).
+    ``group_kind_id`` is the full IRI of the kind concept.
+    """
+
+
+@shape(iri=f"{_DRIFT}GroupShape")
+class GroupShape:
+    """SHACL shape for drift:Group: requires a label."""
+
+    label: str = predicate(
+        f"{_RDFS}label",
+        required=True,
+        many=False,
+        min_length=1,
+    )
+    group_kind: str | None = predicate(
+        f"{_DRIFT}groupKind",
+        required=False,
+        many=False,
+    )
+
+
+# ---------------------------------------------------------------------------
+# drift:Community  (subclass of drift:Group)
+# A concretely identifiable population of speakers.
+# ---------------------------------------------------------------------------
+
+@node_type(
+    "Community",
+    fields={
+        "label": str,
+        "community_handle": str | None,
+        "group_kind": str | None,
+    },
+    extends=[f"{_DRIFT}Group"],
+)
+class Community:
+    """A bounded, addressable population of speakers (subreddit, party,
+    forum, subculture).
+
+    ``community_handle`` is the canonical handle (e.g. ``r/de``,
+    ``@SPDde``, ``bundestag.afd``). Pair with drift:onPlatform from
+    module 09 when the handle is platform-specific.
+    """
+
+
+@shape(iri=f"{_DRIFT}CommunityShape")
+class CommunityShape:
+    """SHACL shape for drift:Community: requires a label.
+
+    Handle is optional at SHACL level because some Communities (e.g.
+    historical academic schools) have no platform handle.
+    """
+
+    label: str = predicate(
+        f"{_RDFS}label",
+        required=True,
+        many=False,
+        min_length=1,
+    )
+
+
+# ---------------------------------------------------------------------------
+# drift:MeaningAttribution  (ontology/08-group.ttl)
+# Reified join: (word, sense, group, time, evidence).
+# Implements ADR-0002 (distribution, not winner): the KG stores
+# every attribution; "dominant meaning" is computed at query time.
+# ---------------------------------------------------------------------------
+
+@node_type(
+    "MeaningAttribution",
+    fields={
+        "attributes_word": str,
+        "attributes_sense": str,
+        "by_group": str,
+        "at_year": int | None,
+        "at_year_end": int | None,
+        "attribution_weight": float | None,
+        "in_corpus_context": str | None,
+        "in_register_id": str | None,
+        "in_region": str | None,
+    },
+    extends=["http://www.w3.org/ns/prov#Entity"],
+)
+class MeaningAttribution:
+    """A reified claim that a Group reads a specific Word in a specific
+    Sense at a specific time, with declared evidence.
+
+    Mandatory: word, sense, group. Time and evidence are required by the
+    SHACL shape but the Python field is nullable to allow staged ingest.
+
+    ``attribution_weight`` is in [0,1]; NOT a probability that the sense
+    is "correct" — a relative weight for distribution-level metrics
+    (entropy, fragmentation, divergence). Computed at ingest from the
+    underlying evidence; recomputed if evidence changes.
+    """
+
+
+@shape(iri=f"{_DRIFT}MeaningAttributionShape")
+class MeaningAttributionShape:
+    """SHACL shape for drift:MeaningAttribution.
+
+    Required: attributesWord, attributesSense, byGroup, atYear, AND
+    drift:hasEvidence (declared in the TTL shape, not enforced here
+    because evidence is a heterogeneous union of sources/spans/models).
+    """
+
+    attributes_word: str = predicate(
+        f"{_DRIFT}attributesWord",
+        required=True,
+        many=False,
+    )
+    attributes_sense: str = predicate(
+        f"{_DRIFT}attributesSense",
+        required=True,
+        many=False,
+    )
+    by_group: str = predicate(
+        f"{_DRIFT}byGroup",
+        required=True,
+        many=False,
+    )
+    at_year: int | None = predicate(
+        f"{_DRIFT}atYear",
+        required=False,
+        many=False,
+        min_value=1000,
+        max_value=2100,
+    )
+    attribution_weight: float | None = predicate(
+        f"{_DRIFT}attributionWeight",
+        required=False,
+        many=False,
+        min_value=0.0,
+        max_value=1.0,
+    )

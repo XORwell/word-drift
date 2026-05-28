@@ -53,8 +53,8 @@ Three things converged:
 
 | ADR | Decision | Status |
 |-----|----------|--------|
-| [0001](adr/0001-multi-group-representation.md) | How groups attach to senses without re-wiring `ontolex:Sense` | Proposed |
-| [0002](adr/0002-distribution-not-winner.md) | Senses carry *distributions*, not single dominant meanings | Proposed |
+| [0001](adr/0001-multi-group-representation.md) | How groups attach to senses without re-wiring `ontolex:Sense` | Accepted (M1) |
+| [0002](adr/0002-distribution-not-winner.md) | Senses carry *distributions*, not single dominant meanings | Accepted (M1) |
 | [0003](adr/0003-platform-context-modelling.md) | Platform / corpus / register as first-class context | Proposed |
 | [0004](adr/0004-emotion-as-evidence-not-truth.md) | Emotional framing modelled as evidenced annotation, not asserted fact | Proposed |
 | [0005](adr/0005-no-federated-sparql-yet.md) | One KG, not many — federation deferred | Accepted |

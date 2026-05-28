@@ -1,0 +1,75 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix drift: <https://w3id.org/word-drift/ontology#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+
+# 3.0 — Module 08 (group) shapes.
+#
+# A MeaningAttribution claims that a Group reads a Word in a Sense at a
+# time. Every claim must carry evidence and provenance; the M1 shape
+# enforces the core 4 fields (word/sense/group/time) plus evidence.
+#
+# All fields on existing 2.x classes (drift:DriftEvent, drift:Word, ...)
+# stay valid: nothing in this file constrains them.
+
+drift:GroupShape a sh:NodeShape ;
+    sh:targetClass drift:Group ;
+    sh:property [
+        sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+        sh:minCount 1 ;
+        sh:message "A drift:Group must have at least one rdfs:label." ;
+    ] .
+
+drift:CommunityShape a sh:NodeShape ;
+    sh:targetClass drift:Community ;
+    sh:property [
+        sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+        sh:minCount 1 ;
+        sh:message "A drift:Community must have at least one rdfs:label." ;
+    ] .
+
+drift:MeaningAttributionShape a sh:NodeShape ;
+    sh:targetClass drift:MeaningAttribution ;
+    sh:property [
+        sh:path drift:attributesWord ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class drift:Word ;
+        sh:message "MeaningAttribution must reference exactly one drift:Word via drift:attributesWord." ;
+    ] ;
+    sh:property [
+        sh:path drift:attributesSense ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class drift:Sense ;
+        sh:message "MeaningAttribution must reference exactly one drift:Sense via drift:attributesSense." ;
+    ] ;
+    sh:property [
+        sh:path drift:byGroup ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class drift:Group ;
+        sh:message "MeaningAttribution must name the Group holding this reading via drift:byGroup." ;
+    ] ;
+    # Evidence anchor: either a year/year-end pair, or an attestedDuring interval.
+    sh:or (
+        [ sh:path drift:atYear ; sh:minCount 1 ]
+        [ sh:path drift:atYearEnd ; sh:minCount 1 ]
+    ) ;
+    # Evidence ladder: must point at at least one Source / CorpusContext / corpus span.
+    # The exact target class is heterogeneous, so we only enforce minCount.
+    sh:property [
+        sh:path drift:hasEvidence ;
+        sh:minCount 1 ;
+        sh:message "MeaningAttribution must carry at least one drift:hasEvidence link (Source, CorpusContext span, or model run)." ;
+    ] ;
+    # Optional: attribution weight in [0,1]
+    sh:property [
+        sh:path drift:attributionWeight ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 1.0 ;
+        sh:message "drift:attributionWeight must be a decimal in [0,1]." ;
+    ] .

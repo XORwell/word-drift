@@ -1,6 +1,6 @@
 # ADR 0002 — Store distributions, not winners
 
-**Status:** Proposed
+**Status:** Accepted (M1, 2026-05-28)
 
 ## Context
 

@@ -1,6 +1,6 @@
 # ADR 0001 — Multi-group representation via a join entity
 
-**Status:** Proposed
+**Status:** Accepted (M1, 2026-05-28)
 
 ## Context
 
