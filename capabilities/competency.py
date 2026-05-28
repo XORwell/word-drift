@@ -15,6 +15,29 @@ if TYPE_CHECKING:
     from trails.context import KG
 
 
+def _maybe_log_injection(kg: Any, payload: str, *, source: str) -> None:
+    """When a parameter-bound query returned 0 rows AND the input contains
+    a SPARQL meta-character, log a structured WARNING.
+
+    Round-2 finding (f): parameter binding fully neutralises injection,
+    but a probe is still a useful signal. Lazy import so this module
+    stays importable without the FastAPI bits in scope.
+    """
+    try:
+        from security_middleware import (
+            log_possible_injection, looks_injection_shaped,
+        )
+    except Exception:  # noqa: BLE001 — defence-in-depth, never fatal
+        return
+    if not looks_injection_shaped(payload):
+        return
+    principal = ""
+    ctx = getattr(kg, "_ctx", None)
+    if ctx is not None:
+        principal = getattr(ctx, "principal", "") or ""
+    log_possible_injection(principal, payload, source=source)
+
+
 # ---------------------------------------------------------------------------
 # CQ01 — Which trigger event reframed the most words?
 # ---------------------------------------------------------------------------
@@ -552,7 +575,10 @@ WHERE {{
 GROUP BY ?word ?groupLabel ?groupKindLabel ?senseGloss ?atYear
 ORDER BY ?atYear ?groupLabel
 """
-    return kg.query(sparql, word_param=word)
+    rows = kg.query(sparql, word_param=word)
+    if not rows:
+        _maybe_log_injection(kg, word, source="cq13")
+    return rows
 
 
 # ---------------------------------------------------------------------------
@@ -606,7 +632,10 @@ WHERE {{
 GROUP BY ?word ?regionLabel ?senseGloss ?atYear
 ORDER BY ?atYear ?regionLabel
 """
-    return kg.query(sparql, word_param=word)
+    rows = kg.query(sparql, word_param=word)
+    if not rows:
+        _maybe_log_injection(kg, word, source="cq14")
+    return rows
 
 
 # ---------------------------------------------------------------------------

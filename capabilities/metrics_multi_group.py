@@ -34,6 +34,27 @@ from typing import Any
 _MIN_EVIDENCE = 0.5  # Minimum total attribution weight before a metric is reportable.
 
 
+def _maybe_log_injection(kg: Any, payload: str, *, source: str) -> None:
+    """Same lazy-import injection logger as capabilities.competency.
+
+    See security_middleware.log_possible_injection. Defence-in-depth: the
+    actual binding does the protection; this only adds a WARN signal.
+    """
+    try:
+        from security_middleware import (
+            log_possible_injection, looks_injection_shaped,
+        )
+    except Exception:  # noqa: BLE001
+        return
+    if not looks_injection_shaped(payload):
+        return
+    principal = ""
+    ctx = getattr(kg, "_ctx", None)
+    if ctx is not None:
+        principal = getattr(ctx, "principal", "") or ""
+    log_possible_injection(principal, payload, source=source)
+
+
 # ---------------------------------------------------------------------------
 # Shared SPARQL: load attribution rows for a word, optionally at a year.
 # ---------------------------------------------------------------------------
@@ -66,7 +87,10 @@ WHERE {{
   {year_filter}
 }}
 """
-    return kg.query(sparql, word_param=word)
+    rows = kg.query(sparql, word_param=word)
+    if not rows:
+        _maybe_log_injection(kg, word, source="attribution_rows")
+    return rows
 
 
 def _weight(row: dict[str, Any]) -> float:

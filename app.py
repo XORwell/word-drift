@@ -41,6 +41,18 @@ def _bootstrap():
         return
     t0 = time.monotonic()
 
+    # Trails framework compatibility check (see trails_compat.py). In a
+    # production environment a mismatched Trails version is a fail-fast;
+    # in dev it logs a noisy WARNING and continues so sibling-checkout
+    # experiments don't grind to a halt.
+    try:
+        from trails_compat import enforce as _enforce_trails_compat
+        _enforce_trails_compat()
+    except RuntimeError:
+        raise
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("trails_compat check skipped: %s", exc)
+
     # SPARQL trace (env-gated by WD_SPARQL_TRACE). Installed before any
     # query fires so the very first query lands in the log too. No-op if
     # the env var is unset.
@@ -381,6 +393,16 @@ def create_app():
     adapter = TrailsHTTPAdapter(mcp, require_auth=False)
     http_app = adapter.create_app()
 
+    # Round-2 security hardening: CSP/X-Frame/CORS-strip/rate-limit
+    # middleware. Install BEFORE the word-drift routes so the middleware
+    # wraps both the Trails-adapter routes AND the new word-drift routes
+    # (and the static StaticFiles mount). See security_middleware.py.
+    try:
+        from security_middleware import install as _install_security
+        _install_security(http_app)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("security middleware install skipped: %s", exc)
+
     # Remove the Trails landing page route so the word-drift StaticFiles
     # mount (added last) can own GET /. FastAPI matches routes in list order
     # and the adapter registers GET / first, so we strip it here.
@@ -392,10 +414,22 @@ def create_app():
     ]
 
     try:
+        from fastapi import Query
         from fastapi.responses import JSONResponse
         from starlette.staticfiles import StaticFiles
         from trails.context import Context
         from trails.runtime import _kernel_store
+
+        # Round 2 (d): tight year-range bounds. ``int(year)`` was safe
+        # against injection but accepted absurd values; reject anything
+        # outside [1000, 2200] at the FastAPI signature layer so the
+        # store never even sees the absurd literal. 1000 / 2200 are wide
+        # enough for any historical or near-future drift study; tighter
+        # bounds would risk false-negatives on medieval source material.
+        _YEAR_MIN, _YEAR_MAX = 1000, 2200
+        Year = Query(default=None, ge=_YEAR_MIN, le=_YEAR_MAX)
+        YearRequiredFrom = Query(default=1900, ge=_YEAR_MIN, le=_YEAR_MAX)
+        YearRequiredTo = Query(default=1999, ge=_YEAR_MIN, le=_YEAR_MAX)
 
         # ------------------------------------------------------------------
         # Live JSON endpoints — same paths the frontend fetches
@@ -466,6 +500,18 @@ def create_app():
                 ).strip()
             except Exception:
                 pass
+            # Trails framework compat info (declared range + live version).
+            try:
+                from trails_compat import check_trails as _check_trails
+                _trails_compat = _check_trails().as_dict()
+            except Exception as exc:  # noqa: BLE001
+                _trails_compat = {
+                    "required": "",
+                    "installed": "<unknown>",
+                    "satisfied": False,
+                    "note": str(exc)[:200],
+                }
+
             _version_cache = {
                 "ontology": ontology_version,
                 "release": release_tag,
@@ -477,6 +523,7 @@ def create_app():
                 "citationVersion": release_tag or (
                     "ontology " + ontology_version if ontology_version else "untagged"
                 ),
+                "trails": _trails_compat,
             }
             return _version_cache
 
@@ -595,7 +642,7 @@ def create_app():
             return JSONResponse(_cq.cq05_connotation_reversed(_ctx.kg))
 
         @http_app.get("/api/cq/06", response_model=None)
-        async def api_cq06(year_from: int = 1900, year_to: int = 1999):
+        async def api_cq06(year_from: int = YearRequiredFrom, year_to: int = YearRequiredTo):
             """CQ06: Trigger events in a date range."""
             _ctx = Context(trace_id="cq06", principal="system", store=_kernel_store())
             return JSONResponse(
@@ -639,7 +686,7 @@ def create_app():
             return JSONResponse(_cq.cq12_provenance_completeness(_ctx.kg))
 
         @http_app.get("/api/cq/13", response_model=None)
-        async def api_cq13(word: str = "Querdenker", year: int | None = None):
+        async def api_cq13(word: str = "Querdenker", year: int | None = Year):
             """CQ13 (3.0): Per-group sense attributions for a word."""
             _ctx = Context(trace_id="cq13", principal="system", store=_kernel_store())
             return JSONResponse(
@@ -647,7 +694,7 @@ def create_app():
             )
 
         @http_app.get("/api/cq/14", response_model=None)
-        async def api_cq14(word: str = "woke", year: int | None = None):
+        async def api_cq14(word: str = "woke", year: int | None = Year):
             """CQ14 (3.0/M5): Per-region sense weights for a word."""
             _ctx = Context(trace_id="cq14", principal="system", store=_kernel_store())
             return JSONResponse(
@@ -666,13 +713,13 @@ def create_app():
         from capabilities import metrics_multi_group as _m3
 
         @http_app.get("/api/metrics/entropy", response_model=None)
-        async def api_metric_entropy(word: str = "Querdenker", year: int | None = None):
+        async def api_metric_entropy(word: str = "Querdenker", year: int | None = Year):
             """Semantic entropy of the sense distribution for a word."""
             _ctx = Context(trace_id="m3-entropy", principal="system", store=_kernel_store())
             return JSONResponse(_m3.semantic_entropy(_ctx.kg, word=word, year=year))
 
         @http_app.get("/api/metrics/fragmentation", response_model=None)
-        async def api_metric_fragmentation(word: str = "Querdenker", year: int | None = None):
+        async def api_metric_fragmentation(word: str = "Querdenker", year: int | None = Year):
             """Gini-Simpson fragmentation over the (group, sense) grid."""
             _ctx = Context(trace_id="m3-frag", principal="system", store=_kernel_store())
             return JSONResponse(
@@ -680,13 +727,13 @@ def create_app():
             )
 
         @http_app.get("/api/metrics/divergence", response_model=None)
-        async def api_metric_divergence(word: str = "Querdenker", year: int | None = None):
+        async def api_metric_divergence(word: str = "Querdenker", year: int | None = Year):
             """Pairwise Jensen-Shannon divergence between group sense-distributions."""
             _ctx = Context(trace_id="m3-div", principal="system", store=_kernel_store())
             return JSONResponse(_m3.group_divergence(_ctx.kg, word=word, year=year))
 
         @http_app.get("/api/metrics/platform-divergence", response_model=None)
-        async def api_metric_platform_divergence(word: str = "Querdenker", year: int | None = None):
+        async def api_metric_platform_divergence(word: str = "Querdenker", year: int | None = Year):
             """M6: pairwise JSD between platform sense-distributions."""
             _ctx = Context(trace_id="m6-div", principal="system", store=_kernel_store())
             return JSONResponse(_m3.cross_platform_distance(_ctx.kg, word=word, year=year))

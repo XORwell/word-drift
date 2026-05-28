@@ -43,6 +43,56 @@ def _log_path() -> Path:
     return Path(os.environ.get("WD_SPARQL_TRACE_FILE", "/tmp/word-drift-sparql.jsonl"))
 
 
+def _max_bytes() -> int:
+    """Trace-file rotation threshold (default 50 MB).
+
+    Set via ``WD_SPARQL_TRACE_MAX_BYTES``. Below 1 KB the file would
+    rotate after every line and is treated as disabled (returns a very
+    large value).
+    """
+    try:
+        n = int(os.environ.get("WD_SPARQL_TRACE_MAX_BYTES", str(50 * 1024 * 1024)))
+    except ValueError:
+        n = 50 * 1024 * 1024
+    return n if n >= 1024 else (1 << 62)
+
+
+_rotate_lock = threading.Lock()
+
+
+def _maybe_rotate(path: Path) -> None:
+    """Single-depth rotation: if the file exceeds the threshold, move it
+    to ``<path>.1`` (replacing any existing ``.1``). No compression. The
+    next write will recreate the primary file with 0600 perms.
+
+    Best-effort: any failure here is logged but never propagates back to
+    the caller.
+    """
+    try:
+        st = path.stat()
+    except FileNotFoundError:
+        return
+    except OSError:
+        return
+    if st.st_size < _max_bytes():
+        return
+    with _rotate_lock:
+        # Re-check under the lock; another thread may have rotated.
+        try:
+            if path.stat().st_size < _max_bytes():
+                return
+        except FileNotFoundError:
+            return
+        rotated = path.with_suffix(path.suffix + ".1")
+        try:
+            if rotated.exists():
+                rotated.unlink()
+            path.rename(rotated)
+            logger.info("sparql trace rotated: %s -> %s", path, rotated)
+        except OSError as exc:
+            logger.warning("sparql trace rotation failed: %s", exc)
+
+
 def _write_record(rec: dict[str, Any]) -> None:
     """Append a JSON-lines record to the trace file with 0600 permissions.
 
@@ -56,6 +106,9 @@ def _write_record(rec: dict[str, Any]) -> None:
     try:
         path = _log_path()
         path.parent.mkdir(parents=True, exist_ok=True)
+        # Single-depth rotation before each write: bounded disk usage on
+        # busy hosts. See _maybe_rotate() — best-effort, never fatal.
+        _maybe_rotate(path)
         line = json.dumps(rec, ensure_ascii=False, default=str) + "\n"
         flags = os.O_WRONLY | os.O_CREAT | os.O_APPEND
         fd = os.open(str(path), flags, 0o600)
