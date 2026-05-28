@@ -1,0 +1,121 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT 3.0 — M7: emotional framing overlay
+# Reifies the affective loading of selected Querdenker
+# MeaningAttribution records from M2. Each EmotionalFraming
+# carries scalar valence/arousal/loading + a categorical
+# framingType. Annotations are explicitly evidenced
+# (drift:hasEvidence) and provenanced (prov:wasAttributedTo).
+#
+# Picture: mainstream press framing of the covid-sense is
+# strongly negative (hostile); academic linguistics stays
+# clinical (low arousal, low valence); querdenken-supporters'
+# self-framing of the lateral-sense is admiring (positive).
+# =============================================================
+
+wdr:annotator-m7-curator a prov:Agent ;
+    rdfs:label "M7 framing annotation curator"@en .
+
+wdr:src-emotion-annotation-2026 a drift:Source ;
+    rdfs:label "Curated emotional framing annotations (2026)"@en .
+
+# --- 2020 framings ---------------------------------------------------------
+
+wdr:framing-q-2020-mp-covid a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2020-mp-covid ;
+    drift:valence -0.75 ;
+    drift:arousal 0.8 ;
+    drift:loading 0.9 ;
+    drift:framingType drift:Hostile ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+wdr:framing-q-2020-qs-lateral a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2020-qs-lateral ;
+    drift:valence 0.7 ;
+    drift:arousal 0.6 ;
+    drift:loading 0.85 ;
+    drift:framingType drift:Admiring , drift:InGroupCoded ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+wdr:framing-q-2020-al-both-1 a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2020-al-both-1 ;
+    drift:valence 0.05 ;
+    drift:arousal 0.2 ;
+    drift:loading 0.9 ;
+    drift:framingType drift:Clinical ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+wdr:framing-q-2020-al-both-2 a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2020-al-both-2 ;
+    drift:valence -0.1 ;
+    drift:arousal 0.2 ;
+    drift:loading 0.9 ;
+    drift:framingType drift:Clinical ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+# --- 2021 framings ---------------------------------------------------------
+
+wdr:framing-q-2021-mp-covid a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2021-mp-covid ;
+    drift:valence -0.85 ;
+    drift:arousal 0.85 ;
+    drift:loading 0.95 ;
+    drift:framingType drift:Hostile , drift:Mocking ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+wdr:framing-q-2021-lp-covid a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2021-lp-covid ;
+    drift:valence -0.7 ;
+    drift:arousal 0.75 ;
+    drift:loading 0.9 ;
+    drift:framingType drift:Hostile ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+wdr:framing-q-2021-qs-lateral a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2021-qs-lateral ;
+    drift:valence 0.75 ;
+    drift:arousal 0.7 ;
+    drift:loading 0.9 ;
+    drift:framingType drift:Admiring , drift:InGroupCoded ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+# --- 2023 framings ---------------------------------------------------------
+
+wdr:framing-q-2023-mp-covid a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2023-mp-covid ;
+    drift:valence -0.9 ;
+    drift:arousal 0.65 ;
+    drift:loading 0.95 ;
+    drift:framingType drift:Hostile ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+wdr:framing-q-2023-qs-lateral a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2023-qs-lateral ;
+    drift:valence 0.7 ;
+    drift:arousal 0.55 ;
+    drift:loading 0.9 ;
+    drift:framingType drift:Admiring , drift:InGroupCoded ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .
+
+wdr:framing-q-2023-al-covid a drift:EmotionalFraming ;
+    drift:framesAttribution wdr:attrib-q-2023-al-covid ;
+    drift:valence -0.2 ;
+    drift:arousal 0.25 ;
+    drift:loading 0.9 ;
+    drift:framingType drift:Clinical ;
+    drift:hasEvidence wdr:src-emotion-annotation-2026 ;
+    prov:wasAttributedTo wdr:annotator-m7-curator .

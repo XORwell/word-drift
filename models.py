@@ -642,3 +642,60 @@ class RegisterShape:
         many=False,
         min_length=1,
     )
+
+
+# ---------------------------------------------------------------------------
+# 3.0 — EmotionalFraming (ontology/10-emotion.ttl, M7)
+# Reified, evidenced annotation of the affective loading under which a
+# specific MeaningAttribution was made. NEVER attached to a Sense.
+# ---------------------------------------------------------------------------
+
+@node_type(
+    "EmotionalFraming",
+    fields={
+        "frames_attribution": str,
+        "valence": float | None,
+        "arousal": float | None,
+        "loading": float | None,
+        "framing_type": str | None,
+    },
+    extends=["http://www.w3.org/ns/prov#Entity"],
+)
+class EmotionalFraming:
+    """An evidenced affective annotation of one MeaningAttribution.
+
+    ``valence`` ∈ [-1, +1]; ``arousal`` ∈ [0, 1]; ``loading`` ∈ [0, 1]
+    (confidence in the valence judgement, distinct from arousal).
+    ``framing_type`` is the prefLabel of one drift:FramingTypeScheme
+    concept (neutral / hostile / admiring / ironic / clinical / …).
+    """
+
+
+@shape(iri=f"{_DRIFT}EmotionalFramingShape")
+class EmotionalFramingShape:
+    frames_attribution: str = predicate(
+        f"{_DRIFT}framesAttribution",
+        required=True,
+        many=False,
+    )
+    valence: float | None = predicate(
+        f"{_DRIFT}valence",
+        required=False,
+        many=False,
+        min_value=-1.0,
+        max_value=1.0,
+    )
+    arousal: float | None = predicate(
+        f"{_DRIFT}arousal",
+        required=False,
+        many=False,
+        min_value=0.0,
+        max_value=1.0,
+    )
+    loading: float | None = predicate(
+        f"{_DRIFT}loading",
+        required=False,
+        many=False,
+        min_value=0.0,
+        max_value=1.0,
+    )

@@ -1812,3 +1812,70 @@ a.source-badge:hover { border-color: var(--accent); }
   overflow: hidden;
 }
 .wd-dist-platform-seg { display: inline-block; height: 100%; opacity: 0.85; }
+
+/* M7 — Emotional framing heatmap */
+.wd-dist-emotion-panel {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  margin: 0 0.8rem 1rem;
+  padding: 0.8rem;
+}
+.wd-dist-emotion-grid {
+  display: grid;
+  border: 1px solid var(--border);
+  background: var(--bg-card2);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+.wd-dist-emotion-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) repeat(var(--n-years, 5), minmax(0, 1fr));
+  border-bottom: 1px solid var(--border);
+}
+.wd-dist-emotion-row:last-child { border-bottom: 0; }
+.wd-dist-emotion-head { background: color-mix(in srgb, var(--text-sub) 6%, transparent); }
+.wd-dist-emotion-groupcol {
+  padding: 0.45rem 0.55rem;
+  color: var(--text-main);
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+.wd-dist-emotion-yearhead {
+  padding: 0.45rem 0;
+  text-align: center;
+  color: var(--text-sub);
+  border-right: 1px solid var(--border);
+}
+.wd-dist-emotion-cell {
+  padding: 0.5rem 0;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.wd-dist-emotion-cell:last-child { border-right: 0; }
+.wd-dist-emotion-absent {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 3px,
+    color-mix(in srgb, var(--text-sub) 12%, transparent) 3px,
+    color-mix(in srgb, var(--text-sub) 12%, transparent) 5px
+  );
+}
+.wd-dist-emotion-legend {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+}
+.wd-dist-emotion-legend-item { display: inline-flex; align-items: center; gap: 0.3rem; }
+.wd-dist-emotion-legend-swatch {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--border);
+}
+.wd-dist-emotion-legend-num { color: var(--text-sub); font-family: var(--font-mono); }

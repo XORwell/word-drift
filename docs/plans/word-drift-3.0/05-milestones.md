@@ -123,12 +123,15 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 **Load-bearing artefact:** `ontology/10-emotion.ttl` accepted, emotional drift metric, emotional heatmap viz.
 
 **Done when:**
-- [ ] `drift:EmotionalFraming` modelled (with `drift:valence`, `drift:loading`, `drift:framingType`).
-- [ ] ADR-0004 enforced: every framing attribution carries evidence (corpus span or model output with declared version).
-- [ ] At least one word with emotional valence trajectory over time, per group.
-- [ ] Heatmap viz on `explore.html`.
+- [x] `drift:EmotionalFraming` Python `@node_type` + `@shape` (valence ∈ [-1,1], arousal ∈ [0,1], loading ∈ [0,1], framingType from SKOS scheme).
+- [x] ADR-0004 enforced at the fixture level: every `drift:EmotionalFraming` carries `drift:hasEvidence` + `prov:wasAttributedTo` to a declared annotator.
+- [x] Querdenker emotional valence trajectory across 3 groups × 3 years in `examples/querdenker-emotion.ttl` (11 framings).
+- [x] Heatmap viz on `explore.html` — group × year grid, divergent slate→parchment→ochre ramp (NOT red/green), cell label shows valence mean, tooltip carries loading + framing count.
+- [x] `emotional_drift` metric + `/api/metrics/emotional-drift` endpoint.
 
 **Out of scope:** sentiment as ground-truth labels; psycholinguistic affect norms (deferred).
+
+**Shipped:** total suite 37 tests passing.
 
 ---
 

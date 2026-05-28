@@ -403,6 +403,128 @@ def cross_platform_distance(
 
 
 # ---------------------------------------------------------------------------
+# Metric 5 — emotional_drift (M7)
+# Group-conditioned valence trajectory: (weighted) mean valence per group
+# per year, plus a delta between adjacent years that measures emotional
+# drift independent of denotational drift.
+# ---------------------------------------------------------------------------
+
+
+def emotional_drift(
+    kg: Any,
+    *,
+    word: str = "Querdenker",
+) -> dict[str, Any]:
+    """Per-group, per-year (weighted) mean valence for a word.
+
+    Returns
+    -------
+    dict with keys:
+        timeline:  list of {year, group, valence_mean, loading_mean, n_framings}
+        deltas:    list of {group, fromYear, toYear, delta} — valence drift
+                   for each group between adjacent years.
+        n_groups:  distinct groups with framing data
+        total_framings: total number of framing records observed
+    """
+    sparql = f"""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?groupIri ?groupLabel ?atYear ?valence ?loading ?weight
+WHERE {{
+  ?fr a drift:EmotionalFraming ;
+      drift:framesAttribution ?ma ;
+      drift:valence ?valence .
+  OPTIONAL {{ ?fr drift:loading ?loading . }}
+  ?ma drift:attributesWord ?wordIri ;
+      drift:byGroup ?groupIri .
+  ?wordIri drift:writtenForm ?word .
+  FILTER(STR(?word) = "{word}")
+  OPTIONAL {{
+    ?groupIri rdfs:label ?groupLabel .
+    FILTER(LANG(?groupLabel) = "en" || LANG(?groupLabel) = "")
+  }}
+  OPTIONAL {{ ?ma drift:atYear ?atYear . }}
+  OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
+}}
+"""
+    rows = kg.query(sparql)
+
+    # Aggregate per (group, year): weighted-mean valence + mean loading.
+    # Weight = attribution weight × framing loading (default 1 each).
+    by_cell: dict[tuple[str, int], dict[str, float]] = {}
+    group_labels: dict[str, str] = {}
+    for r in rows:
+        g_id = r.get("groupIri")
+        y_raw = r.get("atYear")
+        try:
+            year = int(str(y_raw)[:4]) if y_raw else None
+        except (TypeError, ValueError):
+            year = None
+        if not g_id or year is None:
+            continue
+        try:
+            val = float(r.get("valence")) if r.get("valence") not in (None, "") else None
+        except (TypeError, ValueError):
+            val = None
+        if val is None:
+            continue
+        try:
+            load = float(r.get("loading")) if r.get("loading") not in (None, "") else 1.0
+        except (TypeError, ValueError):
+            load = 1.0
+        try:
+            aw = float(r.get("weight")) if r.get("weight") not in (None, "") else 1.0
+        except (TypeError, ValueError):
+            aw = 1.0
+        w = aw * load
+        cell = by_cell.setdefault((g_id, year), {
+            "val_sum": 0.0, "w_sum": 0.0, "load_sum": 0.0, "n": 0.0,
+        })
+        cell["val_sum"] += val * w
+        cell["w_sum"] += w
+        cell["load_sum"] += load
+        cell["n"] += 1
+        group_labels.setdefault(g_id, str(r.get("groupLabel") or g_id))
+
+    timeline: list[dict[str, Any]] = []
+    for (g_id, year), c in sorted(by_cell.items(), key=lambda kv: (kv[0][1], kv[0][0])):
+        if c["w_sum"] <= 0:
+            continue
+        timeline.append({
+            "year": year,
+            "group": g_id,
+            "groupLabel": group_labels.get(g_id, g_id),
+            "valence_mean": c["val_sum"] / c["w_sum"],
+            "loading_mean": c["load_sum"] / c["n"] if c["n"] else 0.0,
+            "n_framings": int(c["n"]),
+        })
+
+    # Deltas per group between adjacent attested years.
+    by_group: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in timeline:
+        by_group[row["group"]].append(row)
+    deltas: list[dict[str, Any]] = []
+    for g, rows_for_g in by_group.items():
+        rows_for_g.sort(key=lambda r: r["year"])
+        for prev, curr in zip(rows_for_g, rows_for_g[1:]):
+            deltas.append({
+                "group": g,
+                "groupLabel": prev["groupLabel"],
+                "fromYear": prev["year"],
+                "toYear": curr["year"],
+                "delta": curr["valence_mean"] - prev["valence_mean"],
+            })
+
+    return {
+        "timeline": timeline,
+        "deltas": deltas,
+        "n_groups": len(by_group),
+        "total_framings": sum(int(r["n_framings"]) for r in timeline),
+    }
+
+
+# ---------------------------------------------------------------------------
 # Convenience wrapper: timeline of all three metrics per year.
 # ---------------------------------------------------------------------------
 

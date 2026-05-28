@@ -445,6 +445,132 @@
     if ((word.platforms || []).length > 0) {
       panelEl.appendChild(renderPlatformPanel(word));
     }
+
+    // M7: emotional framing sub-panel. Renders only if any framings exist.
+    var emo = word.emotional_drift || null;
+    if (emo && (emo.timeline || []).length > 0) {
+      panelEl.appendChild(renderEmotionalPanel(word, emo));
+    }
+  }
+
+  // ---- Emotional framing sub-panel (M7) ------------------------------------
+  // A diverging heatmap of group-conditioned mean valence over time.
+  // Sequential ramp from a neutral mid (taupe / parchment) outward to two
+  // sequential single-hue ends — slate-blue for negative, ochre for positive.
+  // NOT red/green: per the design language, value-coded primary colours are
+  // banned. Cells annotate the value, opacity tracks the loading.
+
+  function valenceColor(v) {
+    // v in [-1, +1]. 0 = neutral parchment; -1 = deep slate; +1 = deep ochre.
+    if (v == null || isNaN(v)) return "#cfc7b8";
+    var clamped = Math.max(-1, Math.min(1, v));
+    if (clamped < 0) {
+      // Slate-blue ramp
+      var t = -clamped;
+      var r = Math.round(207 + (91 - 207) * t);
+      var g = Math.round(199 + (108 - 199) * t);
+      var b = Math.round(184 + (135 - 184) * t);
+      return "rgb(" + r + "," + g + "," + b + ")";
+    } else {
+      var t2 = clamped;
+      var r2 = Math.round(207 + (185 - 207) * t2);
+      var g2 = Math.round(199 + (152 - 199) * t2);
+      var b2 = Math.round(184 + (90 - 184) * t2);
+      return "rgb(" + r2 + "," + g2 + "," + b2 + ")";
+    }
+  }
+
+  function renderEmotionalPanel(word, emo) {
+    var container = el("div", { class: "wd-dist-emotion-panel" });
+    container.appendChild(el("div", {
+      class: "wd-dist-right-title",
+      text: "Emotional framing (M7)",
+    }));
+
+    var timeline = emo.timeline || [];
+    if (!timeline.length) return container;
+
+    // Build the group × year grid.
+    var groups = Array.from(new Set(timeline.map(function (r) { return r.group; })));
+    var years = Array.from(new Set(timeline.map(function (r) { return r.year; }))).sort(function (a, b) { return a - b; });
+    var groupLabel = {};
+    timeline.forEach(function (r) { groupLabel[r.group] = r.groupLabel || r.group; });
+    var cells = {};
+    timeline.forEach(function (r) { cells[r.group + "|" + r.year] = r; });
+
+    // Sort groups by mean valence (most negative first) so the most loaded
+    // hostile group is at the top — editorial choice; reader sees the
+    // strongest contrast first.
+    groups.sort(function (a, b) {
+      var ma = 0, mb = 0, na = 0, nb = 0;
+      timeline.forEach(function (r) {
+        if (r.group === a) { ma += r.valence_mean; na++; }
+        if (r.group === b) { mb += r.valence_mean; nb++; }
+      });
+      ma = na ? ma / na : 0;
+      mb = nb ? mb / nb : 0;
+      return ma - mb;
+    });
+
+    var table = el("div", { class: "wd-dist-emotion-grid" });
+    table.style.setProperty("--n-years", String(years.length));
+
+    // Header row: years
+    var hr = el("div", { class: "wd-dist-emotion-row wd-dist-emotion-head" });
+    hr.appendChild(el("div", { class: "wd-dist-emotion-groupcol", text: "" }));
+    years.forEach(function (y) {
+      hr.appendChild(el("div", { class: "wd-dist-emotion-yearhead", text: String(y) }));
+    });
+    table.appendChild(hr);
+
+    groups.forEach(function (g) {
+      var row = el("div", { class: "wd-dist-emotion-row" });
+      row.appendChild(el("div", { class: "wd-dist-emotion-groupcol", text: groupLabel[g] }));
+      years.forEach(function (y) {
+        var cell = cells[g + "|" + y];
+        var div = el("div", { class: "wd-dist-emotion-cell" });
+        if (!cell) {
+          div.classList.add("wd-dist-emotion-absent");
+          div.title = groupLabel[g] + " — no framing at " + y;
+        } else {
+          div.style.backgroundColor = valenceColor(cell.valence_mean);
+          // Loading governs label brightness, not background opacity:
+          // we want the heatmap colour to be unambiguous.
+          div.style.color = cell.valence_mean < -0.4 ? "#f3eddb" : "#2c2620";
+          div.title = groupLabel[g] + " @ " + y + " — valence "
+                    + cell.valence_mean.toFixed(2)
+                    + " · loading " + (cell.loading_mean || 0).toFixed(2)
+                    + " · n=" + cell.n_framings;
+          div.textContent = cell.valence_mean.toFixed(2);
+        }
+        row.appendChild(div);
+      });
+      table.appendChild(row);
+    });
+    container.appendChild(table);
+
+    // Diverging legend
+    var legend = el("div", { class: "wd-dist-emotion-legend" });
+    [-1, -0.5, 0, 0.5, 1].forEach(function (v) {
+      var sw = el("span", {
+        class: "wd-dist-emotion-legend-swatch",
+        style: { backgroundColor: valenceColor(v) },
+      });
+      var lbl = el("span", { class: "wd-dist-emotion-legend-num", text: v > 0 ? "+" + v : String(v) });
+      legend.appendChild(el("span", { class: "wd-dist-emotion-legend-item" }, [sw, lbl]));
+    });
+    container.appendChild(legend);
+
+    var caption = el("p", {
+      class: "wd-dist-region-caption",
+      text: "Group-conditioned mean valence, weighted by attribution weight × "
+            + "framing loading. -1 = hostile / -0.5 = critical / 0 = neutral / "
+            + "+0.5 = sympathetic / +1 = admiring. No moral judgement is implied "
+            + "by membership in a group; this is a record of how each group "
+            + "framed the word in context, evidenced by drift:hasEvidence.",
+    });
+    container.appendChild(caption);
+    return container;
   }
 
   // ---- Platform sub-panel (M6) ---------------------------------------------

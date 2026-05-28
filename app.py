@@ -320,6 +320,14 @@ def metric_platform_divergence(
     return cross_platform_distance(ctx.kg, word=word, year=year)
 
 
+@capability("metric_emotional_drift")
+def metric_emotional_drift(ctx: Context, word: str = "Querdenker") -> dict:
+    """Per-group, per-year (weighted) mean valence + deltas (M7)."""
+    from capabilities.metrics_multi_group import emotional_drift
+    _bootstrap()
+    return emotional_drift(ctx.kg, word=word)
+
+
 @capability("metric_timeline")
 def metric_timeline(
     ctx: Context, word: str = "Querdenker",
@@ -553,6 +561,12 @@ def create_app():
             _ctx = Context(trace_id="m6-div", principal="system", store=_kernel_store())
             return JSONResponse(_m3.cross_platform_distance(_ctx.kg, word=word, year=year))
 
+        @http_app.get("/api/metrics/emotional-drift", response_model=None)
+        async def api_metric_emotional_drift(word: str = "Querdenker"):
+            """M7: per-group, per-year valence trajectory and deltas."""
+            _ctx = Context(trace_id="m7-emo", principal="system", store=_kernel_store())
+            return JSONResponse(_m3.emotional_drift(_ctx.kg, word=word))
+
         @http_app.get("/api/metrics/timeline", response_model=None)
         async def api_metric_timeline(word: str = "Querdenker"):
             """Per-year snapshot of all three M3 metrics for a word."""
@@ -714,6 +728,7 @@ WHERE {{
                     "platforms": list(platforms_by_id.values()),
                     "attributions": attributions,
                     "metrics": _m3.metric_timeline(_ctx.kg, word=written),
+                    "emotional_drift": _m3.emotional_drift(_ctx.kg, word=written),
                 }
 
             return JSONResponse(doc)
