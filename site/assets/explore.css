@@ -1579,3 +1579,172 @@ a.source-badge:hover { border-color: var(--accent); }
   color: var(--accent-hi);
   font-weight: 700;
 }
+
+/* =====================================================================
+   Word Drift 3.0 — Distribution view (M4)
+   Design language: archival, calm, scientific. Sense identity is encoded
+   by a stable hue across the view; groups are positional/labelled, not
+   colour-coded. No animation; absence reads differently from zero
+   (hatched-empty cells instead of blank).
+   ===================================================================== */
+
+#panel-distribution .wd-dist-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.8rem 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+.wd-dist-head-title { font-size: 0.95rem; color: var(--text-main); }
+.wd-dist-head-sub  { color: var(--text-sub); font-size: 0.82rem; }
+.wd-dist-word-picker {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--bg-card2);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  min-width: 12rem;
+}
+
+.wd-dist-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 1rem;
+  padding: 0.8rem;
+}
+@media (max-width: 920px) {
+  .wd-dist-grid { grid-template-columns: 1fr; }
+}
+
+/* Summary card */
+.wd-dist-card {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  padding: 0.8rem 0.9rem;
+  margin-bottom: 1rem;
+}
+.wd-dist-card-title { font-size: 0.95rem; color: var(--text-main); margin-bottom: 0.5rem; }
+.wd-dist-card-dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.18rem 0.6rem;
+  font-size: 0.78rem;
+  margin: 0 0 0.5rem 0;
+}
+.wd-dist-card-dl dt { color: var(--text-sub); }
+.wd-dist-card-dl dd { color: var(--text-main); font-family: var(--font-mono); margin: 0; }
+.wd-dist-card-interp {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-sub);
+  margin: 0;
+  border-left: 2px solid var(--border);
+  padding-left: 0.5rem;
+}
+
+/* Sparklines */
+.wd-dist-sparks { border: 1px solid var(--border); background: var(--bg-card); }
+.wd-dist-sparks-title {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.wd-dist-spark {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0.1rem 0.2rem;
+}
+.wd-dist-spark + .wd-dist-spark { border-top: 1px dashed var(--border); }
+.wd-dist-spark-label { font-size: 9px; fill: var(--text-sub); font-family: var(--font-mono); }
+.wd-dist-spark-axis  { font-size: 8px; fill: var(--text-sub); font-family: var(--font-mono); }
+.wd-dist-spark-empty { font-size: 10px; fill: var(--text-sub); font-style: italic; }
+
+/* Small multiples: per-group sense distribution */
+.wd-dist-right-title {
+  padding-bottom: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.wd-dist-sm {
+  display: grid;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.wd-dist-sm-row {
+  display: grid;
+  grid-template-columns: 3rem repeat(var(--n-groups, 5), minmax(0, 1fr));
+  border-bottom: 1px solid var(--border);
+}
+.wd-dist-sm-row:last-child { border-bottom: 0; }
+.wd-dist-sm-head { background: var(--bg-card2); }
+.wd-dist-sm-yearcol {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  padding: 0.5rem 0.4rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wd-dist-sm-cell {
+  padding: 0.45rem 0.4rem;
+  border-right: 1px solid var(--border);
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.wd-dist-sm-cell:last-child { border-right: 0; }
+.wd-dist-sm-grouphead { flex-direction: column; align-items: flex-start; }
+.wd-dist-sm-grouplabel {
+  font-size: 0.75rem;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+.wd-dist-sm-groupkind {
+  font-size: 0.65rem;
+  color: var(--text-sub);
+  font-style: italic;
+  margin-top: 0.1rem;
+}
+.wd-dist-sm-bar {
+  display: flex;
+  width: 100%;
+  height: 1rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.wd-dist-sm-seg { display: inline-block; height: 100%; opacity: 0.85; }
+.wd-dist-sm-absent {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 3px,
+    color-mix(in srgb, var(--text-sub) 12%, transparent) 3px,
+    color-mix(in srgb, var(--text-sub) 12%, transparent) 5px
+  );
+}
+.wd-dist-sm-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 0.6rem 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-sub);
+}
+.wd-dist-sm-legend-item { display: inline-flex; align-items: center; gap: 0.35rem; }
+.wd-dist-sm-legend-swatch {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1px solid var(--border);
+  opacity: 0.85;
+}

@@ -55,6 +55,7 @@
       <button class="exp-tab-btn" data-tab="map" role="tab" aria-selected="false" aria-controls="panel-map">Map</button>
       <button class="exp-tab-btn" data-tab="trends" role="tab" aria-selected="false" aria-controls="panel-trends">Trends</button>
       <button class="exp-tab-btn" data-tab="loss" role="tab" aria-selected="false" aria-controls="panel-loss">Lexical loss</button>
+      <button class="exp-tab-btn" data-tab="distribution" role="tab" aria-selected="false" aria-controls="panel-distribution" title="Multi-group meaning distribution (Word Drift 3.0 M4)">Distribution</button>
     </nav>
 
     <!-- ====== PANEL: OVERVIEW ====================================== -->
@@ -259,6 +260,10 @@
       <p class="empty-msg">Lexical loss view loading&hellip;</p>
     </section>
 
+    <section id="panel-distribution" class="exp-panel" role="tabpanel" aria-label="Multi-group meaning distribution (Word Drift 3.0 M4)">
+      <p class="empty-msg">Distribution view loading&hellip;</p>
+    </section>
+
     <!-- Footer -->
     <footer class="exp-footer">
       <span>
@@ -346,6 +351,7 @@
   <script defer src="assets/views/map.js"></script>
   <script defer src="assets/views/trends.js"></script>
   <script defer src="assets/views/loss.js"></script>
+  <script defer src="assets/views/distribution.js"></script>
   <script defer src="assets/views/exporter.js"></script>
 
 </body>

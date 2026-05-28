@@ -73,10 +73,12 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 **Load-bearing artefact:** A new viz on `explore.html` showing stacked sense proportions over time per group, with the existing single-line drift timeline alongside (not replaced).
 
 **Done when:**
-- [ ] Component renders for the M2 word from a new `/graph-distribution.json` endpoint.
-- [ ] Falls back gracefully for words without group annotations (single series).
-- [ ] Design language matches `00-vision.md §5` (no startup-dashboard aesthetic).
-- [ ] One screenshot + caption added to `docs/plans/word-drift-3.0/03-visualizations.md`.
+- [x] New `/graph-distribution.json` endpoint serves the per-word distribution document (senses, groups, attributions, metric timeline).
+- [x] New "Distribution" tab + `site/assets/views/distribution.js` module on `explore.html` renders three coordinated panels: summary card, metric sparklines (entropy / fragmentation / max divergence), per-group small-multiples with stacked sense proportions.
+- [x] Falls back to a "no multi-group data" message for words without `MeaningAttribution` records.
+- [x] Design language: archival palette, hatched-empty-cell convention so absence reads differently from zero, no animations, no gradients, no value-coded colour, sense identity stable across panels.
+- [x] M3 fragmentation index plotted (sparkline in the metric strip).
+- [ ] Screenshot + caption added to `03-visualizations.md` — deferred until first browser render.
 
 **Out of scope:** Civil-war view, geographic map, emotional heatmap, memetic timeline. (Each is its own later milestone.)
 

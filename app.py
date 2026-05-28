@@ -525,6 +525,114 @@ def create_app():
             _ctx = Context(trace_id="m3-tl", principal="system", store=_kernel_store())
             return JSONResponse(_m3.metric_timeline(_ctx.kg, word=word))
 
+        # 3.0 meaning distribution endpoint (M4) ---------------------------------
+        # Returns every Word that has at least one MeaningAttribution, with its
+        # senses, groups, per-year attribution records, and the metric timeline.
+        # Frontend (assets/views/distribution.js) renders this directly; no need
+        # for the heavy graph_builder pipeline.
+
+        @http_app.get("/graph-distribution.json", response_model=None)
+        async def serve_graph_distribution():
+            """Per-word meaning-distribution document for the 3.0 viz."""
+            from capabilities import metrics_multi_group as _m3
+            _ctx = Context(trace_id="dist", principal="system", store=_kernel_store())
+
+            # Discover all words that have any attribution.
+            word_rows = _ctx.kg.query("""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+SELECT DISTINCT ?wordIri ?writtenForm
+WHERE {
+  ?ma a drift:MeaningAttribution ;
+      drift:attributesWord ?wordIri .
+  ?wordIri drift:writtenForm ?writtenForm .
+}
+""")
+
+            doc: dict = {"words": {}, "meta": {"version": "3.0-M4"}}
+            for w_row in word_rows:
+                word_iri = w_row.get("wordIri")
+                written = str(w_row.get("writtenForm") or "")
+                if not word_iri or not written:
+                    continue
+
+                # Pull all attributions for this word. Filter labels to English
+                # (or untagged) so the multilingual rdfs:label set doesn't
+                # duplicate every row.
+                attr_rows = _ctx.kg.query(f"""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?ma ?senseIri ?senseGloss ?groupIri ?groupLabel ?groupKindLabel
+       ?atYear ?weight
+WHERE {{
+  ?ma a drift:MeaningAttribution ;
+      drift:attributesWord <{word_iri}> ;
+      drift:attributesSense ?senseIri ;
+      drift:byGroup ?groupIri .
+  OPTIONAL {{
+    ?groupIri rdfs:label ?groupLabel .
+    FILTER(LANG(?groupLabel) = "en" || LANG(?groupLabel) = "")
+  }}
+  OPTIONAL {{
+    ?groupIri drift:groupKind ?gk .
+    ?gk skos:prefLabel ?groupKindLabel .
+    FILTER(LANG(?groupKindLabel) = "en" || LANG(?groupKindLabel) = "")
+  }}
+  OPTIONAL {{
+    ?senseIri drift:gloss ?senseGloss .
+    FILTER(LANG(?senseGloss) = "en" || LANG(?senseGloss) = "")
+  }}
+  OPTIONAL {{ ?ma drift:atYear ?atYear . }}
+  OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
+}}
+""")
+
+                senses_by_id: dict = {}
+                groups_by_id: dict = {}
+                attributions: list = []
+                for r in attr_rows:
+                    s_id = r.get("senseIri")
+                    g_id = r.get("groupIri")
+                    if not s_id or not g_id:
+                        continue
+                    senses_by_id.setdefault(s_id, {
+                        "id": s_id,
+                        "gloss": r.get("senseGloss") or "",
+                    })
+                    groups_by_id.setdefault(g_id, {
+                        "id": g_id,
+                        "label": r.get("groupLabel") or "",
+                        "kind": r.get("groupKindLabel") or "",
+                    })
+                    # parse atYear (may be "2020"^^xsd:gYear or "2020")
+                    y_raw = r.get("atYear")
+                    try:
+                        year = int(str(y_raw)[:4]) if y_raw else None
+                    except (TypeError, ValueError):
+                        year = None
+                    try:
+                        weight = float(r.get("weight")) if r.get("weight") else 1.0
+                    except (TypeError, ValueError):
+                        weight = 1.0
+                    attributions.append({
+                        "sense": s_id,
+                        "group": g_id,
+                        "year": year,
+                        "weight": weight,
+                    })
+
+                doc["words"][word_iri] = {
+                    "id": word_iri,
+                    "writtenForm": written,
+                    "senses": list(senses_by_id.values()),
+                    "groups": list(groups_by_id.values()),
+                    "attributions": attributions,
+                    "metrics": _m3.metric_timeline(_ctx.kg, word=written),
+                }
+
+            return JSONResponse(doc)
+
         # ------------------------------------------------------------------
         # Static site — mounted LAST so API routes take precedence
         # ------------------------------------------------------------------
