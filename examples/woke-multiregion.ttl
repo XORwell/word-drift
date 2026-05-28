@@ -1,0 +1,213 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORD-DRIFT 3.0 — M5: "woke" multi-region distribution
+# Reuses examples/woke.ttl (3 senses: aware / progressive / pejorative).
+# Adds 3 Regions (US, UK, DE) and Groups inside each, with
+# MeaningAttribution records that carry drift:inRegion.
+#
+# Picture: the pejorative reversal is overwhelming in US mainstream
+# discourse by 2023, partial in UK press, and largely absent from
+# German-language press (where "woke" is still treated as a borrowed
+# English label for progressive activism — closer to the 2014
+# progressive sense).
+#
+# Coordinates: a defensible national centroid each, NOT the capital
+# city. They exist only for the proportional-symbol map; they are
+# presentation-grade and must not be used as gazetteer geometry.
+# =============================================================
+
+# --- Regions ---------------------------------------------------------------
+
+wdr:region-us a drift:Region ;
+    rdfs:label "United States"@en , "USA"@de ;
+    drift:regionGranularity drift:Country ;
+    drift:regionLat 39.5 ;
+    drift:regionLon -98.35 ;
+    owl:sameAs wd:Q30 .
+
+wdr:region-uk a drift:Region ;
+    rdfs:label "United Kingdom"@en , "Vereinigtes Königreich"@de ;
+    drift:regionGranularity drift:Country ;
+    drift:regionLat 54.0 ;
+    drift:regionLon -2.0 ;
+    owl:sameAs wd:Q145 .
+
+wdr:region-de a drift:Region ;
+    rdfs:label "Germany"@en , "Deutschland"@de ;
+    drift:regionGranularity drift:Country ;
+    drift:regionLat 51.16 ;
+    drift:regionLon 10.45 ;
+    owl:sameAs wd:Q183 .
+
+# --- Groups (per-region mainstream press + a US right-wing media group) ----
+
+wdr:group-us-mainstream-press a drift:Group ;
+    rdfs:label "US mainstream press"@en ;
+    drift:groupKind drift:MediaEcosystem .
+
+wdr:group-us-right-wing-media a drift:Group ;
+    rdfs:label "US right-wing media"@en ;
+    drift:groupKind drift:MediaEcosystem .
+
+wdr:group-uk-mainstream-press a drift:Group ;
+    rdfs:label "UK mainstream press"@en ;
+    drift:groupKind drift:MediaEcosystem .
+
+wdr:group-de-mainstream-press-en a drift:Group ;
+    rdfs:label "German press (English borrowings)"@en ;
+    drift:groupKind drift:MediaEcosystem .
+
+# --- Source -----------------------------------------------------------------
+
+wdr:src-woke-multiregion-2026 a drift:Source ;
+    rdfs:label "Curated multi-region annotation (2026)"@en .
+
+# --- Attributions: 2015, 2020, 2023 across 3 regions -----------------------
+
+# 2015: progressive sense dominant across all three regions.
+wdr:attrib-woke-us-2015-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-us-mainstream-press ;
+    drift:inRegion wdr:region-us ;
+    drift:atYear "2015"^^xsd:gYear ;
+    drift:attributionWeight 0.9 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-uk-2015-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-uk-mainstream-press ;
+    drift:inRegion wdr:region-uk ;
+    drift:atYear "2015"^^xsd:gYear ;
+    drift:attributionWeight 0.85 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-de-2015-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-de-mainstream-press-en ;
+    drift:inRegion wdr:region-de ;
+    drift:atYear "2015"^^xsd:gYear ;
+    drift:attributionWeight 0.7 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+# 2020: pejorative emerging in US (right-wing media), modest in UK, low in DE.
+wdr:attrib-woke-us-2020-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-us-mainstream-press ;
+    drift:inRegion wdr:region-us ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.6 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-us-2020-pej a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-pejorative ;
+    drift:byGroup wdr:group-us-right-wing-media ;
+    drift:inRegion wdr:region-us ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.95 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-uk-2020-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-uk-mainstream-press ;
+    drift:inRegion wdr:region-uk ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.7 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-uk-2020-pej a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-pejorative ;
+    drift:byGroup wdr:group-uk-mainstream-press ;
+    drift:inRegion wdr:region-uk ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.3 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-de-2020-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-de-mainstream-press-en ;
+    drift:inRegion wdr:region-de ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.85 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+# 2023: pejorative dominant in US, partial UK, marginal DE.
+wdr:attrib-woke-us-2023-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-us-mainstream-press ;
+    drift:inRegion wdr:region-us ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.35 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-us-2023-pej a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-pejorative ;
+    drift:byGroup wdr:group-us-mainstream-press ;
+    drift:inRegion wdr:region-us ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.65 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-us-2023-pej-rw a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-pejorative ;
+    drift:byGroup wdr:group-us-right-wing-media ;
+    drift:inRegion wdr:region-us ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-uk-2023-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-uk-mainstream-press ;
+    drift:inRegion wdr:region-uk ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.5 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-uk-2023-pej a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-pejorative ;
+    drift:byGroup wdr:group-uk-mainstream-press ;
+    drift:inRegion wdr:region-uk ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.5 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-de-2023-prog a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-progressive ;
+    drift:byGroup wdr:group-de-mainstream-press-en ;
+    drift:inRegion wdr:region-de ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.75 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .
+
+wdr:attrib-woke-de-2023-pej a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-woke ;
+    drift:attributesSense wdr:sense-woke-pejorative ;
+    drift:byGroup wdr:group-de-mainstream-press-en ;
+    drift:inRegion wdr:region-de ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.25 ;
+    drift:hasEvidence wdr:src-woke-multiregion-2026 .

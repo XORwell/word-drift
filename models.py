@@ -528,3 +528,44 @@ class MeaningAttributionShape:
         min_value=0.0,
         max_value=1.0,
     )
+
+
+# ---------------------------------------------------------------------------
+# drift:Region (ontology/12-geography.ttl, M5)
+# Identity vocabulary deferred to ADR-0007; M5 uses Wikidata QIDs as the
+# canonical pivot via owl:sameAs, but the IRI is opaque at this layer.
+# ---------------------------------------------------------------------------
+
+@node_type(
+    "Region",
+    fields={
+        "label": str,
+        "granularity": str | None,
+        "lat": float | None,
+        "lon": float | None,
+        "wikidata_same_as": str | None,
+    },
+)
+class Region:
+    """A geographic area for which language attributions are recorded.
+
+    Granularity is intentionally opaque at the model level: a Region MAY
+    be a country, a state, a metropolitan area, or a dialect region. M5
+    uses the smallest granularity that fits the evidence.
+
+    ``lat`` and ``lon`` are optional centroid coordinates (decimal degrees)
+    used for proportional-symbol rendering on the explore-tab map; they
+    are presentation-grade, not gazetteer-grade.
+    """
+
+
+@shape(iri=f"{_DRIFT}RegionShape")
+class RegionShape:
+    """SHACL shape for drift:Region: requires a label."""
+
+    label: str = predicate(
+        f"{_RDFS}label",
+        required=True,
+        many=False,
+        min_length=1,
+    )

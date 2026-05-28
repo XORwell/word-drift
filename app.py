@@ -266,6 +266,16 @@ def cq_groups_attributing_word(
     return cq13_groups_attributing_word(ctx.kg, word=word, year=year)
 
 
+@capability("cq_region_distribution")
+def cq_region_distribution(
+    ctx: Context, word: str = "woke", year: int | None = None,
+) -> list[dict]:
+    """CQ14 (3.0/M5): Per-region sense weights for a word."""
+    from capabilities.competency import cq14_region_distribution
+    _bootstrap()
+    return cq14_region_distribution(ctx.kg, word=word, year=year)
+
+
 # ---------------------------------------------------------------------------
 # 3.0 — Multi-group metrics (M3): entropy, fragmentation, group divergence
 # ---------------------------------------------------------------------------
@@ -496,6 +506,14 @@ def create_app():
                 _cq.cq13_groups_attributing_word(_ctx.kg, word=word, year=year)
             )
 
+        @http_app.get("/api/cq/14", response_model=None)
+        async def api_cq14(word: str = "woke", year: int | None = None):
+            """CQ14 (3.0/M5): Per-region sense weights for a word."""
+            _ctx = Context(trace_id="cq14", principal="system", store=_kernel_store())
+            return JSONResponse(
+                _cq.cq14_region_distribution(_ctx.kg, word=word, year=year)
+            )
+
         # 3.0 multi-group metrics ------------------------------------------------
         from capabilities import metrics_multi_group as _m3
 
@@ -557,14 +575,15 @@ WHERE {
 
                 # Pull all attributions for this word. Filter labels to English
                 # (or untagged) so the multilingual rdfs:label set doesn't
-                # duplicate every row.
+                # duplicate every row. Region is OPTIONAL (M5) and only
+                # surfaces for words that carry drift:inRegion attributions.
                 attr_rows = _ctx.kg.query(f"""
 PREFIX drift: <https://w3id.org/word-drift/ontology#>
 PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?ma ?senseIri ?senseGloss ?groupIri ?groupLabel ?groupKindLabel
-       ?atYear ?weight
+       ?atYear ?weight ?regionIri ?regionLabel ?regionLat ?regionLon
 WHERE {{
   ?ma a drift:MeaningAttribution ;
       drift:attributesWord <{word_iri}> ;
@@ -585,12 +604,29 @@ WHERE {{
   }}
   OPTIONAL {{ ?ma drift:atYear ?atYear . }}
   OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
+  OPTIONAL {{
+    ?ma drift:inRegion ?regionIri .
+    OPTIONAL {{
+      ?regionIri rdfs:label ?regionLabel .
+      FILTER(LANG(?regionLabel) = "en" || LANG(?regionLabel) = "")
+    }}
+    OPTIONAL {{ ?regionIri drift:regionLat ?regionLat . }}
+    OPTIONAL {{ ?regionIri drift:regionLon ?regionLon . }}
+  }}
 }}
 """)
 
                 senses_by_id: dict = {}
                 groups_by_id: dict = {}
+                regions_by_id: dict = {}
                 attributions: list = []
+
+                def _maybe_float(v: Any) -> float | None:
+                    try:
+                        return float(v) if v not in (None, "") else None
+                    except (TypeError, ValueError):
+                        return None
+
                 for r in attr_rows:
                     s_id = r.get("senseIri")
                     g_id = r.get("groupIri")
@@ -605,6 +641,14 @@ WHERE {{
                         "label": r.get("groupLabel") or "",
                         "kind": r.get("groupKindLabel") or "",
                     })
+                    region_id = r.get("regionIri") or None
+                    if region_id:
+                        regions_by_id.setdefault(region_id, {
+                            "id": region_id,
+                            "label": r.get("regionLabel") or "",
+                            "lat": _maybe_float(r.get("regionLat")),
+                            "lon": _maybe_float(r.get("regionLon")),
+                        })
                     # parse atYear (may be "2020"^^xsd:gYear or "2020")
                     y_raw = r.get("atYear")
                     try:
@@ -618,6 +662,7 @@ WHERE {{
                     attributions.append({
                         "sense": s_id,
                         "group": g_id,
+                        "region": region_id,
                         "year": year,
                         "weight": weight,
                     })
@@ -627,6 +672,7 @@ WHERE {{
                     "writtenForm": written,
                     "senses": list(senses_by_id.values()),
                     "groups": list(groups_by_id.values()),
+                    "regions": list(regions_by_id.values()),
                     "attributions": attributions,
                     "metrics": _m3.metric_timeline(_ctx.kg, word=written),
                 }

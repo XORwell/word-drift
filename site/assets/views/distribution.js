@@ -435,6 +435,188 @@
     grid.appendChild(left);
     grid.appendChild(right);
     panelEl.appendChild(grid);
+
+    // M5: regional sub-panel. Renders only if the word has region records.
+    if ((word.regions || []).length > 0) {
+      panelEl.appendChild(renderRegionalPanel(word));
+    }
+  }
+
+  // ---- Regional sub-panel (M5) ---------------------------------------------
+  // A proportional-symbol map using d3.geoNaturalEarth1 (already loaded for
+  // the Map tab). One circle per region, sized by total attribution weight
+  // at the latest available year, segmented into senses by colour. No
+  // animation. Falls back to a circle list if d3 or world data is missing.
+
+  function renderRegionalPanel(word) {
+    var container = el("div", { class: "wd-dist-region-panel" });
+    container.appendChild(el("div", {
+      class: "wd-dist-right-title",
+      text: "Regional distribution (M5)",
+    }));
+
+    var regions = word.regions || [];
+    var senses = word.senses || [];
+    if (!regions.length || !senses.length) return container;
+
+    var colorBySense = senseColors(senses);
+    var glossById = {};
+    senses.forEach(function (s) { glossById[s.id] = s.gloss || "(no gloss)"; });
+    var regionMeta = {};
+    regions.forEach(function (r) { regionMeta[r.id] = r; });
+
+    // Latest year per region with at least one attribution.
+    var byRegionYear = {};
+    (word.attributions || []).forEach(function (a) {
+      if (!a.region || a.year == null) return;
+      var key = a.region + "|" + a.year;
+      (byRegionYear[key] = byRegionYear[key] || []).push(a);
+    });
+    var latestYearByRegion = {};
+    Object.keys(byRegionYear).forEach(function (k) {
+      var p = k.indexOf("|");
+      var rid = k.slice(0, p);
+      var y = parseInt(k.slice(p + 1), 10);
+      if (!(rid in latestYearByRegion) || y > latestYearByRegion[rid]) {
+        latestYearByRegion[rid] = y;
+      }
+    });
+
+    // Total per region (for sizing) and per-sense weights (for stacks).
+    var regionTotal = {};
+    var regionStack = {};
+    regions.forEach(function (r) {
+      var y = latestYearByRegion[r.id];
+      if (y == null) return;
+      var entries = byRegionYear[r.id + "|" + y] || [];
+      var total = entries.reduce(function (acc, e) { return acc + (e.weight || 0); }, 0);
+      regionTotal[r.id] = total;
+      var stack = {};
+      entries.forEach(function (e) { stack[e.sense] = (stack[e.sense] || 0) + (e.weight || 0); });
+      regionStack[r.id] = stack;
+    });
+
+    // SVG map
+    var svgNS = "http://www.w3.org/2000/svg";
+    var w = 720, h = 360;
+    var svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    svg.setAttribute("class", "wd-dist-region-map");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Regional sense distribution for " + word.writtenForm);
+
+    var hasD3 = typeof window.d3 !== "undefined" && typeof d3.geoNaturalEarth1 === "function";
+    var projection = null, pathGen = null;
+    if (hasD3) {
+      projection = d3.geoNaturalEarth1().fitSize([w, h], { type: "Sphere" });
+      pathGen = d3.geoPath(projection);
+      // Coastline outline (vendored world-110m as a FeatureCollection)
+      fetch("assets/vendor/world-110m.json", { credentials: "same-origin" })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (world) {
+          if (!world) return;
+          var feats = (world.features || []);
+          var g = document.createElementNS(svgNS, "g");
+          g.setAttribute("class", "wd-dist-region-land");
+          feats.forEach(function (f) {
+            var d = pathGen(f);
+            if (!d) return;
+            var p = document.createElementNS(svgNS, "path");
+            p.setAttribute("d", d);
+            g.appendChild(p);
+          });
+          svg.insertBefore(g, svg.firstChild);
+        })
+        .catch(function () { /* offline / vendor missing: skip land */ });
+    }
+
+    // Render one stacked circle per region.
+    var rMax = 36;
+    var maxTotal = Math.max.apply(null,
+      Object.values(regionTotal).concat([0.0001])
+    );
+
+    regions.forEach(function (r) {
+      var total = regionTotal[r.id] || 0;
+      if (total <= 0 || r.lat == null || r.lon == null) return;
+      var pt = projection ? projection([r.lon, r.lat]) : pseudoProject(r.lon, r.lat, w, h);
+      if (!pt) return;
+      var radius = rMax * Math.sqrt(total / maxTotal);
+      var year = latestYearByRegion[r.id];
+      // Build stacked arcs by sense
+      var stack = regionStack[r.id] || {};
+      var senseIds = Object.keys(stack);
+      // Sort by gloss so colour reads stably across regions.
+      senseIds.sort(function (a, b) { return (glossById[a] || "").localeCompare(glossById[b] || ""); });
+
+      var g = document.createElementNS(svgNS, "g");
+      g.setAttribute("transform", "translate(" + pt[0].toFixed(1) + " " + pt[1].toFixed(1) + ")");
+
+      var cumStart = -Math.PI / 2;
+      var totalForArc = total;
+      senseIds.forEach(function (sId) {
+        var v = stack[sId];
+        if (v <= 0) return;
+        var slice = (v / totalForArc) * Math.PI * 2;
+        var pathd = arcPath(0, 0, radius, cumStart, cumStart + slice);
+        var p = document.createElementNS(svgNS, "path");
+        p.setAttribute("d", pathd);
+        p.setAttribute("fill", colorBySense[sId] || "#888");
+        p.setAttribute("stroke", "#3a3530");
+        p.setAttribute("stroke-width", "0.5");
+        p.setAttribute("opacity", "0.85");
+        var title = document.createElementNS(svgNS, "title");
+        title.textContent = (regionMeta[r.id].label || r.id)
+          + " @ " + year + " — " + glossById[sId]
+          + " (" + (v / totalForArc * 100).toFixed(0) + "%)";
+        p.appendChild(title);
+        g.appendChild(p);
+        cumStart += slice;
+      });
+
+      // Region label
+      var lbl = document.createElementNS(svgNS, "text");
+      lbl.setAttribute("x", "0");
+      lbl.setAttribute("y", (radius + 12).toFixed(1));
+      lbl.setAttribute("text-anchor", "middle");
+      lbl.setAttribute("class", "wd-dist-region-label");
+      lbl.textContent = regionMeta[r.id].label || r.id;
+      g.appendChild(lbl);
+
+      svg.appendChild(g);
+    });
+
+    container.appendChild(svg);
+
+    var caption = el("p", {
+      class: "wd-dist-region-caption",
+      text: "Circle area is proportional to the most-recent total attribution weight for "
+            + word.writtenForm + " in that region. Slices show the sense breakdown at that year. "
+            + "Hover a slice for the percentage. Coordinates are presentation centroids only; "
+            + "do not treat them as gazetteer geometry.",
+    });
+    container.appendChild(caption);
+    return container;
+  }
+
+  // Fallback projection if d3 isn't ready: equirectangular, no land.
+  function pseudoProject(lon, lat, w, h) {
+    var x = ((lon + 180) / 360) * w;
+    var y = ((90 - lat) / 180) * h;
+    return [x, y];
+  }
+
+  // SVG arc path from (x,y), radius r, start angle a0 to end angle a1.
+  function arcPath(cx, cy, r, a0, a1) {
+    var x0 = cx + r * Math.cos(a0), y0 = cy + r * Math.sin(a0);
+    var x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+    var large = (a1 - a0) > Math.PI ? 1 : 0;
+    if (Math.abs(a1 - a0) >= Math.PI * 2 - 1e-6) {
+      // Full circle
+      return "M " + (cx - r) + " " + cy + " a " + r + " " + r + " 0 1 0 " + (2 * r) + " 0 a " + r + " " + r + " 0 1 0 " + (-2 * r) + " 0 Z";
+    }
+    return "M " + cx + " " + cy + " L " + x0.toFixed(2) + " " + y0.toFixed(2)
+         + " A " + r + " " + r + " 0 " + large + " 1 " + x1.toFixed(2) + " " + y1.toFixed(2) + " Z";
   }
 
   // ---- View registration ----------------------------------------------------

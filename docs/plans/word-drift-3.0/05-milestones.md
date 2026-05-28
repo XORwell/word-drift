@@ -89,12 +89,14 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 **Load-bearing artefact:** `ontology/12-geography.ttl` accepted, country-level support, one map viz.
 
 **Done when:**
-- [ ] `drift:Region` modelled (subclass of `geo:Feature` or similar; ADR-0007 to decide).
-- [ ] At least one word with region-conditioned attributions across ≥3 countries.
-- [ ] Map viz on `explore.html` for that word — choropleth or proportional symbols.
-- [ ] Group × region cross-tabulation queryable via SPARQL.
+- [x] `drift:Region` Python @node_type + @shape; `drift:regionLat` / `drift:regionLon` added to `ontology/12-geography.ttl`. Identity vocabulary deferred to ADR-0007 (Wikidata QIDs via `owl:sameAs` used as the M5 pivot).
+- [x] `examples/woke-multiregion.ttl` — three countries (US, UK, DE), four groups, 16 `MeaningAttribution` records across 2015/2020/2023.
+- [x] Proportional-symbol map on `explore.html` — `d3.geoNaturalEarth1` projection from the existing vendored D3 v7, coastlines from the existing `world-110m.json`, circles sized by total weight, segmented by sense, with hover percentages and a falsifiable presentation-centroid caption.
+- [x] Group × region cross-tabulation via CQ14 (`/api/cq/14`).
 
 **Out of scope:** sub-national granularity (deferred), region-clustering metrics.
+
+**Shipped:** total suite 27 tests passing.
 
 ---
 

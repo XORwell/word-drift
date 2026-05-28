@@ -1748,3 +1748,37 @@ a.source-badge:hover { border-color: var(--accent); }
   border: 1px solid var(--border);
   opacity: 0.85;
 }
+
+/* M5 — Regional sub-panel */
+.wd-dist-region-panel {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  margin: 0 0.8rem 1rem;
+  padding: 0.8rem;
+}
+.wd-dist-region-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+}
+.wd-dist-region-land path {
+  fill: color-mix(in srgb, var(--text-sub) 10%, transparent);
+  stroke: color-mix(in srgb, var(--text-sub) 25%, transparent);
+  stroke-width: 0.4;
+}
+.wd-dist-region-label {
+  font-size: 11px;
+  fill: var(--text-sub);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.wd-dist-region-caption {
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  font-style: italic;
+  margin: 0.5rem 0 0;
+  padding-left: 0.4rem;
+  border-left: 2px solid var(--border);
+}

@@ -546,3 +546,57 @@ GROUP BY ?word ?groupLabel ?groupKindLabel ?senseGloss ?atYear
 ORDER BY ?atYear ?groupLabel
 """
     return kg.query(sparql)
+
+
+# ---------------------------------------------------------------------------
+# CQ14 — Region × sense cross-tabulation for a word (M5).
+# ---------------------------------------------------------------------------
+
+def cq14_region_distribution(
+    kg: Any,
+    *,
+    word: str = "woke",
+    year: int | None = None,
+) -> list[dict[str, Any]]:
+    """CQ14 (3.0/M5): Per-region sense weights for a word.
+
+    Returns one row per (region, sense) pair with the attribution weight
+    summed across the matching time window. Implements the region-aware
+    half of ADR-0002's distribution-not-winner principle.
+
+    Returns
+    -------
+    list of dicts with keys:
+        word, regionLabel, senseGloss, atYear, weightSum, nAttribs
+    """
+    year_filter = f'FILTER(STR(?atYear) = "{int(year)}")' if year is not None else ""
+    sparql = f"""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?word ?regionLabel ?senseGloss ?atYear
+       (SUM(COALESCE(?w, 1.0)) AS ?weightSum)
+       (COUNT(?ma) AS ?nAttribs)
+WHERE {{
+  ?ma a drift:MeaningAttribution ;
+      drift:attributesWord ?wordIri ;
+      drift:attributesSense ?senseIri ;
+      drift:inRegion ?regionIri .
+  ?wordIri drift:writtenForm ?word .
+  FILTER(STR(?word) = "{word}")
+  OPTIONAL {{
+    ?regionIri rdfs:label ?regionLabel .
+    FILTER(LANG(?regionLabel) = "en" || LANG(?regionLabel) = "")
+  }}
+  OPTIONAL {{
+    ?senseIri drift:gloss ?senseGloss .
+    FILTER(LANG(?senseGloss) = "en" || LANG(?senseGloss) = "")
+  }}
+  OPTIONAL {{ ?ma drift:atYear ?atYear . }}
+  OPTIONAL {{ ?ma drift:attributionWeight ?w . }}
+  {year_filter}
+}}
+GROUP BY ?word ?regionLabel ?senseGloss ?atYear
+ORDER BY ?atYear ?regionLabel
+"""
+    return kg.query(sparql)

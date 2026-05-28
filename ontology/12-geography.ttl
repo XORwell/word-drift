@@ -33,6 +33,23 @@ drift:regionGranularity a owl:ObjectProperty , owl:FunctionalProperty ;
     rdfs:range skos:Concept ;
     rdfs:comment "Functional: coarse granularity tag from drift:RegionGranularityScheme. Lets queries filter to a granularity level without parsing labels."@en .
 
+# Presentation-grade centroid coordinates for proportional-symbol maps. NOT
+# gazetteer geometry; for that, follow owl:sameAs to Wikidata / GeoNames /
+# OSM. Stored as decimal latitude / longitude. Functional: exactly one of
+# each per Region (where present).
+
+drift:regionLat a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "region latitude"@en ;
+    rdfs:domain drift:Region ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Decimal latitude (-90..90) of a presentation centroid for the Region. Use the official geographic centre or a defensible city centroid; do NOT pick a flag-friendly location."@en .
+
+drift:regionLon a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "region longitude"@en ;
+    rdfs:domain drift:Region ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Decimal longitude (-180..180) of a presentation centroid for the Region."@en .
+
 # Optional, on drift:MeaningAttribution (module 08) and drift:DriftEvent.
 # A 2.x DriftEvent without drift:inRegion stays valid; SHACL must not require
 # region presence.
