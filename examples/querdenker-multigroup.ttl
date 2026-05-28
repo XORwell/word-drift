@@ -1,0 +1,326 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORD-DRIFT 3.0 — M2: Querdenker multi-group distribution
+# Composes with examples/querdenker.ttl. Adds five Groups and a
+# distribution of MeaningAttribution records across them and
+# across time. The 2.x DriftEvent (wdr:drift-querdenker-2020)
+# from querdenker.ttl is left untouched; an optional
+# drift:occurredInGroup link is added here.
+#
+# Senses reused from querdenker.ttl:
+#   - wdr:sense-querdenker-lateral  (positive "lateral thinker")
+#   - wdr:sense-querdenker-covid    (negative protest identity)
+#
+# Picture: in 2019 the lateral sense is uncontested across groups.
+# In 2020-2021 the covid sense becomes dominant for mainstream
+# press and leftist press; the movement supporters and a fraction
+# of the creativity community continue to attribute the lateral
+# sense (in-group reading vs out-group label). Academic linguistics
+# annotates both senses at low weight (descriptive). By 2023 the
+# covid sense is mainstream; the lateral sense survives only in
+# pre-2020 corpora and in in-group / creativity registers.
+#
+# Numbers are CURATED ILLUSTRATIONS, not measurements. The model
+# is what matters; M3 ingest from DWUG-style data will replace
+# these weights with corpus-derived ones (see 04-data-sources.md).
+# =============================================================
+
+# --- Groups -----------------------------------------------------------------
+
+wdr:group-de-mainstream-press a drift:Group ;
+    rdfs:label "Mainstream press (DE)"@en , "Mainstream-Presse (DE)"@de ;
+    drift:groupKind drift:MediaEcosystem ;
+    skos:note "Broadsheet daily/weekly press in Germany (FAZ, SZ, Zeit, Spiegel etc.)."@en .
+
+wdr:group-de-leftist-press a drift:Group ;
+    rdfs:label "Leftist press (DE)"@en , "Linke Presse (DE)"@de ;
+    drift:groupKind drift:MediaEcosystem ;
+    skos:note "taz, ND, Jungle World — distinct editorial framings from mainstream press."@en .
+
+wdr:group-de-creativity-community a drift:Group ;
+    rdfs:label "Creativity / innovation community (DE)"@en ;
+    drift:groupKind drift:Professional ;
+    skos:note "Innovation consulting, design thinking circles, startup discourse where 'Querdenker' was a positive self-label pre-2020."@en .
+
+wdr:group-de-querdenken-supporters a drift:Community ;
+    rdfs:label "Querdenken-movement supporters"@en , "Querdenken-Bewegung Anhänger"@de ;
+    drift:groupKind drift:Political ;
+    drift:communityHandle "querdenken-711" ;
+    skos:note "Participants and sympathisers of the Querdenken-711 protest movement from 2020 onward."@en .
+
+wdr:group-de-academic-linguistics a drift:Group ;
+    rdfs:label "Academic linguistics (DE)"@en ;
+    drift:groupKind drift:Academic ;
+    skos:note "Descriptive German-language scholarship (DWDS-affiliated, lexikographische Berichte, GiL etc.)."@en .
+
+# --- Sources for hasEvidence -----------------------------------------------
+
+wdr:src-dwds-querdenker a drift:Source ;
+    rdfs:label "DWDS-Wortverlaufskurve Querdenker"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Querdenker"^^xsd:anyURI .
+
+wdr:src-faz-querdenker-2020 a drift:Source ;
+    rdfs:label "FAZ feature on Querdenken-Protests (Aug 2020)"@en .
+
+wdr:src-taz-querdenker-2021 a drift:Source ;
+    rdfs:label "taz: 'Vom Querdenker zum Quertreiber' (2021)"@de .
+
+wdr:src-impfgegner-corpus-2022 a drift:Source ;
+    rdfs:label "Self-published Querdenken telegram channels (annotated corpus, 2022)"@en .
+
+wdr:src-dwds-blog-2023 a drift:Source ;
+    rdfs:label "DWDS-Blog: Pejorationsbeleg Querdenker (2023)"@de .
+
+# --- Attributions -----------------------------------------------------------
+# Distribution snapshot per year. The numbers are weights, not probabilities;
+# at query time, fragmentation/divergence/entropy are computed from these.
+
+# --- 2010: pre-COVID baseline (creativity community owns the term) ---------
+
+wdr:attrib-q-2010-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2010"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2010-mp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2010"^^xsd:gYear ;
+    drift:attributionWeight 0.95 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+# --- 2019: still mostly lateral; weak covid signal not yet ----------------
+
+wdr:attrib-q-2019-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2019-mp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.9 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2019-lp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.85 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2019-al-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.9 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+# --- 2020: fracture year. Mainstream press already shifts hard. ------------
+
+wdr:attrib-q-2020-mp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.75 ;
+    drift:hasEvidence wdr:src-faz-querdenker-2020 .
+
+wdr:attrib-q-2020-mp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.25 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2020-lp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.7 ;
+    drift:hasEvidence wdr:src-taz-querdenker-2021 .
+
+wdr:attrib-q-2020-qs-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-impfgegner-corpus-2022 .
+
+wdr:attrib-q-2020-cc-mixed a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.7 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2020-al-both-1 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.5 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2020-al-both-2 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.5 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+# --- 2021: peak fragmentation. Mainstream press almost fully shifted; -----
+# Querdenken supporters still hold the positive reading; creativity
+# community starts dropping the term to avoid association.
+
+wdr:attrib-q-2021-mp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.95 ;
+    drift:hasEvidence wdr:src-faz-querdenker-2020 .
+
+wdr:attrib-q-2021-lp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.95 ;
+    drift:hasEvidence wdr:src-taz-querdenker-2021 .
+
+wdr:attrib-q-2021-qs-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-impfgegner-corpus-2022 .
+
+wdr:attrib-q-2021-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.4 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2021-cc-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.5 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2021-al-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.7 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+wdr:attrib-q-2021-al-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.3 ;
+    drift:hasEvidence wdr:src-dwds-querdenker .
+
+# --- 2023: covid sense is mainstream; lateral survives only in in-group + -
+# creativity registers and as historical sense in academia.
+
+wdr:attrib-q-2023-mp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-dwds-blog-2023 .
+
+wdr:attrib-q-2023-lp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-dwds-blog-2023 .
+
+wdr:attrib-q-2023-qs-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-impfgegner-corpus-2022 .
+
+wdr:attrib-q-2023-cc-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.85 ;
+    drift:hasEvidence wdr:src-dwds-blog-2023 .
+
+wdr:attrib-q-2023-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.15 ;
+    drift:hasEvidence wdr:src-dwds-blog-2023 .
+
+wdr:attrib-q-2023-al-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.7 ;
+    drift:hasEvidence wdr:src-dwds-blog-2023 .
+
+wdr:attrib-q-2023-al-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.3 ;
+    drift:hasEvidence wdr:src-dwds-blog-2023 .
+
+# --- Group hookup on the existing 2.x drift event --------------------------
+# wdr:drift-querdenker-2020 is the 2.x DriftEvent; we attach
+# drift:occurredInGroup to it for the press groups that *first* observed
+# the shift. This is optional and additive: 2.x consumers ignoring this
+# property still see the same drift event.
+
+wdr:drift-querdenker-2020
+    drift:occurredInGroup wdr:group-de-mainstream-press ,
+                          wdr:group-de-leftist-press .

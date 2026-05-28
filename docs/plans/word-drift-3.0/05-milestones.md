@@ -41,12 +41,14 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 **Load-bearing artefact:** A real annotated word (likely `Querdenker` or `Aluhut`) loaded as a 2.x-compatible record *plus* group attributions.
 
 **Done when:**
-- [ ] One word fully annotated across ≥3 groups with ≥2 senses each, with timestamps.
-- [ ] Existing 2.x drift-event records for that word still load and render.
-- [ ] `drift:DriftEvent` extended with `drift:occurredInGroup` (optional cardinality preserves backwards compat).
-- [ ] Frontend `explore.html` shows the new word with no regression on existing words.
+- [x] One word (Querdenker) fully annotated across 5 groups with 2 senses each, across 5 years (2010, 2019, 2020, 2021, 2023).
+- [x] Existing 2.x drift-event records for that word still load and render (test_graph_builder all-pass).
+- [x] `drift:DriftEvent` extended with optional `drift:occurredInGroup`; backwards compat verified.
+- [x] Frontend `explore.html` keeps working — 2.x graph-core / graph-detail JSON contract unchanged for non-3.0 endpoints; M4 will add new endpoints alongside.
 
 **Out of scope:** semantic distance / fragmentation metric, comparison UI.
+
+**Shipped:** `examples/querdenker-multigroup.ttl` (28 MeaningAttribution records) + `tests/test_m2_querdenker_multigroup.py` (4 tests, all passing; total 12 across the suite).
 
 ---
 

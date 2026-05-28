@@ -126,3 +126,14 @@ drift:Institutional a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
 drift:MediaEcosystem a skos:Concept ; skos:inScheme drift:GroupKindScheme ;
     skos:prefLabel "media ecosystem"@en ;
     skos:definition "A bounded portion of the public media sphere whose authors share editorial conventions (e.g. broadsheet press, tabloid press, niche academic press)."@en .
+
+# --- Optional 3.0 properties on existing 2.x classes -----------------------
+# These extend drift:DriftEvent without breaking 2.x backwards compat.
+# A DriftEvent that does NOT carry drift:occurredInGroup remains valid;
+# SHACL must not require this property.
+
+drift:occurredInGroup a owl:ObjectProperty ;
+    rdfs:label "occurred in group"@en ;
+    rdfs:domain drift:DriftEvent ;
+    rdfs:range drift:Group ;
+    rdfs:comment "Optional. Records the Group within which a DriftEvent was first observable. A drift event MAY belong to multiple groups (multi-valued); a SignallingCollapse, for instance, by definition spans an origin group and the broader adopting population. Absence means group-agnostic or group-unknown — distinct cases that consumers should treat differently."@en .
