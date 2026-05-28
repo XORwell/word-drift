@@ -267,6 +267,50 @@ def cq_groups_attributing_word(
 
 
 # ---------------------------------------------------------------------------
+# 3.0 — Multi-group metrics (M3): entropy, fragmentation, group divergence
+# ---------------------------------------------------------------------------
+
+@capability("metric_semantic_entropy")
+def metric_semantic_entropy(
+    ctx: Context, word: str = "Querdenker", year: int | None = None,
+) -> dict:
+    """Shannon entropy of the sense distribution for a word."""
+    from capabilities.metrics_multi_group import semantic_entropy
+    _bootstrap()
+    return semantic_entropy(ctx.kg, word=word, year=year)
+
+
+@capability("metric_semantic_fragmentation")
+def metric_semantic_fragmentation(
+    ctx: Context, word: str = "Querdenker", year: int | None = None,
+) -> dict:
+    """Gini-Simpson fragmentation over the (group, sense) grid."""
+    from capabilities.metrics_multi_group import semantic_fragmentation_index
+    _bootstrap()
+    return semantic_fragmentation_index(ctx.kg, word=word, year=year)
+
+
+@capability("metric_group_divergence")
+def metric_group_divergence(
+    ctx: Context, word: str = "Querdenker", year: int | None = None,
+) -> dict:
+    """Pairwise JSD between group sense-distributions for a word."""
+    from capabilities.metrics_multi_group import group_divergence
+    _bootstrap()
+    return group_divergence(ctx.kg, word=word, year=year)
+
+
+@capability("metric_timeline")
+def metric_timeline(
+    ctx: Context, word: str = "Querdenker",
+) -> list[dict]:
+    """Per-year snapshot of all three M3 metrics for a word."""
+    from capabilities.metrics_multi_group import metric_timeline as _tl
+    _bootstrap()
+    return _tl(ctx.kg, word=word)
+
+
+# ---------------------------------------------------------------------------
 # HTTP application factory
 # ---------------------------------------------------------------------------
 
@@ -451,6 +495,35 @@ def create_app():
             return JSONResponse(
                 _cq.cq13_groups_attributing_word(_ctx.kg, word=word, year=year)
             )
+
+        # 3.0 multi-group metrics ------------------------------------------------
+        from capabilities import metrics_multi_group as _m3
+
+        @http_app.get("/api/metrics/entropy", response_model=None)
+        async def api_metric_entropy(word: str = "Querdenker", year: int | None = None):
+            """Semantic entropy of the sense distribution for a word."""
+            _ctx = Context(trace_id="m3-entropy", principal="system", store=_kernel_store())
+            return JSONResponse(_m3.semantic_entropy(_ctx.kg, word=word, year=year))
+
+        @http_app.get("/api/metrics/fragmentation", response_model=None)
+        async def api_metric_fragmentation(word: str = "Querdenker", year: int | None = None):
+            """Gini-Simpson fragmentation over the (group, sense) grid."""
+            _ctx = Context(trace_id="m3-frag", principal="system", store=_kernel_store())
+            return JSONResponse(
+                _m3.semantic_fragmentation_index(_ctx.kg, word=word, year=year)
+            )
+
+        @http_app.get("/api/metrics/divergence", response_model=None)
+        async def api_metric_divergence(word: str = "Querdenker", year: int | None = None):
+            """Pairwise Jensen-Shannon divergence between group sense-distributions."""
+            _ctx = Context(trace_id="m3-div", principal="system", store=_kernel_store())
+            return JSONResponse(_m3.group_divergence(_ctx.kg, word=word, year=year))
+
+        @http_app.get("/api/metrics/timeline", response_model=None)
+        async def api_metric_timeline(word: str = "Querdenker"):
+            """Per-year snapshot of all three M3 metrics for a word."""
+            _ctx = Context(trace_id="m3-tl", principal="system", store=_kernel_store())
+            return JSONResponse(_m3.metric_timeline(_ctx.kg, word=word))
 
         # ------------------------------------------------------------------
         # Static site — mounted LAST so API routes take precedence

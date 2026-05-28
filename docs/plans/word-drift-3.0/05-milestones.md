@@ -57,12 +57,14 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 **Load-bearing artefact:** `capabilities/metrics_multi_group.py` exposing `semantic_fragmentation_index`, `group_divergence`, `semantic_entropy`.
 
 **Done when:**
-- [ ] Three metrics implemented as SPARQL-backed Python functions, each with a docstring formula.
-- [ ] Each metric has a unit test against a hand-computed expected value on the M2 fixture.
-- [ ] Each metric exposed as a Trails capability + REST endpoint.
-- [ ] One metric (fragmentation index) plotted on the `explore.html` word detail view.
+- [x] Three metrics in `capabilities/metrics_multi_group.py` — `semantic_entropy`, `semantic_fragmentation_index`, `group_divergence` — each with docstring formula and SPARQL-backed input loading.
+- [x] Hand-derived expected values verified in `tests/test_m3_metrics.py` (8 tests): entropy = 0 when monosemous; 2020 fragmentation matches sum-of-squares formula to 1e-6; JSD between disjoint pure distributions = 1 bit exactly.
+- [x] Each metric exposed as a Trails capability + REST endpoint (`/api/metrics/{entropy,fragmentation,divergence,timeline}`).
+- [ ] Fragmentation index plotted on `explore.html` — deferred to M4 (handled together with the meaning-distribution viz).
 
 **Out of scope:** geo, platform, emotion contributions to metrics.
+
+**Shipped curve on Querdenker** (2010→2023): H goes 0→0→0.99→0.94→0.87; max JSD jumps to 1.0 at 2020 and stays there; fragmentation plateaus around 0.83. The fracture year (2020) is sharp and visible in all three metrics.
 
 ---
 
