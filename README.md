@@ -8,16 +8,28 @@
 
 ---
 
-> ### Word Drift 3.0 — work in progress on `feat/word-drift-3.0`
+> ### Word Drift 3.0 — M0–M8 landed on `feat/word-drift-3.0`
 >
-> This branch is the design and scaffolding for the next major version, which extends the model from
-> **Time → Drift** to **Time × Group × Geography × Platform × Emotion × Context → Meaning Distribution**.
+> This branch extends the model from **Time → Drift** to
+> **Time × Group × Geography × Platform × Emotion × Context → Meaning Distribution**.
 >
-> Read the plan tree first: [`docs/plans/word-drift-3.0/`](docs/plans/word-drift-3.0/README.md).
+> All eight milestones from [`docs/plans/word-drift-3.0/05-milestones.md`](docs/plans/word-drift-3.0/05-milestones.md) are shipped:
 >
-> The 2.x architecture (Trails, Oxigraph, SHACL, FastAPI, the static `site/`) is unchanged on this branch.
-> New ontology modules are additive (`08-group`, `09-platform-context`, `10-emotion`, `11-memetic`,
-> `12-geography`). `main` continues to ship as `v2.1.0`; nothing on this branch is released until M4.
+> | Milestone | Deliverable |
+> |-----------|-------------|
+> | M0 | Plan tree, 5 ADRs, ontology stubs (modules 08–12) |
+> | M1 | `Group` / `Community` / `MeaningAttribution` Python wiring + SHACL + CQ13 |
+> | M2 | Curated Querdenker × 5 groups × 5 years multi-group dataset |
+> | M3 | `semantic_entropy`, `semantic_fragmentation_index`, `group_divergence` metrics + REST + tests |
+> | M4 | `/graph-distribution.json` + Distribution tab on `explore.html` (summary card, sparklines, per-group small multiples) |
+> | M5 | `Region` + proportional-symbol map (US/UK/DE on `woke`) |
+> | M6 | `Platform` / `CorpusContext` / `Register` + `cross_platform_distance` JSD + platform sub-panel |
+> | M7 | `EmotionalFraming` + per-group valence heatmap + `emotional_drift` metric |
+> | M8 | `MemeticMutation` subtypes (`IronicAppropriation`, `CopypastaCrystallisation`, …) + Semantic Cemetery view |
+>
+> 2.x architecture (Trails, Oxigraph, SHACL, FastAPI, static `site/`) is unchanged. New ontology modules are
+> strictly additive. The 2.x graph-core / graph-detail JSON contracts continue to serve. `main` still ships as
+> `v2.1.0`. Test suite: 42 passing.
 
 ---
 
