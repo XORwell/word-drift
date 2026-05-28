@@ -1782,3 +1782,33 @@ a.source-badge:hover { border-color: var(--accent); }
   padding-left: 0.4rem;
   border-left: 2px solid var(--border);
 }
+
+/* M6 — Platform sub-panel */
+.wd-dist-platform-panel {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  margin: 0 0.8rem 1rem;
+  padding: 0.8rem;
+}
+.wd-dist-platform-rows { display: grid; gap: 0.4rem; padding: 0.4rem 0; }
+.wd-dist-platform-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: 0.6rem;
+  align-items: center;
+}
+.wd-dist-platform-meta { display: flex; flex-direction: column; }
+.wd-dist-platform-label { font-size: 0.85rem; color: var(--text-main); }
+.wd-dist-platform-kind {
+  font-size: 0.7rem;
+  color: var(--text-sub);
+  font-style: italic;
+  margin-top: 0.1rem;
+}
+.wd-dist-platform-bar {
+  display: flex;
+  height: 1rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.wd-dist-platform-seg { display: inline-block; height: 100%; opacity: 0.85; }

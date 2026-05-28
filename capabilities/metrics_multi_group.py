@@ -42,12 +42,12 @@ _MIN_EVIDENCE = 0.5  # Minimum total attribution weight before a metric is repor
 def _attribution_rows(
     kg: Any, *, word: str, year: int | None = None,
 ) -> list[dict[str, Any]]:
-    """Return rows: {senseIri, groupIri, atYear, weight} for one word."""
+    """Return rows: {senseIri, groupIri, platformIri, atYear, weight} for one word."""
     year_filter = f'FILTER(STR(?atYear) = "{int(year)}")' if year is not None else ""
     sparql = f"""
 PREFIX drift: <https://w3id.org/word-drift/ontology#>
 
-SELECT ?senseIri ?groupIri ?atYear ?weight
+SELECT ?senseIri ?groupIri ?platformIri ?atYear ?weight
 WHERE {{
   ?ma a drift:MeaningAttribution ;
       drift:attributesWord ?wordIri ;
@@ -55,6 +55,7 @@ WHERE {{
       drift:byGroup ?groupIri .
   ?wordIri drift:writtenForm ?word .
   FILTER(STR(?word) = "{word}")
+  OPTIONAL {{ ?ma drift:onPlatform ?platformIri . }}
   OPTIONAL {{ ?ma drift:atYear ?atYear . }}
   OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
   {year_filter}
@@ -314,6 +315,94 @@ def group_divergence(
 
 
 # ---------------------------------------------------------------------------
+# Metric 4 — cross_platform_distance (M6)
+# Reuses the JSD machinery but conditions distributions on platform.
+# ---------------------------------------------------------------------------
+
+
+def _platform_distribution(rows: list[dict[str, Any]]) -> dict[str, dict[str, float]]:
+    raw: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
+    for r in rows:
+        p = r.get("platformIri")
+        s = r.get("senseIri")
+        if not p or not s:
+            continue
+        raw[p][s] += _weight(r)
+    out: dict[str, dict[str, float]] = {}
+    for p, sense_to_mass in raw.items():
+        total = sum(sense_to_mass.values())
+        if total <= 0:
+            continue
+        out[p] = {s: m / total for s, m in sense_to_mass.items()}
+    return out
+
+
+def cross_platform_distance(
+    kg: Any,
+    *,
+    word: str = "Querdenker",
+    year: int | None = None,
+) -> dict[str, Any]:
+    """Pairwise JSD between platform sense-distributions for a word.
+
+    Same shape as group_divergence but axis = platform. Captures whether
+    the same word is read the same way across Reddit, Twitter, mainstream
+    press, parliamentary protocols. A value near zero means platforms agree
+    on the sense distribution; near 1 means platform-native readings.
+
+    Returns
+    -------
+    dict with keys:
+        pairs:        [{platformA, platformB, jsd}]
+        max:          max JSD
+        mean:         mean JSD
+        n_platforms:  distinct platforms
+        total_weight: sum of weights on platform-tagged attributions
+        reason:       present when max/mean are None
+    """
+    rows = _attribution_rows(kg, word=word, year=year)
+    dist = _platform_distribution(rows)
+    total = sum(_weight(r) for r in rows if r.get("platformIri") and r.get("senseIri"))
+
+    n = len(dist)
+    if n < 2:
+        return {
+            "pairs": [],
+            "max": None,
+            "mean": None,
+            "n_platforms": n,
+            "total_weight": total,
+            "reason": "need_at_least_two_platforms",
+        }
+    if total < _MIN_EVIDENCE:
+        return {
+            "pairs": [],
+            "max": None,
+            "mean": None,
+            "n_platforms": n,
+            "total_weight": total,
+            "reason": "low_evidence",
+        }
+
+    plats = sorted(dist.keys())
+    pairs: list[dict[str, Any]] = []
+    jsds: list[float] = []
+    for i, pa in enumerate(plats):
+        for pb in plats[i + 1:]:
+            j = _jsd(dist[pa], dist[pb])
+            pairs.append({"platformA": pa, "platformB": pb, "jsd": j})
+            jsds.append(j)
+
+    return {
+        "pairs": pairs,
+        "max": max(jsds),
+        "mean": sum(jsds) / len(jsds),
+        "n_platforms": n,
+        "total_weight": total,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Convenience wrapper: timeline of all three metrics per year.
 # ---------------------------------------------------------------------------
 
@@ -338,6 +427,7 @@ def metric_timeline(
         ent = semantic_entropy(kg, word=word, year=y)
         frag = semantic_fragmentation_index(kg, word=word, year=y)
         div = group_divergence(kg, word=word, year=y)
+        plat = cross_platform_distance(kg, word=word, year=y)
         out.append({
             "year": y,
             "entropy": ent.get("value"),
@@ -345,7 +435,10 @@ def metric_timeline(
             "fragmentation": frag.get("value"),
             "divergence_max": div.get("max"),
             "divergence_mean": div.get("mean"),
+            "platform_divergence_max": plat.get("max"),
+            "platform_divergence_mean": plat.get("mean"),
             "n_groups": div.get("n_groups", 0),
+            "n_platforms": plat.get("n_platforms", 0),
             "n_senses": ent.get("n_senses", 0),
             "total_weight": ent.get("total_weight", 0.0),
         })

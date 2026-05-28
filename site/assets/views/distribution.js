@@ -440,6 +440,94 @@
     if ((word.regions || []).length > 0) {
       panelEl.appendChild(renderRegionalPanel(word));
     }
+
+    // M6: platform sub-panel. Renders only if the word has platform records.
+    if ((word.platforms || []).length > 0) {
+      panelEl.appendChild(renderPlatformPanel(word));
+    }
+  }
+
+  // ---- Platform sub-panel (M6) ---------------------------------------------
+  // A latest-year stacked bar per platform plus the cross-platform JSD
+  // sparkline from word.metrics.platform_divergence_max.
+
+  function renderPlatformPanel(word) {
+    var container = el("div", { class: "wd-dist-platform-panel" });
+    container.appendChild(el("div", {
+      class: "wd-dist-right-title",
+      text: "Platform-conditioned distribution (M6)",
+    }));
+
+    var platforms = word.platforms || [];
+    var senses = word.senses || [];
+    if (!platforms.length || !senses.length) return container;
+
+    var colorBySense = senseColors(senses);
+    var glossById = {};
+    senses.forEach(function (s) { glossById[s.id] = s.gloss || "(no gloss)"; });
+
+    // For each platform, take the latest year with any attribution and
+    // build a normalised sense stack.
+    var attrs = (word.attributions || []).filter(function (a) { return a.platform; });
+    var byPlatformYear = {};
+    attrs.forEach(function (a) {
+      if (a.year == null) return;
+      var k = a.platform + "|" + a.year;
+      (byPlatformYear[k] = byPlatformYear[k] || []).push(a);
+    });
+    var latestYear = {};
+    Object.keys(byPlatformYear).forEach(function (k) {
+      var p = k.indexOf("|");
+      var pid = k.slice(0, p);
+      var y = parseInt(k.slice(p + 1), 10);
+      if (!(pid in latestYear) || y > latestYear[pid]) latestYear[pid] = y;
+    });
+
+    var rows = el("div", { class: "wd-dist-platform-rows" });
+    platforms.forEach(function (p) {
+      var year = latestYear[p.id];
+      if (year == null) return;
+      var entries = byPlatformYear[p.id + "|" + year] || [];
+      var total = entries.reduce(function (acc, e) { return acc + (e.weight || 0); }, 0);
+      if (total <= 0) return;
+      var row = el("div", { class: "wd-dist-platform-row" });
+      row.appendChild(el("div", { class: "wd-dist-platform-meta" }, [
+        el("div", { class: "wd-dist-platform-label", text: p.label || p.id }),
+        p.kind ? el("div", { class: "wd-dist-platform-kind", text: p.kind + " — " + year }) : null,
+      ]));
+      var bar = el("div", { class: "wd-dist-platform-bar" });
+      // Aggregate by sense (within the latest year, same platform).
+      var stack = {};
+      entries.forEach(function (e) { stack[e.sense] = (stack[e.sense] || 0) + (e.weight || 0); });
+      Object.keys(stack).forEach(function (sId) {
+        var pct = stack[sId] / total;
+        bar.appendChild(el("span", {
+          class: "wd-dist-platform-seg",
+          title: glossById[sId] + " — " + (pct * 100).toFixed(0) + "%",
+          style: {
+            backgroundColor: colorBySense[sId] || "#888",
+            width: (pct * 100).toFixed(2) + "%",
+          },
+        }));
+      });
+      row.appendChild(bar);
+      rows.appendChild(row);
+    });
+    container.appendChild(rows);
+
+    // Cross-platform divergence note
+    var metrics = word.metrics || [];
+    var latest = metrics.length ? metrics[metrics.length - 1] : null;
+    if (latest && latest.platform_divergence_max != null) {
+      container.appendChild(el("p", {
+        class: "wd-dist-region-caption",
+        text: "Max cross-platform JSD at " + latest.year + ": "
+              + latest.platform_divergence_max.toFixed(3) + " bits "
+              + "across " + (latest.n_platforms || 0) + " platforms. "
+              + "Higher values indicate platform-native readings of the same word.",
+      }));
+    }
+    return container;
   }
 
   // ---- Regional sub-panel (M5) ---------------------------------------------

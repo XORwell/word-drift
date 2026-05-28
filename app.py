@@ -310,6 +310,16 @@ def metric_group_divergence(
     return group_divergence(ctx.kg, word=word, year=year)
 
 
+@capability("metric_platform_divergence")
+def metric_platform_divergence(
+    ctx: Context, word: str = "Querdenker", year: int | None = None,
+) -> dict:
+    """Pairwise JSD between platform sense-distributions for a word (M6)."""
+    from capabilities.metrics_multi_group import cross_platform_distance
+    _bootstrap()
+    return cross_platform_distance(ctx.kg, word=word, year=year)
+
+
 @capability("metric_timeline")
 def metric_timeline(
     ctx: Context, word: str = "Querdenker",
@@ -537,6 +547,12 @@ def create_app():
             _ctx = Context(trace_id="m3-div", principal="system", store=_kernel_store())
             return JSONResponse(_m3.group_divergence(_ctx.kg, word=word, year=year))
 
+        @http_app.get("/api/metrics/platform-divergence", response_model=None)
+        async def api_metric_platform_divergence(word: str = "Querdenker", year: int | None = None):
+            """M6: pairwise JSD between platform sense-distributions."""
+            _ctx = Context(trace_id="m6-div", principal="system", store=_kernel_store())
+            return JSONResponse(_m3.cross_platform_distance(_ctx.kg, word=word, year=year))
+
         @http_app.get("/api/metrics/timeline", response_model=None)
         async def api_metric_timeline(word: str = "Querdenker"):
             """Per-year snapshot of all three M3 metrics for a word."""
@@ -584,6 +600,7 @@ PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?ma ?senseIri ?senseGloss ?groupIri ?groupLabel ?groupKindLabel
        ?atYear ?weight ?regionIri ?regionLabel ?regionLat ?regionLon
+       ?platformIri ?platformLabel ?platformKindLabel
 WHERE {{
   ?ma a drift:MeaningAttribution ;
       drift:attributesWord <{word_iri}> ;
@@ -613,12 +630,25 @@ WHERE {{
     OPTIONAL {{ ?regionIri drift:regionLat ?regionLat . }}
     OPTIONAL {{ ?regionIri drift:regionLon ?regionLon . }}
   }}
+  OPTIONAL {{
+    ?ma drift:onPlatform ?platformIri .
+    OPTIONAL {{
+      ?platformIri rdfs:label ?platformLabel .
+      FILTER(LANG(?platformLabel) = "en" || LANG(?platformLabel) = "")
+    }}
+    OPTIONAL {{
+      ?platformIri drift:platformKind ?pk .
+      ?pk skos:prefLabel ?platformKindLabel .
+      FILTER(LANG(?platformKindLabel) = "en" || LANG(?platformKindLabel) = "")
+    }}
+  }}
 }}
 """)
 
                 senses_by_id: dict = {}
                 groups_by_id: dict = {}
                 regions_by_id: dict = {}
+                platforms_by_id: dict = {}
                 attributions: list = []
 
                 def _maybe_float(v: Any) -> float | None:
@@ -649,6 +679,13 @@ WHERE {{
                             "lat": _maybe_float(r.get("regionLat")),
                             "lon": _maybe_float(r.get("regionLon")),
                         })
+                    platform_id = r.get("platformIri") or None
+                    if platform_id:
+                        platforms_by_id.setdefault(platform_id, {
+                            "id": platform_id,
+                            "label": r.get("platformLabel") or "",
+                            "kind": r.get("platformKindLabel") or "",
+                        })
                     # parse atYear (may be "2020"^^xsd:gYear or "2020")
                     y_raw = r.get("atYear")
                     try:
@@ -663,6 +700,7 @@ WHERE {{
                         "sense": s_id,
                         "group": g_id,
                         "region": region_id,
+                        "platform": platform_id,
                         "year": year,
                         "weight": weight,
                     })
@@ -673,6 +711,7 @@ WHERE {{
                     "senses": list(senses_by_id.values()),
                     "groups": list(groups_by_id.values()),
                     "regions": list(regions_by_id.values()),
+                    "platforms": list(platforms_by_id.values()),
                     "attributions": attributions,
                     "metrics": _m3.metric_timeline(_ctx.kg, word=written),
                 }

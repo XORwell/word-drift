@@ -473,6 +473,7 @@ class CommunityShape:
         "in_corpus_context": str | None,
         "in_register_id": str | None,
         "in_region": str | None,
+        "on_platform": str | None,
     },
     extends=["http://www.w3.org/ns/prov#Entity"],
 )
@@ -563,6 +564,78 @@ class Region:
 class RegionShape:
     """SHACL shape for drift:Region: requires a label."""
 
+    label: str = predicate(
+        f"{_RDFS}label",
+        required=True,
+        many=False,
+        min_length=1,
+    )
+
+
+# ---------------------------------------------------------------------------
+# 3.0 — Platform / CorpusContext / Register (ontology/09-platform-context.ttl, M6)
+# ---------------------------------------------------------------------------
+
+@node_type(
+    "Platform",
+    fields={
+        "label": str,
+        "platform_kind": str | None,
+    },
+)
+class Platform:
+    """A socio-technical system that hosts language production."""
+
+
+@shape(iri=f"{_DRIFT}PlatformShape")
+class PlatformShape:
+    """SHACL shape for drift:Platform: requires a label."""
+
+    label: str = predicate(
+        f"{_RDFS}label",
+        required=True,
+        many=False,
+        min_length=1,
+    )
+
+
+@node_type(
+    "CorpusContext",
+    fields={
+        "label": str,
+        "corpus_handle": str | None,
+        "on_platform": str | None,
+    },
+)
+class CorpusContext:
+    """A bounded, addressable slice of a Platform."""
+
+
+@shape(iri=f"{_DRIFT}CorpusContextShape")
+class CorpusContextShape:
+    label: str = predicate(
+        f"{_RDFS}label",
+        required=True,
+        many=False,
+        min_length=1,
+    )
+
+
+@node_type(
+    "Register",
+    fields={
+        "label": str,
+        "register_label": str | None,
+    },
+)
+class Register:
+    """The mode of speech independent of Platform: casual, formal,
+    academic, ironic, official, in-group-coded.
+    """
+
+
+@shape(iri=f"{_DRIFT}RegisterShape")
+class RegisterShape:
     label: str = predicate(
         f"{_RDFS}label",
         required=True,

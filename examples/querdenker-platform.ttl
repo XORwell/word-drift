@@ -1,0 +1,183 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# =============================================================
+# WORD-DRIFT 3.0 — M6: Querdenker platform overlay
+# Composes with examples/querdenker.ttl + querdenker-multigroup.ttl.
+# Adds 4 Platforms (Reddit, Twitter/X, mainstream press, parliamentary
+# Bundestag protocols) and Group/Platform-conditioned MeaningAttribution
+# records for 2020 and 2023 — the years where the platform split
+# matters most.
+#
+# Picture: the pejorative reading hits mainstream press fast (2020) but
+# only enters Bundestag protocols slowly. Reddit r/de hosts both senses
+# but with the heaviest signal of in-group reclaim from
+# Querdenken-adjacent users. Twitter/X is the noisiest channel: half
+# pejorative reporting, half polemic in-group push-back.
+#
+# Numbers are CURATED illustrations. M7+ ingest from real platform
+# corpora will replace these weights.
+# =============================================================
+
+# --- Platforms --------------------------------------------------------------
+
+wdr:platform-reddit a drift:Platform ;
+    rdfs:label "Reddit"@en ;
+    drift:platformKind drift:Forum ;
+    drift:platformLanguageScope "en" , "de" .
+
+wdr:platform-twitter a drift:Platform ;
+    rdfs:label "Twitter / X"@en ;
+    drift:platformKind drift:Microblog ;
+    drift:platformLanguageScope "en" , "de" .
+
+wdr:platform-de-press a drift:Platform ;
+    rdfs:label "German broadsheet press"@en ;
+    drift:platformKind drift:Press ;
+    drift:platformLanguageScope "de" .
+
+wdr:platform-de-bundestag a drift:Platform ;
+    rdfs:label "German Bundestag (plenary protocols)"@en ;
+    drift:platformKind drift:Parliamentary ;
+    drift:platformLanguageScope "de" .
+
+# --- Source -----------------------------------------------------------------
+
+wdr:src-querdenker-platform-2026 a drift:Source ;
+    rdfs:label "Curated platform-conditioned annotation (Querdenker, 2026)"@en .
+
+# --- 2020 attributions ------------------------------------------------------
+
+wdr:attrib-q-platform-2020-press-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-de-press ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.85 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2020-reddit-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-reddit ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.55 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2020-reddit-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:onPlatform wdr:platform-reddit ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.45 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2020-twitter-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-twitter ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.6 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2020-twitter-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:onPlatform wdr:platform-twitter ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.4 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2020-bundestag-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-de-bundestag ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.3 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2020-bundestag-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:onPlatform wdr:platform-de-bundestag ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.5 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+# --- 2023 attributions ------------------------------------------------------
+
+wdr:attrib-q-platform-2023-press-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-de-press ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2023-reddit-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-reddit ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.75 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2023-reddit-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:onPlatform wdr:platform-reddit ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.25 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2023-twitter-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-twitter ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.8 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2023-twitter-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:onPlatform wdr:platform-twitter ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.2 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2023-bundestag-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:onPlatform wdr:platform-de-bundestag ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.85 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
+
+wdr:attrib-q-platform-2023-bundestag-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:onPlatform wdr:platform-de-bundestag ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.15 ;
+    drift:hasEvidence wdr:src-querdenker-platform-2026 .
