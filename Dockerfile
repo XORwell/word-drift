@@ -15,14 +15,25 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Install Trails from the framework repo. The `trails` package lives in the
 # `python/` subdirectory; the build backend is setuptools (pure Python — the
 # kernel falls back to the pyoxigraph `_pybackend` store, so no Rust toolchain
-# is needed). If framework.trails is hosted in a private repo, the build needs a
-# read token, passed as a BuildKit secret (never written to an image layer):
+# is needed).
 #
-#   DOCKER_BUILDKIT=1 docker build \
-#       --secret id=git_token,src=<(printf %s "$GIT_TOKEN") -t word-drift-on-trails .
+# Source priority:
+#   1. Gitea (git.xorwell.de:c/framework.trails) — authoritative, has the
+#      latest commits including the security and versioning work. Requires
+#      a read token, passed as a BuildKit secret named ``git_token`` so it
+#      is never written to an image layer:
 #
-# Without the secret it falls back to TRAILS_REF (works only if the repo is
-# public). No silent `|| echo` fallback — a missing Trails fails the build.
+#          DOCKER_BUILDKIT=1 docker build \
+#              --secret id=git_token,src=<(printf %s "$GIT_TOKEN") -t word-drift-on-trails .
+#
+#      On the deploy host the token already lives at ``/opt/dev/.gitea_token``
+#      and is wired in via the docker-compose ``secrets:`` block.
+#
+#   2. github.com/XORwell/trails — public, frozen snapshot. Used as the
+#      no-secret fallback. It may lag behind Gitea on the alpha branch, so
+#      the ``TRAILS_PIN`` ref must exist there too if you build without the
+#      token. No silent ``|| echo`` fallback — a missing Trails fails the
+#      build loud.
 #
 # TRAILS_PIN is the exact git commit / tag / branch that word-drift is built
 # against. It MUST match the range declared in trails_compat.py — when the
@@ -31,15 +42,16 @@ RUN pip install --no-cache-dir -r requirements.txt
 # the test suite has been run against that ref. The runtime check in
 # trails_compat.enforce() refuses to start the app in production if these
 # drift apart, so an ops error here is loud and fail-fast.
-ARG TRAILS_PIN=ec2704b
-ARG TRAILS_REF=git+https://github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python
+ARG TRAILS_PIN=19b71d4
+ARG TRAILS_GITEA_HOST=git.xorwell.de
+ARG TRAILS_GITHUB_REF=git+https://github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python
 RUN --mount=type=secret,id=git_token \
     TOKEN="$(cat /run/secrets/git_token 2>/dev/null || true)"; \
     if [ -n "$TOKEN" ]; then \
         pip install --no-cache-dir \
-            "trails[http] @ git+https://oauth2:${TOKEN}@github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python"; \
+            "trails[http] @ git+https://oauth2:${TOKEN}@${TRAILS_GITEA_HOST}/c/framework.trails.git@${TRAILS_PIN}#subdirectory=python"; \
     else \
-        pip install --no-cache-dir "trails[http] @ ${TRAILS_REF}"; \
+        pip install --no-cache-dir "trails[http] @ ${TRAILS_GITHUB_REF}"; \
     fi
 
 COPY . .
