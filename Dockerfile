@@ -42,14 +42,20 @@ RUN pip install --no-cache-dir -r requirements.txt
 # the test suite has been run against that ref. The runtime check in
 # trails_compat.enforce() refuses to start the app in production if these
 # drift apart, so an ops error here is loud and fail-fast.
-ARG TRAILS_PIN=19b71d4
+ARG TRAILS_PIN=main
 ARG TRAILS_GITEA_HOST=git.xorwell.de
 ARG TRAILS_GITHUB_REF=git+https://github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python
 RUN --mount=type=secret,id=git_token \
     TOKEN="$(cat /run/secrets/git_token 2>/dev/null || true)"; \
     if [ -n "$TOKEN" ]; then \
-        pip install --no-cache-dir \
-            "trails[http] @ git+https://oauth2:${TOKEN}@${TRAILS_GITEA_HOST}/c/framework.trails.git@${TRAILS_PIN}#subdirectory=python"; \
+        # Pre-clone with full history so pip's checkout of an arbitrary
+        # commit SHA succeeds (pip's git+https path uses a shallow clone
+        # that breaks `git checkout <commit-on-non-tip>`). Install from the
+        # local checkout's python/ subdir.
+        git clone --depth 50 "https://oauth2:${TOKEN}@${TRAILS_GITEA_HOST}/c/framework.trails.git" /tmp/trails-src && \
+        cd /tmp/trails-src && git checkout -q "${TRAILS_PIN}" && \
+        pip install --no-cache-dir "trails[http] @ file:///tmp/trails-src/python" && \
+        cd / && rm -rf /tmp/trails-src; \
     else \
         pip install --no-cache-dir "trails[http] @ ${TRAILS_GITHUB_REF}"; \
     fi
