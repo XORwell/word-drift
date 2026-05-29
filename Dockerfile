@@ -40,8 +40,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 ARG TRAILS_PIN=0f33c59
 ARG TRAILS_GIT_URL=
 ARG TRAILS_PUBLIC_REF=git+https://github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python
-RUN --mount=type=secret,id=git_token \
-    TOKEN="$(cat /run/secrets/git_token 2>/dev/null || true)"; \
+RUN --mount=type=secret,id=gitea_token,target=/run/secrets/gitea_token,required=false \
+    --mount=type=secret,id=git_token,target=/run/secrets/git_token,required=false \
+    TOKEN="$(cat /run/secrets/git_token 2>/dev/null || cat /run/secrets/gitea_token 2>/dev/null || true)"; \
     if [ -n "$TOKEN" ] && [ -n "${TRAILS_GIT_URL}" ]; then \
         # Pre-clone with full history so pip's checkout of an arbitrary
         # commit SHA succeeds (pip's git+https path uses a shallow clone
