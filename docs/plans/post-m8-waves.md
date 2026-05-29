@@ -257,12 +257,20 @@ The waves are NOT strictly ordered. **W14 (SEMANTiCS paper) is URGENT** (deadlin
 **Load-bearing artefact:** `trails new my-app` scaffolds a working hello-world that runs in < 60 seconds from `pip install trails` to first capability invocation.
 
 **Done when:**
-- [ ] `trails new <app>` CLI command that copies the template (already partly there per the `examples/` folder — promote one to a template)
-- [ ] LangChain adapter sketch: `trails.adapters.langchain` exposes capabilities as LangChain `Tool` objects (read-only proof of concept)
-- [ ] LlamaIndex adapter sketch: similar pattern
-- [ ] Reference app distinct from word-drift (small, demonstrates ONLY the `@capability` + Cedar policy surface — could be a tiny note-taking app or even a quote-of-the-day endpoint)
-- [ ] One-page "Build your first Trails app" guide
-- [ ] Docs site (mkdocs material default) at `docs.trails.example` or wherever stable
+- [x] `trails new <app>` CLI command that copies the template (already partly there per the `examples/` folder — promote one to a template)
+- [x] LangChain adapter sketch: `trails.adapters.langchain` exposes capabilities as LangChain `Tool` objects (read-only proof of concept)
+- [x] LlamaIndex adapter sketch: similar pattern
+- [x] Reference app distinct from word-drift (small, demonstrates ONLY the `@capability` + Cedar policy surface — could be a tiny note-taking app or even a quote-of-the-day endpoint)
+- [x] One-page "Build your first Trails app" guide
+- [x] Docs site (mkdocs material default) at `docs.trails.example` or wherever stable
+
+**Shipped (2026-05-29, framework.trails on origin/main):**
+- `e0b3f36` — `feat(cli): add 'default' template — file-based scaffold for W22 starter pack` (new `trails new my_app --template default` command + on-disk template files at `python/src/trails/templates/default/`)
+- `00dcfbc` — `feat(adapters): add trails.adapters.{langchain,llamaindex}.from_capability` (read-only sketches with framework-import guard)
+- `6d6194a` — `feat(examples): add quote-of-the-day reference app for W22` (3-capability sketch distinct from word-drift; picked over `url-shortener` because Cedar policies aren't in the currently-active feature set per the audit-fix list)
+- `933143a` — `docs(getting-started): add 5-minute first-app guide for W22` (single-page `docs/getting-started.md` + mkdocs.yml nav link + CONTRIBUTING.md mkdocs serve/build note)
+
+Targeted suite green: `python -m pytest python/tests/test_cli_new.py python/tests/test_adapters.py python/tests/test_http_adapter.py python/tests/test_sdk_boundary.py -q` → 67 passed, 2 skipped (langchain_core / llama_index not installed in CI env; guard tests covered the missing-framework path instead). Smoke: `trails new my_app --template default && python my_app/app.py` produces a FastAPI server at :8080 with `/invoke`, `/caps`, `/mcp`, `/sparql`, `/graphql` mounted.
 
 **Out of scope:** Plugin marketplace, paid hosting; helm chart (W28 territory if added).
 
