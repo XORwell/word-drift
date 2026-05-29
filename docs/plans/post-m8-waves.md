@@ -374,6 +374,118 @@ reference pattern intentionally stays minimal).
 
 ---
 
+## W27 — KG time-travel resource bounds (framework.trails)
+
+**Why:** Production-readiness audit (2026-05-29) finding A P1-2. `KGVersionStore` (`python/src/trails/versioning.py:30-114`) keeps every quad ever added in memory with no eviction, no TTL, no cap. A long-running app accumulates K×runtime entries silently. Compounds with the zero-observability gap (the store emits no events) so memory pressure is invisible.
+
+**Load-bearing artefact:** `KGVersionStore` enforces a `max_quads` cap with an LRU eviction policy + emits `kg_write` / `kg_query` events on every public method.
+
+**Done when:**
+- [ ] `max_quads: int | None` added to `KGVersionStore.__init__`
+- [ ] `[kg].max_version_quads` config knob added to `config.py`
+- [ ] LRU eviction when cap reached
+- [ ] `kg_query` / `kg_write` events emitted from public methods
+- [ ] Memory benchmark committed under `docs/perf/` showing eviction behaviour
+
+**Out of scope:** Disk-backed eviction (a separate decision); replacing the in-memory store entirely.
+
+---
+
+## W28 — SPARQL escape-hatch hardening (framework.trails)
+
+**Why:** Production-readiness audit finding A P2-2. `KG.query` / `KG.update` deliberately skip `sparql_proxy.validate_query` (escape hatch). Trust depends on every caller honouring the contract. Runtime can't tell if a call site does.
+
+**Load-bearing artefact:** `TRAILS_SPARQL_STRICT=1` env var routes every `KG.update` through `sparql_proxy.validate_query` with an explicit UPDATE allow-list.
+
+**Done when:**
+- [ ] `TRAILS_SPARQL_STRICT` env documented in `runtime.py` module docstring
+- [ ] When set, `KG.update` validates against an allow-list that rejects `CLEAR` / `DROP` / `LOAD` / `SERVICE`
+- [ ] Two tests: strict mode rejects forbidden ops, default mode preserves escape-hatch semantics
+- [ ] Word-drift sets `TRAILS_SPARQL_STRICT=1` in `Dockerfile` for production deployments
+
+**Out of scope:** Strict-mode for `KG.query` (read-only is a different threat model); user-configurable allow-lists.
+
+---
+
+## W29 — Verifiable-credential trust chain (framework.trails)
+
+**Why:** Production-readiness audit P0-2. `credentials.py:332-365` extracts the verification public key from the proof itself; nothing binds `credential.issuer` (a DID) to that key. Trivially forgeable: any attacker mints a credential claiming `issuer = "did:key:z6MkAlice…"`, signs with their own key, embeds their own pubkey in the proof. `verify_credential(...).valid` returns True. Every downstream consumer is fooled. Plus: no revocation mechanism anywhere.
+
+**Load-bearing artefact:** `verify_credential` refuses to verify until the issuer DID resolves to a trusted key that matches the proof's embedded key; a status-list revocation registry is checked on every verification.
+
+**Done when:**
+- [ ] ADR `framework.trails/docs/adrs/ADR-0084-vc-trust-chain.md`
+- [ ] `resolver` parameter on `verify_credential` becomes load-bearing (not "currently unused")
+- [ ] For `did:key`: self-resolution required (multikey of DID == proof's `publicKeyMultibase`)
+- [ ] For other DID methods: resolver looked up via a `register_did_resolver()` hook
+- [ ] Status-list 2021 (or equivalent) revocation registry: every `verify_credential` checks the registry; revoked credentials fail
+- [ ] Replay-nonce binding for VPs (the `challenge` field made mandatory in production mode)
+- [ ] Six tests: forgery rejected, revoked credential rejected, replayed nonce rejected, valid happy path, did:web resolver works, missing resolver fails closed in prod
+- [ ] `policy.register_principal_credentials` documented as requiring an authoritative resolver
+
+**Out of scope:** Issuing private keys with hardware wallets; BBS+ selective disclosure (separate later wave).
+
+---
+
+## W30 — Federation + MCP-SSE trust-boundary parity (framework.trails)
+
+**Why:** Production-readiness audit closes **5 of 9 P0s** here. Today's T1 + T2 + P5 + P10 fixes brought the HTTP adapter to consistent auth gating, but the audits surfaced four more transports that bypass `_check_auth`: MCP SSE (`mcp_transport.py:465-501`), federation HTTP (`federation_http.py:170,195`), `federation._send_remote_query` (no `validate_peer_url`), and `mount_federation_routes` not checking the `enabled` flag itself.
+
+**Load-bearing artefact:** Every transport that mounts a route into the application routes through the **same** `_check_auth` + rate-limit + observability bus. A single regression test asserts auth-bypass on each transport returns 401.
+
+**Done when:**
+- [ ] `mcp_transport.py` `POST /messages` gated through `_check_auth`
+- [ ] `federation_http.py` routes gated through `_check_auth`; `mount_federation_routes` early-returns when `endpoint.config.enabled is False`
+- [ ] `federation._send_remote_query` calls `_security.validate_peer_url(url)` before fetch
+- [ ] `validate_federation_query` rejects `SERVICE` blocks on the bare endpoint (the `FederatedQueryEngine` path stays opt-in)
+- [ ] Per-IP rate limiter in `federation_http.py` LRU-caps the `_requests` dict (default 10000 unique IPs)
+- [ ] Audit-trail events: `auth.failed` + `rate_limit.triggered` emitted from every transport
+- [ ] One e2e test per transport: anonymous call → 401, valid Bearer → 200, malformed XFF → 400
+
+**Out of scope:** Replacing Bearer auth with mTLS / OAuth (separate later wave); per-capability auth metadata (cap_versioning already handles version negotiation; auth-metadata is a related but separate concern).
+
+---
+
+## W31 — Trails doctor + DX polish (framework.trails)
+
+**Why:** Production-readiness audit P0-7 + multiple P1s. `trails doctor` reports three soft failures from `MemoryStore()` constructor calls missing the required `ctx`. `trails new --template default` emits a stray `tests/__init__.py` then prints `pytest tests/` even though no tests scaffolded. `_apply_baseline` crashes when `trails.toml` is absent.
+
+**Load-bearing artefact:** `trails doctor` runs every check successfully on a fresh `trails new --template default` scaffold. `trails new` doesn't lie to the user about what was scaffolded.
+
+**Done when:**
+- [ ] `doctor.py:1445,1486,1551` brain checks fixed — pass `ctx` or skip cleanly
+- [ ] `cli/new.py:1213-1271` — `tests/` directory + `__init__.py` only created for templates that ship tests
+- [ ] `cli/new.py:1275-1303` — `_apply_baseline` tolerates missing `trails.toml`
+- [ ] `cli/new.py:1271` — "Try `pytest tests/`" hint suppressed when no tests scaffolded
+- [ ] Default template's `trails.toml` either emitted by the scaffold OR doctor's "trails.toml: not found" demoted to `info`
+- [ ] `http_adapter.py:1764` + `:1776` mount-order documented with a comment block explaining why include_router-before-mount survives FastAPI routing precedence
+- [ ] Five tests covering the above
+
+**Out of scope:** `trails console` REPL improvements; full `trails routes --all` revamp.
+
+---
+
+## W32 — Trails experimental namespace + paper-backer hygiene (framework.trails)
+
+**Why:** Production-readiness audit P2-9 + P2-10. Four research-paper modules (`archrag`, `arigraph`, `agent_workflow_verify`, `attribution`) are re-exported at the top level (`__init__.py:710-757`) but have **zero in-tree consumers** outside their own tests. They're on the public surface despite being functionally unreachable from any default app. Plus: `trails.adapters.langchain` (W22) and `trails.integrations.langchain` (older) cover the same ground with different APIs; the duplication is a doc/UX trap.
+
+**Load-bearing artefact:** The public top-level surface contains only modules that a default app can actually reach via a capability, CLI, or SDK call. Research backers move to `trails.experimental.*`.
+
+**Done when:**
+- [ ] ADR `framework.trails/docs/adrs/ADR-0085-experimental-namespace.md` — what counts as "experimental" + the graduation criterion
+- [ ] `trails.experimental.archrag` re-export; top-level removed
+- [ ] `trails.experimental.arigraph` re-export; top-level removed
+- [ ] `trails.experimental.agent_workflow_verify` re-export; top-level removed
+- [ ] `trails.experimental.attribution` re-export; top-level removed
+- [ ] Other modules likely affected (audit C identified): `security_titan`, `reasoning_owl`, `temporal_reasoner`, `graph_query_gen`, `graphrag_ms`, `eval_onto`
+- [ ] Tests updated; nothing breaks
+- [ ] `trails.adapters.*` vs `trails.integrations.*` reconciled — pick one canonical path, deprecate the other with a `DeprecationWarning`
+- [ ] CHANGELOG entry documenting the deprecations
+
+**Out of scope:** Deleting modules (graduation criterion preserves them as `experimental` until they earn promotion); adding *more* experimental work.
+
+---
+
 ## Continuous improvements (backlog — not waves)
 
 Small, opportunistic improvements that don't earn a full wave but are worth doing as we touch nearby code. Pick one at the start of any session if there's idle time.
