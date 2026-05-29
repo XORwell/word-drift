@@ -333,6 +333,47 @@ Targeted suite green: `python -m pytest python/tests/test_cli_new.py python/test
 
 ---
 
+## W26 — Reference identity + session pattern (framework.trails + word-drift)
+
+**Why:** Today the Trails auth surface is honest but bare: one shared
+server Bearer token, an in-memory principal-attr registry, and either
+"build your own User model" or "use the VC stack." Every downstream app
+hits the same gap and reinvents login / token rotation / role mapping.
+A reference pattern shipped in the framework removes the friction and
+turns "Trails has real auth" from aspirational to demonstrable.
+
+**Load-bearing artefact:** `trails new --template auth` scaffolds a
+working multi-user app with login, token rotation, role-based Cedar
+policies, and a session store backed by the KG.
+
+**Done when:**
+- [ ] ADR `framework.trails/docs/adrs/ADR-0083-reference-identity.md` —
+      decision: ship a *reference pattern*, not a baked-in user model;
+      apps that don't need it stay on the existing shared-secret path.
+- [ ] New `auth` template under `python/src/trails/templates/auth/`
+      with `@node_type("User", fields={email, role, token_hash})`,
+      `@capability("login")`, `@capability("logout")`, sample Cedar
+      policy bundle, and a Bearer-from-KG middleware.
+- [ ] Session-store helpers in `python/src/trails/sdk/identity.py`:
+      `rehydrate_principal_attrs_from_kg()` called at startup, plus
+      `register_principal_attrs_from_vc(vp)` for the VC pattern.
+- [ ] Documented audit-log emit on every login / token rotation / policy
+      decision via the existing observability bus.
+- [ ] Worked tests: 4xx on bad credentials, 200 + token on good, role-gated
+      capability denies on wrong role, allows on right role, token
+      rotation invalidates the prior one.
+- [ ] word-drift adoption — replace Caddy `basic_auth` with a Bearer
+      token issued by the new pattern; demo at least two principals with
+      different roles (anonymous read vs. authenticated write surface).
+      This is the W11 (Cedar policy enforcement) tie-in.
+
+**Out of scope:** OIDC / Auth0 / Clerk adapters (Tier 4 of the
+integrations roadmap; later waves). MFA, password recovery, email
+verification (real apps wire these via the OIDC adapters above; the
+reference pattern intentionally stays minimal).
+
+---
+
 ## Continuous improvements (backlog — not waves)
 
 Small, opportunistic improvements that don't earn a full wave but are worth doing as we touch nearby code. Pick one at the start of any session if there's idle time.
