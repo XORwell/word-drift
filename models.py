@@ -16,18 +16,25 @@ time    http://www.w3.org/2006/time#
 """
 from __future__ import annotations
 
-import sys
 import os
+import sys
 
-# Allow running from the project root without installing the package.
-# Point TRAILS_SRC at a local framework.trails checkout (python/src) if Trails
-# is not pip-installed; defaults to a sibling ../framework.trails checkout.
-_TRAILS_SRC = os.environ.get(
-    "TRAILS_SRC",
-    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "framework.trails", "python", "src"),
-)
-if os.path.isdir(_TRAILS_SRC) and _TRAILS_SRC not in sys.path:
-    sys.path.insert(0, _TRAILS_SRC)
+# Trails is normally pip-installed (the Dockerfile does this via the SDK
+# migration that landed in 75b502d). The legacy sibling-checkout sys.path
+# shim is only useful for the rare case where a developer wants to point
+# at a non-installed local clone WITHOUT running ``pip install -e``. Gate
+# it behind ``WD_DEV_USE_SIBLING_TRAILS=1`` so production never touches
+# it. Prefer ``pip install -e ../framework.trails/python`` in dev too.
+if os.environ.get("WD_DEV_USE_SIBLING_TRAILS", "").strip() in {"1", "true", "yes", "on"}:
+    _TRAILS_SRC = os.environ.get(
+        "TRAILS_SRC",
+        os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "..", "framework.trails", "python", "src",
+        ),
+    )
+    if os.path.isdir(_TRAILS_SRC) and _TRAILS_SRC not in sys.path:
+        sys.path.insert(0, _TRAILS_SRC)
 
 from trails.sdk import node_type, shape, predicate, Model  # noqa: E402
 

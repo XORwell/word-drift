@@ -7,14 +7,10 @@
   <meta name="description" content="Download the WORD-DRIFT dataset (RDF, CSV, nanopublications), audit the claims ledger, and reproduce the build. A page for reviewers and reusers." />
   <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="assets/site.css" />
-  <script>
-    // Apply the persisted theme before first paint (default light) to avoid a flash.
-    try {
-      if (localStorage.getItem("wd.theme") === "dark") {
-        document.documentElement.dataset.theme = "dark";
-      }
-    } catch (e) {}
-  </script>
+  <!-- theme.js handles the pre-paint theme application (no flash) and wires
+       the #wd-theme-toggle button. Loaded WITHOUT defer so the dark-mode
+       attribute lands before first paint. -->
+  <script src="assets/theme.js"></script>
   <style>
     /* Downloads page: a compact resource list reusing the site palette. */
     .dl-list { margin-top: 1.75rem; display: grid; gap: 0.85rem; }
@@ -471,20 +467,9 @@ https://github.com/XORwell/word-drift</div>
   </footer>
 
   <script src="assets/version.js" defer></script>
-
-  <script>
-    // Theme toggle: flip data-theme on <html>, persist under "wd.theme".
-    (function () {
-      var btn = document.getElementById("wd-theme-toggle");
-      if (!btn) return;
-      btn.addEventListener("click", function () {
-        var dark = document.documentElement.dataset.theme === "dark";
-        if (dark) { delete document.documentElement.dataset.theme; }
-        else { document.documentElement.dataset.theme = "dark"; }
-        try { localStorage.setItem("wd.theme", dark ? "light" : "dark"); } catch (e) {}
-      });
-    })();
-  </script>
+  <!-- Theme toggle is wired by assets/theme.js (loaded in <head>), shared
+       with all other static pages. The previous inline footer block was
+       removed in W9 polish so the CSP can drop 'unsafe-inline'. -->
 
 </body>
 </html>

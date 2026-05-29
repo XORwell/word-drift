@@ -32,11 +32,242 @@ logger = logging.getLogger("word_drift_trails")
 
 _graph_core: dict | None = None
 _graph_detail: dict | None = None
+_graph_distribution: dict | None = None
 _load_time_s: float = 0.0
 
 
+def _build_graph_distribution(ctx) -> dict:
+    """Build the per-word meaning-distribution document.
+
+    W5 (W9): cached at bootstrap so the endpoint never re-runs ~50 SPARQL
+    queries per request. The body that previously lived inside the
+    ``serve_graph_distribution`` route handler now executes ONCE during
+    ``_bootstrap()`` and can be re-built on demand via the admin-gated
+    ``?refresh=1`` query parameter.
+
+    Parameters
+    ----------
+    ctx : Context
+        A Trails context backed by the loaded kernel store.
+    """
+    from capabilities import metrics_multi_group as _m3
+    from capabilities.competency import cq15_semantic_cemetery
+
+    # Discover all words that have any attribution OR any memetic event.
+    # Memetic events (M8) attach drift:affectsWord; without this fork,
+    # words like 'based' would carry an event but never surface here.
+    word_rows = ctx.kg.query("""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+SELECT DISTINCT ?wordIri ?writtenForm
+WHERE {
+  ?wordIri drift:writtenForm ?writtenForm .
+  {
+    ?ma a drift:MeaningAttribution ;
+        drift:attributesWord ?wordIri .
+  } UNION {
+    VALUES ?evType {
+      drift:MemeticMutation drift:IronicAppropriation
+      drift:CopypastaCrystallisation drift:SignallingCollapse
+      drift:AlgorithmicAmplification
+    }
+    ?ev a ?evType ;
+        drift:affectsWord ?wordIri .
+  }
+}
+""")
+
+    doc: dict = {
+        "words": {},
+        "meta": {"version": "3.0-M8"},
+        "cemetery": cq15_semantic_cemetery(ctx.kg, threshold=0.30),
+    }
+
+    def _maybe_float(v: Any) -> float | None:
+        try:
+            return float(v) if v not in (None, "") else None
+        except (TypeError, ValueError):
+            return None
+
+    for w_row in word_rows:
+        word_iri = w_row.get("wordIri")
+        written = str(w_row.get("writtenForm") or "")
+        if not word_iri or not written:
+            continue
+
+        # Pull all attributions for this word. Region/platform are OPTIONAL.
+        attr_rows = ctx.kg.query(f"""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?ma ?senseIri ?senseGloss ?groupIri ?groupLabel ?groupKindLabel
+       ?atYear ?weight ?regionIri ?regionLabel ?regionLat ?regionLon
+       ?platformIri ?platformLabel ?platformKindLabel
+WHERE {{
+  ?ma a drift:MeaningAttribution ;
+      drift:attributesWord <{word_iri}> ;
+      drift:attributesSense ?senseIri ;
+      drift:byGroup ?groupIri .
+  OPTIONAL {{
+    ?groupIri rdfs:label ?groupLabel .
+    FILTER(LANG(?groupLabel) = "en" || LANG(?groupLabel) = "")
+  }}
+  OPTIONAL {{
+    ?groupIri drift:groupKind ?gk .
+    ?gk skos:prefLabel ?groupKindLabel .
+    FILTER(LANG(?groupKindLabel) = "en" || LANG(?groupKindLabel) = "")
+  }}
+  OPTIONAL {{
+    ?senseIri drift:gloss ?senseGloss .
+    FILTER(LANG(?senseGloss) = "en" || LANG(?senseGloss) = "")
+  }}
+  OPTIONAL {{ ?ma drift:atYear ?atYear . }}
+  OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
+  OPTIONAL {{
+    ?ma drift:inRegion ?regionIri .
+    OPTIONAL {{
+      ?regionIri rdfs:label ?regionLabel .
+      FILTER(LANG(?regionLabel) = "en" || LANG(?regionLabel) = "")
+    }}
+    OPTIONAL {{ ?regionIri drift:regionLat ?regionLat . }}
+    OPTIONAL {{ ?regionIri drift:regionLon ?regionLon . }}
+  }}
+  OPTIONAL {{
+    ?ma drift:onPlatform ?platformIri .
+    OPTIONAL {{
+      ?platformIri rdfs:label ?platformLabel .
+      FILTER(LANG(?platformLabel) = "en" || LANG(?platformLabel) = "")
+    }}
+    OPTIONAL {{
+      ?platformIri drift:platformKind ?pk .
+      ?pk skos:prefLabel ?platformKindLabel .
+      FILTER(LANG(?platformKindLabel) = "en" || LANG(?platformKindLabel) = "")
+    }}
+  }}
+}}
+""")
+
+        senses_by_id: dict = {}
+        groups_by_id: dict = {}
+        regions_by_id: dict = {}
+        platforms_by_id: dict = {}
+        attributions: list = []
+
+        for r in attr_rows:
+            s_id = r.get("senseIri")
+            g_id = r.get("groupIri")
+            if not s_id or not g_id:
+                continue
+            senses_by_id.setdefault(s_id, {
+                "id": s_id,
+                "gloss": r.get("senseGloss") or "",
+            })
+            groups_by_id.setdefault(g_id, {
+                "id": g_id,
+                "label": r.get("groupLabel") or "",
+                "kind": r.get("groupKindLabel") or "",
+            })
+            region_id = r.get("regionIri") or None
+            if region_id:
+                regions_by_id.setdefault(region_id, {
+                    "id": region_id,
+                    "label": r.get("regionLabel") or "",
+                    "lat": _maybe_float(r.get("regionLat")),
+                    "lon": _maybe_float(r.get("regionLon")),
+                })
+            platform_id = r.get("platformIri") or None
+            if platform_id:
+                platforms_by_id.setdefault(platform_id, {
+                    "id": platform_id,
+                    "label": r.get("platformLabel") or "",
+                    "kind": r.get("platformKindLabel") or "",
+                })
+            y_raw = r.get("atYear")
+            try:
+                year = int(str(y_raw)[:4]) if y_raw else None
+            except (TypeError, ValueError):
+                year = None
+            try:
+                weight = float(r.get("weight")) if r.get("weight") else 1.0
+            except (TypeError, ValueError):
+                weight = 1.0
+            attributions.append({
+                "sense": s_id,
+                "group": g_id,
+                "region": region_id,
+                "platform": platform_id,
+                "year": year,
+                "weight": weight,
+            })
+
+        # Memetic events for this word (M8).
+        memetic_rows = ctx.kg.query(f"""
+PREFIX drift: <https://w3id.org/word-drift/ontology#>
+PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?ev ?evType ?year ?platformIri ?platformLabel ?artefact ?signal
+WHERE {{
+  VALUES ?evType {{
+    drift:MemeticMutation drift:IronicAppropriation
+    drift:CopypastaCrystallisation drift:SignallingCollapse
+    drift:AlgorithmicAmplification
+  }}
+  ?ev a ?evType ;
+      drift:affectsWord <{word_iri}> .
+  OPTIONAL {{ ?ev drift:driftYear ?year . }}
+  OPTIONAL {{
+    ?ev drift:originPlatform ?platformIri .
+    OPTIONAL {{
+      ?platformIri rdfs:label ?platformLabel .
+      FILTER(LANG(?platformLabel) = "en" || LANG(?platformLabel) = "")
+    }}
+  }}
+  OPTIONAL {{ ?ev drift:sourceArtefact ?artefact . }}
+  OPTIONAL {{ ?ev drift:amplificationSignal ?signal . }}
+}}
+""")
+        memetic_events = []
+        seen_events: set = set()
+        for mr in memetic_rows:
+            ev_id = mr.get("ev")
+            if not ev_id or ev_id in seen_events:
+                continue
+            seen_events.add(ev_id)
+            y_raw = mr.get("year")
+            try:
+                ev_year = int(str(y_raw)[:4]) if y_raw else None
+            except (TypeError, ValueError):
+                ev_year = None
+            ev_type = (mr.get("evType") or "").split("#")[-1]
+            memetic_events.append({
+                "id": ev_id,
+                "type": ev_type,
+                "year": ev_year,
+                "originPlatform": mr.get("platformIri") or None,
+                "originPlatformLabel": mr.get("platformLabel") or "",
+                "sourceArtefact": mr.get("artefact") or None,
+                "amplificationSignal": mr.get("signal") or None,
+            })
+        memetic_events.sort(key=lambda e: (e["year"] is None, e["year"]))
+
+        doc["words"][word_iri] = {
+            "id": word_iri,
+            "writtenForm": written,
+            "senses": list(senses_by_id.values()),
+            "groups": list(groups_by_id.values()),
+            "regions": list(regions_by_id.values()),
+            "platforms": list(platforms_by_id.values()),
+            "attributions": attributions,
+            "metrics": _m3.metric_timeline(ctx.kg, word=written),
+            "emotional_drift": _m3.emotional_drift(ctx.kg, word=written),
+            "memetic_events": memetic_events,
+        }
+
+    return doc
+
+
 def _bootstrap():
-    global _graph_core, _graph_detail, _load_time_s
+    global _graph_core, _graph_detail, _graph_distribution, _load_time_s
     if _graph_core is not None:
         return
     t0 = time.monotonic()
@@ -78,6 +309,17 @@ def _bootstrap():
 
     doc = build_graph_document(_boot_ctx.kg)   # use ctx.kg, not _store
     _graph_core, _graph_detail = split_document(doc)
+
+    # W5 (W9): build the meaning-distribution document ONCE at startup so
+    # the /graph-distribution.json endpoint serves from cache instead of
+    # rerunning ~50 SPARQL queries per request. Admin-gated ?refresh=1
+    # rebuilds at runtime (see serve_graph_distribution route).
+    try:
+        _graph_distribution = _build_graph_distribution(_boot_ctx)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("graph-distribution bootstrap failed: %s", exc)
+        _graph_distribution = {"words": {}, "meta": {"version": "3.0-M8"}, "cemetery": []}
+
     _load_time_s = time.monotonic() - t0
     logger.info("bootstrap complete in %.1fs", _load_time_s)
 
@@ -512,7 +754,6 @@ def create_app():
             _version_cache = {
                 "ontology": ontology_version,
                 "release": release_tag,
-                "commit": git_commit,
                 "schemaLabel": (
                     "Schema v" + ontology_version if ontology_version else "Schema"
                 ),
@@ -522,6 +763,11 @@ def create_app():
                 ),
                 "trails": _trails_compat,
             }
+            # W6 (W9): commit hash is info-disclosure-adjacent. Default off
+            # in production; opt in via WD_VERSION_EXPOSE_COMMIT=1 when a
+            # build pipeline wants the field on /api/version.
+            if os.environ.get("WD_VERSION_EXPOSE_COMMIT", "").strip() in {"1", "true", "yes", "on"}:
+                _version_cache["commit"] = git_commit
             return _version_cache
 
         @http_app.get("/api/version", response_model=None)
@@ -754,228 +1000,40 @@ def create_app():
         # for the heavy graph_builder pipeline.
 
         @http_app.get("/graph-distribution.json", response_model=None)
-        async def serve_graph_distribution():
-            """Per-word meaning-distribution document for the 3.0 viz."""
-            from capabilities import metrics_multi_group as _m3
-            _ctx = Context(trace_id="dist", principal="system", store=kernel_store())
+        async def serve_graph_distribution(refresh: int = 0, token: str = ""):
+            """Per-word meaning-distribution document for the 3.0 viz.
 
-            # Discover all words that have any attribution OR any memetic event.
-            # Memetic events (M8) attach drift:affectsWord; without this fork,
-            # words like 'based' would carry an event but never surface here.
-            word_rows = _ctx.kg.query("""
-PREFIX drift: <https://w3id.org/word-drift/ontology#>
-SELECT DISTINCT ?wordIri ?writtenForm
-WHERE {
-  ?wordIri drift:writtenForm ?writtenForm .
-  {
-    ?ma a drift:MeaningAttribution ;
-        drift:attributesWord ?wordIri .
-  } UNION {
-    VALUES ?evType {
-      drift:MemeticMutation drift:IronicAppropriation
-      drift:CopypastaCrystallisation drift:SignallingCollapse
-      drift:AlgorithmicAmplification
-    }
-    ?ev a ?evType ;
-        drift:affectsWord ?wordIri .
-  }
-}
-""")
-
-            from capabilities.competency import cq15_semantic_cemetery
-            doc: dict = {
-                "words": {},
-                "meta": {"version": "3.0-M8"},
-                "cemetery": cq15_semantic_cemetery(_ctx.kg, threshold=0.30),
-            }
-            for w_row in word_rows:
-                word_iri = w_row.get("wordIri")
-                written = str(w_row.get("writtenForm") or "")
-                if not word_iri or not written:
-                    continue
-
-                # Pull all attributions for this word. Filter labels to English
-                # (or untagged) so the multilingual rdfs:label set doesn't
-                # duplicate every row. Region is OPTIONAL (M5) and only
-                # surfaces for words that carry drift:inRegion attributions.
-                attr_rows = _ctx.kg.query(f"""
-PREFIX drift: <https://w3id.org/word-drift/ontology#>
-PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX skos:  <http://www.w3.org/2004/02/skos/core#>
-
-SELECT ?ma ?senseIri ?senseGloss ?groupIri ?groupLabel ?groupKindLabel
-       ?atYear ?weight ?regionIri ?regionLabel ?regionLat ?regionLon
-       ?platformIri ?platformLabel ?platformKindLabel
-WHERE {{
-  ?ma a drift:MeaningAttribution ;
-      drift:attributesWord <{word_iri}> ;
-      drift:attributesSense ?senseIri ;
-      drift:byGroup ?groupIri .
-  OPTIONAL {{
-    ?groupIri rdfs:label ?groupLabel .
-    FILTER(LANG(?groupLabel) = "en" || LANG(?groupLabel) = "")
-  }}
-  OPTIONAL {{
-    ?groupIri drift:groupKind ?gk .
-    ?gk skos:prefLabel ?groupKindLabel .
-    FILTER(LANG(?groupKindLabel) = "en" || LANG(?groupKindLabel) = "")
-  }}
-  OPTIONAL {{
-    ?senseIri drift:gloss ?senseGloss .
-    FILTER(LANG(?senseGloss) = "en" || LANG(?senseGloss) = "")
-  }}
-  OPTIONAL {{ ?ma drift:atYear ?atYear . }}
-  OPTIONAL {{ ?ma drift:attributionWeight ?weight . }}
-  OPTIONAL {{
-    ?ma drift:inRegion ?regionIri .
-    OPTIONAL {{
-      ?regionIri rdfs:label ?regionLabel .
-      FILTER(LANG(?regionLabel) = "en" || LANG(?regionLabel) = "")
-    }}
-    OPTIONAL {{ ?regionIri drift:regionLat ?regionLat . }}
-    OPTIONAL {{ ?regionIri drift:regionLon ?regionLon . }}
-  }}
-  OPTIONAL {{
-    ?ma drift:onPlatform ?platformIri .
-    OPTIONAL {{
-      ?platformIri rdfs:label ?platformLabel .
-      FILTER(LANG(?platformLabel) = "en" || LANG(?platformLabel) = "")
-    }}
-    OPTIONAL {{
-      ?platformIri drift:platformKind ?pk .
-      ?pk skos:prefLabel ?platformKindLabel .
-      FILTER(LANG(?platformKindLabel) = "en" || LANG(?platformKindLabel) = "")
-    }}
-  }}
-}}
-""")
-
-                senses_by_id: dict = {}
-                groups_by_id: dict = {}
-                regions_by_id: dict = {}
-                platforms_by_id: dict = {}
-                attributions: list = []
-
-                def _maybe_float(v: Any) -> float | None:
-                    try:
-                        return float(v) if v not in (None, "") else None
-                    except (TypeError, ValueError):
-                        return None
-
-                for r in attr_rows:
-                    s_id = r.get("senseIri")
-                    g_id = r.get("groupIri")
-                    if not s_id or not g_id:
-                        continue
-                    senses_by_id.setdefault(s_id, {
-                        "id": s_id,
-                        "gloss": r.get("senseGloss") or "",
-                    })
-                    groups_by_id.setdefault(g_id, {
-                        "id": g_id,
-                        "label": r.get("groupLabel") or "",
-                        "kind": r.get("groupKindLabel") or "",
-                    })
-                    region_id = r.get("regionIri") or None
-                    if region_id:
-                        regions_by_id.setdefault(region_id, {
-                            "id": region_id,
-                            "label": r.get("regionLabel") or "",
-                            "lat": _maybe_float(r.get("regionLat")),
-                            "lon": _maybe_float(r.get("regionLon")),
-                        })
-                    platform_id = r.get("platformIri") or None
-                    if platform_id:
-                        platforms_by_id.setdefault(platform_id, {
-                            "id": platform_id,
-                            "label": r.get("platformLabel") or "",
-                            "kind": r.get("platformKindLabel") or "",
-                        })
-                    # parse atYear (may be "2020"^^xsd:gYear or "2020")
-                    y_raw = r.get("atYear")
-                    try:
-                        year = int(str(y_raw)[:4]) if y_raw else None
-                    except (TypeError, ValueError):
-                        year = None
-                    try:
-                        weight = float(r.get("weight")) if r.get("weight") else 1.0
-                    except (TypeError, ValueError):
-                        weight = 1.0
-                    attributions.append({
-                        "sense": s_id,
-                        "group": g_id,
-                        "region": region_id,
-                        "platform": platform_id,
-                        "year": year,
-                        "weight": weight,
-                    })
-
-                # Memetic events for this word (M8): query MemeticMutation
-                # subclasses by sub-type so 2.x DriftEvent consumers still see
-                # the parent.
-                memetic_rows = _ctx.kg.query(f"""
-PREFIX drift: <https://w3id.org/word-drift/ontology#>
-PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
-
-SELECT ?ev ?evType ?year ?platformIri ?platformLabel ?artefact ?signal
-WHERE {{
-  VALUES ?evType {{
-    drift:MemeticMutation drift:IronicAppropriation
-    drift:CopypastaCrystallisation drift:SignallingCollapse
-    drift:AlgorithmicAmplification
-  }}
-  ?ev a ?evType ;
-      drift:affectsWord <{word_iri}> .
-  OPTIONAL {{ ?ev drift:driftYear ?year . }}
-  OPTIONAL {{
-    ?ev drift:originPlatform ?platformIri .
-    OPTIONAL {{
-      ?platformIri rdfs:label ?platformLabel .
-      FILTER(LANG(?platformLabel) = "en" || LANG(?platformLabel) = "")
-    }}
-  }}
-  OPTIONAL {{ ?ev drift:sourceArtefact ?artefact . }}
-  OPTIONAL {{ ?ev drift:amplificationSignal ?signal . }}
-}}
-""")
-                memetic_events = []
-                seen_events: set = set()
-                for mr in memetic_rows:
-                    ev_id = mr.get("ev")
-                    if not ev_id or ev_id in seen_events:
-                        continue
-                    seen_events.add(ev_id)
-                    y_raw = mr.get("year")
-                    try:
-                        ev_year = int(str(y_raw)[:4]) if y_raw else None
-                    except (TypeError, ValueError):
-                        ev_year = None
-                    ev_type = (mr.get("evType") or "").split("#")[-1]
-                    memetic_events.append({
-                        "id": ev_id,
-                        "type": ev_type,
-                        "year": ev_year,
-                        "originPlatform": mr.get("platformIri") or None,
-                        "originPlatformLabel": mr.get("platformLabel") or "",
-                        "sourceArtefact": mr.get("artefact") or None,
-                        "amplificationSignal": mr.get("signal") or None,
-                    })
-                memetic_events.sort(key=lambda e: (e["year"] is None, e["year"]))
-
-                doc["words"][word_iri] = {
-                    "id": word_iri,
-                    "writtenForm": written,
-                    "senses": list(senses_by_id.values()),
-                    "groups": list(groups_by_id.values()),
-                    "regions": list(regions_by_id.values()),
-                    "platforms": list(platforms_by_id.values()),
-                    "attributions": attributions,
-                    "metrics": _m3.metric_timeline(_ctx.kg, word=written),
-                    "emotional_drift": _m3.emotional_drift(_ctx.kg, word=written),
-                    "memetic_events": memetic_events,
-                }
-
-            return JSONResponse(doc)
+            W5 (W9): served from a cache built once during ``_bootstrap()``.
+            Pass ``?refresh=1&token=<WD_DEV_ADMIN_TOKEN>`` to force a
+            rebuild without restarting the process; the admin token is
+            required when ``WD_DEV_ADMIN_TOKEN`` is set in the env, so
+            ``?refresh=1`` alone is a no-op in production deployments.
+            """
+            global _graph_distribution
+            if refresh:
+                admin_token = os.environ.get("WD_DEV_ADMIN_TOKEN", "").strip()
+                if not admin_token:
+                    return JSONResponse(
+                        {"error": "refresh disabled: WD_DEV_ADMIN_TOKEN is not set"},
+                        status_code=403,
+                    )
+                if token != admin_token:
+                    return JSONResponse(
+                        {"error": "invalid admin token"}, status_code=403,
+                    )
+                _ctx = Context(
+                    trace_id="dist-refresh", principal="system:admin",
+                    store=kernel_store(),
+                )
+                _graph_distribution = _build_graph_distribution(_ctx)
+            if _graph_distribution is None:
+                # Defensive: bootstrap may have skipped this artefact.
+                _ctx = Context(
+                    trace_id="dist-lazy", principal="system",
+                    store=kernel_store(),
+                )
+                _graph_distribution = _build_graph_distribution(_ctx)
+            return JSONResponse(_graph_distribution)
 
         # ------------------------------------------------------------------
         # Static site — mounted LAST so API routes take precedence

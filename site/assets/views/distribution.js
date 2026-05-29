@@ -459,6 +459,10 @@
       qs.set("word", doc.words[iri].writtenForm);
       var newUrl = window.location.pathname + "?" + qs.toString();
       window.history.replaceState({}, "", newUrl);
+      // F3 (W9): persist the picked IRI so the main Word Detail tab can
+      // restore the same word on next visit. The Distribution view reads
+      // this key on bootstrap; writing it here closes the loop.
+      try { window.localStorage.setItem("wd:explore:word", iri); } catch (_) { /* ignore */ }
       render(panelEl, doc, { iri: iri, requested: doc.words[iri].writtenForm, status: "ok" });
     });
     head.appendChild(picker);
@@ -529,6 +533,8 @@
         qs.set("word", target ? target.writtenForm : iri);
         var newUrl = window.location.pathname + "?" + qs.toString();
         window.history.replaceState({}, "", newUrl);
+        // F3 (W9): persist for cross-view sync.
+        try { window.localStorage.setItem("wd:explore:word", iri); } catch (_) { /* ignore */ }
         render(panelEl, doc, { iri: iri, requested: target ? target.writtenForm : iri, status: "ok" });
       }));
     }

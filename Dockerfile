@@ -37,7 +37,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # against. It MUST match the range declared in trails_compat.py. The runtime
 # check in trails_compat.enforce() refuses to start the app in production if
 # these drift apart, so an ops error here is loud and fail-fast.
-ARG TRAILS_PIN=main
+ARG TRAILS_PIN=0f33c59
 ARG TRAILS_GIT_URL=
 ARG TRAILS_PUBLIC_REF=git+https://github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python
 RUN --mount=type=secret,id=git_token \

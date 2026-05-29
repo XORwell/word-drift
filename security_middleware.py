@@ -20,9 +20,9 @@ Year-range validation lives on the route signatures themselves (Pydantic
 
 See docs/plans/word-drift-3.0/security-round-2.md for the threat model.
 
-TODO(W3): the inline ``<script>`` blocks in site/explore.html etc. force
-``'unsafe-inline'`` in the CSP. Migrate them to external JS so the CSP
-can drop the ``'unsafe-inline'`` source.
+W9 (round 3) adds :class:`StaticAssetCacheMiddleware` (F4) — short-TTL
+``Cache-Control`` on ``/assets/*`` only; HTML and ``/api/*`` responses
+deliberately stay uncached so deploys propagate immediately.
 """
 from __future__ import annotations
 
@@ -43,12 +43,15 @@ logger = logging.getLogger("word_drift.security")
 # (a) Security headers + (g) server-header strip
 # ---------------------------------------------------------------------------
 
-# CSP rationale (see TODO above): script/style still need 'unsafe-inline'
-# because site/explore.html and friends ship inline <script> blocks today.
-# Once those are externalised, drop the 'unsafe-inline' source.
+# CSP rationale: W9 round-3 polish extracted the last inline <script>
+# blocks from the static HTML pages (downloads.html had a pre-paint theme
+# block and a footer toggle block; both were redundant with theme.js).
+# script-src therefore no longer needs 'unsafe-inline'. style-src keeps
+# 'unsafe-inline' because the downloads page still ships per-page <style>
+# blocks; converting those to external CSS is a follow-up.
 _CSP = (
     "default-src 'self'; "
-    "script-src 'self' 'unsafe-inline'; "
+    "script-src 'self'; "
     "style-src 'self' 'unsafe-inline'; "
     "img-src 'self' data:; "
     "connect-src 'self'"
@@ -200,6 +203,34 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
 
 
 # ---------------------------------------------------------------------------
+# (W9-F4) Cache-Control on /assets/* — short TTL, must-revalidate
+# ---------------------------------------------------------------------------
+
+
+_STATIC_ASSET_CACHE_CONTROL = "public, max-age=300, must-revalidate"
+
+
+class StaticAssetCacheMiddleware(BaseHTTPMiddleware):
+    """Add ``Cache-Control`` to ``/assets/*`` static responses only.
+
+    HTML pages (``/index.html``, ``/explore.html``, …) are deliberately
+    NOT cached so that ``/api/version`` updates land on the next reload
+    without an explicit hard-refresh. The 300 s TTL on assets is short
+    enough for iterative deploys; ``must-revalidate`` blocks stale
+    intermediaries.
+    """
+
+    async def dispatch(
+        self, request: Request, call_next: Callable[[Request], Any]
+    ) -> Response:
+        response: Response = await call_next(request)
+        path = request.url.path
+        if path.startswith("/assets/") and response.status_code < 400:
+            response.headers.setdefault("Cache-Control", _STATIC_ASSET_CACHE_CONTROL)
+        return response
+
+
+# ---------------------------------------------------------------------------
 # (f) SPARQL injection warn-log helper
 # ---------------------------------------------------------------------------
 
@@ -259,6 +290,7 @@ def install(app) -> None:
 
     app.add_middleware(SecurityHeadersMiddleware)
     app.add_middleware(StripCORSMiddleware)
+    app.add_middleware(StaticAssetCacheMiddleware)
     app.add_middleware(
         RateLimitMiddleware, max_requests=rate_limit, window_seconds=window,
     )

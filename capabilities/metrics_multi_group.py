@@ -558,27 +558,214 @@ WHERE {{
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Pure-Python metric kernels (operate on a pre-fetched row list, no SPARQL).
+# Used by metric_timeline to partition once and compute many times. The
+# public per-year metric functions still call SPARQL via _attribution_rows;
+# they delegate the math to these helpers for consistency.
+# ---------------------------------------------------------------------------
+
+
+def _entropy_from_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Shannon entropy from a pre-fetched row list (no SPARQL)."""
+    sense_mass: dict[str, float] = defaultdict(float)
+    total = 0.0
+    for r in rows:
+        s = r.get("senseIri")
+        if not s:
+            continue
+        w = _weight(r)
+        sense_mass[s] += w
+        total += w
+    n_senses = len(sense_mass)
+    if total < _MIN_EVIDENCE:
+        return {
+            "value": None,
+            "normalised": None,
+            "n_senses": n_senses,
+            "total_weight": total,
+            "reason": "low_evidence",
+        }
+    if n_senses <= 1:
+        return {
+            "value": 0.0,
+            "normalised": None,
+            "n_senses": n_senses,
+            "total_weight": total,
+            "reason": "monosemous_at_this_window" if n_senses == 1 else "no_attributions",
+        }
+    h = -sum((m / total) * math.log2(m / total) for m in sense_mass.values() if m > 0)
+    return {
+        "value": h,
+        "normalised": h / math.log2(n_senses),
+        "n_senses": n_senses,
+        "total_weight": total,
+    }
+
+
+def _fragmentation_from_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Gini-Simpson fragmentation from a pre-fetched row list."""
+    cell_mass: dict[tuple[str, str], float] = defaultdict(float)
+    groups: set[str] = set()
+    senses: set[str] = set()
+    total = 0.0
+    for r in rows:
+        s = r.get("senseIri")
+        g = r.get("groupIri")
+        if not s or not g:
+            continue
+        w = _weight(r)
+        cell_mass[(g, s)] += w
+        groups.add(g)
+        senses.add(s)
+        total += w
+    n_cells = len(cell_mass)
+    n_groups = len(groups)
+    n_senses = len(senses)
+    if total < _MIN_EVIDENCE:
+        return {
+            "value": None,
+            "n_cells": n_cells,
+            "n_groups": n_groups,
+            "n_senses": n_senses,
+            "total_weight": total,
+            "reason": "low_evidence",
+        }
+    if n_cells <= 1:
+        return {
+            "value": 0.0,
+            "n_cells": n_cells,
+            "n_groups": n_groups,
+            "n_senses": n_senses,
+            "total_weight": total,
+        }
+    sumsq = sum((m / total) ** 2 for m in cell_mass.values())
+    return {
+        "value": 1.0 - sumsq,
+        "n_cells": n_cells,
+        "n_groups": n_groups,
+        "n_senses": n_senses,
+        "total_weight": total,
+    }
+
+
+def _group_divergence_from_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Pairwise group JSD from a pre-fetched row list."""
+    dist = _group_distribution(rows)
+    total = sum(_weight(r) for r in rows if r.get("senseIri") and r.get("groupIri"))
+    n_groups = len(dist)
+    if n_groups < 2:
+        return {
+            "pairs": [],
+            "max": None,
+            "mean": None,
+            "n_groups": n_groups,
+            "total_weight": total,
+            "reason": "need_at_least_two_groups",
+        }
+    if total < _MIN_EVIDENCE:
+        return {
+            "pairs": [],
+            "max": None,
+            "mean": None,
+            "n_groups": n_groups,
+            "total_weight": total,
+            "reason": "low_evidence",
+        }
+    group_iris = sorted(dist.keys())
+    pairs: list[dict[str, Any]] = []
+    jsds: list[float] = []
+    for i, ga in enumerate(group_iris):
+        for gb in group_iris[i + 1:]:
+            j = _jsd(dist[ga], dist[gb])
+            pairs.append({"groupA": ga, "groupB": gb, "jsd": j})
+            jsds.append(j)
+    return {
+        "pairs": pairs,
+        "max": max(jsds),
+        "mean": sum(jsds) / len(jsds),
+        "n_groups": n_groups,
+        "total_weight": total,
+    }
+
+
+def _cross_platform_distance_from_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """Pairwise platform JSD from a pre-fetched row list."""
+    dist = _platform_distribution(rows)
+    total = sum(_weight(r) for r in rows if r.get("platformIri") and r.get("senseIri"))
+    n = len(dist)
+    if n < 2:
+        return {
+            "pairs": [],
+            "max": None,
+            "mean": None,
+            "n_platforms": n,
+            "total_weight": total,
+            "reason": "need_at_least_two_platforms",
+        }
+    if total < _MIN_EVIDENCE:
+        return {
+            "pairs": [],
+            "max": None,
+            "mean": None,
+            "n_platforms": n,
+            "total_weight": total,
+            "reason": "low_evidence",
+        }
+    plats = sorted(dist.keys())
+    pairs: list[dict[str, Any]] = []
+    jsds: list[float] = []
+    for i, pa in enumerate(plats):
+        for pb in plats[i + 1:]:
+            j = _jsd(dist[pa], dist[pb])
+            pairs.append({"platformA": pa, "platformB": pb, "jsd": j})
+            jsds.append(j)
+    return {
+        "pairs": pairs,
+        "max": max(jsds),
+        "mean": sum(jsds) / len(jsds),
+        "n_platforms": n,
+        "total_weight": total,
+    }
+
+
 def metric_timeline(
     kg: Any, *, word: str = "Querdenker",
 ) -> list[dict[str, Any]]:
     """Per-year snapshot of the three M3 metrics for ``word``.
 
+    F2 (W9): single SPARQL fetch + Python partition by year. The previous
+    implementation issued one ``_attribution_rows`` call per metric per
+    year (4 × N years ≈ 20 queries for a 5-year word); this version pulls
+    rows ONCE and computes everything from the in-memory partition.
+
     Returns
     -------
     list of dicts ordered by year, each with keys:
         year, entropy, fragmentation, divergence_max, divergence_mean,
-        n_groups, n_senses, total_weight
+        platform_divergence_max, platform_divergence_mean,
+        n_groups, n_platforms, n_senses, total_weight
     """
-    # Discover the years for which this word has attributions.
-    rows = _attribution_rows(kg, word=word, year=None)
-    years = sorted({int(str(r["atYear"])[:4]) for r in rows if r.get("atYear")})
+    # Single SPARQL fetch for ALL rows; partition by year in Python.
+    all_rows = _attribution_rows(kg, word=word, year=None)
+    rows_by_year: dict[int, list[dict[str, Any]]] = defaultdict(list)
+    for r in all_rows:
+        y_raw = r.get("atYear")
+        if not y_raw:
+            continue
+        try:
+            y = int(str(y_raw)[:4])
+        except (TypeError, ValueError):
+            continue
+        rows_by_year[y].append(r)
 
     out: list[dict[str, Any]] = []
-    for y in years:
-        ent = semantic_entropy(kg, word=word, year=y)
-        frag = semantic_fragmentation_index(kg, word=word, year=y)
-        div = group_divergence(kg, word=word, year=y)
-        plat = cross_platform_distance(kg, word=word, year=y)
+    for y in sorted(rows_by_year.keys()):
+        bucket = rows_by_year[y]
+        ent = _entropy_from_rows(bucket)
+        frag = _fragmentation_from_rows(bucket)
+        div = _group_divergence_from_rows(bucket)
+        plat = _cross_platform_distance_from_rows(bucket)
         out.append({
             "year": y,
             "entropy": ent.get("value"),
