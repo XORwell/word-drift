@@ -1,0 +1,47 @@
+# Word-Drift data licensing
+
+The curated Word-Drift knowledge graph (the Turtle files under `examples/`
+and the hand-modelled ontology modules under `ontology/`) is licensed under
+the **Creative Commons Attribution 4.0 International License** (CC BY 4.0).
+
+You are free to:
+
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material for any purpose,
+  even commercially
+
+Under the following terms:
+
+- **Attribution** — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made. You may do so in any reasonable
+  manner, but not in any way that suggests the licensor endorses you or your
+  use.
+
+Recommended citation: see [`CITATION.cff`](CITATION.cff).
+
+License text: <https://creativecommons.org/licenses/by/4.0/legalcode>
+
+---
+
+## Third-party data under `data/`
+
+The `data/` directory contains material derived from external corpora and
+datasets that carry their own licenses. These are NOT covered by CC BY 4.0
+unless the upstream license is compatible. Notable sources:
+
+- **DWUG DE / EN** (`data/dwug-*.ttl`, `data/real/`) — German and English
+  Diachronic Word Usage Graphs from Schlechtweg et al. Distributed under
+  CC BY 4.0; please cite the upstream paper.
+- **SemEval-2020 Task 1** (`data/semeval.ttl`) — lexical semantic change
+  benchmark. CC BY 4.0; cite Schlechtweg et al. 2020.
+- **Wikidata triggers** (`data/wikidata_triggers.ttl`) — CC0 1.0 Universal.
+- **GFDS Wörter des Jahres** (`data/gfds/`, `data/dwds_freq.ttl`) — public
+  press releases of the Gesellschaft für deutsche Sprache, used under fair
+  quotation; the derived RDF representation is CC BY 4.0.
+- **OWID public-domain images metadata** (`data/owid.ttl`) — see Our World
+  in Data licensing.
+
+Each subdirectory under `data/` carries (or will carry, where ingest is
+ongoing) a `README.md` with the precise upstream license and citation.
+When in doubt, treat material under `data/` as the upstream license
+requires, not as CC BY 4.0.

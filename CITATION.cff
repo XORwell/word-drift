@@ -1,0 +1,52 @@
+cff-version: 1.2.0
+title: "Word-Drift: a knowledge graph for lexical semantic change with causal triggers"
+message: "If you use this knowledge graph, the software, or the metrics in your work, please cite both the software (this record) and the SEMANTiCS 2026 Blue Sky paper listed under preferred-citation."
+type: software
+authors:
+  - family-names: Nennemann
+    given-names: Christian
+    email: research@nennemann.de
+    orcid: "https://orcid.org/0009-0000-0000-0000"
+repository-code: "https://github.com/XORwell/word-drift"
+url: "https://word-drift.xorwell.de"
+abstract: >
+  Word-Drift is an open RDF knowledge graph that models lexical semantic
+  change in German and English. Unlike existing datasets, it represents
+  not only typed drift events (pejoration, amelioration, broadening,
+  narrowing, reappropriation, ironic appropriation, …) but also the
+  real-world trigger events that cause them, as first-class causal
+  hypotheses with graded evidence. The 3.0 schema lifts the model from
+  Time -> Drift to Time x Group x Geography x Platform x Emotion x
+  Context -> Meaning Distribution, with metrics for semantic entropy,
+  fragmentation, group divergence, cross-platform JSD, and emotional
+  drift. The implementation is built on the Trails framework
+  (persistent Oxigraph store, live SPARQL, SHACL on write).
+keywords:
+  - knowledge graph
+  - lexical semantic change
+  - diachronic linguistics
+  - RDF
+  - SHACL
+  - OntoLex-Lemon
+  - PROV-O
+  - causal hypothesis
+  - semantic entropy
+  - cross-platform divergence
+license: MIT
+license-url: "https://github.com/XORwell/word-drift/blob/main/LICENSE"
+version: "v3.0.0-alpha.0"
+date-released: "2026-05-28"
+preferred-citation:
+  type: conference-paper
+  title: "Word-Drift: causal triggers as first-class citizens in a knowledge graph of lexical semantic change"
+  authors:
+    - family-names: Nennemann
+      given-names: Christian
+      email: research@nennemann.de
+  collection-title: "Proceedings of the 22nd International Conference on Semantic Systems (SEMANTiCS 2026), Blue Sky Track"
+  conference:
+    name: "SEMANTiCS 2026"
+  year: 2026
+  month: 9
+  url: "https://2026.semantics.cc/"
+  notes: "Submission to the Blue Sky Track; status reflects the version of this record."
