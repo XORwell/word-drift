@@ -4,18 +4,20 @@ M0 → M8. Each milestone is independently shippable, has a single load-bearing 
 
 ---
 
-## M0 — Scaffold (current)
+## M0 — Scaffold
 
 **Load-bearing artefact:** `docs/plans/word-drift-3.0/` tree + ontology stubs.
 
 **Done when:**
-- [ ] Plan tree (`README.md`, `00-vision.md` … `05-milestones.md`) committed.
-- [ ] Five initial ADRs drafted (0001–0005).
-- [ ] Five ontology stub files (`08-group.ttl` … `12-geography.ttl`) committed with class skeletons + comments; no Python wiring yet.
-- [ ] README banner on `main` (not yet) and on this branch points at the plan tree.
-- [ ] Both remotes pushed.
+- [x] Plan tree (`README.md`, `00-vision.md` … `05-milestones.md`) committed.
+- [x] Five initial ADRs drafted (0001–0005).
+- [x] Five ontology stub files (`08-group.ttl` … `12-geography.ttl`) committed with class skeletons + comments; no Python wiring yet.
+- [x] README banner on `main` (not yet) and on this branch points at the plan tree.
+- [x] Both remotes pushed.
 
 **Out of scope:** Python models, metrics implementation, frontend changes, new data ingestion.
+
+**Shipped:** commit `42e8593` — `docs(3.0): scaffold M0 — plan tree, ADRs, ontology stubs (08-12)`.
 
 ---
 

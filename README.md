@@ -29,7 +29,9 @@
 >
 > 2.x architecture (Trails, Oxigraph, SHACL, FastAPI, static `site/`) is unchanged. New ontology modules are
 > strictly additive. The 2.x graph-core / graph-detail JSON contracts continue to serve. `main` still ships as
-> `v2.1.0`. Test suite: 42 passing.
+> `v2.1.0`; `feat/word-drift-3.0` ships as `v3.0.0-alpha.0` (Schema v0.4.0). Test suite: 86 passing.
+>
+> Live preview: <https://word-drift.xorwell.de> (basic_auth `preview:preview` until W16; see [`docs/plans/post-m8-waves.md`](docs/plans/post-m8-waves.md))
 
 ---
 
@@ -89,30 +91,45 @@ data/                   ETL output (real, wugs, gfds, alignment, freq, semeval �
 
 ## Quick start
 
-### Development (local)
+### Docker (recommended)
 
 ```bash
 git clone https://github.com/XORwell/word-drift
 cd word-drift
 
-# Install Trails + deps
-make install
-
-# Run the dev server (auto-reloads, loads data on startup)
-make dev
-# → http://localhost:8080
-```
-
-### Docker
-
-```bash
 docker compose up --build
 # → http://localhost:8080
 # The persistent Oxigraph store lives in the wd_data Docker volume.
 ```
 
+The Dockerfile installs Trails (`trails[http]`) from the public mirror at
+[`github.com/XORwell/trails`](https://github.com/XORwell/trails) pinned by
+the `TRAILS_PIN` build arg (default `main`). The runtime range is enforced
+by [`trails_compat.py`](trails_compat.py) and surfaced live by
+`GET /api/version`.
+
 The first startup loads all TTL files into Oxigraph — expect 10–30 seconds.
 Subsequent starts reuse the persisted store (fast).
+
+### Development (local)
+
+`make install` assumes a sibling checkout of
+[`framework.trails`](https://github.com/XORwell/trails) at `../framework.trails`
+(this is the path the maintainers use). If you don't have that, install
+Trails from the public ref instead:
+
+```bash
+git clone https://github.com/XORwell/word-drift
+cd word-drift
+
+# Public-ref install (no sibling checkout needed)
+pip install "trails[http,llm] @ git+https://github.com/XORwell/trails.git#subdirectory=python"
+pip install -r requirements.txt
+
+# Run the dev server (auto-reloads, loads data on startup)
+TRAILS_ENV=development python app.py
+# → http://localhost:8080
+```
 
 ---
 
@@ -174,7 +191,12 @@ Trails framework: <https://github.com/XORwell/trails>
 
 ## License
 
-Code: MIT. Data: see `LICENSE-DATA` (Creative Commons BY 4.0 for curated examples; corpus-derived data may carry additional restrictions — see `data/` subdirectory READMEs).
+Code: **MIT** — see [`LICENSE`](LICENSE).
+Data: **CC BY 4.0** for the hand-curated knowledge graph (`examples/`, `ontology/`); per-corpus terms for third-party material under `data/` — see [`LICENSE-DATA`](LICENSE-DATA).
+
+## Citation
+
+See [`CITATION.cff`](CITATION.cff). The preferred citation is the SEMANTiCS 2026 Blue Sky Track paper accompanying this release.
 
 ---
 

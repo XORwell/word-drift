@@ -9,4 +9,5 @@ codeberg\.org
 \bKARO\b
 89\.167\.109\.237
 /home/(c|dev)/
+nennemann-(dev|biz|infra)
 -----BEGIN [A-Z ]*PRIVATE KEY-----

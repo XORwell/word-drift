@@ -146,9 +146,8 @@ No additional certbot setup required.
 
 ---
 
-## Notes on the workspace infra
+## Notes on deployment
 
-This workspace runs on owned servers (nennemann-infra, see
-`docs/` for Tailscale and Caddy config references). Static files can be dropped
-into any Caddy-served directory. **Do not deploy automatically** -- human
-approval required before publishing to any public URL.
+Static files can be dropped into any Caddy-served directory.
+**Do not deploy automatically** -- human approval required before
+publishing to any public URL.

@@ -131,12 +131,12 @@ The waves are NOT strictly ordered. **W14 (SEMANTiCS paper) is URGENT** (deadlin
 
 **Why:** Trails today has exactly one production app: word-drift. Either Trails works for N apps or it doesn't — N=1 is unfalsifiable. A second app validates the framework boundary AND the `trails_compat.py` pattern.
 
-**Load-bearing artefact:** Two distinct Trails apps running on `nennemann-dev`, sharing the framework, with independent versions.
+**Load-bearing artefact:** Two distinct Trails apps running on the same host, sharing the framework, with independent versions.
 
 **Done when:**
 - [ ] Second Trails app scaffolded (suggestions: a small `quote-drift` Twitter/X quote-tracking app, or a `freelance-radar` companion to the existing JobRadar work)
 - [ ] Both apps' Dockerfiles use the same `trails_compat.py` + `TRAILS_PIN` pattern
-- [ ] Both apps' `docker-compose.yml` blocks parameterised via `nennemann-dev-infra`
+- [ ] Both apps' `docker-compose.yml` blocks parameterised via a shared deployment manifest
 - [ ] One shared documentation page explaining the consumer pattern (will likely become Trails' "downstream-apps" guide)
 
 **Out of scope:** A third app. Trails' own publishing process (W10).
@@ -172,7 +172,7 @@ The waves are NOT strictly ordered. **W14 (SEMANTiCS paper) is URGENT** (deadlin
 - [ ] Trails' `_auto_enable_otlp_from_config()` actually called from `create_http_app()` (audit found it dead-leaf)
 - [ ] Structured JSON log format (one event per line, structlog or stdlib `json` formatter) when `TRAILS_LOG_FORMAT=json`
 - [ ] Uptime Kuma probe added for `/api/health` + `/graph-distribution.json` cold-load
-- [ ] Homepage dashboard tile (per `nennemann-dev-infra` Homepage config)
+- [ ] Homepage dashboard tile (per the deploy host's Homepage config)
 
 **Out of scope:** Grafana dashboards (post-W17 polish); paid APM tools.
 
@@ -186,7 +186,7 @@ The waves are NOT strictly ordered. **W14 (SEMANTiCS paper) is URGENT** (deadlin
 
 **Done when:**
 - [ ] Daily snapshot of `wd_drift_data` to `/opt/dev/backups/word-drift-YYYY-MM-DD.tar.gz`
-- [ ] Offsite mirror to biz server via the existing rsync pipeline (per `nennemann-biz-infra` pattern)
+- [ ] Offsite mirror to a secondary host via the existing rsync pipeline
 - [ ] 30-day retention
 - [ ] `RUNBOOK.md` with restore procedure
 - [ ] Restore drill executed: take a backup, `docker volume rm`, restore, verify `/api/health` matches the pre-drill snapshot
@@ -346,7 +346,7 @@ Small, opportunistic improvements that don't earn a full wave but are worth doin
 ### infra
 
 - The deploy host's compose still emits `level=warning msg="The GITEA_TOKEN variable is not set. Defaulting to a blank string."` on every command. Move the build-arg from a secret to an explicit interpolation if the value is the same.
-- The `nennemann-dev-infra` repo's `deploy.sh` should validate that `Caddyfile` parses (`caddy validate`) before applying.
+- The deploy host's `deploy.sh` should validate that `Caddyfile` parses (`caddy validate`) before applying.
 - The Caddy basic_auth credentials (`preview:preview`) are in the public docs implicitly (via the deploy procedure). Rotate to a stronger pair before W16 public-launch.
 
 ---
