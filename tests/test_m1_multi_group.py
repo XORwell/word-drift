@@ -22,7 +22,7 @@ _FIXTURE = Path(__file__).resolve().parent / "fixtures" / "m1_groups.ttl"
 def _load_with_fixture() -> None:
     """Load the full repo + the M1 fixture into the kernel store."""
     from loader import load_all_ttl
-    from trails.runtime import _raw_kernel_store
+    from trails.sdk import raw_kernel_store
     import rdflib
 
     load_all_ttl(data_root=_REPO_ROOT)
@@ -30,7 +30,7 @@ def _load_with_fixture() -> None:
     g = rdflib.Graph()
     g.parse(str(_FIXTURE), format="turtle")
     nt = g.serialize(format="nt")
-    _raw_kernel_store().update("INSERT DATA {\n" + nt + "\n}")
+    raw_kernel_store().update("INSERT DATA {\n" + nt + "\n}")
 
 
 def test_m1_models_importable():
@@ -57,12 +57,11 @@ def test_cq13_returns_three_groups_for_querdenker():
     try:
         _load_with_fixture()
         from capabilities.competency import cq13_groups_attributing_word
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
-    ctx = Context(trace_id="test-cq13", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="test-cq13", principal="system:test", store=kernel_store())
     rows = cq13_groups_attributing_word(ctx.kg, word="Querdenker")
 
     assert isinstance(rows, list)
@@ -82,12 +81,11 @@ def test_cq13_year_snapshot_2021_shows_split():
     try:
         _load_with_fixture()
         from capabilities.competency import cq13_groups_attributing_word
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
-    ctx = Context(trace_id="test-cq13-2021", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="test-cq13-2021", principal="system:test", store=kernel_store())
     rows = cq13_groups_attributing_word(ctx.kg, word="Querdenker", year=2021)
 
     # 2021 fixture has: mainstream-press -> covid, creativity-community -> lateral (mixed),

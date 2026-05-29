@@ -64,8 +64,7 @@ def _bootstrap():
 
     from loader import load_all_ttl
     from graph_builder import build_graph_document, split_document
-    from trails.context import Context
-    from trails.runtime import _kernel_store
+    from trails.sdk import Context, kernel_store
 
     # Load all TTL data into the Trails kernel store
     load_all_ttl()
@@ -74,7 +73,7 @@ def _bootstrap():
     _boot_ctx = Context(
         trace_id="bootstrap",
         principal="system:bootstrap",
-        store=_kernel_store(),
+        store=kernel_store(),
     )
 
     doc = build_graph_document(_boot_ctx.kg)   # use ctx.kg, not _store
@@ -86,7 +85,7 @@ def _bootstrap():
 # ---------------------------------------------------------------------------
 # Trails app
 # ---------------------------------------------------------------------------
-from trails import capability, Context
+from trails.sdk import capability, Context
 
 # NOTE: App(__name__) is not instantiated here because create_app() builds
 # the real FastAPI/MCP application.  The bare `app = App(__name__)` was
@@ -386,11 +385,10 @@ def create_app():
     # Bootstrap data before creating the HTTP app so the first request is fast.
     _bootstrap()
 
-    from trails.mcp_server import TrailsMCPServer
-    from trails.http_adapter import TrailsHTTPAdapter
+    from trails.sdk import MCPServer, HTTPAdapter
 
-    mcp = TrailsMCPServer(name="word-drift", version="0.1.0")
-    adapter = TrailsHTTPAdapter(mcp, require_auth=False)
+    mcp = MCPServer(name="word-drift", version="0.1.0")
+    adapter = HTTPAdapter(mcp, require_auth=False)
     http_app = adapter.create_app()
 
     # Round-2 security hardening: CSP/X-Frame/CORS-strip/rate-limit
@@ -417,8 +415,7 @@ def create_app():
         from fastapi import Query
         from fastapi.responses import JSONResponse
         from starlette.staticfiles import StaticFiles
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
 
         # Round 2 (d): tight year-range bounds. ``int(year)`` was safe
         # against injection but accepted absurd values; reject anything
@@ -471,7 +468,7 @@ def create_app():
                 return _version_cache
             ontology_version = ""
             try:
-                rows = _kernel_store().query(
+                rows = kernel_store().query(
                     "SELECT ?v WHERE { "
                     "<https://w3id.org/word-drift/ontology#> "
                     "<http://www.w3.org/2002/07/owl#versionInfo> ?v }"
@@ -535,7 +532,7 @@ def create_app():
         @http_app.get("/api/health", response_model=None)
         async def api_health():
             """Word-drift specific health check."""
-            _ctx = Context(trace_id="health-check", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="health-check", principal="system", store=kernel_store())
             triple_count = 0
             try:
                 rows = _ctx.kg.query("SELECT (COUNT(*) AS ?n) WHERE { ?s ?p ?o }")
@@ -589,7 +586,7 @@ def create_app():
                     {"error": "mutation keywords are not permitted on this endpoint"},
                     status_code=403,
                 )
-            _ctx = Context(trace_id="sparql", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="sparql", principal="system", store=kernel_store())
             try:
                 rows = _ctx.kg.query(q)
             except Exception as exc:
@@ -614,37 +611,37 @@ def create_app():
         @http_app.get("/api/cq/01", response_model=None)
         async def api_cq01(limit: int = 10):
             """CQ01: Which trigger event reframed the most words?"""
-            _ctx = Context(trace_id="cq01", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq01", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq01_most_reframed(_ctx.kg, limit=limit))
 
         @http_app.get("/api/cq/02", response_model=None)
         async def api_cq02(word: str = "Querdenker"):
             """CQ02: All causal hypotheses for a given word."""
-            _ctx = Context(trace_id="cq02", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq02", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq02_hypotheses_for_word(_ctx.kg, word=word))
 
         @http_app.get("/api/cq/03", response_model=None)
         async def api_cq03():
             """CQ03: Drift-type distribution by trigger category."""
-            _ctx = Context(trace_id="cq03", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq03", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq03_drifttype_by_trigger(_ctx.kg))
 
         @http_app.get("/api/cq/04", response_model=None)
         async def api_cq04():
             """CQ04: Same-direction drift across DE and EN."""
-            _ctx = Context(trace_id="cq04", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq04", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq04_cross_lingual_same_direction(_ctx.kg))
 
         @http_app.get("/api/cq/05", response_model=None)
         async def api_cq05():
             """CQ05: Words whose connotation reversed."""
-            _ctx = Context(trace_id="cq05", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq05", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq05_connotation_reversed(_ctx.kg))
 
         @http_app.get("/api/cq/06", response_model=None)
         async def api_cq06(year_from: int = YearRequiredFrom, year_to: int = YearRequiredTo):
             """CQ06: Trigger events in a date range."""
-            _ctx = Context(trace_id="cq06", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq06", principal="system", store=kernel_store())
             return JSONResponse(
                 _cq.cq06_triggers_in_date_range(_ctx.kg, year_from=year_from, year_to=year_to)
             )
@@ -652,43 +649,43 @@ def create_app():
         @http_app.get("/api/cq/07", response_model=None)
         async def api_cq07():
             """CQ07: Hypotheses resting ONLY on speculative evidence."""
-            _ctx = Context(trace_id="cq07", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq07", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq07_speculative_only(_ctx.kg))
 
         @http_app.get("/api/cq/08", response_model=None)
         async def api_cq08():
             """CQ08: Strongest evidence tier backing each drift event."""
-            _ctx = Context(trace_id="cq08", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq08", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq08_strongest_evidence(_ctx.kg))
 
         @http_app.get("/api/cq/09", response_model=None)
         async def api_cq09():
             """CQ09: Drift events with competing causal hypotheses."""
-            _ctx = Context(trace_id="cq09", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq09", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq09_competing_hypotheses(_ctx.kg))
 
         @http_app.get("/api/cq/10", response_model=None)
         async def api_cq10():
             """CQ10: Per-word sense timeline with connotation."""
-            _ctx = Context(trace_id="cq10", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq10", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq10_sense_timeline(_ctx.kg))
 
         @http_app.get("/api/cq/11", response_model=None)
         async def api_cq11():
             """CQ11: Reappropriated words and their triggers."""
-            _ctx = Context(trace_id="cq11", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq11", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq11_reappropriation_words(_ctx.kg))
 
         @http_app.get("/api/cq/12", response_model=None)
         async def api_cq12():
             """CQ12: Drift events with source provenance."""
-            _ctx = Context(trace_id="cq12", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq12", principal="system", store=kernel_store())
             return JSONResponse(_cq.cq12_provenance_completeness(_ctx.kg))
 
         @http_app.get("/api/cq/13", response_model=None)
         async def api_cq13(word: str = "Querdenker", year: int | None = Year):
             """CQ13 (3.0): Per-group sense attributions for a word."""
-            _ctx = Context(trace_id="cq13", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq13", principal="system", store=kernel_store())
             return JSONResponse(
                 _cq.cq13_groups_attributing_word(_ctx.kg, word=word, year=year)
             )
@@ -696,7 +693,7 @@ def create_app():
         @http_app.get("/api/cq/14", response_model=None)
         async def api_cq14(word: str = "woke", year: int | None = Year):
             """CQ14 (3.0/M5): Per-region sense weights for a word."""
-            _ctx = Context(trace_id="cq14", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq14", principal="system", store=kernel_store())
             return JSONResponse(
                 _cq.cq14_region_distribution(_ctx.kg, word=word, year=year)
             )
@@ -704,7 +701,7 @@ def create_app():
         @http_app.get("/api/cq/15", response_model=None)
         async def api_cq15(threshold: float = 0.30):
             """CQ15 (3.0/M8): Semantic Cemetery view."""
-            _ctx = Context(trace_id="cq15", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="cq15", principal="system", store=kernel_store())
             return JSONResponse(
                 _cq.cq15_semantic_cemetery(_ctx.kg, threshold=threshold)
             )
@@ -715,13 +712,13 @@ def create_app():
         @http_app.get("/api/metrics/entropy", response_model=None)
         async def api_metric_entropy(word: str = "Querdenker", year: int | None = Year):
             """Semantic entropy of the sense distribution for a word."""
-            _ctx = Context(trace_id="m3-entropy", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="m3-entropy", principal="system", store=kernel_store())
             return JSONResponse(_m3.semantic_entropy(_ctx.kg, word=word, year=year))
 
         @http_app.get("/api/metrics/fragmentation", response_model=None)
         async def api_metric_fragmentation(word: str = "Querdenker", year: int | None = Year):
             """Gini-Simpson fragmentation over the (group, sense) grid."""
-            _ctx = Context(trace_id="m3-frag", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="m3-frag", principal="system", store=kernel_store())
             return JSONResponse(
                 _m3.semantic_fragmentation_index(_ctx.kg, word=word, year=year)
             )
@@ -729,25 +726,25 @@ def create_app():
         @http_app.get("/api/metrics/divergence", response_model=None)
         async def api_metric_divergence(word: str = "Querdenker", year: int | None = Year):
             """Pairwise Jensen-Shannon divergence between group sense-distributions."""
-            _ctx = Context(trace_id="m3-div", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="m3-div", principal="system", store=kernel_store())
             return JSONResponse(_m3.group_divergence(_ctx.kg, word=word, year=year))
 
         @http_app.get("/api/metrics/platform-divergence", response_model=None)
         async def api_metric_platform_divergence(word: str = "Querdenker", year: int | None = Year):
             """M6: pairwise JSD between platform sense-distributions."""
-            _ctx = Context(trace_id="m6-div", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="m6-div", principal="system", store=kernel_store())
             return JSONResponse(_m3.cross_platform_distance(_ctx.kg, word=word, year=year))
 
         @http_app.get("/api/metrics/emotional-drift", response_model=None)
         async def api_metric_emotional_drift(word: str = "Querdenker"):
             """M7: per-group, per-year valence trajectory and deltas."""
-            _ctx = Context(trace_id="m7-emo", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="m7-emo", principal="system", store=kernel_store())
             return JSONResponse(_m3.emotional_drift(_ctx.kg, word=word))
 
         @http_app.get("/api/metrics/timeline", response_model=None)
         async def api_metric_timeline(word: str = "Querdenker"):
             """Per-year snapshot of all three M3 metrics for a word."""
-            _ctx = Context(trace_id="m3-tl", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="m3-tl", principal="system", store=kernel_store())
             return JSONResponse(_m3.metric_timeline(_ctx.kg, word=word))
 
         # 3.0 meaning distribution endpoint (M4) ---------------------------------
@@ -760,7 +757,7 @@ def create_app():
         async def serve_graph_distribution():
             """Per-word meaning-distribution document for the 3.0 viz."""
             from capabilities import metrics_multi_group as _m3
-            _ctx = Context(trace_id="dist", principal="system", store=_kernel_store())
+            _ctx = Context(trace_id="dist", principal="system", store=kernel_store())
 
             # Discover all words that have any attribution OR any memetic event.
             # Memetic events (M8) attach drift:affectsWord; without this fork,

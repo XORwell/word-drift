@@ -29,7 +29,7 @@ _TRAILS_SRC = os.environ.get(
 if os.path.isdir(_TRAILS_SRC) and _TRAILS_SRC not in sys.path:
     sys.path.insert(0, _TRAILS_SRC)
 
-from trails import node_type, shape, predicate, Model  # noqa: E402
+from trails.sdk import node_type, shape, predicate, Model  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Namespace constants (used as prefix strings in predicate IRIs)

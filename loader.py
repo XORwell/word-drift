@@ -38,7 +38,7 @@ def load_all_ttl(
     """Load all word-drift TTL files into the Trails kernel store.
 
     Data is loaded into the Trails singleton backend store returned by
-    ``trails.runtime._raw_kernel_store()``.  Because all ``Context``
+    ``trails.sdk.raw_kernel_store()``.  Because all ``Context``
     objects share this singleton, any ``ctx.kg.query(...)`` call issued
     after this function returns will see the loaded triples.
 
@@ -63,13 +63,13 @@ def load_all_ttl(
     """
     import rdflib  # deferred so the module is importable without it
 
-    from trails.runtime import _raw_kernel_store
+    from trails.sdk import raw_kernel_store
 
     # The kernel-side store singleton.  ``update`` writes into the default
     # graph, which is what word-drift's queries read.  All ``Context``
     # objects wrap this same singleton, so the data becomes visible to
     # ``ctx.kg.query`` as soon as this returns.
-    store = _raw_kernel_store()
+    store = raw_kernel_store()
 
     root = Path(data_root) if data_root is not None else _DEFAULT_DATA_ROOT
 
@@ -119,9 +119,9 @@ def load_all_ttl(
 
 def triple_count() -> int:
     """Return the number of triples in the Trails kernel store (convenience helper for tests)."""
-    from trails.runtime import _raw_kernel_store
+    from trails.sdk import raw_kernel_store
 
-    store = _raw_kernel_store()
+    store = raw_kernel_store()
     # The core store returns SELECT bindings as plain term strings:
     # ``[{"n": "123"}]``.
     result = store.query("SELECT (COUNT(*) AS ?n) WHERE { ?s ?p ?o }")

@@ -10,10 +10,9 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent
 
 def _ctx():
     from loader import load_all_ttl
-    from trails.context import Context
-    from trails.runtime import _kernel_store
+    from trails.sdk import Context, kernel_store
     load_all_ttl(data_root=_REPO_ROOT)
-    return Context(trace_id="test-m6", principal="system:test", store=_kernel_store())
+    return Context(trace_id="test-m6", principal="system:test", store=kernel_store())
 
 
 def _client():

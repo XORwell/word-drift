@@ -11,14 +11,16 @@ a backward-incompatible change in Trails forces a port. Bump
 word-drift test suite (62 tests + the M5/M6/M7/M8 examples) was actually
 run against — that is the version we know works end-to-end.
 
-The Trails-side surface used by word-drift today:
-- ``trails.capability``, ``trails.context.Context``
-- ``trails.node_type``, ``trails.shape``, ``trails.predicate``, ``trails.Model``
-- ``trails.runtime._kernel_store``, ``trails.runtime._raw_kernel_store``
-- ``trails.context.KG`` query / update / bind-param API
-- ``trails.mcp_server.TrailsMCPServer``
-- ``trails.http_adapter.TrailsHTTPAdapter``
-- ``trails.sparql_proxy.validate_query`` (indirectly via ``trails.sparql``)
+The Trails-side surface used by word-drift today (routed through
+``trails.sdk`` per ADR-0082):
+- ``trails.sdk.capability``, ``trails.sdk.Context``
+- ``trails.sdk.node_type``, ``trails.sdk.shape``, ``trails.sdk.predicate``,
+  ``trails.sdk.Model``
+- ``trails.sdk.kernel_store``, ``trails.sdk.raw_kernel_store``
+- ``trails.sdk.KG`` query / update / bind-param API
+- ``trails.sdk.MCPServer``
+- ``trails.sdk.HTTPAdapter``
+- ``trails.sdk.validate_query`` (indirectly via ``trails.sdk.sparql``)
 
 Any change to that surface in a future Trails release MUST be reflected
 in the range here; word-drift should never silently consume a breaking

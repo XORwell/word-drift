@@ -12,7 +12,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from trails.context import KG
+    from trails.sdk import KG
 
 
 def _maybe_log_injection(kg: Any, payload: str, *, source: str) -> None:

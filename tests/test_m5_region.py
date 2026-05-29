@@ -60,13 +60,12 @@ def test_cq14_returns_region_rows():
     try:
         from loader import load_all_ttl
         from capabilities.competency import cq14_region_distribution
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
     load_all_ttl(data_root=_REPO_ROOT)
-    ctx = Context(trace_id="m5-cq14", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="m5-cq14", principal="system:test", store=kernel_store())
     rows = cq14_region_distribution(ctx.kg, word="woke")
 
     regions = {r.get("regionLabel") for r in rows if r.get("regionLabel")}

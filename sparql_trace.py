@@ -11,7 +11,7 @@ Tail it with::
 
     tail -f /tmp/word-drift-sparql.jsonl | jq .
 
-The wrapper is a small monkey-patch of :class:`trails.context.KG` because
+The wrapper is a small monkey-patch of :class:`trails.sdk.KG` because
 Trails' built-in observability ``kg_query`` event deliberately does not
 emit the SPARQL text. We add the text on top of the existing metadata so
 both signals land together.
@@ -140,7 +140,7 @@ def install() -> bool:
         if _installed:
             return True
         try:
-            from trails.context import KG  # type: ignore
+            from trails.sdk import KG  # type: ignore
         except Exception as exc:  # noqa: BLE001
             logger.warning("sparql trace: Trails not importable: %s", exc)
             return False

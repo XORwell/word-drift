@@ -39,12 +39,11 @@ def test_m2_cq13_finds_five_groups_for_querdenker():
     try:
         _load()
         from capabilities.competency import cq13_groups_attributing_word
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
-    ctx = Context(trace_id="test-m2", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="test-m2", principal="system:test", store=kernel_store())
     rows = cq13_groups_attributing_word(ctx.kg, word="Querdenker")
 
     groups = {r.get("groupLabel") for r in rows if r.get("groupLabel")}
@@ -66,12 +65,11 @@ def test_m2_year_2020_shows_semantic_split():
     try:
         _load()
         from capabilities.competency import cq13_groups_attributing_word
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
-    ctx = Context(trace_id="test-m2-2020", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="test-m2-2020", principal="system:test", store=kernel_store())
     rows = cq13_groups_attributing_word(ctx.kg, word="Querdenker", year=2020)
 
     # 2020 has: MP -> both, LP -> covid, CC -> lateral, QS -> lateral, AL -> both
@@ -90,12 +88,11 @@ def test_m2_drift_event_occurred_in_group_attached():
     """The 2.x DriftEvent picked up an optional drift:occurredInGroup link."""
     try:
         _load()
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
-    ctx = Context(trace_id="test-m2-de", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="test-m2-de", principal="system:test", store=kernel_store())
     rows = ctx.kg.query("""
 PREFIX drift: <https://w3id.org/word-drift/ontology#>
 SELECT (COUNT(DISTINCT ?g) AS ?n)

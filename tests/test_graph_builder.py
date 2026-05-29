@@ -48,13 +48,12 @@ def test_graph_builder_top_level_keys():
     try:
         from loader import load_all_ttl
         from graph_builder import build_graph_document
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
     load_all_ttl(data_root=_REPO_ROOT)
-    ctx = Context(trace_id="test", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="test", principal="system:test", store=kernel_store())
     doc = build_graph_document(ctx.kg)
 
     assert isinstance(doc, dict), "build_graph_document should return a dict"
@@ -68,13 +67,12 @@ def test_split_document_shape():
     try:
         from loader import load_all_ttl
         from graph_builder import build_graph_document, split_document
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
     load_all_ttl(data_root=_REPO_ROOT)
-    ctx = Context(trace_id="test", principal="system:test", store=_kernel_store())
+    ctx = Context(trace_id="test", principal="system:test", store=kernel_store())
     doc = build_graph_document(ctx.kg)
     core, detail = split_document(doc)
 

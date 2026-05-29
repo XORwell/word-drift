@@ -161,15 +161,14 @@ def test_cq06_year_range_bounded():
 def test_injection_warn_logged_on_quoted_payload(caplog):
     try:
         from loader import load_all_ttl
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
         from capabilities.competency import cq13_groups_attributing_word
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
     load_all_ttl(data_root=_REPO_ROOT)
     ctx = Context(
-        trace_id="t-inj", principal="test:injector", store=_kernel_store(),
+        trace_id="t-inj", principal="test:injector", store=kernel_store(),
     )
     with caplog.at_level(logging.WARNING, logger="word_drift.security"):
         rows = cq13_groups_attributing_word(ctx.kg, word='x"} UNION { ?s ?p ?o }')
@@ -186,15 +185,14 @@ def test_legit_zero_result_does_not_warn(caplog):
     """A legit word that simply has no attributions must NOT log a warning."""
     try:
         from loader import load_all_ttl
-        from trails.context import Context
-        from trails.runtime import _kernel_store
+        from trails.sdk import Context, kernel_store
         from capabilities.competency import cq13_groups_attributing_word
     except ImportError as exc:
         pytest.skip(f"modules not ready: {exc}")
 
     load_all_ttl(data_root=_REPO_ROOT)
     ctx = Context(
-        trace_id="t-clean", principal="test:clean", store=_kernel_store(),
+        trace_id="t-clean", principal="test:clean", store=kernel_store(),
     )
     with caplog.at_level(logging.WARNING, logger="word_drift.security"):
         # Innocuous, no-meta-chars query that won't match anything.

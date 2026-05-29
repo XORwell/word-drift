@@ -23,7 +23,7 @@ from collections import Counter, defaultdict
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from trails.context import KG
+    from trails.sdk import KG
 
 logger = logging.getLogger("word_drift.graph_builder")
 
