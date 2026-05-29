@@ -434,15 +434,24 @@ reference pattern intentionally stays minimal).
 **Load-bearing artefact:** Every transport that mounts a route into the application routes through the **same** `_check_auth` + rate-limit + observability bus. A single regression test asserts auth-bypass on each transport returns 401.
 
 **Done when:**
-- [ ] `mcp_transport.py` `POST /messages` gated through `_check_auth`
-- [ ] `federation_http.py` routes gated through `_check_auth`; `mount_federation_routes` early-returns when `endpoint.config.enabled is False`
-- [ ] `federation._send_remote_query` calls `_security.validate_peer_url(url)` before fetch
-- [ ] `validate_federation_query` rejects `SERVICE` blocks on the bare endpoint (the `FederatedQueryEngine` path stays opt-in)
-- [ ] Per-IP rate limiter in `federation_http.py` LRU-caps the `_requests` dict (default 10000 unique IPs)
-- [ ] Audit-trail events: `auth.failed` + `rate_limit.triggered` emitted from every transport
-- [ ] One e2e test per transport: anonymous call → 401, valid Bearer → 200, malformed XFF → 400
+- [x] `mcp_transport.py` `POST /messages` gated through `_check_auth`
+- [x] `federation_http.py` routes gated through `_check_auth`; `mount_federation_routes` early-returns when `endpoint.config.enabled is False`
+- [x] `federation._send_remote_query` calls `_security.validate_peer_url(url)` before fetch
+- [x] `validate_federation_query` rejects `SERVICE` blocks on the bare endpoint (the `FederatedQueryEngine` path stays opt-in)
+- [x] Per-IP rate limiter in `federation_http.py` LRU-caps the `_requests` dict (default 10000 unique IPs)
+- [x] Audit-trail events: `auth.failed` + `rate_limit.triggered` emitted from every transport
+- [x] One e2e test per transport: anonymous call → 401, valid Bearer → 200, malformed XFF → 400
 
 **Out of scope:** Replacing Bearer auth with mTLS / OAuth (separate later wave); per-capability auth metadata (cap_versioning already handles version negotiation; auth-metadata is a related but separate concern).
+
+**Shipped (2026-05-29, framework.trails on origin/main + github/main):**
+- `578af14` — `feat(observability): add auth.failed + rate_limit.triggered event kinds`
+- `1f17f46` — `fix(security): SSRF guard on _send_remote_query + SERVICE strict mode` (closes audit C P0-5 + bare-endpoint SERVICE)
+- `930c345` — `fix(security): MCP SSE POST /messages auth gate + principal threading` (closes audit B P0-2)
+- `b6cd48f` — `fix(security): federation /sparql auth gate + enabled-guard + LRU cap` (closes audit B P0-3 + C P0-6 + promoted C P2-11 + audit-trail wiring)
+- `edd2ca1` — `test(w30): transport-parity regression suite` (15 new tests in `python/tests/test_w30_transport_parity.py`)
+
+Targeted suite green: `python -m pytest python/tests/test_http_adapter.py python/tests/test_meta_projector.py python/tests/test_cap_versioning.py python/tests/test_sdk_boundary.py python/tests/test_federation.py python/tests/test_mcp_server.py python/tests/test_w30_transport_parity.py -q` → 208 passed (193 baseline + 15 new W30 tests). Broader sweep including `test_mcp_transport.py` and the federation/mesh/gossip/proxy/round2 suites: 281 passed.
 
 ---
 
