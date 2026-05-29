@@ -17,47 +17,45 @@ RUN pip install --no-cache-dir -r requirements.txt
 # kernel falls back to the pyoxigraph `_pybackend` store, so no Rust toolchain
 # is needed).
 #
-# Source priority:
-#   1. Gitea (git.xorwell.de:c/framework.trails) — authoritative, has the
-#      latest commits including the security and versioning work. Requires
-#      a read token, passed as a BuildKit secret named ``git_token`` so it
-#      is never written to an image layer:
+# Two source paths:
+#   1. Private mirror — set ``TRAILS_GIT_URL`` to a full ``git+https://…``
+#      URL (without the ``oauth2:TOKEN@`` prefix; the build wires the
+#      token in via the BuildKit secret named ``git_token``). The host,
+#      org and repo path are deployment-specific and live OUT of this
+#      file. Set TRAILS_GIT_URL and the ``git_token`` secret together; a
+#      token alone with no URL falls back to the public mirror.
+#   2. Public mirror at TRAILS_PUBLIC_REF (default github.com/XORwell/trails).
+#      Used when neither TRAILS_GIT_URL nor the secret is provided.
 #
-#          DOCKER_BUILDKIT=1 docker build \
-#              --secret id=git_token,src=<(printf %s "$GIT_TOKEN") -t word-drift-on-trails .
+# BuildKit secret usage (host-agnostic; the URL is provided at build time):
 #
-#      On the deploy host the token already lives at ``/opt/dev/.gitea_token``
-#      and is wired in via the docker-compose ``secrets:`` block.
-#
-#   2. github.com/XORwell/trails — public, frozen snapshot. Used as the
-#      no-secret fallback. It may lag behind Gitea on the alpha branch, so
-#      the ``TRAILS_PIN`` ref must exist there too if you build without the
-#      token. No silent ``|| echo`` fallback — a missing Trails fails the
-#      build loud.
+#       DOCKER_BUILDKIT=1 docker build \
+#           --build-arg TRAILS_GIT_URL="git+https://YOUR.HOST/path/to/framework.trails.git" \
+#           --secret id=git_token,src=<(printf %s "$GIT_TOKEN") -t word-drift-on-trails .
 #
 # TRAILS_PIN is the exact git commit / tag / branch that word-drift is built
-# against. It MUST match the range declared in trails_compat.py — when the
-# trails_compat range moves, bump TRAILS_PIN to a Trails ref that satisfies
-# the new range, then update TRAILS_TESTED_AGAINST in trails_compat.py once
-# the test suite has been run against that ref. The runtime check in
-# trails_compat.enforce() refuses to start the app in production if these
-# drift apart, so an ops error here is loud and fail-fast.
+# against. It MUST match the range declared in trails_compat.py. The runtime
+# check in trails_compat.enforce() refuses to start the app in production if
+# these drift apart, so an ops error here is loud and fail-fast.
 ARG TRAILS_PIN=main
-ARG TRAILS_GITEA_HOST=git.xorwell.de
-ARG TRAILS_GITHUB_REF=git+https://github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python
+ARG TRAILS_GIT_URL=
+ARG TRAILS_PUBLIC_REF=git+https://github.com/XORwell/trails.git@${TRAILS_PIN}#subdirectory=python
 RUN --mount=type=secret,id=git_token \
     TOKEN="$(cat /run/secrets/git_token 2>/dev/null || true)"; \
-    if [ -n "$TOKEN" ]; then \
+    if [ -n "$TOKEN" ] && [ -n "${TRAILS_GIT_URL}" ]; then \
         # Pre-clone with full history so pip's checkout of an arbitrary
         # commit SHA succeeds (pip's git+https path uses a shallow clone
         # that breaks `git checkout <commit-on-non-tip>`). Install from the
-        # local checkout's python/ subdir.
-        git clone --depth 50 "https://oauth2:${TOKEN}@${TRAILS_GITEA_HOST}/c/framework.trails.git" /tmp/trails-src && \
+        # local checkout's python/ subdir. Strip the leading "git+" so the
+        # remainder is a plain git URL we can hand to `git clone`.
+        TRAILS_CLONE_URL="${TRAILS_GIT_URL#git+}"; \
+        TRAILS_CLONE_URL="$(echo "${TRAILS_CLONE_URL}" | sed -E "s#^(https?://)#\1oauth2:${TOKEN}@#")"; \
+        git clone --depth 50 "${TRAILS_CLONE_URL}" /tmp/trails-src && \
         cd /tmp/trails-src && git checkout -q "${TRAILS_PIN}" && \
         pip install --no-cache-dir "trails[http] @ file:///tmp/trails-src/python" && \
         cd / && rm -rf /tmp/trails-src; \
     else \
-        pip install --no-cache-dir "trails[http] @ ${TRAILS_GITHUB_REF}"; \
+        pip install --no-cache-dir "trails[http] @ ${TRAILS_PUBLIC_REF}"; \
     fi
 
 COPY . .
