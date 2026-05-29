@@ -44,7 +44,7 @@ TRAILS_REQUIRED_RANGE = ">=0.1.0a0, <0.2.0"
 # The Trails version word-drift's CI / local pytest run was actually
 # executed against. Reported alongside the live version so operators can
 # tell whether they are on a tested combo or just an in-range one.
-TRAILS_TESTED_AGAINST = "0.1.0a0"
+TRAILS_TESTED_AGAINST = "0.1.0a1"
 
 # When the production environment flag is set and the installed Trails is
 # OUTSIDE ``TRAILS_REQUIRED_RANGE``, the app refuses to start instead of
