@@ -1,0 +1,77 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# Hacker News sketch — word = based.
+# Sense classification is heuristic (see etl/hn_ingest.py). Only
+# aggregated counts are stored; no user handles, story IDs, or
+# comment text.
+
+wdr:src-hn-based-search a drift:Source ;
+    rdfs:label "Hacker News full-text search via Algolia — based"@en ;
+    drift:sourceURL "https://hn.algolia.com/api/v1/search?query=based"^^xsd:anyURI ;
+    skos:note "Aggregated counts only; no user handles or text spans stored."@en .
+
+wdr:group-hn-en a drift:Group ;
+    rdfs:label "Hacker News commenters (EN)"@en ;
+    drift:groupKind drift:PlatformNative ;
+    drift:communityHandle "news.ycombinator.com" ;
+    skos:note "All comment/story authors on news.ycombinator.com, aggregated."@en .
+
+wdr:sense-hn-based-literal a drift:Sense ;
+    drift:gloss "literal sense of 'based' (e.g. 'based in Berlin'); pre-slang reading"@en ;
+    skos:notation "hn-based-literal" .
+
+wdr:sense-hn-based-slang a drift:Sense ;
+    drift:gloss "approval / agreement slang reading of 'based' (mid-2010s onward)"@en ;
+    skos:notation "hn-based-slang" .
+
+wdr:attrib-hn-based-literal-2015 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-based ;
+    drift:attributesSense wdr:sense-hn-based-literal ;
+    drift:byGroup wdr:group-hn-en ;
+    drift:atYear "2015"^^xsd:gYear ;
+    drift:attributionWeight 0.7500 ;
+    drift:hasEvidence wdr:src-hn-based-search ;
+    skos:note "15 HN posts matching heuristic" .
+
+wdr:attrib-hn-based-literal-2018 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-based ;
+    drift:attributesSense wdr:sense-hn-based-literal ;
+    drift:byGroup wdr:group-hn-en ;
+    drift:atYear "2018"^^xsd:gYear ;
+    drift:attributionWeight 0.8000 ;
+    drift:hasEvidence wdr:src-hn-based-search ;
+    skos:note "16 HN posts matching heuristic" .
+
+wdr:attrib-hn-based-literal-2021 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-based ;
+    drift:attributesSense wdr:sense-hn-based-literal ;
+    drift:byGroup wdr:group-hn-en ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.8500 ;
+    drift:hasEvidence wdr:src-hn-based-search ;
+    skos:note "17 HN posts matching heuristic" .
+
+wdr:attrib-hn-based-literal-2024 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-based ;
+    drift:attributesSense wdr:sense-hn-based-literal ;
+    drift:byGroup wdr:group-hn-en ;
+    drift:atYear "2024"^^xsd:gYear ;
+    drift:attributionWeight 0.9000 ;
+    drift:hasEvidence wdr:src-hn-based-search ;
+    skos:note "18 HN posts matching heuristic" .
+
+wdr:attrib-hn-based-literal-2026 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-based ;
+    drift:attributesSense wdr:sense-hn-based-literal ;
+    drift:byGroup wdr:group-hn-en ;
+    drift:atYear "2026"^^xsd:gYear ;
+    drift:attributionWeight 0.5500 ;
+    drift:hasEvidence wdr:src-hn-based-search ;
+    skos:note "11 HN posts matching heuristic" .

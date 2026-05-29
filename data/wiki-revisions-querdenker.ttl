@@ -1,0 +1,93 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# Wikipedia revisions sketch — article = https://de.wikipedia.org/wiki/Proteste%20gegen%20Schutzma%C3%9Fnahmen%20zur%20COVID-19-Pandemie%20in%20Deutschland
+# This is a SKETCH. Each MeaningAttribution counts revisions by
+# (editor cohort, half-decade) — see etl/wiki_revisions.py for the
+# proxy assumption. The bucket maps to the article's contested
+# sense (here: the post-2020 'covid' reading for Querdenker).
+
+wdr:src-wiki-querdenker-revisions a drift:Source ;
+    rdfs:label "Wikipedia revision history — querdenker"@en ;
+    drift:sourceURL "https://de.wikipedia.org/wiki/Proteste%20gegen%20Schutzma%C3%9Fnahmen%20zur%20COVID-19-Pandemie%20in%20Deutschland"^^xsd:anyURI ;
+    skos:note "Account-creation cohort proxy; no editor handles or PII stored."@en .
+
+wdr:group-wiki-anon a drift:Group ;
+    rdfs:label "Wikipedia editors — anon"@en ;
+    drift:groupKind drift:Generational ;
+    skos:note "Anonymous IP edits — no account, no cohort attribution."@en .
+
+wdr:group-wiki-growth-wiki a drift:Group ;
+    rdfs:label "Wikipedia editors — growth-wiki"@en ;
+    drift:groupKind drift:Generational ;
+    skos:note "Editors whose account was created during the encyclopaedic-growth period (2009-2015)."@en .
+
+wdr:group-wiki-late-wiki a drift:Group ;
+    rdfs:label "Wikipedia editors — late-wiki"@en ;
+    drift:groupKind drift:Generational ;
+    skos:note "Editors whose account was created in the modern-policy era (2016-2019)."@en .
+
+wdr:group-wiki-post-2020 a drift:Group ;
+    rdfs:label "Wikipedia editors — post-2020"@en ;
+    drift:groupKind drift:Generational ;
+    skos:note "Editors whose account was created in 2020 or later (Querdenken era)."@en .
+
+wdr:attrib-wiki-querdenker-anon-2024 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-wiki-anon ;
+    drift:atYear "2024"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-wiki-querdenker-revisions ;
+    skos:note "35 revisions in cohort/year cell (revision diffs not classified)" .
+
+wdr:attrib-wiki-querdenker-anon-2025 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-wiki-anon ;
+    drift:atYear "2025"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-wiki-querdenker-revisions ;
+    skos:note "39 revisions in cohort/year cell (revision diffs not classified)" .
+
+wdr:attrib-wiki-querdenker-anon-2026 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-wiki-anon ;
+    drift:atYear "2026"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-wiki-querdenker-revisions ;
+    skos:note "21 revisions in cohort/year cell (revision diffs not classified)" .
+
+wdr:attrib-wiki-querdenker-growth-wiki-2026 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-wiki-growth-wiki ;
+    drift:atYear "2026"^^xsd:gYear ;
+    drift:attributionWeight 0.1000 ;
+    drift:hasEvidence wdr:src-wiki-querdenker-revisions ;
+    skos:note "2 revisions in cohort/year cell (revision diffs not classified)" .
+
+wdr:attrib-wiki-querdenker-late-wiki-2026 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-wiki-late-wiki ;
+    drift:atYear "2026"^^xsd:gYear ;
+    drift:attributionWeight 0.0500 ;
+    drift:hasEvidence wdr:src-wiki-querdenker-revisions ;
+    skos:note "1 revisions in cohort/year cell (revision diffs not classified)" .
+
+wdr:attrib-wiki-querdenker-post-2020-2026 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-wiki-post-2020 ;
+    drift:atYear "2026"^^xsd:gYear ;
+    drift:attributionWeight 0.1000 ;
+    drift:hasEvidence wdr:src-wiki-querdenker-revisions ;
+    skos:note "2 revisions in cohort/year cell (revision diffs not classified)" .

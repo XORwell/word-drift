@@ -647,7 +647,7 @@ ORDER BY ?atYear ?regionLabel
 def cq15_semantic_cemetery(
     kg: Any,
     *,
-    threshold: float = 0.30,
+    threshold: float = 0.05,
 ) -> list[dict[str, Any]]:
     """CQ15 (3.0/M8): Words whose historically-dominant sense is now marginal.
 
@@ -657,8 +657,12 @@ def cq15_semantic_cemetery(
          attribution weight,
       3. return words where the share is below ``threshold``.
 
-    ``threshold`` defaults to 0.30 (small-fixture friendly). Production use
-    would typically set 0.05 once corpus-derived weights are loaded.
+    ``threshold`` defaults to 0.05 — the production target (W12). A sense
+    that holds less than 5 % of the latest-year attribution weight is
+    effectively dead. Earlier alpha builds used 0.30 because the curated
+    multi-group fixtures had only a handful of attributions per word, so a
+    5 % cut returned an empty cemetery; once W12 corpus-derived weights
+    are loaded the cemetery is a real diagnostic, not a fixture demo.
 
     Returns
     -------

@@ -89,10 +89,15 @@ def test_legit_word_still_returns_data():
         pytest.skip(f"modules not ready: {exc}")
     rows = cq13_groups_attributing_word(ctx.kg, word="Querdenker")
     assert len(rows) > 0
-    # F1 fix: LANG filter eliminates label duplication; expect <= 5 distinct
-    # group labels for Querdenker (was 8 before LANG filter).
+    # F1 fix: LANG filter eliminates label duplication. After W12 the
+    # Wikipedia-revisions ingest contributes 4 additional editor-cohort
+    # Groups (early-wiki / growth-wiki / late-wiki / post-2020 / anon)
+    # to Querdenker on top of the 5 curated Groups (mainstream press,
+    # leftist press, creativity community, Querdenken supporters,
+    # academic linguistics) — so the upper bound is 10 (5 curated + 5
+    # cohorts).
     labels = {r.get("groupLabel") for r in rows if r.get("groupLabel")}
-    assert len(labels) <= 6, f"expected <=6 distinct labels, got {labels}"
+    assert len(labels) <= 10, f"expected <=10 distinct labels, got {labels}"
 
 
 # --- W2: /api/sparql allow-list ---------------------------------------------

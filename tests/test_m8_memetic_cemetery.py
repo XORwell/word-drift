@@ -49,7 +49,12 @@ def test_based_carries_memetic_events_in_endpoint():
 
 
 def test_cemetery_view_returns_at_least_one_candidate():
-    """At least one fixture word should have its primary sense below threshold."""
+    """At least one word should have its primary sense below threshold.
+
+    Threshold 0.30 is the historical alpha default that the fixture set was
+    tuned to. The production default (0.05) is exercised by the W12 tests
+    in ``tests/test_w12_ingest.py``.
+    """
     try:
         from capabilities.competency import cq15_semantic_cemetery
         ctx = _ctx()
@@ -61,6 +66,19 @@ def test_cemetery_view_returns_at_least_one_candidate():
     # All rows must report primaryShare < threshold.
     for r in rows:
         assert r["primaryShare"] < 0.30, r
+
+
+def test_cemetery_default_threshold_is_production():
+    """The default threshold must be the production 0.05 (W12)."""
+    import inspect
+
+    from capabilities.competency import cq15_semantic_cemetery
+
+    sig = inspect.signature(cq15_semantic_cemetery)
+    assert sig.parameters["threshold"].default == 0.05, (
+        "production threshold is 0.05; bump in W12. "
+        f"Got {sig.parameters['threshold'].default!r}."
+    )
 
 
 def test_endpoint_exposes_cemetery():

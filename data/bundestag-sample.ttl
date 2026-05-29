@@ -1,0 +1,102 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+# Bundestag plenary sketch — word = Brandmauer.
+# Each mention of the target word is aggregated to the speaker's
+# Fraktion (never the individual). No speech text or speaker IDs
+# are stored. See etl/bundestag_ingest.py for caveats.
+
+wdr:src-bundestag-Brandmauer-sample a drift:Source ;
+    rdfs:label "Bundestag plenary protocols (sample)"@en ;
+    drift:sourceURL "https://www.bundestag.de/dokumente/protokolle/plenarprotokolle"^^xsd:anyURI ;
+    skos:note "Sampled 5 XML protocols; per-Fraktion aggregates only."@en .
+
+wdr:group-bundestag-afd a drift:Group ;
+    rdfs:label "Bundestagsfraktion AfD"@de ;
+    drift:groupKind drift:Political ;
+    skos:note "Aggregation of all speakers of this Fraktion across the sampled protocols."@en .
+
+wdr:group-bundestag-cducsu a drift:Group ;
+    rdfs:label "Bundestagsfraktion CDU/CSU"@de ;
+    drift:groupKind drift:Political ;
+    skos:note "Aggregation of all speakers of this Fraktion across the sampled protocols."@en .
+
+wdr:group-bundestag-fdp a drift:Group ;
+    rdfs:label "Bundestagsfraktion FDP"@de ;
+    drift:groupKind drift:Political ;
+    skos:note "Aggregation of all speakers of this Fraktion across the sampled protocols."@en .
+
+wdr:group-bundestag-fraktionslos a drift:Group ;
+    rdfs:label "Bundestagsfraktion Fraktionslos"@de ;
+    drift:groupKind drift:Political ;
+    skos:note "Aggregation of all speakers of this Fraktion across the sampled protocols."@en .
+
+wdr:group-bundestag-linke a drift:Group ;
+    rdfs:label "Bundestagsfraktion Die Linke"@de ;
+    drift:groupKind drift:Political ;
+    skos:note "Aggregation of all speakers of this Fraktion across the sampled protocols."@en .
+
+wdr:group-bundestag-spd a drift:Group ;
+    rdfs:label "Bundestagsfraktion SPD"@de ;
+    drift:groupKind drift:Political ;
+    skos:note "Aggregation of all speakers of this Fraktion across the sampled protocols."@en .
+
+wdr:attrib-bundestag-Brandmauer-afd-2025 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-Brandmauer ;
+    drift:attributesSense wdr:sense-brandmauer-political ;
+    drift:byGroup wdr:group-bundestag-afd ;
+    drift:atYear "2025"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-bundestag-Brandmauer-sample ;
+    skos:note "15 speeches in sampled protocol(s) mention this word" .
+
+wdr:attrib-bundestag-Brandmauer-cducsu-2025 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-Brandmauer ;
+    drift:attributesSense wdr:sense-brandmauer-political ;
+    drift:byGroup wdr:group-bundestag-cducsu ;
+    drift:atYear "2025"^^xsd:gYear ;
+    drift:attributionWeight 0.6000 ;
+    drift:hasEvidence wdr:src-bundestag-Brandmauer-sample ;
+    skos:note "6 speeches in sampled protocol(s) mention this word" .
+
+wdr:attrib-bundestag-Brandmauer-fdp-2025 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-Brandmauer ;
+    drift:attributesSense wdr:sense-brandmauer-political ;
+    drift:byGroup wdr:group-bundestag-fdp ;
+    drift:atYear "2025"^^xsd:gYear ;
+    drift:attributionWeight 0.3000 ;
+    drift:hasEvidence wdr:src-bundestag-Brandmauer-sample ;
+    skos:note "3 speeches in sampled protocol(s) mention this word" .
+
+wdr:attrib-bundestag-Brandmauer-fraktionslos-2025 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-Brandmauer ;
+    drift:attributesSense wdr:sense-brandmauer-political ;
+    drift:byGroup wdr:group-bundestag-fraktionslos ;
+    drift:atYear "2025"^^xsd:gYear ;
+    drift:attributionWeight 0.2000 ;
+    drift:hasEvidence wdr:src-bundestag-Brandmauer-sample ;
+    skos:note "2 speeches in sampled protocol(s) mention this word" .
+
+wdr:attrib-bundestag-Brandmauer-linke-2025 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-Brandmauer ;
+    drift:attributesSense wdr:sense-brandmauer-political ;
+    drift:byGroup wdr:group-bundestag-linke ;
+    drift:atYear "2025"^^xsd:gYear ;
+    drift:attributionWeight 0.5000 ;
+    drift:hasEvidence wdr:src-bundestag-Brandmauer-sample ;
+    skos:note "5 speeches in sampled protocol(s) mention this word" .
+
+wdr:attrib-bundestag-Brandmauer-spd-2025 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-Brandmauer ;
+    drift:attributesSense wdr:sense-brandmauer-political ;
+    drift:byGroup wdr:group-bundestag-spd ;
+    drift:atYear "2025"^^xsd:gYear ;
+    drift:attributionWeight 0.7000 ;
+    drift:hasEvidence wdr:src-bundestag-Brandmauer-sample ;
+    skos:note "7 speeches in sampled protocol(s) mention this word" .

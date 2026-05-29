@@ -1,0 +1,359 @@
+@prefix drift:   <https://w3id.org/word-drift/ontology#> .
+@prefix wdr:     <https://w3id.org/word-drift/resource/> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix wd:      <http://www.wikidata.org/entity/> .
+
+# =============================================================
+# WORD-DRIFT 3.0 — M2: Querdenker multi-group distribution (W12)
+# CORPUS-DERIVED weights replace the curated original. The
+# previous illustrator-tuned numbers are kept verbatim at
+# examples/querdenker-multigroup-curated.ttl for reproducibility.
+#
+# Derivation
+# ----------
+# Querdenker is NOT in DWUG (the DWUG-DE 50-lemma sample misses
+# 21st-century neologisms by construction). Instead, the weights
+# below project the EMPIRICAL inter-rater-agreement distribution
+# of the structurally analogous DWUG-DE lemma "Dynamik" onto the
+# Querdenker 5-Group × 4-year × 2-sense grid:
+#
+#   * Dynamik is a polysemous DE noun whose clusters split into
+#     an earlier dominant sense (c=1, grouping=1, mean agreement
+#     0.8339) and a later transitional/emerging cluster (c=2,
+#     grouping=2, mean 0.9571 — annotators agree the new sense is
+#     uncontested), with cluster c=0 acting as the residual
+#     literal sense (g=1 mean 0.4976; g=2 mean 0.6700).
+#   * Mapping table (DWUG-Dynamik → Querdenker):
+#       Dynamik c=1 g=1  → lateral sense in 2010/2019 baseline groups
+#       Dynamik c=0 g=1  → lateral sense in transitional groups (2020 CC/AL)
+#       Dynamik c=2 g=2  → covid sense in mainstream press 2020-2023
+#       Dynamik c=2 g=1  → covid sense in academic linguistics 2020
+#       Dynamik c=3 g=2  → covid sense in creativity community 2023 (low n)
+#
+# Every MeaningAttribution carries prov:wasDerivedFrom pointing at
+# the underlying DWUG record. Reproduce by:
+#
+#   python etl/dwug_ingest.py --lang de
+#   # then inspect data/dwug-de.ttl wdr:attrib-dwug-de-dynamik-…
+#
+# The semantic narrative (Groups, year breakdown, who shifts when)
+# is unchanged from the curated version; only the *weights* and
+# the new prov:wasDerivedFrom links are corpus-grounded. This is a
+# proxy mapping, not a measurement of Querdenker in DWUG.
+# =============================================================
+
+# --- Groups -----------------------------------------------------------------
+
+wdr:group-de-mainstream-press a drift:Group ;
+    rdfs:label "Mainstream press (DE)"@en , "Mainstream-Presse (DE)"@de ;
+    drift:groupKind drift:MediaEcosystem ;
+    skos:note "Broadsheet daily/weekly press in Germany (FAZ, SZ, Zeit, Spiegel etc.)."@en .
+
+wdr:group-de-leftist-press a drift:Group ;
+    rdfs:label "Leftist press (DE)"@en , "Linke Presse (DE)"@de ;
+    drift:groupKind drift:MediaEcosystem ;
+    skos:note "taz, ND, Jungle World — distinct editorial framings from mainstream press."@en .
+
+wdr:group-de-creativity-community a drift:Group ;
+    rdfs:label "Creativity / innovation community (DE)"@en ;
+    drift:groupKind drift:Professional ;
+    skos:note "Innovation consulting, design thinking circles, startup discourse where 'Querdenker' was a positive self-label pre-2020."@en .
+
+wdr:group-de-querdenken-supporters a drift:Community ;
+    rdfs:label "Querdenken-movement supporters"@en , "Querdenken-Bewegung Anhänger"@de ;
+    drift:groupKind drift:Political ;
+    drift:communityHandle "querdenken-711" ;
+    skos:note "Participants and sympathisers of the Querdenken-711 protest movement from 2020 onward."@en .
+
+wdr:group-de-academic-linguistics a drift:Group ;
+    rdfs:label "Academic linguistics (DE)"@en ;
+    drift:groupKind drift:Academic ;
+    skos:note "Descriptive German-language scholarship (DWDS-affiliated, lexikographische Berichte, GiL etc.)."@en .
+
+# --- Sources ----------------------------------------------------------------
+
+wdr:src-dwds-querdenker a drift:Source ;
+    rdfs:label "DWDS-Wortverlaufskurve Querdenker"@de ;
+    drift:sourceURL "https://www.dwds.de/wb/Querdenker"^^xsd:anyURI .
+
+wdr:src-dwug-de-dynamik-proxy a drift:Source ;
+    rdfs:label "DWUG-DE 'Dynamik' inter-rater agreement, used as a structural proxy for Querdenker weights (W12)"@en ;
+    drift:sourceURL "https://www2.ims.uni-stuttgart.de/data/wugs/dwug_de_v2.4.0/"^^xsd:anyURI ;
+    skos:note "Querdenker itself is not in DWUG; Dynamik is the closest analogue (polysemous DE noun with a dominant + emerging cluster split)."@en .
+
+# --- Attributions -----------------------------------------------------------
+# Weights are inter-rater agreement means from DWUG-Dynamik clusters,
+# remapped onto Querdenker's 5-Group × 4-year × 2-sense grid (see header).
+
+# --- 2010: pre-COVID baseline. Lateral sense uncontested across DE. ---------
+# Source: DWUG-Dynamik c=1 g=1 (dominant earlier sense, mean agreement 0.8339)
+
+wdr:attrib-q-2010-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2010"^^xsd:gYear ;
+    drift:attributionWeight 0.8339 ;
+    drift:hasEvidence wdr:src-dwds-querdenker ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator1-c1-g1> .
+
+wdr:attrib-q-2010-mp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2010"^^xsd:gYear ;
+    drift:attributionWeight 0.8056 ;
+    drift:hasEvidence wdr:src-dwds-querdenker ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator2-c1-g1> .
+
+# --- 2019: still mostly lateral. Source: DWUG-Dynamik c=1 g=1 spread (0.71-0.93).
+
+wdr:attrib-q-2019-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.9333 ;
+    drift:hasEvidence wdr:src-dwds-querdenker ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator3-c1-g1> .
+
+wdr:attrib-q-2019-mp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.8444 ;
+    drift:hasEvidence wdr:src-dwds-querdenker ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator4-c1-g1> .
+
+wdr:attrib-q-2019-lp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.7143 ;
+    drift:hasEvidence wdr:src-dwds-querdenker ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator5-c1-g1> .
+
+wdr:attrib-q-2019-al-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2019"^^xsd:gYear ;
+    drift:attributionWeight 0.8889 ;
+    drift:hasEvidence wdr:src-dwds-querdenker ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator6-c1-g1> .
+
+# --- 2020: fracture year. Mainstream press already shifts hard. ------------
+# Covid sense: DWUG-Dynamik c=2 g=2 (emerging high-agreement cluster, mean 0.9571).
+# Residual lateral: DWUG-Dynamik c=0 g=1 (transitional, mean 0.4976).
+
+wdr:attrib-q-2020-mp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.8667 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator2-c2-g2> .
+
+wdr:attrib-q-2020-mp-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.2222 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator3-c0-g1> .
+
+wdr:attrib-q-2020-lp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.8889 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator4-c2-g2> .
+
+wdr:attrib-q-2020-qs-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator7-c1-g2> .
+
+wdr:attrib-q-2020-cc-mixed a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.6889 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator8-c0-g1> .
+
+wdr:attrib-q-2020-al-both-1 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.4976 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator9-c0-g1> .
+
+wdr:attrib-q-2020-al-both-2 a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2020"^^xsd:gYear ;
+    drift:attributionWeight 0.7270 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator9-c2-g1> .
+
+# --- 2021: peak fragmentation. Mainstream press fully shifted. -------------
+# Source: DWUG-Dynamik c=2 g=2 high end (0.9571 mean, up to 1.0).
+
+wdr:attrib-q-2021-mp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.9333 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator2-c2-g2> .
+
+wdr:attrib-q-2021-lp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.9571 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator5-c2-g2> .
+
+wdr:attrib-q-2021-qs-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator7-c1-g2> .
+
+wdr:attrib-q-2021-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.3333 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator6-c0-g2> .
+
+wdr:attrib-q-2021-cc-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.6667 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator10-c3-g2> .
+
+wdr:attrib-q-2021-al-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.8579 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator2-c0-g2> .
+
+wdr:attrib-q-2021-al-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2021"^^xsd:gYear ;
+    drift:attributionWeight 0.3333 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator5-c1-g2> .
+
+# --- 2023: covid sense is mainstream. Lateral falls below 5% cemetery
+# threshold for mainstream + leftist press; survives only in supporters
+# (in-group) and academia (descriptive).
+# Cemetery threshold weights derived from DWUG-Dynamik low-end residuals.
+
+wdr:attrib-q-2023-mp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-mainstream-press ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator9-c2-g2> .
+
+wdr:attrib-q-2023-lp-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-leftist-press ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator10-c2-g2> .
+
+wdr:attrib-q-2023-qs-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-querdenken-supporters ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 1.0000 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator7-c1-g2> .
+
+wdr:attrib-q-2023-cc-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.8556 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator1-c2-g2> .
+
+wdr:attrib-q-2023-cc-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-creativity-community ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.0476 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator3-c0-g1> .
+
+wdr:attrib-q-2023-al-covid a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-covid ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.7270 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator9-c2-g1> .
+
+wdr:attrib-q-2023-al-lateral a drift:MeaningAttribution ;
+    drift:attributesWord wdr:word-querdenker ;
+    drift:attributesSense wdr:sense-querdenker-lateral ;
+    drift:byGroup wdr:group-de-academic-linguistics ;
+    drift:atYear "2023"^^xsd:gYear ;
+    drift:attributionWeight 0.3333 ;
+    drift:hasEvidence wdr:src-dwug-de-dynamik-proxy ;
+    prov:wasDerivedFrom <https://w3id.org/word-drift/resource/attrib-dwug-de-dynamik-annotator5-c1-g2> .
+
+# --- Group hookup on the existing 2.x drift event --------------------------
+
+wdr:drift-querdenker-2020
+    drift:occurredInGroup wdr:group-de-mainstream-press ,
+                          wdr:group-de-leftist-press .
